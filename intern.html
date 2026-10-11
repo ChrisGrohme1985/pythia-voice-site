@@ -132,7 +132,7 @@
               <label>Vorname<input id="gFirst" maxlength="80" autocomplete="off"></label>
               <label>Nachname<input id="gLast" maxlength="80" required autocomplete="off"></label>
               <label>E-Mail (für den Versand)<input id="gMail" type="email" maxlength="160" autocomplete="off"></label>
-              <label>Produkt<select id="gProd"><option value="dictation">Pythia Voice (Diktat)</option><option value="voice">Sprachnachrichten</option></select></label>
+              <label>Produkt<select id="gProd"><option value="dictation">Basis</option><option value="voice">Sprachnachrichten</option></select></label>
               <label class="wide">Notiz (intern)<input id="gNote" maxlength="300" placeholder="z. B. Rezensent, Support-Fall"></label>
               <label class="chk wide"><input type="checkbox" id="gSend"> Schlüssel per E-Mail an den Kunden senden</label>
               <p class="wide actions"><button class="btn primary" type="submit">Schlüssel erzeugen</button></p>
@@ -145,13 +145,13 @@
             <p class="sub">Enthält personenbezogene Daten: nicht weitergeben.</p>
             <div class="toolbar">
               <label class="f grow">Suche<input id="lQ" placeholder="Name, E-Mail, Nummer, Notiz"></label>
-              <label class="f">Produkt<select id="lProd"><option value="">Alle</option><option value="Pythia Voice (Diktat)">Diktat</option><option value="Pythia Voice Sprachnachrichten">Sprachnachrichten</option></select></label>
+              <label class="f">Produkt<select id="lProd"><option value="">Alle</option><option value="Pythia Voice (Diktat)">Basis</option><option value="Pythia Voice Sprachnachrichten">Sprachnachrichten</option></select></label>
               <label class="f">Quelle<select id="lSrc"><option value="">Alle</option><option value="stripe">Stripe</option><option value="manuell">Manuell</option></select></label>
               <label class="f">Von<input type="date" id="lFrom"></label>
               <label class="f">Bis<input type="date" id="lTo"></label>
               <button class="btn ghost" id="lReset" type="button">Zurücksetzen</button>
             </div>
-            <div class="table-wrap"><table id="licTable" class="lic"><thead><tr><th>Nummer</th><th>Produkt</th><th>Name</th><th>E-Mail</th><th>Quelle</th><th class="r">Betrag</th><th>Gerät</th><th>Schlüssel</th></tr></thead><tbody></tbody></table></div>
+            <div class="table-wrap"><table id="licTable" class="lic"><thead><tr><th>Datum</th><th>Nummer</th><th>Name</th><th class="r">Betrag</th><th>Gerät</th><th>Schlüssel</th></tr></thead><tbody></tbody></table></div>
             <div class="pager" id="licPager"></div>
           </div>
         </div>

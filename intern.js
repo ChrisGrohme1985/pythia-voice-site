@@ -406,6 +406,19 @@
     }), 7);
   }
 
+  // Eigener Tooltip (nicht der Browser-Standard): ein schwebendes Feld für alle Elemente mit data-tip
+  const tipBox = Object.assign(document.createElement("div"), { className: "tipbox", hidden: true });
+  document.body.append(tipBox);
+  document.addEventListener("mouseover", (e) => {
+    const el = e.target.closest && e.target.closest("[data-tip]");
+    if (!el) { tipBox.hidden = true; return; }
+    tipBox.textContent = el.dataset.tip; tipBox.hidden = false;
+    const r = el.getBoundingClientRect();
+    tipBox.style.left = Math.max(8, Math.min(r.left, innerWidth - tipBox.offsetWidth - 8)) + "px";
+    tipBox.style.top = (r.bottom + tipBox.offsetHeight + 12 > innerHeight ? r.top - tipBox.offsetHeight - 6 : r.bottom + 6) + "px";
+  });
+  document.addEventListener("scroll", () => { tipBox.hidden = true; }, true);
+
   // --- Lizenzen (nur Systemadmin): filtern und seitenweise anzeigen ---
   const licPage = { page: 1, size: 25 };
   function licVisible() {
@@ -417,9 +430,11 @@
     const list = licVisible();
     const rows = list.slice((licPage.page - 1) * licPage.size, licPage.page * licPage.size);
     fill("licTable", rows.map((l) => {
-      const nr = td(l.number, "nw");
-      nr.append(Object.assign(document.createElement("small"), { textContent: de(l.date) }));
-      const name = td(`${l.firstName} ${l.lastName}`.trim() || "–", "wrap");
+      const label = /Sprachnachrichten/.test(l.product) ? "Sprachnachrichten" : "Basis";
+      const nr = td(l.number, "nw tip");
+      nr.dataset.tip = [`Produkt: ${label}`, `Quelle: ${l.source === "manuell" ? "manuell" : "Stripe"}`, l.note && `Notiz: ${l.note}`].filter(Boolean).join("\n");
+      const name = td(`${l.firstName} ${l.lastName}`.trim() || "–", "nw name" + (l.email ? " tip" : ""));
+      if (l.email) name.dataset.tip = l.email;
       const dev = td("", "nw");
       if (l.boundAt) {
         dev.append(Object.assign(document.createElement("span"), { textContent: "seit " + de(new Date(l.boundAt).toISOString().slice(0, 10)) }), btn("Freigeben", async () => {
@@ -427,14 +442,12 @@
             await api("license-release", { method: "POST", body: { id: l.deviceId } }); msg("licMsg", `Gerät von ${l.number} freigegeben.`); loadLic();
           }
         }));
-      } else dev.textContent = "–", dev.className = "nw muted";
+      } else { dev.textContent = "–"; dev.className = "nw muted"; }
       const k = td("", "nw");
       if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
-      const money = l.source === "manuell" ? "–" : eur(l.amount) + (l.refunded ? ` (erstattet ${eur(l.refunded)})` : "");
-      const src = td(l.source === "manuell" ? (l.note ? `manuell · ${l.note}` : "manuell") : "Stripe", "wrap");
-      const prod = td(l.product.replace(/^Pythia Voice\s*\(?/, "").replace(/\)$/, "") || l.product, "wrap");
-      return [nr, prod, name, td(l.email || "–", "wrap mail"), src, td(money, "r nw"), dev, k];
-    }), 8);
+      const money = l.source === "manuell" ? "–" : eur(l.amount) + (l.refunded ? " · erstattet" : "");
+      return [td(de(l.date), "nw"), nr, name, td(money, "r nw"), dev, k];
+    }), 6);
     pager($("licPager"), licPage, list.length, renderLic);
   }
   ["lQ", "lProd", "lSrc", "lFrom", "lTo"].forEach((i) => ($(i).oninput = () => { licPage.page = 1; renderLic(); }));

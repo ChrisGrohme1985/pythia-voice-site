@@ -445,19 +445,17 @@ footer { padding: 44px 0 36px; }
 .admin .btn.primary.danger:hover { background: #ffb4b4; border-color: #ffb4b4; }
 @media (prefers-reduced-motion: reduce) { .admin dialog.confirm-dlg[open] { animation: none; } }
 
-/* Lizenzen: Datum klein unter der Nummer, Gerätespalte mit Freigabe-Knopf */
-.admin table.lic td small { display: block; color: var(--muted); font-size: .76rem; margin-top: 2px; }
-.admin table.lic td.wrap { overflow-wrap: break-word; }
-.admin table.lic td.mail { overflow-wrap: anywhere; }
-.admin table.lic td .link { margin-inline-start: 6px; }
-
-/* Unter 900 px: je Lizenz eine Karte statt einer gequetschten Tabelle */
+/* Lizenzen: eine Zeile je Eintrag; Produkt/Quelle/E-Mail als Tooltip */
+.admin table.lic td, .admin table.lic th { white-space: nowrap; text-align: left; margin: 0; max-width: none; }
+.admin table.lic th.r, .admin table.lic td.r { text-align: right; }
+.admin table.lic td.name { max-width: 240px; overflow: hidden; text-overflow: ellipsis; }
+.admin table.lic td .link { margin-inline-start: 8px; }
+.tip { cursor: help; }
+.tip:hover { color: var(--gold2); }
+.tipbox { position: fixed; z-index: 100; max-width: 340px; padding: 9px 12px; border-radius: 10px; background: #14224a; border: 1px solid rgba(242, 193, 78, .35); color: var(--ivory); font-size: .82rem; line-height: 1.5; white-space: pre-line; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .7); pointer-events: none; }
 @media (max-width: 900px) {
-  .admin table.lic thead { display: none; }
-  .admin table.lic, .admin table.lic tbody { display: block; }
-  .admin table.lic tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px 14px; padding: 14px 4px; border-bottom: 1px solid var(--hair); }
-  .admin table.lic td { display: block; border: 0; padding: 0; margin: 0; max-width: none; white-space: normal; text-align: left; } /* .wrap (global) setzt margin: auto */
-  .admin table.lic td.r { text-align: right; }
-  .admin table.lic td:nth-child(4) { grid-column: 1 / -1; color: var(--muted); }
-  .admin table.lic td:nth-child(8) { text-align: right; }
+  .admin table.lic { font-size: .84rem; }
+  .admin table.lic td, .admin table.lic th { padding-inline: 6px; }
+  .admin table.lic td.name { max-width: 110px; }
+  .admin table.lic td .link { margin-inline-start: 4px; padding-inline: 4px; }
 }
