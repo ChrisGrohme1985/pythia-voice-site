@@ -111,3 +111,6 @@ footer { background: var(--navy); border-top: 1px solid var(--night); padding: 2
 .note { color: #44506b; font-size: .95rem; max-width: 34em; }
 .rules div:first-child dt { color: var(--gold-d); }
 [dir="rtl"] .rules dd, [dir="rtl"] .lead, [dir="rtl"] details p { max-width: none; }
+
+/* Zeitangabe der Einrichtung */
+.setup { margin: 22px 0 0; max-width: 40em; border-inline-start: 3px solid var(--gold); padding-inline-start: 14px; color: var(--ivory); }
