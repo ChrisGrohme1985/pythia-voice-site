@@ -202,13 +202,21 @@
         proj.append(sel);
       }
       const desc = document.createElement("td");
-      desc.className = "clip";
-      desc.append(document.createTextNode(e.description + (e.refunded ? ` (erstattet ${eur(e.refunded)})` : "")));
+      desc.className = "clip desc tip";
+      desc.dataset.tip = e.description + (e.category ? `\n${e.category}` : "") + (e.refunded ? `\nerstattet ${eur(e.refunded)}` : "");
+      const d1 = document.createElement("span");
+      d1.className = "d1";
+      d1.textContent = e.description;
+      desc.append(d1);
       const cat = document.createElement("small");
-      cat.textContent = e.category;
+      cat.textContent = [e.category, e.refunded ? `erstattet ${eur(e.refunded)}` : ""].filter(Boolean).join(" · ");
+      const pl = document.createElement("span"); // erscheint nur auf schmalen Bildschirmen, dort ersetzt es die Spalte Partei
+      pl.className = "partyline"; pl.textContent = " · " + e.party;
+      cat.append(pl);
       desc.append(cat);
-      const row = [td(e.number, "nw"), td(de(e.date), "nw"), kind, proj, td(e.party, "nw"), desc,
+      const row = [td(de(e.date), "nw"), td(e.number, "nw"), kind, proj, td(e.party, "nw party tip"), desc,
         td((e.type === "income" ? "" : "-") + eur(e.amount), "r nw " + (e.type === "income" ? "pos" : "neg")), rcpt, act];
+      row[4].dataset.tip = e.party;
       if (e.void) row.forEach((c) => c.classList.add("void"));
       return row;
     }), 9);
