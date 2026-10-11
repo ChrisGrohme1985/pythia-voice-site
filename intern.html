@@ -198,6 +198,16 @@
   </form>
 </dialog>
 
+<!-- Rückfrage (ersetzt das Browser-Fenster) -->
+<dialog id="cdlg" class="confirm-dlg" aria-labelledby="cTitle">
+  <form method="dialog" id="cForm">
+    <div class="c-icon" id="cIcon" aria-hidden="true"></div>
+    <h2 id="cTitle"></h2>
+    <p id="cText"></p>
+    <p class="actions"><button class="btn ghost" type="button" id="cNo">Abbrechen</button> <button class="btn primary" type="submit" id="cYes">OK</button></p>
+  </form>
+</dialog>
+
 <!-- Beleg ansehen -->
 <dialog id="pdlg" class="wide-dlg">
   <div class="dlg-head"><h2 id="pTitle">Beleg</h2><button class="link" type="button" id="pClose">Schließen</button></div>

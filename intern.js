@@ -48,6 +48,27 @@
     el.replaceChildren(info, go(-1, "‹ Zurück"), document.createTextNode(`Seite ${st.page} von ${pages}`), go(1, "Weiter ›"), size);
   }
 
+  // Rückfrage im Seitenstil statt confirm(): liefert true bei Bestätigung. danger = unumkehrbare Aktion (roter Knopf).
+  const ICO = {
+    danger: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 10v4M12 17.5v.01"/></svg>',
+    ask: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1.1.9-1.1 1.7M12 17v.01"/></svg>',
+  };
+  function ask({ title, text, yes = "OK", no = "Abbrechen", danger = false }) {
+    return new Promise((resolve) => {
+      const d = $("cdlg");
+      $("cTitle").textContent = title; $("cText").textContent = text;
+      $("cYes").textContent = yes; $("cNo").textContent = no;
+      $("cYes").classList.toggle("danger", danger);
+      $("cIcon").className = "c-icon" + (danger ? " danger" : ""); $("cIcon").innerHTML = danger ? ICO.danger : ICO.ask;
+      let ok = false;
+      $("cForm").onsubmit = () => { ok = true; };
+      $("cNo").onclick = () => d.close();
+      d.onclose = () => resolve(ok);
+      d.showModal();
+      $("cNo").focus(); // Standard auf "Abbrechen": ein versehentliches Enter löst nichts aus
+    });
+  }
+
   // Auge neben jedem Passwortfeld: Passwort ein- und ausblenden
   const EYE = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
   const EYE_OFF = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.2A10.8 10.8 0 0 1 12 5c6.5 0 10.5 7 10.5 7a17 17 0 0 1-3.2 4M6.5 6.6C3.4 8.6 1.5 12 1.5 12S5.5 19 12 19c1.6 0 3-.4 4.3-1M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
@@ -156,11 +177,11 @@
         }
         else if (e.source === "flowunion") { act.textContent = "FlowUnion"; act.classList.add("muted"); }
         else act.append(btn("Stornieren", async () => {
-          if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
+          if (await ask({ title: `${e.number} stornieren?`, text: "Der Posten wird als storniert markiert. Die Nummer bleibt erhalten und wird nicht neu vergeben.", yes: "Stornieren", danger: true })) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
         }));
       } else {
         act.append(btn("Bearbeiten", () => openEntry(e.type, e)), " ", btn("Stornieren", async () => {
-          if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
+          if (await ask({ title: `${e.number} stornieren?`, text: "Der Posten wird als storniert markiert. Die Nummer bleibt erhalten und wird nicht neu vergeben.", yes: "Stornieren", danger: true })) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
         }));
       }
       const kind = document.createElement("td");
@@ -275,7 +296,7 @@
   $("rCancel").onclick = () => $("rdlg").close();
   $("refundForm").onsubmit = async (ev) => {
     ev.preventDefault();
-    if (!confirm(`${$("rAmount").value} € jetzt bei Stripe erstatten? Das lässt sich nicht zurücknehmen.`)) return;
+    if (!(await ask({ title: `${$("rAmount").value} € jetzt erstatten?`, text: "Der Betrag wird sofort bei Stripe erstattet und als Gutschrift gebucht. Das lässt sich nicht zurücknehmen.", yes: "Jetzt erstatten", danger: true }))) return;
     $("rSave").disabled = true;
     try {
       const r = await api("refund", { method: "POST", body: { id: refunding.id, amount: $("rAmount").value, reason: $("rReason").value, note: $("rNote").value, notify: $("rNotify").checked } });
@@ -360,7 +381,7 @@
       const c = document.createElement("td");
       c.className = "cell-actions";
       c.append(btn("Ansehen", () => preview(i)), btn("Buchen", () => openEntry("expense", null, { inboxId: i.id })), btn("Zuordnen", () => openAssign({ item: i })), btn("Löschen", async () => {
-        if (confirm(`${i.filename} löschen?`)) { await api("inbox-delete", { method: "POST", body: { id: i.id } }); loadInbox(); }
+        if (await ask({ title: "Beleg löschen?", text: `${i.filename} wird aus der Inbox entfernt.`, yes: "Löschen", danger: true })) { await api("inbox-delete", { method: "POST", body: { id: i.id } }); loadInbox(); }
       }));
       return [td(i.filename), td(de(day(i.createdAt)) || ""), td(`${Math.max(1, Math.round(i.size / 1024))} KB`, "r"), c];
     }), 4);
