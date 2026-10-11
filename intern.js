@@ -42,7 +42,7 @@
 
   document.querySelectorAll(".tabs button").forEach((b) => (b.onclick = () => {
     document.querySelectorAll(".tabs button").forEach((x) => x.classList.toggle("on", x === b));
-    ["fin", "reports", "inbox"].forEach((t) => ($("tab-" + t).hidden = t !== b.dataset.tab));
+    ["fin", "reports", "inbox", "lic"].forEach((t) => ($("tab-" + t).hidden = t !== b.dataset.tab));
     load(b.dataset.tab);
   }));
 
@@ -183,8 +183,22 @@
     }), 6);
   }
 
+  // --- Lizenzen (nur Systemadmin) ---
+  let licenses = [];
+  function renderLic() {
+    const q = $("lQ").value.trim().toLowerCase();
+    fill("licTable", licenses.filter((l) => !q || `${l.number} ${l.firstName} ${l.lastName} ${l.email} ${l.product}`.toLowerCase().includes(q)).map((l) => {
+      const k = document.createElement("td");
+      if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
+      const refunded = l.refunded ? ` (erstattet ${eur(l.refunded)})` : "";
+      return [td(l.number), td(de(l.date)), td(l.product), td(l.firstName), td(l.lastName), td(l.email), td(eur(l.amount) + refunded), k];
+    }), 8);
+  }
+  $("lQ").oninput = renderLic;
+  async function loadLic() { licenses = (await api("licenses")).licenses; renderLic(); }
+
   function load(tab) {
-    const f = { fin: loadFin, reports: loadReports, inbox: loadInbox }[tab];
+    const f = { fin: loadFin, reports: loadReports, inbox: loadInbox, lic: loadLic }[tab];
     f().catch((e) => { if (e.status === 401) location.reload(); });
   }
   async function start() {

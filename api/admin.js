@@ -5,6 +5,7 @@
 const crypto = require("crypto");
 const db = require("./_db");
 const books = require("./_books");
+const { issue } = require("./_license");
 
 const COOKIE = "pv_admin";
 const SESSION_SEC = 12 * 3600;
@@ -15,16 +16,18 @@ const adminEmail = () => process.env.ADMIN_EMAIL || "support@pythiavoice.app";
 const YMD = /^\d{4}-\d{2}-\d{2}$/;
 
 function token() {
-  const body = b64(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + SESSION_SEC }));
+  // Der Anmeldecode geht nur an ADMIN_EMAIL: wer sich anmeldet, ist Systemadmin. Weitere Rollen können später dazukommen.
+  const body = b64(JSON.stringify({ role: "sysadmin", exp: Math.floor(Date.now() / 1000) + SESSION_SEC }));
   return `${body}.${hmac(body)}`;
 }
-function loggedIn(req) {
-  if (!process.env.ADMIN_SECRET) return false;
+function session(req) {
+  if (!process.env.ADMIN_SECRET) return null;
   const c = String(req.headers.cookie || "").split(";").map((x) => x.trim()).find((x) => x.startsWith(COOKIE + "="));
   const [body, sig] = String(c || "").slice(COOKIE.length + 1).split(".");
-  if (!body || !sig || !same(sig, hmac(body))) return false;
-  try { return JSON.parse(Buffer.from(body, "base64url").toString()).exp > Date.now() / 1000; } catch { return false; }
+  if (!body || !sig || !same(sig, hmac(body))) return null;
+  try { const s = JSON.parse(Buffer.from(body, "base64url").toString()); return s.exp > Date.now() / 1000 ? s : null; } catch { return null; }
 }
+const loggedIn = (req) => Boolean(session(req));
 
 async function mail(to, subject, text) {
   const r = await fetch("https://api.resend.com/emails", {
@@ -80,6 +83,10 @@ module.exports = async (req, res) => {
 
     // --- Daten lesen ---
     if (action === "me") return reply(200, { ok: true, expenseCategories: books.EXPENSE_CATEGORIES, incomeCategories: books.INCOME_CATEGORIES });
+    if (action === "licenses") {
+      if (session(req)?.role !== "sysadmin") return reply(403, { error: "forbidden" });
+      return reply(200, { licenses: await books.listLicenses(issue) });
+    }
     if (action === "entries") return reply(200, { entries: await books.listEntries() });
     if (action === "inbox") return reply(200, { items: await books.listInbox() });
     if (action === "inbox-preview") { const f = await books.inboxFile(String(q.id || "")); return file(f?.data, "application/pdf", "beleg.pdf", "inline"); }

@@ -28,6 +28,7 @@
       <button data-tab="fin" class="on">Finanzen</button>
       <button data-tab="reports">Berichte</button>
       <button data-tab="inbox">Beleg-Inbox</button>
+      <button data-tab="lic">Lizenzen</button>
     </nav>
 
     <div id="tab-fin" class="panel">
@@ -67,6 +68,14 @@
       <p id="repMsg" class="msg" role="status"></p>
       <h2>Gespeicherte Berichte</h2>
       <div class="scroll"><table id="repTable"><thead><tr><th>Nummer</th><th>Zeitraum</th><th>Einnahmen</th><th>Ausgaben</th><th>Ergebnis</th><th>Dateien</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div id="tab-lic" class="panel" hidden>
+      <h2>Alle Lizenzen</h2>
+      <p>Nur für Systemadmins sichtbar. Enthält personenbezogene Daten: nicht weitergeben.</p>
+      <p id="licMsg" class="msg" role="status"></p>
+      <p><label>Suche<input id="lQ" placeholder="Name, E-Mail, Nummer"></label></p>
+      <div class="scroll"><table id="licTable"><thead><tr><th>Rechnung</th><th>Datum</th><th>Produkt</th><th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Betrag</th><th>Schlüssel</th></tr></thead><tbody></tbody></table></div>
     </div>
 
     <div id="tab-inbox" class="panel" hidden>

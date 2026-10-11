@@ -113,13 +113,20 @@ const PRODUCTS = [
 const productOf = (link) => PRODUCTS.find((p) => ids(process.env[p.env]).includes(link)) || null;
 
 /** Idempotent: derselbe Kauf ergibt immer denselben Posten mit derselben Rechnungsnummer (auch bei doppeltem Webhook). */
+/** Stripe liefert den Namen als ein Feld; Nachname = letztes Wort, Vorname = der Rest (bei Doppelnamen ggf. von Hand prüfen). */
+function splitName(full) {
+  const parts = String(full || "").trim().split(/\s+/).filter(Boolean);
+  return parts.length < 2 ? { firstName: "", lastName: parts[0] || "" } : { firstName: parts.slice(0, -1).join(" "), lastName: parts[parts.length - 1] };
+}
+
 async function invoiceFor(session) {
   const id = `st_${session.id}`;
   const email = session.customer_details?.email || session.customer_email || "";
   const { doc } = await db.numbered(ENTRIES, id, "PV", new Date(session.created * 1000).getUTCFullYear(), (number) => ({
     number, type: "income", source: "stripe", date: inv.day(session.created), created: session.created, amount: session.amount_total || 0,
     category: "Verkauf (Stripe)", party: email, email, description: (productOf(session.payment_link) || PRODUCTS[0]).de, item: (productOf(session.payment_link) || PRODUCTS[0]).item,
-    session: session.id, link: session.payment_link || "",
+    session: session.id, link: session.payment_link || "", version: (productOf(session.payment_link) || PRODUCTS[0]).version,
+    name: String(session.customer_details?.name || "").trim(), ...splitName(session.customer_details?.name),
     fee: 0, refunded: 0, void: false, createdAt: now(),
   }));
   return { id, ...doc };
@@ -156,9 +163,21 @@ async function syncStripe(from, to) {
     const e = await invoiceFor(s);
     const ch = s.payment_intent?.latest_charge;
     const fee = ch?.balance_transaction?.fee || 0, refunded = ch?.amount_refunded || 0;
-    if (e.fee !== fee || e.refunded !== refunded) await db.set(ENTRIES, e.id, { fee, refunded }, { merge: true });
+    const nm = String(s.customer_details?.name || "").trim();
+    if (e.fee !== fee || e.refunded !== refunded || (nm && !e.name)) await db.set(ENTRIES, e.id, { fee, refunded, ...(nm && !e.name ? { name: nm, ...splitName(nm) } : {}) }, { merge: true });
   }
   return sessions.length;
+}
+
+/** Alle verkauften Lizenzen (nur Stripe-Verkäufe) mit Kundendaten; der Schlüssel wird aus der Bestellung neu abgeleitet. */
+async function listLicenses(issue) {
+  return (await listEntries()).filter((e) => e.source === "stripe").sort((a, b) => b.number.localeCompare(a.number)).map((e) => {
+    let key = "";
+    try { key = issue(e.session, e.version || 1); } catch { /* Signierschlüssel nicht gesetzt */ }
+    const product = PRODUCTS.find((p) => p.version === (e.version || 1)) || PRODUCTS[0];
+    return { number: e.number, date: e.date, product: product.de, firstName: e.firstName || "", lastName: e.lastName || "", email: e.email || "",
+      amount: e.amount, refunded: e.refunded || 0, key };
+  });
 }
 
 // ---------- Belege (PDF) ----------
@@ -254,7 +273,7 @@ const expensesCsv = (entries) => csv(["Belegnummer", "Datum", "Lieferant", "Besc
     e.receiptStatus === "ready" ? e.receiptFilename : "", e.void ? "storniert" : "gültig"]));
 
 /** Stripe-Verkauf als Sitzungs-Ersatz für die Rechnungsseite. */
-const asSession = (e) => ({ id: e.session || e.id, created: e.created || unix(e.date), amount_total: e.amount, customer_details: { email: e.email }, item: e.item });
+const asSession = (e) => ({ id: e.session || e.id, created: e.created || unix(e.date), amount_total: e.amount, customer_details: { email: e.email, name: e.name }, item: e.item });
 
 async function reportPdf(number, from, to, entries, t) {
   const doc = await PDFDocument.create();
@@ -387,5 +406,5 @@ async function entriesCsv(from, to) {
 module.exports = {
   EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
-  productOf, totals, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
+  productOf, totals, listLicenses, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };

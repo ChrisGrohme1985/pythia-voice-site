@@ -35,6 +35,7 @@ function invoicePage(doc, fonts, s, nr) {
   t("Rechnungsnummer:", 56, 620); t(nr, 190, 620);
   t("Datum / Leistungsdatum:", 56, 602); t(de(day(s.created)), 190, 602);
   t("Kunde (E-Mail):", 56, 584); t(s.customer_details?.email || s.customer_email || "-", 190, 584);
+  if (s.customer_details?.name) { t("Name:", 56, 566); t(s.customer_details.name, 190, 566); }
   t("Leistung", 56, 530, 11, true); t("Betrag", 470, 530, 11, true);
   p.drawLine({ start: { x: 56, y: 522 }, end: { x: 539, y: 522 }, thickness: 0.7, color: colors.gray });
   t(s.item || "Lebenslange Lizenz für die Android-App Pythia Voice (digital)", 56, 504);
