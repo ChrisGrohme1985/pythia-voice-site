@@ -22,7 +22,7 @@
     const body = $(tableId).querySelector("tbody");
     body.replaceChildren();
     rows.forEach((cells) => { const tr = document.createElement("tr"); cells.forEach((c) => tr.append(c)); body.append(tr); });
-    if (!rows.length) { const tr = document.createElement("tr"); const c = td("Noch nichts vorhanden."); c.colSpan = cols; tr.append(c); body.append(tr); }
+    if (!rows.length) { const tr = document.createElement("tr"); const c = td("Noch nichts vorhanden.", "empty"); c.colSpan = cols; tr.append(c); body.append(tr); }
   };
   const msg = (id, text, bad) => { const e = $(id); e.textContent = text; e.className = "msg" + (bad ? " bad" : ""); };
   const btn = (label, fn) => { const b = document.createElement("button"); b.className = "link"; b.type = "button"; b.textContent = label; b.onclick = fn; return b; };
@@ -83,12 +83,16 @@
     lastyear: () => { const y = new Date().getUTCFullYear() - 1; return [new Date(Date.UTC(y, 0, 1)), new Date(Date.UTC(y, 11, 31))]; },
     all: () => [new Date(Date.UTC(2000, 0, 1)), new Date(Date.UTC(2099, 11, 31))],
   };
+  const markRange = () => document.querySelectorAll("[data-range]").forEach((b) => {
+    const [a, z] = ranges[b.dataset.range]();
+    b.classList.toggle("on", $("fFrom").value === ymd(a) && $("fTo").value === ymd(z));
+  });
   document.querySelectorAll("[data-range]").forEach((b) => (b.onclick = () => {
     const [a, z] = ranges[b.dataset.range]();
     $("fFrom").value = ymd(a); $("fTo").value = ymd(z);
-    renderFin();
+    markRange(); renderFin();
   }));
-  ["fFrom", "fTo", "fType", "fQ"].forEach((i) => ($(i).oninput = renderFin));
+  ["fFrom", "fTo", "fType", "fQ"].forEach((i) => ($(i).oninput = () => { markRange(); renderFin(); }));
 
   // --- Finanzen ---
   function visible() {
@@ -100,21 +104,28 @@
     const list = visible(), live = list.filter((e) => !e.void);
     const sum = (t, k = "amount") => live.filter((e) => e.type === t).reduce((a, e) => a + (e[k] || 0), 0);
     const income = sum("income"), refunds = sum("income", "refunded"), fees = sum("income", "fee"), exp = sum("expense");
+    const result = income - refunds - fees - exp;
     const kpi = (l, v, cls = "") => `<div class="kpi ${cls}"><span>${l}</span><strong>${eur(v)}</strong></div>`;
     $("kpis").innerHTML = kpi("Einnahmen", income) + kpi("Erstattungen", refunds) + kpi("Stripe-Gebühren", fees) + kpi("Ausgaben", exp)
-      + kpi("Ergebnis", income - refunds - fees - exp, income - refunds - fees - exp < 0 ? "neg" : "pos");
+      + kpi("Ergebnis", result, "result " + (result < 0 ? "neg" : "pos"));
     fill("finTable", list.map((e) => {
       const rcpt = document.createElement("td");
       if (e.receiptStatus === "ready") rcpt.append(link(`/api/admin?action=receipt&id=${encodeURIComponent(e.id)}`, "PDF", true));
       const act = document.createElement("td");
-      if (e.void) act.textContent = "storniert";
-      else if (e.source === "stripe") act.textContent = "Stripe";
+      act.className = "cell-actions";
+      if (e.void) { act.textContent = "storniert"; act.classList.add("muted"); }
+      else if (e.source === "stripe") { act.textContent = "Stripe"; act.classList.add("muted"); }
       else {
         act.append(btn("Bearbeiten", () => openEntry(e.type, e)), " ", btn("Stornieren", async () => {
           if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
         }));
       }
-      const row = [td(e.number), td(de(e.date)), td(e.type === "income" ? "Einnahme" : "Ausgabe"), td(e.party), td(e.description + (e.refunded ? ` (erstattet ${eur(e.refunded)})` : "")), td(e.category), td((e.type === "expense" ? "-" : "") + eur(e.amount)), rcpt, act];
+      const kind = document.createElement("td");
+      const pill = document.createElement("span");
+      pill.className = "pill " + e.type; pill.textContent = e.type === "income" ? "Einnahme" : "Ausgabe";
+      kind.append(pill);
+      const row = [td(e.number), td(de(e.date)), kind, td(e.party), td(e.description + (e.refunded ? ` (erstattet ${eur(e.refunded)})` : "")), td(e.category),
+        td((e.type === "expense" ? "-" : "") + eur(e.amount), "r " + (e.type === "income" ? "pos" : "neg")), rcpt, act];
       if (e.void) row.forEach((c) => c.classList.add("void"));
       return row;
     }), 9);
@@ -184,7 +195,7 @@
   };
   async function loadInbox() {
     const { items } = await api("inbox");
-    fill("inboxTable", items.map((i) => [td(i.filename), td(`${Math.max(1, Math.round(i.size / 1024))} KB`), (() => {
+    fill("inboxTable", items.map((i) => [td(i.filename), td(`${Math.max(1, Math.round(i.size / 1024))} KB`, "r"), (() => {
       const c = document.createElement("td");
       c.append(link(`/api/admin?action=inbox-preview&id=${encodeURIComponent(i.id)}`, "Ansehen", true), btn("Löschen", async () => {
         if (confirm(`${i.filename} löschen?`)) { await api("inbox-delete", { method: "POST", body: { id: i.id } }); loadInbox(); }
@@ -208,7 +219,7 @@
     fill("repTable", reports.map((r) => {
       const files = document.createElement("td");
       for (const [t, l] of [["pdf", "PDF"], ["einnahmen", "Einnahmen CSV"], ["ausgaben", "Ausgaben CSV"]]) files.append(link(`/api/admin?action=download&number=${encodeURIComponent(r.number)}&type=${t}`, l));
-      return [td(r.number), td(`${de(r.from)} – ${de(r.to)}`), td(eur(r.totals.income)), td(eur(r.totals.expenses)), td(eur(r.totals.result)), files];
+      return [td(r.number), td(`${de(r.from)} – ${de(r.to)}`), td(eur(r.totals.income), "r"), td(eur(r.totals.expenses), "r"), td(eur(r.totals.result), "r"), files];
     }), 6);
   }
 
@@ -221,7 +232,7 @@
       if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
       const money = l.source === "manuell" ? "–" : eur(l.amount) + (l.refunded ? ` (erstattet ${eur(l.refunded)})` : "");
       const src = td(l.source === "manuell" ? (l.note ? `manuell · ${l.note}` : "manuell") : "Stripe");
-      return [td(l.number), td(de(l.date)), td(l.product), td(l.firstName), td(l.lastName), td(l.email), src, td(money), k];
+      return [td(l.number), td(de(l.date)), td(l.product), td(l.firstName), td(l.lastName), td(l.email), src, td(money, "r"), k];
     }), 9);
   }
   $("lQ").oninput = renderLic;
@@ -253,6 +264,7 @@
     $("login").hidden = true; $("app").hidden = false; $("logout").hidden = false;
     [$("fFrom").value, $("fTo").value] = ranges.month().map(ymd);
     [$("rFrom").value, $("rTo").value] = ranges.lastmonth().map(ymd);
+    markRange();
     load("fin");
   }
   api("me").then(start).catch(() => {});

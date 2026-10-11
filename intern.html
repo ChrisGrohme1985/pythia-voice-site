@@ -12,7 +12,7 @@
 <header class="top"><a class="brand" href="/"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice · Intern</span></a><button id="logout" class="link" hidden>Abmelden</button></header>
 
 <main class="legal">
-  <section id="login" class="panel login">
+  <section id="login" class="login">
     <h1>Anmelden</h1>
     <p class="sub">Interner Bereich für Finanzen, Belege und Lizenzen.</p>
 
@@ -35,82 +35,106 @@
     <p id="loginMsg" class="msg" role="status"></p>
   </section>
 
-  <section id="app" hidden>
-    <nav class="tabs" aria-label="Bereiche">
-      <button data-tab="fin" class="on">Finanzen</button>
-      <button data-tab="reports">Berichte</button>
-      <button data-tab="inbox">Beleg-Inbox</button>
-      <button data-tab="lic">Lizenzen</button>
-    </nav>
+  <div id="app" class="shell" hidden>
+    <aside class="side">
+      <nav class="tabs" aria-label="Bereiche">
+        <button data-tab="fin" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg><span>Finanzen</span></button>
+        <button data-tab="reports"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/></svg><span>Berichte</span></button>
+        <button data-tab="inbox"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l3-8h12l3 8v6H3zM3 13h5l1 3h6l1-3h5"/></svg><span>Beleg-Inbox</span></button>
+        <button data-tab="lic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v4M15 12v3"/></svg><span>Lizenzen</span></button>
+      </nav>
+    </aside>
 
-    <div id="tab-fin" class="panel">
-      <div class="row">
-        <label>Von<input type="date" id="fFrom"></label>
-        <label>Bis<input type="date" id="fTo"></label>
-        <label>Art<select id="fType"><option value="">Alle</option><option value="income">Einnahmen</option><option value="expense">Ausgaben</option></select></label>
-        <label>Suche<input id="fQ" placeholder="Nummer, Partei, Beschreibung"></label>
-      </div>
-      <p class="quick">
-        <button class="link" data-range="month" type="button">Dieser Monat</button>
-        <button class="link" data-range="lastmonth" type="button">Letzter Monat</button>
-        <button class="link" data-range="year" type="button">Dieses Jahr</button>
-        <button class="link" data-range="lastyear" type="button">Letztes Jahr</button>
-        <button class="link" data-range="all" type="button">Alles</button>
-      </p>
-      <div class="kpis" id="kpis"></div>
-      <p class="actions">
-        <button class="btn primary" id="newExp" type="button">Ausgabe</button>
-        <button class="btn ghost" id="newInc" type="button">Einnahme</button>
-        <button class="btn ghost" id="syncBtn" type="button">Mit Stripe abgleichen</button>
-        <button class="btn ghost" id="csvBtn" type="button">CSV-Export</button>
-        <button class="btn ghost" id="zipBtn" type="button">Steuerberater-Paket</button>
-      </p>
-      <p id="finMsg" class="msg" role="status"></p>
-      <div class="scroll"><table id="finTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Art</th><th>Partei</th><th>Beschreibung</th><th>Kategorie</th><th>Betrag</th><th>Beleg</th><th></th></tr></thead><tbody></tbody></table></div>
+    <div class="content">
+      <!-- Finanzen -->
+      <section id="tab-fin">
+        <div class="page-head">
+          <h1>Finanzen</h1>
+          <div class="seg" role="group" aria-label="Zeitraum">
+            <button data-range="month" type="button">Dieser Monat</button>
+            <button data-range="lastmonth" type="button">Letzter Monat</button>
+            <button data-range="year" type="button">Dieses Jahr</button>
+            <button data-range="lastyear" type="button">Letztes Jahr</button>
+            <button data-range="all" type="button">Alles</button>
+          </div>
+        </div>
+        <div class="kpis" id="kpis"></div>
+        <div class="toolbar">
+          <label class="f">Von<input type="date" id="fFrom"></label>
+          <label class="f">Bis<input type="date" id="fTo"></label>
+          <label class="f">Art<select id="fType"><option value="">Alle</option><option value="income">Einnahmen</option><option value="expense">Ausgaben</option></select></label>
+          <label class="f grow">Suche<input id="fQ" placeholder="Nummer, Partei, Beschreibung"></label>
+          <div class="actions-right">
+            <button class="btn primary" id="newExp" type="button">Ausgabe erfassen</button>
+            <button class="btn ghost" id="newInc" type="button">Einnahme</button>
+            <button class="btn ghost" id="syncBtn" type="button">Stripe abgleichen</button>
+            <button class="btn ghost" id="csvBtn" type="button">CSV</button>
+            <button class="btn ghost" id="zipBtn" type="button">Steuerberater-Paket</button>
+          </div>
+        </div>
+        <p id="finMsg" class="msg" role="status"></p>
+        <div class="table-wrap"><table id="finTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Art</th><th>Partei</th><th>Beschreibung</th><th>Kategorie</th><th class="r">Betrag</th><th>Beleg</th><th></th></tr></thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- Berichte -->
+      <section id="tab-reports" hidden>
+        <div class="page-head"><h1>Berichte</h1></div>
+        <div class="block">
+          <h2>Bericht erzeugen</h2>
+          <form id="repForm" class="toolbar">
+            <label class="f">Von<input type="date" id="rFrom" required></label>
+            <label class="f">Bis<input type="date" id="rTo" required></label>
+            <label class="chk"><input type="checkbox" id="rMail" checked> per Mail an mich</label>
+            <button class="btn primary" type="submit">Erzeugen</button>
+          </form>
+          <p id="repMsg" class="msg" role="status"></p>
+        </div>
+        <div class="block">
+          <h2>Gespeicherte Berichte</h2>
+          <div class="table-wrap"><table id="repTable"><thead><tr><th>Nummer</th><th>Zeitraum</th><th class="r">Einnahmen</th><th class="r">Ausgaben</th><th class="r">Ergebnis</th><th>Dateien</th></tr></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- Beleg-Inbox -->
+      <section id="tab-inbox" hidden>
+        <div class="page-head"><h1>Beleg-Inbox</h1></div>
+        <div class="block">
+          <p class="sub">PDF-Belege hier ablegen und später einer Ausgabe zuordnen. Höchstens 15 MB je Datei.</p>
+          <p><input type="file" id="inboxFile" accept="application/pdf,.pdf" multiple></p>
+          <p id="inboxMsg" class="msg" role="status"></p>
+          <div class="table-wrap"><table id="inboxTable"><thead><tr><th>Datei</th><th class="r">Größe</th><th></th></tr></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- Lizenzen -->
+      <section id="tab-lic" hidden>
+        <div class="page-head"><h1>Lizenzen</h1></div>
+        <div class="two">
+          <div class="block">
+            <h2>Lizenz ausstellen</h2>
+            <p class="sub">Für Geschenke, Support oder Rezensenten. Name, Produkt und Schlüssel werden gespeichert. Es entsteht keine Einnahme.</p>
+            <form id="grantForm" class="grid">
+              <label>Vorname<input id="gFirst" maxlength="80" autocomplete="off"></label>
+              <label>Nachname<input id="gLast" maxlength="80" required autocomplete="off"></label>
+              <label>E-Mail (für den Versand)<input id="gMail" type="email" maxlength="160" autocomplete="off"></label>
+              <label>Produkt<select id="gProd"><option value="dictation">Pythia Voice (Diktat)</option><option value="voice">Sprachnachrichten</option></select></label>
+              <label class="wide">Notiz (intern)<input id="gNote" maxlength="300" placeholder="z. B. Rezensent, Support-Fall"></label>
+              <label class="chk wide"><input type="checkbox" id="gSend"> Schlüssel per E-Mail an den Kunden senden</label>
+              <p class="wide actions"><button class="btn primary" type="submit">Schlüssel erzeugen</button></p>
+            </form>
+            <div id="grantResult" class="keybox" hidden><span id="grantInfo"></span><code id="grantKey"></code><button class="btn ghost" id="grantCopy" type="button">Schlüssel kopieren</button></div>
+            <p id="licMsg" class="msg" role="status"></p>
+          </div>
+          <div class="block">
+            <h2>Alle Lizenzen</h2>
+            <p class="sub">Enthält personenbezogene Daten: nicht weitergeben.</p>
+            <label class="f">Suche<input id="lQ" placeholder="Name, E-Mail, Nummer, Produkt"></label>
+            <div class="table-wrap"><table id="licTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Produkt</th><th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Quelle</th><th class="r">Betrag</th><th>Schlüssel</th></tr></thead><tbody></tbody></table></div>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <div id="tab-reports" class="panel" hidden>
-      <h2>Bericht erzeugen</h2>
-      <form id="repForm" class="row">
-        <label>Von<input type="date" id="rFrom" required></label>
-        <label>Bis<input type="date" id="rTo" required></label>
-        <label class="chk"><input type="checkbox" id="rMail" checked> per Mail an mich</label>
-        <button class="btn primary" type="submit">Erzeugen</button>
-      </form>
-      <p id="repMsg" class="msg" role="status"></p>
-      <h2>Gespeicherte Berichte</h2>
-      <div class="scroll"><table id="repTable"><thead><tr><th>Nummer</th><th>Zeitraum</th><th>Einnahmen</th><th>Ausgaben</th><th>Ergebnis</th><th>Dateien</th></tr></thead><tbody></tbody></table></div>
-    </div>
-
-    <div id="tab-inbox" class="panel" hidden>
-      <h2>Beleg-Inbox</h2>
-      <p class="sub">PDF-Belege hier ablegen und später einer Ausgabe zuordnen. Höchstens 15 MB je Datei.</p>
-      <p><input type="file" id="inboxFile" accept="application/pdf,.pdf" multiple></p>
-      <p id="inboxMsg" class="msg" role="status"></p>
-      <div class="scroll"><table id="inboxTable"><thead><tr><th>Datei</th><th>Größe</th><th></th></tr></thead><tbody></tbody></table></div>
-    </div>
-
-    <div id="tab-lic" class="panel" hidden>
-      <h2>Lizenz ausstellen</h2>
-      <p class="sub">Für Geschenke, Support oder Rezensenten. Der Schlüssel wird mit Name und Produkt gespeichert und taucht unten in der Übersicht auf. Es entsteht keine Einnahme.</p>
-      <form id="grantForm" class="grid">
-        <label>Vorname<input id="gFirst" maxlength="80" autocomplete="off"></label>
-        <label>Nachname<input id="gLast" maxlength="80" required autocomplete="off"></label>
-        <label>E-Mail (optional, für den Versand)<input id="gMail" type="email" maxlength="160" autocomplete="off"></label>
-        <label>Produkt<select id="gProd"><option value="dictation">Pythia Voice (Diktat)</option><option value="voice">Sprachnachrichten</option></select></label>
-        <label class="wide">Notiz (intern)<input id="gNote" maxlength="300" placeholder="z. B. Rezensent, Support-Fall"></label>
-        <label class="chk wide" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="gSend"> Schlüssel per E-Mail an den Kunden senden</label>
-        <p class="wide actions"><button class="btn primary" type="submit">Schlüssel erzeugen</button></p>
-      </form>
-      <div id="grantResult" class="keybox" hidden><span id="grantInfo"></span><code id="grantKey"></code><button class="btn ghost" id="grantCopy" type="button">Schlüssel kopieren</button></div>
-      <p id="licMsg" class="msg" role="status"></p>
-
-      <h2>Alle Lizenzen</h2>
-      <p class="sub">Nur für Systemadmins sichtbar. Enthält personenbezogene Daten: nicht weitergeben.</p>
-      <p><label>Suche<input id="lQ" placeholder="Name, E-Mail, Nummer, Produkt"></label></p>
-      <div class="scroll"><table id="licTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Produkt</th><th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Quelle</th><th>Betrag</th><th>Schlüssel</th></tr></thead><tbody></tbody></table></div>
-    </div>
-  </section>
+  </div>
 </main>
 
 <dialog id="dlg">
