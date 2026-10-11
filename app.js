@@ -18,6 +18,7 @@
 
   // --- Links aus config.js ---------------------------------------------------------------------------------
   if (P.buyUrl) document.getElementById("buy").href = P.buyUrl;
+  if (P.voiceBuyUrl) document.getElementById("buy-voice").href = P.voiceBuyUrl;
   if (P.apkUrl) document.getElementById("apk").href = P.apkUrl;
 
   // --- Demo: Balken steigen, der gesprochene Satz erscheint, dann der bereinigte ----------------------------
