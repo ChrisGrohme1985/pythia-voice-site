@@ -417,20 +417,24 @@
     const list = licVisible();
     const rows = list.slice((licPage.page - 1) * licPage.size, licPage.page * licPage.size);
     fill("licTable", rows.map((l) => {
-      const k = document.createElement("td");
-      if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
+      const nr = td(l.number, "nw");
+      nr.append(Object.assign(document.createElement("small"), { textContent: de(l.date) }));
+      const name = td(`${l.firstName} ${l.lastName}`.trim() || "–", "wrap");
+      const dev = td("", "nw");
       if (l.boundAt) {
-        k.append(" ", Object.assign(document.createElement("span"), { className: "muted", textContent: `Gerät seit ${de(new Date(l.boundAt).toISOString().slice(0, 10))}` }), " ",
-          btn("Gerät freigeben", async () => {
-            if (await ask({ title: `${l.number}: Gerät freigeben?`, text: "Der Schlüssel lässt sich danach auf einem neuen Gerät aktivieren. Auf dem alten Gerät bleibt die Freischaltung bestehen, sie lässt sich aus der Ferne nicht löschen.", yes: "Freigeben", danger: true })) {
-              await api("license-release", { method: "POST", body: { id: l.deviceId } }); msg("licMsg", `Gerät von ${l.number} freigegeben.`); loadLic();
-            }
-          }));
-      }
+        dev.append(Object.assign(document.createElement("span"), { textContent: "seit " + de(new Date(l.boundAt).toISOString().slice(0, 10)) }), btn("Freigeben", async () => {
+          if (await ask({ title: `${l.number}: Gerät freigeben?`, text: "Der Schlüssel lässt sich danach auf einem neuen Gerät aktivieren. Auf dem alten Gerät bleibt die Freischaltung bestehen, sie lässt sich aus der Ferne nicht löschen.", yes: "Freigeben", danger: true })) {
+            await api("license-release", { method: "POST", body: { id: l.deviceId } }); msg("licMsg", `Gerät von ${l.number} freigegeben.`); loadLic();
+          }
+        }));
+      } else dev.textContent = "–", dev.className = "nw muted";
+      const k = td("", "nw");
+      if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
       const money = l.source === "manuell" ? "–" : eur(l.amount) + (l.refunded ? ` (erstattet ${eur(l.refunded)})` : "");
-      const src = td(l.source === "manuell" ? (l.note ? `manuell · ${l.note}` : "manuell") : "Stripe");
-      return [td(l.number, "nw"), td(de(l.date), "nw"), td(l.product, "wrap"), td(l.firstName), td(l.lastName), td(l.email, "wrap"), src, td(money, "r nw"), k];
-    }), 9);
+      const src = td(l.source === "manuell" ? (l.note ? `manuell · ${l.note}` : "manuell") : "Stripe", "wrap");
+      const prod = td(l.product.replace(/^Pythia Voice\s*\(?/, "").replace(/\)$/, "") || l.product, "wrap");
+      return [nr, prod, name, td(l.email || "–", "wrap mail"), src, td(money, "r nw"), dev, k];
+    }), 8);
     pager($("licPager"), licPage, list.length, renderLic);
   }
   ["lQ", "lProd", "lSrc", "lFrom", "lTo"].forEach((i) => ($(i).oninput = () => { licPage.page = 1; renderLic(); }));
