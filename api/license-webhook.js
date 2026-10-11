@@ -2,7 +2,7 @@
 // Umgebungsvariablen: PYTHIA_PAYMENT_LINKS (Diktat) und PYTHIA_VOICE_LINKS (Sprachnachrichten), je plink_…, Komma-getrennt; STRIPE_WEBHOOK_SECRET (ggf. "whsec_test,whsec_live"), PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
 const crypto = require("crypto");
 const { issue } = require("./_license");
-const { invoicePdf, belegNr } = require("./_invoice");
+const { invoicePdf } = require("./_invoice");
 const books = require("./_books");
 
 async function rawBody(req) {
@@ -61,14 +61,14 @@ function mailHtml(key, product) {
 }
 
 async function sendMail(to, key, session, product) {
-  // Beleg als PDF anhängen; scheitert die Erzeugung, geht der Schlüssel trotzdem raus
+  // Der Kauf wird zuerst als Posten mit fortlaufender Rechnungsnummer gebucht, dann geht der Beleg als PDF mit.
+  // Scheitert das (Speicher oder PDF), geht der Schlüssel trotzdem raus, aber OHNE Beleg: eine Ersatznummer wäre steuerlich falsch.
+  // Der Posten entsteht dann beim nächsten Stripe-Abgleich (Knopf im internen Bereich oder Monatsbericht).
   let attachments;
   try {
-    // Fortlaufende Rechnungsnummer aus dem Speicher; fällt dieser aus, geht die Mail mit Ersatznummer raus (Schlüssel hat Vorrang)
-    let nr;
-    try { nr = (await books.invoiceFor(session)).number; } catch (e) { console.error("Nummer: " + e.message); }
-    attachments = [{ filename: `Rechnung-${nr || belegNr(session)}.pdf`, content: (await invoicePdf([session], nr ? { [session.id]: nr } : {})).toString("base64") }];
-  } catch (e) { console.error("PDF: " + e.message); }
+    const entry = await books.invoiceFor(session);
+    attachments = [{ filename: `Rechnung-${entry.number}.pdf`, content: (await invoicePdf([session], { [session.id]: entry.number })).toString("base64") }];
+  } catch (e) { console.error("Beleg: " + e.message); }
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },

@@ -85,7 +85,7 @@
           if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
         }));
       }
-      const row = [td(e.number), td(de(e.date)), td(e.type === "income" ? "Einnahme" : "Ausgabe"), td(e.party), td(e.description), td(e.category), td((e.type === "expense" ? "-" : "") + eur(e.amount)), rcpt, act];
+      const row = [td(e.number), td(de(e.date)), td(e.type === "income" ? "Einnahme" : "Ausgabe"), td(e.party), td(e.description + (e.refunded ? ` (erstattet ${eur(e.refunded)})` : "")), td(e.category), td((e.type === "expense" ? "-" : "") + eur(e.amount)), rcpt, act];
       if (e.void) row.forEach((c) => c.classList.add("void"));
       return row;
     }), 9);
