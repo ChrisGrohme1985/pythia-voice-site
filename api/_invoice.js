@@ -15,7 +15,9 @@ const safe = (s) => String(s ?? "").replace(/[^ -~ -ÿ€]/g, "?");
 const belegNr = (s) => `PV-${day(s.created).replace(/-/g, "")}-${String(s.id).slice(-6).toUpperCase()}`;
 
 async function fontsFor(doc) {
-  return { r: await doc.embedFont(StandardFonts.Helvetica), b: await doc.embedFont(StandardFonts.HelveticaBold) };
+  const out = { r: await doc.embedFont(StandardFonts.Helvetica), b: await doc.embedFont(StandardFonts.HelveticaBold) };
+  try { out.logo = await doc.embedPng(require("./_logo")); } catch (e) { console.error("Logo: " + e.message); } // ohne Logo bleibt die Rechnung gültig
+  return out;
 }
 
 const colors = { ink: rgb(0.06, 0.09, 0.19), gray: rgb(0.35, 0.38, 0.45) };
@@ -29,8 +31,10 @@ function writer(p, fonts) {
 function invoicePage(doc, fonts, s, nr) {
   const p = doc.addPage([595, 842]);
   const t = writer(p, fonts);
-  t("Pythia Voice", 56, 780, 20, true);
-  SELLER.forEach((l, i) => t(l, 56, 756 - i * 14, 10, false, colors.gray));
+  if (fonts.logo) p.drawImage(fonts.logo, { x: 56, y: 744, width: 64, height: 64 });
+  const x0 = fonts.logo ? 134 : 56;
+  t("Pythia Voice", x0, 788, 20, true);
+  SELLER.forEach((l, i) => t(l, x0, 766 - i * 14, 10, false, colors.gray));
   t("Rechnung (Kleinbetragsrechnung)", 56, 650, 16, true);
   t("Rechnungsnummer:", 56, 620); t(nr, 190, 620);
   t("Datum / Leistungsdatum:", 56, 602); t(de(day(s.created)), 190, 602);
