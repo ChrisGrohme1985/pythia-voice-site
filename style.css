@@ -403,3 +403,29 @@ footer { padding: 44px 0 36px; }
 .btn.spin .ico { animation: pv-spin 1s linear infinite; color: var(--gold2); }
 @keyframes pv-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .btn.spin .ico { animation: none; } }
+
+/* Danke-Seite nach dem Kauf */
+.thanks { max-width: 1040px; margin: 0 auto; padding: 56px 24px 72px; position: relative; }
+.thanks::before { content: ""; position: absolute; inset: -60px -10% auto; height: 420px; z-index: -1; background: radial-gradient(520px 300px at 25% 30%, rgba(124, 108, 255, .28), transparent 70%), radial-gradient(460px 280px at 80% 15%, rgba(242, 193, 78, .2), transparent 70%); }
+.thanks-mark { color: var(--gold); margin-bottom: 18px; }
+.thanks-mark path { stroke-dasharray: 60; stroke-dashoffset: 60; animation: pv-check .7s .15s cubic-bezier(.2, .7, .2, 1) forwards; }
+@keyframes pv-check { to { stroke-dashoffset: 0; } }
+.thanks h1 { font-size: clamp(2rem, 4.2vw, 3.2rem); margin: 0 0 16px; max-width: 18em; }
+.thanks .lead { max-width: 40em; margin: 0 0 36px; }
+.thanks-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.thanks-card { padding: 26px 28px; border-radius: 22px; background: rgba(255, 255, 255, .05); border: 1px solid var(--line); }
+.thanks-card h2 { font-size: 1.2rem; margin: 0 0 14px; }
+.thanks-card ul, .thanks-card ol { margin: 0 0 16px; padding-inline-start: 22px; color: var(--ivory); }
+.thanks-card li { margin: 8px 0; }
+.thanks-card p { color: var(--muted); margin: 0 0 12px; }
+.thanks-card code { padding: 2px 7px; border-radius: 6px; background: rgba(242, 193, 78, .12); color: var(--gold2); font-size: .92em; }
+.thanks-card a:not(.btn) { color: var(--gold2); }
+.thanks-card a:not(.btn):hover { text-decoration: underline; }
+.thanks-card .btn { margin: 4px 0 2px; }
+.thanks-sign { margin: 34px 0 0; color: var(--muted); }
+.thanks-lang { margin: 26px 0 0; }
+.thanks [hidden] { display: none; }
+@media (max-width: 860px) { .thanks-grid { grid-template-columns: 1fr; } .thanks { padding-top: 36px; } }
+@media (prefers-reduced-motion: reduce) { .thanks-mark path { animation: none; stroke-dashoffset: 0; } }
+
+.thanks section { padding: 0; }
