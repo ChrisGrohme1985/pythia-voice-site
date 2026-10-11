@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const { PDFDocument } = require("pdf-lib");
 const db = require("./_db");
 const inv = require("./_invoice");
+const { creditMailHtml } = require("./_licensemail");
 
 const GRANTS = "licenseGrants";
 const ENTRIES = "financeEntries", INBOX = "financeReceiptInbox", BLOBS = "financeReceiptBlobs", PARTS = "financeUploadParts";
@@ -332,6 +333,7 @@ async function mailCreditNote(c) {
     body: JSON.stringify({
       from: process.env.RESEND_FROM, to: [c.email], reply_to: "support@pythiavoice.app",
       subject: `Erstattung ${num(c.amount)} € / Refund ${num(c.amount)} €`,
+      html: creditMailHtml(c),
       text: `Wir haben ${num(c.amount)} € zu deiner Rechnung ${c.refNumber} erstattet. Das Geld kommt über dein ursprüngliches Zahlungsmittel zurück, das dauert meist einige Werktage. Die Gutschrift hängt an.\n\n` +
         `We have refunded ${num(c.amount)} € for your invoice ${c.refNumber}. The money returns via your original payment method, usually within a few business days. The credit note is attached.\n`,
       attachments: [{ filename: `Gutschrift-${c.number}.pdf`, content: pdf.toString("base64") }],
