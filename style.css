@@ -224,3 +224,9 @@ footer a:hover { color: #fff; }
 .vm-out b { display: block; font-size: .78rem; letter-spacing: .06em; color: #8a6a12; margin-bottom: 3px; }
 .vm-out p { margin: 0; font-size: 1rem; line-height: 1.55; }
 @media (max-width: 860px) { .voice-grid { grid-template-columns: 1fr; gap: 36px; } .voice { padding: 56px 0; } }
+
+/* Passwortfeld mit Auge */
+.pw { position: relative; display: block; }
+.pw input { padding-inline-end: 44px; }
+.eye { position: absolute; inset-inline-end: 6px; top: 50%; transform: translateY(-50%); margin-top: 3px; width: 32px; height: 32px; display: grid; place-items: center; background: none; border: 0; border-radius: 8px; color: var(--muted); cursor: pointer; transition: color .15s, background .15s; }
+.eye:hover, .eye:focus-visible { color: var(--gold2); background: rgba(242, 193, 78, .1); }

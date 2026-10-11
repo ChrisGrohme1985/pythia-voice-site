@@ -28,6 +28,27 @@
   const btn = (label, fn) => { const b = document.createElement("button"); b.className = "link"; b.type = "button"; b.textContent = label; b.onclick = fn; return b; };
   const link = (href, label, blank) => { const a = document.createElement("a"); a.href = href; a.textContent = label; a.className = "dl"; if (blank) { a.target = "_blank"; a.rel = "noopener"; } return a; };
 
+  // Auge neben jedem Passwortfeld: Passwort ein- und ausblenden
+  const EYE = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const EYE_OFF = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.2A10.8 10.8 0 0 1 12 5c6.5 0 10.5 7 10.5 7a17 17 0 0 1-3.2 4M6.5 6.6C3.4 8.6 1.5 12 1.5 12S5.5 19 12 19c1.6 0 3-.4 4.3-1M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
+  document.querySelectorAll('input[type="password"]').forEach((input) => {
+    const wrap = document.createElement("span");
+    wrap.className = "pw";
+    input.replaceWith(wrap);
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "eye"; b.setAttribute("aria-label", "Passwort anzeigen"); b.setAttribute("aria-pressed", "false");
+    b.innerHTML = EYE;
+    b.onclick = () => {
+      const on = input.type === "password";
+      input.type = on ? "text" : "password";
+      b.innerHTML = on ? EYE_OFF : EYE;
+      b.setAttribute("aria-label", on ? "Passwort verbergen" : "Passwort anzeigen");
+      b.setAttribute("aria-pressed", String(on));
+      input.focus();
+    };
+    wrap.append(input, b);
+  });
+
   // --- Anmeldung: E-Mail + Passwort; Passwort festlegen oder vergessen läuft über einen Code per Mail ---
   const show = (resetMode) => { $("loginForm").hidden = resetMode; $("resetForm").hidden = !resetMode; msg("loginMsg", ""); };
   $("forgot").onclick = () => { show(true); $("lMail").value && ($("resetHint").textContent = "Wir senden einen Code an die hinterlegte Adresse."); };
