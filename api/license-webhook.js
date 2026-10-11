@@ -1,5 +1,5 @@
 // Webhook von Stripe: nach bezahlter Checkout-Sitzung Lizenzschlüssel erzeugen und per E-Mail senden.
-// Umgebungsvariablen: STRIPE_WEBHOOK_SECRET, PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
+// Umgebungsvariablen: STRIPE_WEBHOOK_SECRET (ggf. "whsec_test,whsec_live"), PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
 const crypto = require("crypto");
 const { issue } = require("./_license");
 
@@ -12,12 +12,15 @@ async function rawBody(req) {
 }
 
 // Stripe-Signatur: Header "t=<Zeit>,v1=<hex>[,v1=...]", signiert wird "<Zeit>.<Body>"; Zeit höchstens 5 Minuten alt
-function validSignature(body, header, secret) {
+// Mehrere Secrets (Test und Live) durch Komma getrennt erlaubt: so laufen Sandbox und Live-Betrieb parallel
+function validSignature(body, header, secrets) {
   const parts = String(header || "").split(",").map((s) => s.trim().split("="));
   const t = parts.find(([k]) => k === "t")?.[1];
   if (!t || Math.abs(Date.now() / 1000 - Number(t)) > 300) return false;
-  const expect = crypto.createHmac("sha256", secret).update(`${t}.`).update(body).digest("hex");
-  return parts.some(([k, v]) => k === "v1" && v?.length === expect.length && crypto.timingSafeEqual(Buffer.from(v), Buffer.from(expect)));
+  return String(secrets).split(",").map((s) => s.trim()).filter(Boolean).some((secret) => {
+    const expect = crypto.createHmac("sha256", secret).update(`${t}.`).update(body).digest("hex");
+    return parts.some(([k, v]) => k === "v1" && v?.length === expect.length && crypto.timingSafeEqual(Buffer.from(v), Buffer.from(expect)));
+  });
 }
 
 // Markenmail: Tabellen-Layout mit Inline-Styles (so zeigen es auch Outlook und Gmail richtig an), Logo als gehostetes PNG
