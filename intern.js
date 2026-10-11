@@ -422,7 +422,7 @@
       if (l.boundAt) {
         k.append(" ", Object.assign(document.createElement("span"), { className: "muted", textContent: `Gerät seit ${de(new Date(l.boundAt).toISOString().slice(0, 10))}` }), " ",
           btn("Gerät freigeben", async () => {
-            if (await ask({ title: `${l.number}: Gerät freigeben?`, text: "Der Schlüssel lässt sich danach auf einem neuen Gerät aktivieren. Das bisherige Gerät verliert die Freischaltung, sobald es sich neu anmeldet.", yes: "Freigeben", danger: true })) {
+            if (await ask({ title: `${l.number}: Gerät freigeben?`, text: "Der Schlüssel lässt sich danach auf einem neuen Gerät aktivieren. Auf dem alten Gerät bleibt die Freischaltung bestehen, sie lässt sich aus der Ferne nicht löschen.", yes: "Freigeben", danger: true })) {
               await api("license-release", { method: "POST", body: { id: l.deviceId } }); msg("licMsg", `Gerät von ${l.number} freigegeben.`); loadLic();
             }
           }));
