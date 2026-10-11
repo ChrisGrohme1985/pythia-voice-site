@@ -153,11 +153,6 @@
       else if (lockOf(e)) {
         if (e.source === "stripe") {
           if (e.amount - (e.refunded || 0) > 0) act.append(btn("Erstatten", () => openRefund(e)));
-          act.append(btn("Testkauf entfernen", async () => {
-            if (!confirm(`${e.number} als Testkauf entfernen?\n\nDer Kauf und seine Gutschriften verschwinden aus allen Listen, Summen und Berichten. Die Nummer bleibt vergeben. Das gilt nur für echte Probekäufe.`)) return;
-            try { await api("entry-test", { method: "POST", body: { id: e.id } }); msg("finMsg", `${e.number} als Testkauf entfernt.`); loadFin(); }
-            catch (err) { msg("finMsg", "Fehler: " + err.message, true); }
-          }));
         }
         else act.append(btn("Stornieren", async () => {
           if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }

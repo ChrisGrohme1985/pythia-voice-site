@@ -148,7 +148,6 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
     if (action === "entry-add") { const entries = await books.addEntry(body, actor); return reply(201, { entry: entries[0], entries }); }
     if (action === "entry-update") return reply(200, { entry: await books.updateEntry(String(body.id || ""), body) });
     if (action === "entry-project") return reply(200, { entry: await books.assignProject(String(body.id || ""), String(body.project || "")) });
-    if (action === "entry-test") return reply(200, { entry: await books.markTest(String(body.id || "")) });
     if (action === "refund") {
       const r = await books.refundSale(String(body.id || ""), { amount: body.amount, reason: body.reason, note: body.note, notify: body.notify !== false }, actor);
       return reply(200, r);

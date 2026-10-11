@@ -1,20 +1,18 @@
-// Danke-Seite: Sprache aus der Browsereinstellung (Deutsch, sonst Englisch), per Knopf umschaltbar; APK-Link aus config.js.
+// Danke-Seite: nimmt die Sprache der Hauptseite (pv-lang) bzw. des Browsers und lässt sich über die Auswahl ändern; APK-Link aus config.js.
 (() => {
   const P = window.PV || {};
+  const sel = document.getElementById("lang");
   const secs = [...document.querySelectorAll("[data-l]")];
-  const btn = document.getElementById("toggle");
+  const SUPPORTED = secs.map((s) => s.dataset.l);
   let saved = null;
   try { saved = localStorage.getItem("pv-lang"); } catch (_) {}
-  const pick = saved || (navigator.language || "en").toLowerCase();
-  let cur = pick.startsWith("de") ? "de" : "en";
+  const b = (navigator.language || "en").toLowerCase();
+  const first = [saved, b, b.split("-")[0]].find((c) => c && SUPPORTED.includes(c)) || "en";
   const show = (l) => {
-    cur = l;
-    secs.forEach((s) => (s.hidden = s.dataset.l !== l));
-    document.documentElement.lang = l;
-    btn.textContent = l === "de" ? "English" : "Deutsch";
-    document.title = l === "de" ? "Vielen Dank für deinen Kauf – Pythia Voice" : "Thank you for your purchase – Pythia Voice";
+    secs.forEach((s) => { s.hidden = s.dataset.l !== l; if (s.dataset.l === l) { document.title = s.dataset.title; document.documentElement.lang = l; document.documentElement.dir = s.dir; } });
+    sel.value = l;
   };
-  btn.onclick = () => show(cur === "de" ? "en" : "de");
-  if (P.apkUrl) for (const id of ["apk", "apk-en"]) document.getElementById(id).href = P.apkUrl;
-  show(cur);
+  sel.addEventListener("change", () => { try { localStorage.setItem("pv-lang", sel.value); } catch (_) {} show(sel.value); });
+  if (P.apkUrl) document.querySelectorAll("a.apk").forEach((a) => (a.href = P.apkUrl));
+  show(first);
 })();
