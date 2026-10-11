@@ -7,7 +7,7 @@
   const day = (unix) => (unix ? ymd(new Date(unix * 1000)) : "");
   let me = null, entries = [], inboxItems = [], licenses = [], editType = "expense", editing = null;
   // Eindeutig zugeordnet (Stripe-Verkauf oder Beleg zugeordnet) = gesperrt; muss mit lockReason im Server übereinstimmen
-  const lockOf = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
+  const lockOf = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.source === "flowunion" ? "FlowUnion-Zahlung" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
   const projectOf = (e) => (me.projects.includes(e.project) ? e.project : e.source === "stripe" ? "Pythia Voice" : "Allgemein");
 
   async function api(action, { method = "GET", body, query = "" } = {}) {
@@ -144,7 +144,7 @@
     fill("finTable", pageRows.map((e) => {
       const rcpt = document.createElement("td");
       if (e.receiptStatus === "ready") rcpt.append(link(`/api/admin?action=receipt&id=${encodeURIComponent(e.id)}`, "PDF", true));
-      else if (e.source === "stripe") rcpt.append(link(`/api/admin?action=invoice&id=${encodeURIComponent(e.id)}`, e.type === "refund" ? "Gutschrift" : "Rechnung", true));
+      else if (e.source === "stripe" || e.source === "flowunion") rcpt.append(link(`/api/admin?action=invoice&id=${encodeURIComponent(e.id)}`, e.type === "refund" ? "Gutschrift" : "Rechnung", true));
       else if (e.type === "expense" && !e.void) rcpt.append(btn("zuordnen", () => openAssign({ entry: e })));
       const act = document.createElement("td");
       act.className = "cell-actions";
@@ -154,6 +154,7 @@
         if (e.source === "stripe") {
           if (e.amount - (e.refunded || 0) > 0) act.append(btn("Erstatten", () => openRefund(e)));
         }
+        else if (e.source === "flowunion") { act.textContent = "FlowUnion"; act.classList.add("muted"); }
         else act.append(btn("Stornieren", async () => {
           if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
         }));
@@ -203,6 +204,17 @@
     try { const r = await api("sync", { method: "POST", body: { from: $("fFrom").value || ymd(new Date(Date.now() - 365 * 864e5)), to: $("fTo").value < ymd(new Date()) ? $("fTo").value : ymd(new Date()) } }); msg("finMsg", `${r.synced} Verkäufe geprüft.`); loadFin(); }
     catch (e) { msg("finMsg", "Fehler: " + e.message, true); }
     finally { $("syncBtn").classList.remove("spin"); $("syncBtn").disabled = false; }
+  };
+
+  $("fuBtn").onclick = async () => {
+    $("fuBtn").classList.add("spin"); $("fuBtn").disabled = true;
+    msg("finMsg", "Hole Zahlungseingänge aus FlowUnion …");
+    try {
+      const to = $("fTo").value < ymd(new Date()) ? $("fTo").value : ymd(new Date());
+      const r = await api("sync-flowunion", { method: "POST", body: { from: $("fFrom").value || ymd(new Date(Date.now() - 365 * 864e5)), to } });
+      msg("finMsg", `FlowUnion: ${r.total} Zahlungen im Zeitraum, ${r.created} neu gebucht.`); loadFin();
+    } catch (e) { msg("finMsg", "Fehler: " + e.message, true); }
+    finally { $("fuBtn").classList.remove("spin"); $("fuBtn").disabled = false; }
   };
 
   // --- Posten anlegen / bearbeiten (mit Vorschau des gewählten Belegs) ---

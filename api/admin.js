@@ -124,7 +124,7 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
     }
     if (action === "entries") return reply(200, { entries: await books.listEntries() });
     if (action === "inbox") return reply(200, { items: await books.listInbox() });
-    if (action === "invoice") { const f = await books.documentPdf(String(q.id || "")); return file(f, "application/pdf", "beleg.pdf", "inline"); }
+    if (action === "invoice") { const f = await books.documentPdf(String(q.id || "")).catch((e) => { console.error("Rechnung: " + e.message); return null; }); return file(f, "application/pdf", "rechnung.pdf", "inline"); }
     if (action === "inbox-preview") { const f = await books.inboxFile(String(q.id || "")); return file(f?.data, "application/pdf", "beleg.pdf", "inline"); }
     if (action === "receipt") { const f = await books.receiptOf(String(q.id || "")); return file(f?.data, "application/pdf", "beleg.pdf", "inline"); }
     if (action === "reports") return reply(200, { reports: await books.listReports() });
@@ -141,6 +141,10 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
 
     // --- Daten ändern ---
     if (!post) return reply(404, { error: "unknown_action" });
+    if (action === "sync-flowunion") {
+      if (!YMD.test(body.from || "") || !YMD.test(body.to || "")) return reply(400, { error: "Zeitraum ungültig" });
+      return reply(200, await books.syncFlowUnion(body.from, body.to));
+    }
     if (action === "sync") {
       if (!YMD.test(body.from || "") || !YMD.test(body.to || "")) return reply(400, { error: "Zeitraum ungültig" });
       return reply(200, { synced: await books.syncStripe(body.from, body.to) });

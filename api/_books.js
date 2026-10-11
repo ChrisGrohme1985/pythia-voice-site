@@ -87,7 +87,8 @@ async function addEntry(input, actor = "") {
 }
 
 /** Eindeutig zugeordnet = Stripe-Verkauf oder Ausgabe mit zugeordnetem Beleg. Solche Posten sind unveränderbar (nur Storno bei manuellen). */
-const lockReason = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
+const lockReason = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.source === "flowunion" ? "FlowUnion-Zahlung" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
+const srcLabel = (e) => (e.source === "stripe" ? "Stripe" : e.source === "flowunion" ? "FlowUnion" : "manuell");
 
 async function updateEntry(id, input) {
   const cur = await db.get(ENTRIES, id);
@@ -339,9 +340,42 @@ async function mailCreditNote(c) {
   if (!r.ok) throw new Error(`Mailversand ${r.status}`);
 }
 
+// ---------- FlowUnion (kroell-web): Zahlungseingänge und Rechnungs-PDF über die Nur-Lese-Schnittstelle ----------
+
+async function feedGet(params, asBuffer = false) {
+  const base = process.env.FLOWUNION_FEED_URL, key = process.env.FLOWUNION_FEED_SECRET;
+  if (!base || !key) throw new Error("FlowUnion-Schnittstelle nicht eingerichtet (FLOWUNION_FEED_URL und FLOWUNION_FEED_SECRET)");
+  const r = await fetch(`${base}?${new URLSearchParams(params)}`, { headers: { Authorization: `Bearer ${key}` } });
+  if (!r.ok) throw new Error(`FlowUnion antwortet mit ${r.status}`);
+  return asBuffer ? Buffer.from(await r.arrayBuffer()) : r.json();
+}
+
+/**
+ * Zahlungseingänge von FlowUnion (Bank und Stripe, je einer Rechnung zugeordnet) in [from, to] als Einnahmen buchen.
+ * Idempotent je Zahlung (Kennung der Zuordnung in kroell-web). Eine einmal gebuchte Zahlung bleibt unverändert, auch wenn sie dort
+ * später umgebucht wird: Korrekturen in FlowUnion erscheinen hier nicht automatisch (shortcut: bei Bedarf Abgleich von Änderungen ergänzen).
+ */
+async function syncFlowUnion(from, to) {
+  if (!process.env.FLOWUNION_FEED_URL) return { created: 0, total: 0 };
+  const j = await feedGet({ action: "payments", from, to });
+  let created = 0;
+  for (const p of j.payments || []) {
+    const id = `fu_${p.id}`;
+    const r = await db.numbered(ENTRIES, id, "FU", Number(String(p.date).slice(0, 4)), (number) => ({
+      number, type: "income", source: "flowunion", date: p.date, amount: Math.round(p.amount * 100), project: "FlowUnion",
+      category: "Zahlungseingang (FlowUnion)", party: p.customerName || p.counterparty || "", email: "",
+      description: `Rechnung ${p.invoiceNumber}${p.purpose ? " · " + p.purpose : ""}`.slice(0, 300), refNumber: p.invoiceNumber, invoiceId: p.invoiceId,
+      customerNo: p.customerNo || "", channel: p.source, counterparty: p.counterparty || "", fee: 0, refunded: 0, void: false, createdAt: now(),
+    }));
+    if (r.created) created++;
+  }
+  return { created, total: (j.payments || []).length };
+}
+
 /** Beleg als PDF zu einem Posten: Rechnung bei Stripe-Verkauf, Gutschrift bei Erstattung. */
 async function documentPdf(id) {
   const e = await db.get(ENTRIES, id);
+  if (e?.source === "flowunion") return e.invoiceId ? feedGet({ action: "invoice-pdf", id: e.invoiceId }, true) : null;
   if (!e || e.source !== "stripe") return null;
   if (e.type === "refund") return inv.creditPdf({ number: e.number, date: e.date, amount: e.amount, refNumber: e.refNumber, email: e.email, name: e.name });
   return inv.invoicePdf([asSession({ id, ...e })], { [asSession({ id, ...e }).id]: e.number });
@@ -439,7 +473,7 @@ function byProject(entries) {
 }
 
 const salesCsv = (entries) => csv(["Nummer", "Datum", "Art", "Quelle", "Projekt", "Kunde", "Kategorie", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
-  entries.filter((e) => e.type === "income").map((e) => [e.number, e.date, "Einnahme", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party, e.category,
+  entries.filter((e) => e.type === "income").map((e) => [e.number, e.date, "Einnahme", srcLabel(e), projectOf(e), e.party, e.category,
     num(e.amount), num(e.fee), num(e.refunded), e.void ? "storniert" : "gültig"]));
 const expensesCsv = (entries) => csv(["Belegnummer", "Datum", "Projekt", "Lieferant", "Beschreibung", "Kategorie", "Betrag EUR", "Beleg", "Status"],
   entries.filter((e) => e.type === "expense").map((e) => [e.number, e.date, projectOf(e), e.party, e.description, e.category, num(e.amount),
@@ -487,6 +521,7 @@ async function reportPdf(number, from, to, entries, t) {
 async function createReport(from, to, project = "") {
   if (!YMD.test(from || "") || !YMD.test(to || "") || from > to) throw new Error("Zeitraum ungültig");
   await syncStripe(from, to);
+  await syncFlowUnion(from, to).catch((e) => console.error("FlowUnion-Abgleich: " + e.message)); // ein Ausfall dort darf den Bericht nicht verhindern
   if (project && !PROJECTS.includes(project)) throw new Error("Unbekanntes Projekt");
   const entries = (await listEntries()).filter((e) => inRange(e, from, to) && (!project || projectOf(e) === project));
   const t = totals(entries);
@@ -560,9 +595,10 @@ async function taxPackage(from, to, project = "") {
   if (!YMD.test(from || "") || !YMD.test(to || "") || from > to) throw new Error("Zeitraum ungültig");
   const entries = (await listEntries()).filter((e) => inRange(e, from, to) && (!project || projectOf(e) === project)).sort((a, b) => a.number.localeCompare(b.number));
   const head = ["Nummer", "Datum", "Art", "Quelle", "Projekt", "Partei", "Kategorie", "Beschreibung", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Beleg", "Status"];
-  const rows = entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : e.type === "refund" ? "Erstattung" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party,
+  const rows = entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : e.type === "refund" ? "Erstattung" : "Ausgabe", srcLabel(e), projectOf(e), e.party,
     e.category, e.description, num(e.amount), num(e.fee), num(e.refunded), e.receiptStatus === "ready" ? e.receiptFilename : "", e.void ? "storniert" : "gültig"]);
   const files = [{ name: "posten.csv", data: Buffer.from(csv(head, rows), "utf8") }];
+  const seenFu = new Set();
   for (const e of entries) {
     if (e.void) continue;
     if (e.receiptStatus === "ready" && e.receiptBlobId) {
@@ -571,6 +607,11 @@ async function taxPackage(from, to, project = "") {
     }
     if (e.source === "stripe" && e.type === "income") files.push({ name: `Rechnungen/${e.number}.pdf`, data: await inv.invoicePdf([asSession(e)], { [asSession(e).id]: e.number }) });
     if (e.type === "refund") files.push({ name: `Gutschriften/${e.number}.pdf`, data: await documentPdf(e.id) });
+    if (e.source === "flowunion" && e.invoiceId && !seenFu.has(e.invoiceId)) {
+      seenFu.add(e.invoiceId);
+      const pdf = await documentPdf(e.id).catch((err) => { console.error("FlowUnion-PDF: " + err.message); return null; });
+      if (pdf) files.push({ name: `Rechnungen-FlowUnion/${cleanName(e.refNumber)}.pdf`, data: pdf });
+    }
   }
   return zipStore(files);
 }
@@ -579,12 +620,12 @@ async function taxPackage(from, to, project = "") {
 async function entriesCsv(from, to, project = "") {
   const entries = (await listEntries()).filter((e) => inRange(e, from, to) && (!project || projectOf(e) === project)).sort((a, b) => a.number.localeCompare(b.number));
   return csv(["Nummer", "Datum", "Art", "Quelle", "Projekt", "Partei", "Kategorie", "Beschreibung", "Einnahme EUR", "Ausgabe EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
-    entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : e.type === "refund" ? "Erstattung" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party, e.category,
+    entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : e.type === "refund" ? "Erstattung" : "Ausgabe", srcLabel(e), projectOf(e), e.party, e.category,
       e.description, e.type === "income" ? num(e.amount) : "", e.type === "expense" ? num(e.amount) : e.type === "refund" ? "-" + num(e.amount) : "", num(e.fee), num(e.refunded), e.void ? "storniert" : "gültig"]));
 }
 
 module.exports = {
   PROJECTS, projectOf, byProject, assignProject, lockReason, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
-  productOf, totals, refundSale, syncRefundFromCharge, syncRefundForPayment, documentPdf, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
+  productOf, syncFlowUnion, totals, refundSale, syncRefundFromCharge, syncRefundForPayment, documentPdf, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };
