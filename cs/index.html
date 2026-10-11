@@ -143,23 +143,40 @@
   </section>
 
   <section class="light" id="preis">
-    <div class="wrap price-wrap">
-      <div>
+    <div class="wrap">
+      <div class="price-head">
         <h2>Jedna cena. Na celý život.</h2>
         <p class="lead dark-text">Žádné předplatné, žádné skryté poplatky: zaplatíte jednou a Pythia Voice používáte celý život.</p>
-        <p class="note">Jediná další ingredience je váš vlastní přístup ke Groq pro rozpoznávání řeči. Pro běžné použití je zdarma, podmínky určuje Groq.</p>
       </div>
-      <div class="tablet">
-        <p class="amount"><span class="num" id="price">19,99 €</span></p>
-        <p class="sub">Jednorázová platba v eurech.</p>
-        <ul>
-          <li>Zdarma 7 dní nebo 3 000 slov</li>
-          <li>Všech 90+ jazyků, všechny funkce</li>
-          <li>Po koupi žádný limit slov</li>
-          <li>Aktualizace verze 1 v ceně</li>
-        </ul>
-        <a class="btn primary" id="buy" href="#download">Koupit licenci</a>
+      <div class="tablets">
+        <div class="tablet">
+          <p class="plan">Dictation</p>
+          <p class="plan-d">Speak into any app, clean text appears.</p>
+          <p class="amount"><span class="num" id="price">19,99 €</span></p>
+          <p class="sub">Jednorázová platba v eurech.</p>
+          <ul>
+            <li>Zdarma 7 dní nebo 3 000 slov</li>
+            <li>Všech 90+ jazyků, všechny funkce</li>
+            <li>Po koupi žádný limit slov</li>
+            <li>Aktualizace verze 1 v ceně</li>
+          </ul>
+          <a class="btn primary" id="buy" href="#download">Koupit licenci</a>
+        </div>
+        <div class="tablet">
+          <p class="plan">Voice messages</p>
+          <p class="plan-d">Read long voice messages as text.</p>
+          <p class="amount"><span class="num">€19.99</span></p>
+          <p class="sub">One-time payment in euros.</p>
+          <ul>
+            <li>Try free with 15 messages or 7 days</li>
+            <li>Split by minute with paragraphs</li>
+            <li>Share from WhatsApp and other messengers</li>
+            <li>Updates of version 1 included</li>
+          </ul>
+          <a class="btn primary" id="buy-voice-2" href="#download">Buy voice messages</a>
+        </div>
       </div>
+      <p class="note">Each license is bought separately and works on its own. Jediná další ingredience je váš vlastní přístup ke Groq pro rozpoznávání řeči. Pro běžné použití je zdarma, podmínky určuje Groq.</p>
     </div>
   </section>
 
@@ -186,14 +203,24 @@
       <details><summary>Proč aplikace potřebuje usnadnění?</summary><p>Jen tak se může tlačítko zobrazit nad klávesnicí a text se dostat do pole, ve kterém píšete. Čte se pouze toto textové pole.</p></details>
       <details><summary>Funguje to offline?</summary><p>Ne. Rozpoznávání potřebuje připojení k internetu.</p></details>
       <details><summary>Existuje verze pro iPhone nebo Windows?</summary><p>Zatím ne. Pythia Voice je zatím jen pro Android.</p></details>
+      <details><summary>How do voice messages work?</summary><p>Open the menu of a voice message in WhatsApp or another messenger, choose Share and pick Pythia Voice. The app transcribes it with your Groq access and shows the text split by minute, ready to copy or share.</p></details>
+      <details><summary>How long can a voice message be?</summary><p>Files up to 25 MB work, which is many hours of speech. A three-minute message takes only seconds. Groq sets its own rate limits and may change them.</p></details>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span><a href="/intern" tabindex="-1">©</a> Pythia Voice</span>
-    <span><a href="/impressum">Právní informace</a> · <a href="/privacy">Soukromí</a> · <a href="/agb">AGB / Terms</a></span>
+    <div class="foot-brand">
+      <a class="brand" href="/cs/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
+      <p>Dictation and voice messages for Android.</p>
+    </div>
+    <nav class="foot-links" aria-label="Info">
+      <a href="/impressum">Právní informace</a>
+      <a href="/privacy">Soukromí</a>
+      <a href="/agb">AGB / Terms</a>
+    </nav>
+    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
   </div>
 </footer>
 

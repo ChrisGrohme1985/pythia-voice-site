@@ -143,23 +143,40 @@
   </section>
 
   <section class="light" id="preis">
-    <div class="wrap price-wrap">
-      <div>
+    <div class="wrap">
+      <div class="price-head">
         <h2>ราคาเดียว ตลอดชีวิต</h2>
         <p class="lead dark-text">ไม่มีค่าสมาชิก ไม่มีค่าใช้จ่ายแอบแฝง: จ่ายครั้งเดียวแล้วใช้ Pythia Voice ได้ตลอดชีวิต</p>
-        <p class="note">ส่วนประกอบอื่นเพียงอย่างเดียวคือสิทธิ์เข้าใช้ Groq ของคุณเองสำหรับจดจำเสียง ใช้งานทั่วไปไม่มีค่าใช้จ่าย เงื่อนไขกำหนดโดย Groq</p>
       </div>
-      <div class="tablet">
-        <p class="amount"><span class="num" id="price">19,99 €</span></p>
-        <p class="sub">ชำระครั้งเดียวเป็นสกุลยูโร</p>
-        <ul>
-          <li>ทดลองใช้ฟรี 7 วัน หรือ 3,000 คำ</li>
-          <li>ครบกว่า 90 ภาษา ทุกฟังก์ชัน</li>
-          <li>ไม่จำกัดจำนวนคำหลังซื้อ</li>
-          <li>รวมอัปเดตของเวอร์ชัน 1</li>
-        </ul>
-        <a class="btn primary" id="buy" href="#download">ซื้อไลเซนส์</a>
+      <div class="tablets">
+        <div class="tablet">
+          <p class="plan">Dictation</p>
+          <p class="plan-d">Speak into any app, clean text appears.</p>
+          <p class="amount"><span class="num" id="price">19,99 €</span></p>
+          <p class="sub">ชำระครั้งเดียวเป็นสกุลยูโร</p>
+          <ul>
+            <li>ทดลองใช้ฟรี 7 วัน หรือ 3,000 คำ</li>
+            <li>ครบกว่า 90 ภาษา ทุกฟังก์ชัน</li>
+            <li>ไม่จำกัดจำนวนคำหลังซื้อ</li>
+            <li>รวมอัปเดตของเวอร์ชัน 1</li>
+          </ul>
+          <a class="btn primary" id="buy" href="#download">ซื้อไลเซนส์</a>
+        </div>
+        <div class="tablet">
+          <p class="plan">Voice messages</p>
+          <p class="plan-d">Read long voice messages as text.</p>
+          <p class="amount"><span class="num">€19.99</span></p>
+          <p class="sub">One-time payment in euros.</p>
+          <ul>
+            <li>Try free with 15 messages or 7 days</li>
+            <li>Split by minute with paragraphs</li>
+            <li>Share from WhatsApp and other messengers</li>
+            <li>Updates of version 1 included</li>
+          </ul>
+          <a class="btn primary" id="buy-voice-2" href="#download">Buy voice messages</a>
+        </div>
       </div>
+      <p class="note">Each license is bought separately and works on its own. ส่วนประกอบอื่นเพียงอย่างเดียวคือสิทธิ์เข้าใช้ Groq ของคุณเองสำหรับจดจำเสียง ใช้งานทั่วไปไม่มีค่าใช้จ่าย เงื่อนไขกำหนดโดย Groq</p>
     </div>
   </section>
 
@@ -186,14 +203,24 @@
       <details><summary>ทำไมแอปต้องใช้การช่วยเหลือพิเศษ?</summary><p>เพราะต้องใช้สิ่งนี้ ปุ่มจึงปรากฏเหนือแป้นพิมพ์และข้อความจึงลงในช่องที่คุณพิมพ์อยู่ อ่านเฉพาะช่องข้อความนั้นเท่านั้น</p></details>
       <details><summary>ใช้แบบออฟไลน์ได้ไหม?</summary><p>ไม่ได้ การจดจำต้องใช้อินเทอร์เน็ต</p></details>
       <details><summary>มีเวอร์ชัน iPhone หรือ Windows ไหม?</summary><p>ยังไม่มี ตอนนี้ Pythia Voice มีเฉพาะ Android</p></details>
+      <details><summary>How do voice messages work?</summary><p>Open the menu of a voice message in WhatsApp or another messenger, choose Share and pick Pythia Voice. The app transcribes it with your Groq access and shows the text split by minute, ready to copy or share.</p></details>
+      <details><summary>How long can a voice message be?</summary><p>Files up to 25 MB work, which is many hours of speech. A three-minute message takes only seconds. Groq sets its own rate limits and may change them.</p></details>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span><a href="/intern" tabindex="-1">©</a> Pythia Voice</span>
-    <span><a href="/impressum">ข้อมูลทางกฎหมาย</a> · <a href="/privacy">ความเป็นส่วนตัว</a> · <a href="/agb">AGB / Terms</a></span>
+    <div class="foot-brand">
+      <a class="brand" href="/th/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
+      <p>Dictation and voice messages for Android.</p>
+    </div>
+    <nav class="foot-links" aria-label="Info">
+      <a href="/impressum">ข้อมูลทางกฎหมาย</a>
+      <a href="/privacy">ความเป็นส่วนตัว</a>
+      <a href="/agb">AGB / Terms</a>
+    </nav>
+    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
   </div>
 </footer>
 

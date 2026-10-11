@@ -143,23 +143,40 @@
   </section>
 
   <section class="light" id="preis">
-    <div class="wrap price-wrap">
-      <div>
+    <div class="wrap">
+      <div class="price-head">
         <h2>מחיר אחד. לכל החיים.</h2>
         <p class="lead dark-text">בלי מנוי, בלי עלויות נסתרות: משלמים פעם אחת ומשתמשים ב-Pythia Voice לכל החיים.</p>
-        <p class="note">המרכיב הנוסף היחיד הוא הגישה האישית שלכם ל-Groq לזיהוי דיבור. היא חינמית לשימוש רגיל, והתנאים נקבעים על ידי Groq.</p>
       </div>
-      <div class="tablet">
-        <p class="amount"><span class="num" id="price">19,99 €</span></p>
-        <p class="sub">תשלום חד-פעמי באירו.</p>
-        <ul>
-          <li>נסו בחינם 7 ימים או 3,000 מילים</li>
-          <li>כל 90+ השפות, כל התכונות</li>
-          <li>בלי מגבלת מילים אחרי הרכישה</li>
-          <li>כולל עדכוני גרסה 1</li>
-        </ul>
-        <a class="btn primary" id="buy" href="#download">קנו רישיון</a>
+      <div class="tablets">
+        <div class="tablet">
+          <p class="plan">Dictation</p>
+          <p class="plan-d">Speak into any app, clean text appears.</p>
+          <p class="amount"><span class="num" id="price">19,99 €</span></p>
+          <p class="sub">תשלום חד-פעמי באירו.</p>
+          <ul>
+            <li>נסו בחינם 7 ימים או 3,000 מילים</li>
+            <li>כל 90+ השפות, כל התכונות</li>
+            <li>בלי מגבלת מילים אחרי הרכישה</li>
+            <li>כולל עדכוני גרסה 1</li>
+          </ul>
+          <a class="btn primary" id="buy" href="#download">קנו רישיון</a>
+        </div>
+        <div class="tablet">
+          <p class="plan">Voice messages</p>
+          <p class="plan-d">Read long voice messages as text.</p>
+          <p class="amount"><span class="num">€19.99</span></p>
+          <p class="sub">One-time payment in euros.</p>
+          <ul>
+            <li>Try free with 15 messages or 7 days</li>
+            <li>Split by minute with paragraphs</li>
+            <li>Share from WhatsApp and other messengers</li>
+            <li>Updates of version 1 included</li>
+          </ul>
+          <a class="btn primary" id="buy-voice-2" href="#download">Buy voice messages</a>
+        </div>
       </div>
+      <p class="note">Each license is bought separately and works on its own. המרכיב הנוסף היחיד הוא הגישה האישית שלכם ל-Groq לזיהוי דיבור. היא חינמית לשימוש רגיל, והתנאים נקבעים על ידי Groq.</p>
     </div>
   </section>
 
@@ -186,14 +203,24 @@
       <details><summary>למה האפליקציה צריכה נגישות?</summary><p>רק כך הכפתור יכול להופיע מעל המקלדת והטקסט להגיע לשדה שבו אתם כותבים. נקרא רק שדה הטקסט הזה.</p></details>
       <details><summary>האם זה עובד ללא חיבור?</summary><p>לא. הזיהוי דורש חיבור לאינטרנט.</p></details>
       <details><summary>האם יש גרסה לאייפון או ל-Windows?</summary><p>עדיין לא. כרגע Pythia Voice זמינה רק לאנדרואיד.</p></details>
+      <details><summary>How do voice messages work?</summary><p>Open the menu of a voice message in WhatsApp or another messenger, choose Share and pick Pythia Voice. The app transcribes it with your Groq access and shows the text split by minute, ready to copy or share.</p></details>
+      <details><summary>How long can a voice message be?</summary><p>Files up to 25 MB work, which is many hours of speech. A three-minute message takes only seconds. Groq sets its own rate limits and may change them.</p></details>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span><a href="/intern" tabindex="-1">©</a> Pythia Voice</span>
-    <span><a href="/impressum">פרטים משפטיים</a> · <a href="/privacy">פרטיות</a> · <a href="/agb">AGB / Terms</a></span>
+    <div class="foot-brand">
+      <a class="brand" href="/he/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
+      <p>Dictation and voice messages for Android.</p>
+    </div>
+    <nav class="foot-links" aria-label="Info">
+      <a href="/impressum">פרטים משפטיים</a>
+      <a href="/privacy">פרטיות</a>
+      <a href="/agb">AGB / Terms</a>
+    </nav>
+    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
   </div>
 </footer>
 

@@ -186,13 +186,23 @@
       await api("inbox-finish", { method: "POST", query: `&id=${start.item.id}`, body: { chunks: n } });
     } catch (e) { await api("inbox-delete", { method: "POST", body: { id: start.item.id } }).catch(() => {}); throw e; }
   }
-  $("inboxFile").onchange = async (ev) => {
-    for (const f of ev.target.files) {
+  async function uploadAll(files) {
+    const list = [...files].filter((f) => /\.pdf$/i.test(f.name) || f.type === "application/pdf");
+    if (!list.length) return msg("inboxMsg", "Nur PDF-Dateien werden angenommen.", true);
+    $("drop").classList.add("busy");
+    for (const f of list) {
       msg("inboxMsg", `Lade ${f.name} hoch …`);
-      try { await upload(f); msg("inboxMsg", "Hochgeladen."); } catch (e) { msg("inboxMsg", `${f.name}: ${e.message}`, true); }
+      try { await upload(f); msg("inboxMsg", list.length > 1 ? `${list.length} Belege hochgeladen.` : `${f.name} hochgeladen.`); }
+      catch (e) { msg("inboxMsg", `${f.name}: ${e.message}`, true); }
     }
-    ev.target.value = ""; loadInbox();
-  };
+    $("drop").classList.remove("busy");
+    loadInbox();
+  }
+  $("inboxFile").onchange = (ev) => { uploadAll(ev.target.files).finally(() => { ev.target.value = ""; }); };
+  const drop = $("drop");
+  ["dragenter", "dragover"].forEach((n) => drop.addEventListener(n, (e) => { e.preventDefault(); drop.classList.add("over"); }));
+  ["dragleave", "drop"].forEach((n) => drop.addEventListener(n, (e) => { e.preventDefault(); drop.classList.remove("over"); }));
+  drop.addEventListener("drop", (e) => uploadAll(e.dataTransfer.files));
   async function loadInbox() {
     const { items } = await api("inbox");
     fill("inboxTable", items.map((i) => [td(i.filename), td(`${Math.max(1, Math.round(i.size / 1024))} KB`, "r"), (() => {

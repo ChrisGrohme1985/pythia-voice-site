@@ -143,23 +143,40 @@
   </section>
 
   <section class="light" id="preis">
-    <div class="wrap price-wrap">
-      <div>
+    <div class="wrap">
+      <div class="price-head">
         <h2>Ein Preis. Ein Leben lang.</h2>
         <p class="lead dark-text">Kein Abo, keine versteckten Kosten: Du zahlst einmal und nutzt Pythia Voice ein Leben lang.</p>
-        <p class="note">Einzige weitere Zutat: dein eigener Groq-Zugang für die Spracherkennung. Er ist für normale Nutzung kostenlos, die Bedingungen legt Groq fest.</p>
       </div>
-      <div class="tablet">
-        <p class="amount"><span class="num" id="price">19,99 €</span></p>
-        <p class="sub">Einmalzahlung in Euro.</p>
-        <ul>
-          <li>7 Tage oder 3.000 Wörter kostenlos testen</li>
-          <li>Alle 90+ Sprachen, alle Funktionen</li>
-          <li>Kein Wortlimit nach dem Kauf</li>
-          <li>Updates der Version 1 inklusive</li>
-        </ul>
-        <a class="btn primary" id="buy" href="#download">Lizenz kaufen</a>
+      <div class="tablets">
+        <div class="tablet">
+          <p class="plan">Diktat</p>
+          <p class="plan-d">In jede App sprechen, sauberer Text erscheint.</p>
+          <p class="amount"><span class="num" id="price">19,99 €</span></p>
+          <p class="sub">Einmalzahlung in Euro.</p>
+          <ul>
+            <li>7 Tage oder 3.000 Wörter kostenlos testen</li>
+            <li>Alle 90+ Sprachen, alle Funktionen</li>
+            <li>Kein Wortlimit nach dem Kauf</li>
+            <li>Updates der Version 1 inklusive</li>
+          </ul>
+          <a class="btn primary" id="buy" href="#download">Lizenz kaufen</a>
+        </div>
+        <div class="tablet">
+          <p class="plan">Sprachnachrichten</p>
+          <p class="plan-d">Lange Sprachnachrichten als Text lesen.</p>
+          <p class="amount"><span class="num">19,99 €</span></p>
+          <p class="sub">Einmalzahlung in Euro.</p>
+          <ul>
+            <li>Kostenlos testen mit 15 Nachrichten oder 7 Tagen</li>
+            <li>Gegliedert je Minute und in Absätzen</li>
+            <li>Teilen aus WhatsApp und anderen Messengern</li>
+            <li>Updates der Version 1 inklusive</li>
+          </ul>
+          <a class="btn primary" id="buy-voice-2" href="#download">Sprachnachrichten kaufen</a>
+        </div>
       </div>
+      <p class="note">Jede Lizenz wird einzeln gekauft und funktioniert für sich. Einzige weitere Zutat: dein eigener Groq-Zugang für die Spracherkennung. Er ist für normale Nutzung kostenlos, die Bedingungen legt Groq fest.</p>
     </div>
   </section>
 
@@ -186,14 +203,24 @@
       <details><summary>Warum braucht die App die Bedienungshilfe?</summary><p>Nur damit kann der Knopf über der Tastatur erscheinen und der Text in das Feld kommen, in dem du schreibst. Gelesen wird dabei ausschließlich dieses Textfeld.</p></details>
       <details><summary>Funktioniert es offline?</summary><p>Nein. Die Erkennung braucht eine Internetverbindung.</p></details>
       <details><summary>Gibt es eine Version für iPhone oder Windows?</summary><p>Noch nicht. Pythia Voice gibt es zunächst nur für Android.</p></details>
+      <details><summary>Wie funktionieren die Sprachnachrichten?</summary><p>In WhatsApp oder einem anderen Messenger das Menü der Sprachnachricht öffnen, Teilen wählen und Pythia Voice auswählen. Die App wandelt sie über deinen Groq-Zugang in Text um und zeigt ihn gegliedert je Minute, zum Kopieren oder Teilen.</p></details>
+      <details><summary>Wie lang darf eine Sprachnachricht sein?</summary><p>Dateien bis 25 MB gehen, das sind viele Stunden Sprache. Eine Nachricht von drei Minuten dauert nur Sekunden. Groq legt eigene Grenzen fest und kann sie ändern.</p></details>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span><a href="/intern" tabindex="-1">©</a> Pythia Voice</span>
-    <span><a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a> · <a href="/agb">AGB / Terms</a></span>
+    <div class="foot-brand">
+      <a class="brand" href="/de/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
+      <p>Diktat und Sprachnachrichten für Android.</p>
+    </div>
+    <nav class="foot-links" aria-label="Info">
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="/agb">AGB / Terms</a>
+    </nav>
+    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
   </div>
 </footer>
 

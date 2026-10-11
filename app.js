@@ -18,7 +18,15 @@
 
   // --- Links aus config.js ---------------------------------------------------------------------------------
   if (P.buyUrl) document.getElementById("buy").href = P.buyUrl;
-  if (P.voiceBuyUrl) document.getElementById("buy-voice").href = P.voiceBuyUrl;
+  if (P.voiceBuyUrl) for (const id of ["buy-voice", "buy-voice-2"]) document.getElementById(id).href = P.voiceBuyUrl;
+
+  // --- Sprachnachricht-Demo: Abschnitte erscheinen nacheinander, sobald sie im Bild ist ----------------------
+  html.classList.add("js");
+  const demo = document.querySelector(".vm-demo");
+  if (demo) {
+    if (reduce || !("IntersectionObserver" in window)) demo.classList.add("in-view");
+    else new IntersectionObserver((es, io) => es.forEach((e) => { if (e.isIntersecting) { demo.classList.add("in-view"); io.disconnect(); } }), { threshold: 0.35 }).observe(demo);
+  }
   if (P.apkUrl) document.getElementById("apk").href = P.apkUrl;
 
   // --- Demo: Balken steigen, der gesprochene Satz erscheint, dann der bereinigte ----------------------------

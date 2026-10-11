@@ -143,23 +143,40 @@
   </section>
 
   <section class="light" id="preis">
-    <div class="wrap price-wrap">
-      <div>
+    <div class="wrap">
+      <div class="price-head">
         <h2>一个价格。终身有效。</h2>
         <p class="lead dark-text">无订阅，无隐藏费用：付一次，终身使用 Pythia Voice。</p>
-        <p class="note">唯一还需要的是你自己的 Groq 访问，用于语音识别。正常使用免费，条款由 Groq 决定。</p>
       </div>
-      <div class="tablet">
-        <p class="amount"><span class="num" id="price">19,99 €</span></p>
-        <p class="sub">以欧元一次性支付。</p>
-        <ul>
-          <li>免费试用 7 天或 3,000 个词</li>
-          <li>全部 90 多种语言，全部功能</li>
-          <li>购买后无字数限制</li>
-          <li>含版本 1 的更新</li>
-        </ul>
-        <a class="btn primary" id="buy" href="#download">购买许可证</a>
+      <div class="tablets">
+        <div class="tablet">
+          <p class="plan">Dictation</p>
+          <p class="plan-d">Speak into any app, clean text appears.</p>
+          <p class="amount"><span class="num" id="price">19,99 €</span></p>
+          <p class="sub">以欧元一次性支付。</p>
+          <ul>
+            <li>免费试用 7 天或 3,000 个词</li>
+            <li>全部 90 多种语言，全部功能</li>
+            <li>购买后无字数限制</li>
+            <li>含版本 1 的更新</li>
+          </ul>
+          <a class="btn primary" id="buy" href="#download">购买许可证</a>
+        </div>
+        <div class="tablet">
+          <p class="plan">Voice messages</p>
+          <p class="plan-d">Read long voice messages as text.</p>
+          <p class="amount"><span class="num">€19.99</span></p>
+          <p class="sub">One-time payment in euros.</p>
+          <ul>
+            <li>Try free with 15 messages or 7 days</li>
+            <li>Split by minute with paragraphs</li>
+            <li>Share from WhatsApp and other messengers</li>
+            <li>Updates of version 1 included</li>
+          </ul>
+          <a class="btn primary" id="buy-voice-2" href="#download">Buy voice messages</a>
+        </div>
       </div>
+      <p class="note">Each license is bought separately and works on its own. 唯一还需要的是你自己的 Groq 访问，用于语音识别。正常使用免费，条款由 Groq 决定。</p>
     </div>
   </section>
 
@@ -186,14 +203,24 @@
       <details><summary>为什么应用需要无障碍权限？</summary><p>只有这样，按钮才能显示在键盘上方，文字才能进入你正在输入的文本框。只会读取该文本框。</p></details>
       <details><summary>可以离线使用吗？</summary><p>不可以。识别需要网络连接。</p></details>
       <details><summary>有 iPhone 或 Windows 版本吗？</summary><p>暂时没有。Pythia Voice 目前只有 Android 版。</p></details>
+      <details><summary>How do voice messages work?</summary><p>Open the menu of a voice message in WhatsApp or another messenger, choose Share and pick Pythia Voice. The app transcribes it with your Groq access and shows the text split by minute, ready to copy or share.</p></details>
+      <details><summary>How long can a voice message be?</summary><p>Files up to 25 MB work, which is many hours of speech. A three-minute message takes only seconds. Groq sets its own rate limits and may change them.</p></details>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span><a href="/intern" tabindex="-1">©</a> Pythia Voice</span>
-    <span><a href="/impressum">法律声明</a> · <a href="/privacy">隐私</a> · <a href="/agb">AGB / Terms</a></span>
+    <div class="foot-brand">
+      <a class="brand" href="/zh/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
+      <p>Dictation and voice messages for Android.</p>
+    </div>
+    <nav class="foot-links" aria-label="Info">
+      <a href="/impressum">法律声明</a>
+      <a href="/privacy">隐私</a>
+      <a href="/agb">AGB / Terms</a>
+    </nav>
+    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
   </div>
 </footer>
 

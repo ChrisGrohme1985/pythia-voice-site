@@ -143,23 +143,40 @@
   </section>
 
   <section class="light" id="preis">
-    <div class="wrap price-wrap">
-      <div>
+    <div class="wrap">
+      <div class="price-head">
         <h2>가격은 하나. 평생.</h2>
         <p class="lead dark-text">구독 없음, 숨은 비용 없음. 한 번 결제하고 Pythia Voice를 평생 사용하세요.</p>
-        <p class="note">필요한 것은 음성 인식을 위한 본인의 Groq 접근뿐입니다. 일반적인 사용은 무료이며, 조건은 Groq가 정합니다.</p>
       </div>
-      <div class="tablet">
-        <p class="amount"><span class="num" id="price">19,99 €</span></p>
-        <p class="sub">유로 일시불 결제입니다.</p>
-        <ul>
-          <li>7일 또는 3,000단어 무료 체험</li>
-          <li>90개 이상의 모든 언어, 모든 기능</li>
-          <li>구매 후 단어 수 제한 없음</li>
-          <li>버전 1 업데이트 포함</li>
-        </ul>
-        <a class="btn primary" id="buy" href="#download">라이선스 구매</a>
+      <div class="tablets">
+        <div class="tablet">
+          <p class="plan">Dictation</p>
+          <p class="plan-d">Speak into any app, clean text appears.</p>
+          <p class="amount"><span class="num" id="price">19,99 €</span></p>
+          <p class="sub">유로 일시불 결제입니다.</p>
+          <ul>
+            <li>7일 또는 3,000단어 무료 체험</li>
+            <li>90개 이상의 모든 언어, 모든 기능</li>
+            <li>구매 후 단어 수 제한 없음</li>
+            <li>버전 1 업데이트 포함</li>
+          </ul>
+          <a class="btn primary" id="buy" href="#download">라이선스 구매</a>
+        </div>
+        <div class="tablet">
+          <p class="plan">Voice messages</p>
+          <p class="plan-d">Read long voice messages as text.</p>
+          <p class="amount"><span class="num">€19.99</span></p>
+          <p class="sub">One-time payment in euros.</p>
+          <ul>
+            <li>Try free with 15 messages or 7 days</li>
+            <li>Split by minute with paragraphs</li>
+            <li>Share from WhatsApp and other messengers</li>
+            <li>Updates of version 1 included</li>
+          </ul>
+          <a class="btn primary" id="buy-voice-2" href="#download">Buy voice messages</a>
+        </div>
       </div>
+      <p class="note">Each license is bought separately and works on its own. 필요한 것은 음성 인식을 위한 본인의 Groq 접근뿐입니다. 일반적인 사용은 무료이며, 조건은 Groq가 정합니다.</p>
     </div>
   </section>
 
@@ -186,14 +203,24 @@
       <details><summary>앱이 왜 접근성을 요구하나요?</summary><p>그래야 키보드 위에 버튼을 표시하고 입력 중인 입력란에 텍스트를 넣을 수 있습니다. 읽는 것은 그 입력란뿐입니다.</p></details>
       <details><summary>오프라인에서도 되나요?</summary><p>아니요. 인식에는 인터넷 연결이 필요합니다.</p></details>
       <details><summary>iPhone이나 Windows 버전이 있나요?</summary><p>아직 없습니다. 지금은 Android 전용입니다.</p></details>
+      <details><summary>How do voice messages work?</summary><p>Open the menu of a voice message in WhatsApp or another messenger, choose Share and pick Pythia Voice. The app transcribes it with your Groq access and shows the text split by minute, ready to copy or share.</p></details>
+      <details><summary>How long can a voice message be?</summary><p>Files up to 25 MB work, which is many hours of speech. A three-minute message takes only seconds. Groq sets its own rate limits and may change them.</p></details>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span><a href="/intern" tabindex="-1">©</a> Pythia Voice</span>
-    <span><a href="/impressum">사업자 정보</a> · <a href="/privacy">개인정보</a> · <a href="/agb">AGB / Terms</a></span>
+    <div class="foot-brand">
+      <a class="brand" href="/ko/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
+      <p>Dictation and voice messages for Android.</p>
+    </div>
+    <nav class="foot-links" aria-label="Info">
+      <a href="/impressum">사업자 정보</a>
+      <a href="/privacy">개인정보</a>
+      <a href="/agb">AGB / Terms</a>
+    </nav>
+    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
   </div>
 </footer>
 

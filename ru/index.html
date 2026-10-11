@@ -143,23 +143,40 @@
   </section>
 
   <section class="light" id="preis">
-    <div class="wrap price-wrap">
-      <div>
+    <div class="wrap">
+      <div class="price-head">
         <h2>Одна цена. Навсегда.</h2>
         <p class="lead dark-text">Без подписки, без скрытых расходов: платите один раз и пользуйтесь Pythia Voice всю жизнь.</p>
-        <p class="note">Единственное, что нужно ещё, — ваш доступ к Groq для распознавания речи. Для обычного использования он бесплатный, условия задаёт Groq.</p>
       </div>
-      <div class="tablet">
-        <p class="amount"><span class="num" id="price">19,99 €</span></p>
-        <p class="sub">Разовый платёж в евро.</p>
-        <ul>
-          <li>Бесплатно 7 дней или 3000 слов</li>
-          <li>Все 90+ языков, все функции</li>
-          <li>Без лимита слов после покупки</li>
-          <li>Обновления версии 1 включены</li>
-        </ul>
-        <a class="btn primary" id="buy" href="#download">Купить лицензию</a>
+      <div class="tablets">
+        <div class="tablet">
+          <p class="plan">Dictation</p>
+          <p class="plan-d">Speak into any app, clean text appears.</p>
+          <p class="amount"><span class="num" id="price">19,99 €</span></p>
+          <p class="sub">Разовый платёж в евро.</p>
+          <ul>
+            <li>Бесплатно 7 дней или 3000 слов</li>
+            <li>Все 90+ языков, все функции</li>
+            <li>Без лимита слов после покупки</li>
+            <li>Обновления версии 1 включены</li>
+          </ul>
+          <a class="btn primary" id="buy" href="#download">Купить лицензию</a>
+        </div>
+        <div class="tablet">
+          <p class="plan">Voice messages</p>
+          <p class="plan-d">Read long voice messages as text.</p>
+          <p class="amount"><span class="num">€19.99</span></p>
+          <p class="sub">One-time payment in euros.</p>
+          <ul>
+            <li>Try free with 15 messages or 7 days</li>
+            <li>Split by minute with paragraphs</li>
+            <li>Share from WhatsApp and other messengers</li>
+            <li>Updates of version 1 included</li>
+          </ul>
+          <a class="btn primary" id="buy-voice-2" href="#download">Buy voice messages</a>
+        </div>
       </div>
+      <p class="note">Each license is bought separately and works on its own. Единственное, что нужно ещё, — ваш доступ к Groq для распознавания речи. Для обычного использования он бесплатный, условия задаёт Groq.</p>
     </div>
   </section>
 
@@ -186,14 +203,24 @@
       <details><summary>Зачем приложению специальные возможности?</summary><p>Только так кнопка может появиться над клавиатурой, а текст попасть в поле, в котором вы пишете. Считывается только это текстовое поле.</p></details>
       <details><summary>Работает ли офлайн?</summary><p>Нет. Для распознавания нужен интернет.</p></details>
       <details><summary>Есть ли версия для iPhone или Windows?</summary><p>Пока нет. Сейчас Pythia Voice только для Android.</p></details>
+      <details><summary>How do voice messages work?</summary><p>Open the menu of a voice message in WhatsApp or another messenger, choose Share and pick Pythia Voice. The app transcribes it with your Groq access and shows the text split by minute, ready to copy or share.</p></details>
+      <details><summary>How long can a voice message be?</summary><p>Files up to 25 MB work, which is many hours of speech. A three-minute message takes only seconds. Groq sets its own rate limits and may change them.</p></details>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span><a href="/intern" tabindex="-1">©</a> Pythia Voice</span>
-    <span><a href="/impressum">Выходные данные</a> · <a href="/privacy">Конфиденциальность</a> · <a href="/agb">AGB / Terms</a></span>
+    <div class="foot-brand">
+      <a class="brand" href="/ru/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
+      <p>Dictation and voice messages for Android.</p>
+    </div>
+    <nav class="foot-links" aria-label="Info">
+      <a href="/impressum">Выходные данные</a>
+      <a href="/privacy">Конфиденциальность</a>
+      <a href="/agb">AGB / Terms</a>
+    </nav>
+    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
   </div>
 </footer>
 
