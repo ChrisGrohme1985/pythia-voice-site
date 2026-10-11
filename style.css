@@ -250,6 +250,12 @@ footer a:hover { color: #fff; }
   .admin .block { padding: 18px; }
 }
 
+/* Auswahlfelder: eigener Pfeil mit Abstand zum Rand, lesbare Optionen */
+.admin select { -webkit-appearance: none; appearance: none; padding-right: 40px; cursor: pointer; background-color: rgba(255, 255, 255, .035); background-repeat: no-repeat; background-position: right 14px center; background-size: 12px 8px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23aab3c9' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.admin select:focus { background-color: rgba(255, 255, 255, .06); }
+.admin select option { background: #0f1a35; color: #f5f1e6; }
+.admin select option:checked { background: #1d2c52; color: #ffdf8a; }
+
 /* Sprachnachrichten: Hauptmerkmal direkt unter dem Kopfbereich */
 .badge-new { display: inline-block; padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(242, 193, 78, .5); background: rgba(242, 193, 78, .1); color: var(--gold2); font-size: .95rem; font-weight: 600; transition: background .2s, transform .2s; }
 .badge-new:hover { background: rgba(242, 193, 78, .2); transform: translateY(-1px); }
