@@ -202,7 +202,8 @@
         proj.append(sel);
       }
       const desc = document.createElement("td");
-      desc.className = "clip desc tip";
+      desc.className = "clip desc";
+      desc.dataset.clip = "1"; // Tooltip nur, wenn der Text wirklich gekürzt ist
       desc.dataset.tip = e.description + (e.category ? `\n${e.category}` : "") + (e.refunded ? `\nerstattet ${eur(e.refunded)}` : "");
       const d1 = document.createElement("span");
       d1.className = "d1";
@@ -214,9 +215,9 @@
       pl.className = "partyline"; pl.textContent = " · " + e.party;
       cat.append(pl);
       desc.append(cat);
-      const row = [td(de(e.date), "nw"), td(e.number, "nw"), kind, proj, td(e.party, "nw party tip"), desc,
+      const row = [td(de(e.date), "nw"), td(e.number, "nw"), kind, proj, td(e.party, "nw party"), desc,
         td((e.type === "income" ? "" : "-") + eur(e.amount), "r nw " + (e.type === "income" ? "pos" : "neg")), rcpt, act];
-      row[4].dataset.tip = e.party;
+      row[4].dataset.tip = e.party; row[4].dataset.clip = "1";
       if (e.void) row.forEach((c) => c.classList.add("void"));
       return row;
     }), 9);
@@ -419,7 +420,9 @@
   document.body.append(tipBox);
   document.addEventListener("mouseover", (e) => {
     const el = e.target.closest && e.target.closest("[data-tip]");
-    if (!el) { tipBox.hidden = true; return; }
+    // data-clip: nur zeigen, wenn Text oder ein Unterelement abgeschnitten ist (zu lange Adressen/Beschreibungen)
+    const clipped = (n) => [n, ...n.querySelectorAll("*")].some((x) => x.scrollWidth > x.clientWidth + 1);
+    if (!el || (el.dataset.clip && !clipped(el))) { tipBox.hidden = true; return; }
     tipBox.textContent = el.dataset.tip; tipBox.hidden = false;
     const r = el.getBoundingClientRect();
     tipBox.style.left = Math.max(8, Math.min(r.left, innerWidth - tipBox.offsetWidth - 8)) + "px";
