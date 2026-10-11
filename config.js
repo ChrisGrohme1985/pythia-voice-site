@@ -1,6 +1,6 @@
 // Hier die echten Links eintragen. Nichts davon ist geheim: das sind nur öffentliche Adressen.
 window.PV = {
-  buyUrl: "",   // Checkout-Link (z. B. Lemon Squeezy); leer = Knopf springt zum Download-Abschnitt
-  voiceBuyUrl: "", // Checkout-Link Sprachnachrichten (zweites Produkt)
+  buyUrl: "https://buy.stripe.com/aFacN64Wu8AlbAH6900oM00",   // Stripe-Zahlungslink Diktat (Live); leer = Knopf springt zum Download-Abschnitt
+  voiceBuyUrl: "https://buy.stripe.com/9B614oagO5o948f54W0oM01", // Stripe-Zahlungslink Sprachnachrichten (Live)
   apkUrl: "https://github.com/ChrisGrohme1985/pythia-voice-site/releases/latest/download/PythiaVoice.apk", // GitHub-Release; stets die neueste Fassung   // Direktdownload der APK (Variante "direct")
 };
