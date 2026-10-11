@@ -65,7 +65,7 @@ async function sendMail(to, key) {
     body: JSON.stringify({
       from: process.env.RESEND_FROM,
       to,
-      reply_to: "chris_grohme@gmx.de", // Antworten der Kunden landen im echten Postfach
+      reply_to: "support@pythiavoice.app", // Antworten der Kunden landen im echten Postfach
       subject: "Dein Pythia-Voice-Lizenzschlüssel / Your Pythia Voice license key",
       html: mailHtml(key),
       text:
