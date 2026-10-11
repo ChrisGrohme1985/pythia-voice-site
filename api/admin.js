@@ -114,6 +114,11 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
       if (session(req)?.role !== "sysadmin") return reply(403, { error: "forbidden" });
       return reply(200, { licenses: await books.listLicenses(issue) });
     }
+    if (action === "license-release" && req.method === "POST") {
+      if (session(req)?.role !== "sysadmin") return reply(403, { error: "forbidden" });
+      await books.releaseDevice(body.id);
+      return reply(200, { ok: true });
+    }
     if (action === "license-create" && req.method === "POST") {
       if (session(req)?.role !== "sysadmin") return reply(403, { error: "forbidden" });
       const g = await books.grantLicense(body, issue);

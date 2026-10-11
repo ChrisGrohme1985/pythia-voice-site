@@ -7,8 +7,10 @@ const { PDFDocument } = require("pdf-lib");
 const db = require("./_db");
 const inv = require("./_invoice");
 const { creditMailHtml } = require("./_licensemail");
+const { parse } = require("./_license");
 
 const GRANTS = "licenseGrants";
+const BINDINGS = "licenseBindings";
 const ENTRIES = "financeEntries", INBOX = "financeReceiptInbox", BLOBS = "financeReceiptBlobs", PARTS = "financeUploadParts";
 const REPORTS = "financeReports", REPORT_BLOBS = "financeReportBlobs";
 const EXPENSE_CATEGORIES = ["Software und Abos", "Domain und Hosting", "Werbung", "Recht und Beratung", "Gebühren und Beiträge", "Hardware", "Sonstiges"];
@@ -197,6 +199,13 @@ async function syncStripe(from, to) {
 
 /** Alle verkauften Lizenzen (nur Stripe-Verkäufe) mit Kundendaten; der Schlüssel wird aus der Bestellung neu abgeleitet. */
 async function listLicenses(issue) {
+  const bindings = new Map((await db.list(BINDINGS, { orderBy: "boundAt" })).map((b) => [b.id, b]));
+  const withDevice = (l) => {
+    let id = "";
+    try { id = parse(l.key)?.idHex || ""; } catch { /* Signierschlüssel nicht gesetzt */ }
+    const b = bindings.get(id);
+    return b ? { ...l, deviceId: id, boundAt: b.boundAt, lastSeen: b.lastSeen } : { ...l, deviceId: id };
+  };
   const grants = (await db.list(GRANTS, { orderBy: "number" })).map((g) => {
     const product = PRODUCTS.find((p) => p.version === g.version) || PRODUCTS[0];
     return { id: g.id, number: g.number, date: g.date, product: product.de, firstName: g.firstName, lastName: g.lastName, email: g.email,
@@ -209,7 +218,7 @@ async function listLicenses(issue) {
     return { id: e.id, number: e.number, date: e.date, product: product.de, firstName: e.firstName || "", lastName: e.lastName || "", email: e.email || "",
       amount: e.amount, refunded: e.refunded || 0, key, source: "stripe", note: "", mailedAt: 0 };
   });
-  return [...grants, ...sales].sort((a, b) => b.date.localeCompare(a.date) || b.number.localeCompare(a.number));
+  return [...grants, ...sales].map(withDevice).sort((a, b) => b.date.localeCompare(a.date) || b.number.localeCompare(a.number));
 }
 
 /**
@@ -230,6 +239,12 @@ async function grantLicense(input, issue) {
     key, date: new Date().toISOString().slice(0, 10), createdAt: now(), mailedAt: 0,
   }));
   return { id, product, ...doc };
+}
+
+/** Gerätebindung eines Schlüssels aufheben (Kunde wechselt das Handy); der Schlüssel lässt sich dann neu aktivieren. */
+async function releaseDevice(idHex) {
+  if (!/^[0-9a-f]{32}$/.test(String(idHex))) throw new Error("Schlüssel-ID ungültig");
+  await db.del(BINDINGS, idHex);
 }
 
 async function markMailed(id) { await db.set(GRANTS, id, { mailedAt: now() }, { merge: true }); }
@@ -629,5 +644,5 @@ async function entriesCsv(from, to, project = "") {
 module.exports = {
   PROJECTS, projectOf, byProject, assignProject, lockReason, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
-  productOf, syncFlowUnion, totals, refundSale, syncRefundFromCharge, syncRefundForPayment, documentPdf, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
+  productOf, syncFlowUnion, totals, refundSale, syncRefundFromCharge, syncRefundForPayment, documentPdf, listLicenses, grantLicense, releaseDevice, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };

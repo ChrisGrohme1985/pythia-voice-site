@@ -33,4 +33,33 @@ function issue(orderId, version = 1, idSecret = process.env.PYTHIA_ID_SECRET) {
   return "PV-" + b32(Buffer.concat([payload, sig])).match(/.{1,5}/g).join("-");
 }
 
-module.exports = { issue, b32 };
+const RECEIPT_CONTEXT = Buffer.from("PYTHIAVOICE-ACTIVATION-1");
+
+function b32decode(text) {
+  let bits = 0, n = 0;
+  const out = [];
+  for (const c of text) {
+    const v = ALPHABET.indexOf(c);
+    if (v < 0) return null;
+    bits = ((bits << 5) | v) & 0xffff; n += 5;
+    if (n >= 8) { out.push((bits >> (n - 8)) & 0xff); n -= 8; }
+  }
+  return Buffer.from(out);
+}
+
+/** Prüft einen Schlüssel genau wie die App (Normalisierung, Ed25519-Signatur). @returns {{version:number,idHex:string}|null} */
+function parse(key) {
+  const k = String(key).toUpperCase().replace(/[^0-9A-Z]/g, "");
+  const raw = b32decode((k.startsWith("PV") ? k.slice(2) : k).replace(/O/g, "0").replace(/[IL]/g, "1"));
+  if (!raw || raw.length < 81) return null;
+  const ok = crypto.verify(null, Buffer.concat([CONTEXT, raw.subarray(0, 17)]), crypto.createPublicKey(privateKey()), raw.subarray(17, 81));
+  return ok ? { version: raw[0], idHex: raw.subarray(1, 17).toString("hex") } : null;
+}
+
+/** Quittung "dieses Gerät darf diesen Schlüssel nutzen": Produkt, Schlüssel-ID und Geräte-Hash, vom Server signiert (andere Signaturdomäne als der Schlüssel selbst). */
+function receipt(version, idHex, deviceHashHex) {
+  const payload = Buffer.concat([Buffer.from([version]), Buffer.from(idHex, "hex"), Buffer.from(deviceHashHex, "hex")]);
+  return Buffer.concat([payload, crypto.sign(null, Buffer.concat([RECEIPT_CONTEXT, payload]), privateKey())]).toString("base64url");
+}
+
+module.exports = { issue, b32, parse, receipt };

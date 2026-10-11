@@ -419,6 +419,14 @@
     fill("licTable", rows.map((l) => {
       const k = document.createElement("td");
       if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
+      if (l.boundAt) {
+        k.append(" ", Object.assign(document.createElement("span"), { className: "muted", textContent: `Gerät seit ${de(new Date(l.boundAt).toISOString().slice(0, 10))}` }), " ",
+          btn("Gerät freigeben", async () => {
+            if (await ask({ title: `${l.number}: Gerät freigeben?`, text: "Der Schlüssel lässt sich danach auf einem neuen Gerät aktivieren. Das bisherige Gerät verliert die Freischaltung, sobald es sich neu anmeldet.", yes: "Freigeben", danger: true })) {
+              await api("license-release", { method: "POST", body: { id: l.deviceId } }); msg("licMsg", `Gerät von ${l.number} freigegeben.`); loadLic();
+            }
+          }));
+      }
       const money = l.source === "manuell" ? "–" : eur(l.amount) + (l.refunded ? ` (erstattet ${eur(l.refunded)})` : "");
       const src = td(l.source === "manuell" ? (l.note ? `manuell · ${l.note}` : "manuell") : "Stripe");
       return [td(l.number, "nw"), td(de(l.date), "nw"), td(l.product, "wrap"), td(l.firstName), td(l.lastName), td(l.email, "wrap"), src, td(money, "r nw"), k];
