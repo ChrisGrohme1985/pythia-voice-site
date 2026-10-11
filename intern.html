@@ -62,8 +62,11 @@
         <div class="toolbar">
           <label class="f">Von<input type="date" id="fFrom"></label>
           <label class="f">Bis<input type="date" id="fTo"></label>
+          <label class="f">Projekt<select id="fProj"><option value="">Alle Projekte</option></select></label>
           <label class="f">Art<select id="fType"><option value="">Alle</option><option value="income">Einnahmen</option><option value="expense">Ausgaben</option></select></label>
           <label class="f grow">Suche<input id="fQ" placeholder="Nummer, Partei, Beschreibung"></label>
+        </div>
+        <div class="toolbar">
           <div class="actions-right">
             <button class="btn primary" id="newExp" type="button">Ausgabe erfassen</button>
             <button class="btn ghost" id="newInc" type="button">Einnahme</button>
@@ -73,7 +76,12 @@
           </div>
         </div>
         <p id="finMsg" class="msg" role="status"></p>
-        <div class="table-wrap"><table id="finTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Art</th><th>Partei</th><th>Beschreibung</th><th>Kategorie</th><th class="r">Betrag</th><th>Beleg</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="block" id="projBlock" hidden>
+          <h2>Je Projekt</h2>
+          <div class="table-wrap"><table id="projTable"><thead><tr><th>Projekt</th><th class="r">Posten</th><th class="r">Einnahmen</th><th class="r">Ausgaben</th><th class="r">Ergebnis</th></tr></thead><tbody></tbody></table></div>
+        </div>
+        <div class="table-wrap"><table id="finTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Art</th><th>Projekt</th><th>Partei</th><th>Beschreibung</th><th class="r">Betrag</th><th>Beleg</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="pager" id="finPager"></div>
       </section>
 
       <!-- Berichte -->
@@ -84,6 +92,7 @@
           <form id="repForm" class="toolbar">
             <label class="f">Von<input type="date" id="rFrom" required></label>
             <label class="f">Bis<input type="date" id="rTo" required></label>
+            <label class="f">Projekt<select id="rProj"><option value="">Alle Projekte</option></select></label>
             <label class="chk"><input type="checkbox" id="rMail" checked> per Mail an mich</label>
             <button class="btn primary" type="submit">Erzeugen</button>
           </form>
@@ -91,7 +100,7 @@
         </div>
         <div class="block">
           <h2>Gespeicherte Berichte</h2>
-          <div class="table-wrap"><table id="repTable"><thead><tr><th>Nummer</th><th>Zeitraum</th><th class="r">Einnahmen</th><th class="r">Ausgaben</th><th class="r">Ergebnis</th><th>Dateien</th></tr></thead><tbody></tbody></table></div>
+          <div class="table-wrap"><table id="repTable"><thead><tr><th>Nummer</th><th>Zeitraum</th><th>Projekt</th><th class="r">Einnahmen</th><th class="r">Ausgaben</th><th class="r">Ergebnis</th><th>Dateien</th></tr></thead><tbody></tbody></table></div>
         </div>
       </section>
 
@@ -99,7 +108,7 @@
       <section id="tab-inbox" hidden>
         <div class="page-head"><h1>Beleg-Inbox</h1></div>
         <div class="block">
-          <p class="sub">PDF-Belege hier ablegen und später einer Ausgabe zuordnen. Höchstens 15 MB je Datei.</p>
+          <p class="sub">PDF-Belege hier ablegen. Danach direkt buchen oder einer vorhandenen Ausgabe zuordnen. Höchstens 15 MB je Datei.</p>
           <label class="drop" id="drop" for="inboxFile">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
             <strong>PDF-Belege hierher ziehen</strong>
@@ -107,7 +116,7 @@
             <input type="file" id="inboxFile" accept="application/pdf,.pdf" multiple>
           </label>
           <p id="inboxMsg" class="msg" role="status"></p>
-          <div class="table-wrap"><table id="inboxTable"><thead><tr><th>Datei</th><th class="r">Größe</th><th></th></tr></thead><tbody></tbody></table></div>
+          <div class="table-wrap"><table id="inboxTable"><thead><tr><th>Datei</th><th>Hochgeladen</th><th class="r">Größe</th><th></th></tr></thead><tbody></tbody></table></div>
         </div>
       </section>
 
@@ -133,8 +142,16 @@
           <div class="block">
             <h2>Alle Lizenzen</h2>
             <p class="sub">Enthält personenbezogene Daten: nicht weitergeben.</p>
-            <label class="f">Suche<input id="lQ" placeholder="Name, E-Mail, Nummer, Produkt"></label>
+            <div class="toolbar">
+              <label class="f grow">Suche<input id="lQ" placeholder="Name, E-Mail, Nummer, Notiz"></label>
+              <label class="f">Produkt<select id="lProd"><option value="">Alle</option><option value="Pythia Voice (Diktat)">Diktat</option><option value="Pythia Voice Sprachnachrichten">Sprachnachrichten</option></select></label>
+              <label class="f">Quelle<select id="lSrc"><option value="">Alle</option><option value="stripe">Stripe</option><option value="manuell">Manuell</option></select></label>
+              <label class="f">Von<input type="date" id="lFrom"></label>
+              <label class="f">Bis<input type="date" id="lTo"></label>
+              <button class="btn ghost" id="lReset" type="button">Zurücksetzen</button>
+            </div>
             <div class="table-wrap"><table id="licTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Produkt</th><th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Quelle</th><th class="r">Betrag</th><th>Schlüssel</th></tr></thead><tbody></tbody></table></div>
+            <div class="pager" id="licPager"></div>
           </div>
         </div>
       </section>
@@ -142,18 +159,41 @@
   </div>
 </main>
 
+<!-- Posten erfassen / bearbeiten, mit Beleg-Vorschau -->
 <dialog id="dlg">
-  <form id="entForm" method="dialog" class="grid">
-    <h2 id="dlgTitle" class="wide">Posten</h2>
-    <label>Datum<input type="date" id="eDate" required></label>
-    <label>Betrag (€, brutto)<input id="eAmount" inputmode="decimal" required placeholder="12,50"></label>
-    <label id="partyLbl">Lieferant<input id="eParty" maxlength="120"></label>
-    <label>Kategorie<select id="eCat"></select></label>
-    <label class="wide">Beschreibung<input id="eDesc" maxlength="300"></label>
-    <label id="recWrap">Wiederholen<select id="eRec"><option value="">Einmalig</option><option value="monthly">Monatlich</option><option value="quarterly">Vierteljährlich</option><option value="yearly">Jährlich</option></select></label>
-    <label id="recUntilWrap">Bis<input type="date" id="eUntil"></label>
-    <label id="rcptWrap" class="wide">Beleg aus der Inbox<select id="eInbox"><option value="">Keiner</option></select></label>
-    <p class="wide actions"><button class="btn primary" type="submit" id="entSave">Speichern</button> <button class="link" type="button" id="entCancel">Abbrechen</button></p>
+  <form id="entForm" method="dialog">
+    <h2 id="dlgTitle">Posten</h2>
+    <div class="dlg-body">
+      <div class="grid">
+        <label>Datum<input type="date" id="eDate" required></label>
+        <label>Betrag (€, brutto)<input id="eAmount" inputmode="decimal" required placeholder="12,50"></label>
+        <label id="partyLbl">Lieferant<input id="eParty" maxlength="120"></label>
+        <label>Kategorie<select id="eCat"></select></label>
+        <label>Projekt<select id="eProj"></select></label>
+        <label class="wide">Beschreibung<input id="eDesc" maxlength="300"></label>
+        <label id="recWrap">Wiederholen<select id="eRec"><option value="">Einmalig</option><option value="monthly">Monatlich</option><option value="quarterly">Vierteljährlich</option><option value="yearly">Jährlich</option></select></label>
+        <label id="recUntilWrap">Bis<input type="date" id="eUntil"></label>
+        <label id="rcptWrap" class="wide">Beleg aus der Inbox<select id="eInbox"><option value="">Keiner</option></select></label>
+      </div>
+      <div class="preview" id="ePrev" hidden><iframe id="eFrame" title="Beleg-Vorschau"></iframe></div>
+    </div>
+    <p class="actions"><button class="btn primary" type="submit" id="entSave">Speichern</button> <button class="link" type="button" id="entCancel">Abbrechen</button></p>
+  </form>
+</dialog>
+
+<!-- Beleg ansehen -->
+<dialog id="pdlg" class="wide-dlg">
+  <div class="dlg-head"><h2 id="pTitle">Beleg</h2><button class="link" type="button" id="pClose">Schließen</button></div>
+  <div class="preview big"><iframe id="pFrame" title="Beleg"></iframe></div>
+</dialog>
+
+<!-- Beleg einem Posten zuordnen -->
+<dialog id="adlg">
+  <form id="assignForm" method="dialog">
+    <h2 id="aTitle">Beleg zuordnen</h2>
+    <p class="sub" id="aHint"></p>
+    <label id="aLbl">Ausgabe<select id="aSel"></select></label>
+    <p class="actions"><button class="btn primary" type="submit" id="aSave">Zuordnen</button> <button class="link" type="button" id="aCancel">Abbrechen</button></p>
   </form>
 </dialog>
 <script src="/intern.js"></script>

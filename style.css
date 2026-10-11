@@ -361,3 +361,24 @@ footer { padding: 44px 0 36px; }
 .drop.over strong { color: var(--gold2); }
 .drop.busy { opacity: .6; pointer-events: none; }
 .admin .drop input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; opacity: 0; cursor: pointer; }
+
+/* Seitenumbruch, Projekt-Auswahl in der Tabelle, Beleg-Vorschau */
+.pager { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 12px 4px 0; color: var(--muted); font-size: .88rem; }
+.pager select { width: auto; margin: 0; padding: 6px 30px 6px 10px; font-size: .85rem; }
+.pager .pg:disabled { opacity: .35; cursor: default; pointer-events: none; }
+.admin select.mini { width: auto; margin: 0; padding: 5px 28px 5px 10px; font-size: .84rem; border-radius: 8px; background-position: right 9px center; background-size: 10px 7px; }
+.admin .table-wrap td select.mini { max-width: 150px; }
+.admin dialog form { margin: 0; }
+.dlg-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; margin: 16px 0 6px; }
+.admin dialog.with-preview { width: min(1100px, 94vw); }
+.admin dialog.with-preview .dlg-body { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+.preview { border: 1px solid var(--hair2); border-radius: 12px; overflow: hidden; background: #0a1226; min-height: 320px; }
+.preview iframe { width: 100%; height: 100%; min-height: 460px; border: 0; background: #fff; display: block; }
+.preview.big iframe { min-height: 70vh; }
+.admin dialog.wide-dlg { width: min(960px, 94vw); }
+.dlg-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+.dlg-head h2 { margin: 0; }
+.cell-actions .link { padding: 4px 6px; }
+@media (max-width: 860px) { .admin dialog.with-preview .dlg-body { grid-template-columns: 1fr; } }
+.admin td.clip { max-width: 300px; overflow: hidden; text-overflow: ellipsis; }
+.admin td.clip small { display: block; color: var(--muted); font-size: .76rem; margin-top: 2px; }

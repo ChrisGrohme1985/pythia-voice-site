@@ -4,7 +4,9 @@
   const eur = (c) => (c / 100).toFixed(2).replace(".", ",") + " €";
   const de = (ymd) => ymd.split("-").reverse().join(".");
   const ymd = (d) => d.toISOString().slice(0, 10);
-  let me = null, entries = [], editType = "expense";
+  const day = (unix) => (unix ? ymd(new Date(unix * 1000)) : "");
+  let me = null, entries = [], inboxItems = [], licenses = [], editType = "expense", editing = null;
+  const projectOf = (e) => (me.projects.includes(e.project) ? e.project : e.source === "stripe" ? "Pythia Voice" : "Allgemein");
 
   async function api(action, { method = "GET", body, query = "" } = {}) {
     const r = await fetch(`/api/admin?action=${action}${query}`, {
@@ -22,11 +24,27 @@
     const body = $(tableId).querySelector("tbody");
     body.replaceChildren();
     rows.forEach((cells) => { const tr = document.createElement("tr"); cells.forEach((c) => tr.append(c)); body.append(tr); });
-    if (!rows.length) { const tr = document.createElement("tr"); const c = td("Noch nichts vorhanden.", "empty"); c.colSpan = cols; tr.append(c); body.append(tr); }
+    if (!rows.length) { const tr = document.createElement("tr"); const c = td("Nichts gefunden.", "empty"); c.colSpan = cols; tr.append(c); body.append(tr); }
   };
   const msg = (id, text, bad) => { const e = $(id); e.textContent = text; e.className = "msg" + (bad ? " bad" : ""); };
   const btn = (label, fn) => { const b = document.createElement("button"); b.className = "link"; b.type = "button"; b.textContent = label; b.onclick = fn; return b; };
   const link = (href, label, blank) => { const a = document.createElement("a"); a.href = href; a.textContent = label; a.className = "dl"; if (blank) { a.target = "_blank"; a.rel = "noopener"; } return a; };
+  const opts = (sel, list, first) => sel.replaceChildren(...(first ? [new Option(first, "")] : []), ...list.map((x) => (Array.isArray(x) ? new Option(x[1], x[0]) : new Option(x, x))));
+
+  // Seitenumbruch: Zustand je Tabelle, Auswahl der Zeilen je Seite, Zurück/Weiter
+  function pager(el, st, total, render) {
+    const pages = Math.max(1, Math.ceil(total / st.size));
+    st.page = Math.min(Math.max(1, st.page), pages);
+    const from = total ? (st.page - 1) * st.size + 1 : 0, to = Math.min(total, st.page * st.size);
+    const size = document.createElement("select");
+    size.setAttribute("aria-label", "Zeilen je Seite");
+    [25, 50, 100, 200].forEach((n) => size.append(new Option(`${n} je Seite`, n, false, n === st.size)));
+    size.onchange = () => { st.size = Number(size.value); st.page = 1; render(); };
+    const go = (d, label) => { const b = btn(label, () => { st.page += d; render(); }); b.classList.add("pg"); b.disabled = d < 0 ? st.page <= 1 : st.page >= pages; return b; };
+    const info = document.createElement("span");
+    info.textContent = `${from}–${to} von ${total}`;
+    el.replaceChildren(info, go(-1, "‹ Zurück"), document.createTextNode(`Seite ${st.page} von ${pages}`), go(1, "Weiter ›"), size);
+  }
 
   // Auge neben jedem Passwortfeld: Passwort ein- und ausblenden
   const EYE = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
@@ -51,7 +69,7 @@
 
   // --- Anmeldung: E-Mail + Passwort; Passwort festlegen oder vergessen läuft über einen Code per Mail ---
   const show = (resetMode) => { $("loginForm").hidden = resetMode; $("resetForm").hidden = !resetMode; msg("loginMsg", ""); };
-  $("forgot").onclick = () => { show(true); $("lMail").value && ($("resetHint").textContent = "Wir senden einen Code an die hinterlegte Adresse."); };
+  $("forgot").onclick = () => show(true);
   $("backLogin").onclick = () => show(false);
   $("loginForm").onsubmit = async (ev) => {
     ev.preventDefault();
@@ -87,30 +105,44 @@
     const [a, z] = ranges[b.dataset.range]();
     b.classList.toggle("on", $("fFrom").value === ymd(a) && $("fTo").value === ymd(z));
   });
+  const finPage = { page: 1, size: 50 };
   document.querySelectorAll("[data-range]").forEach((b) => (b.onclick = () => {
     const [a, z] = ranges[b.dataset.range]();
     $("fFrom").value = ymd(a); $("fTo").value = ymd(z);
-    markRange(); renderFin();
+    finPage.page = 1; markRange(); renderFin();
   }));
-  ["fFrom", "fTo", "fType", "fQ"].forEach((i) => ($(i).oninput = () => { markRange(); renderFin(); }));
+  ["fFrom", "fTo", "fProj", "fType", "fQ"].forEach((i) => ($(i).oninput = () => { finPage.page = 1; markRange(); renderFin(); }));
 
   // --- Finanzen ---
-  function visible() {
-    const from = $("fFrom").value || "0000-01-01", to = $("fTo").value || "9999-12-31", type = $("fType").value, q = $("fQ").value.trim().toLowerCase();
-    return entries.filter((e) => e.date >= from && e.date <= to && (!type || e.type === type)
+  function visible(skipProject = false) {
+    const from = $("fFrom").value || "0000-01-01", to = $("fTo").value || "9999-12-31", type = $("fType").value, proj = $("fProj").value, q = $("fQ").value.trim().toLowerCase();
+    return entries.filter((e) => e.date >= from && e.date <= to && (!type || e.type === type) && (skipProject || !proj || projectOf(e) === proj)
       && (!q || `${e.number} ${e.party} ${e.description} ${e.category}`.toLowerCase().includes(q))).sort((a, b) => b.date.localeCompare(a.date) || b.number.localeCompare(a.number));
   }
+  const sums = (list) => {
+    const live = list.filter((e) => !e.void);
+    const s = (t, k = "amount") => live.filter((e) => e.type === t).reduce((a, e) => a + (e[k] || 0), 0);
+    const r = { income: s("income"), refunds: s("income", "refunded"), fees: s("income", "fee"), exp: s("expense") };
+    r.result = r.income - r.refunds - r.fees - r.exp;
+    return r;
+  };
   function renderFin() {
-    const list = visible(), live = list.filter((e) => !e.void);
-    const sum = (t, k = "amount") => live.filter((e) => e.type === t).reduce((a, e) => a + (e[k] || 0), 0);
-    const income = sum("income"), refunds = sum("income", "refunded"), fees = sum("income", "fee"), exp = sum("expense");
-    const result = income - refunds - fees - exp;
+    const list = visible(), t = sums(list);
     const kpi = (l, v, cls = "") => `<div class="kpi ${cls}"><span>${l}</span><strong>${eur(v)}</strong></div>`;
-    $("kpis").innerHTML = kpi("Einnahmen", income) + kpi("Erstattungen", refunds) + kpi("Stripe-Gebühren", fees) + kpi("Ausgaben", exp)
-      + kpi("Ergebnis", result, "result " + (result < 0 ? "neg" : "pos"));
-    fill("finTable", list.map((e) => {
+    $("kpis").innerHTML = kpi("Einnahmen", t.income) + kpi("Erstattungen", t.refunds) + kpi("Stripe-Gebühren", t.fees) + kpi("Ausgaben", t.exp)
+      + kpi("Ergebnis", t.result, "result " + (t.result < 0 ? "neg" : "pos"));
+
+    // Je Projekt (über die aktuelle Auswahl von Zeitraum, Art und Suche)
+    const noProj = visible(true);
+    const rows = me.projects.map((p) => [p, noProj.filter((e) => projectOf(e) === p)]).filter(([, l]) => l.length);
+    $("projBlock").hidden = rows.length < 2 && !$("fProj").value;
+    fill("projTable", rows.map(([p, l]) => { const s = sums(l); return [td(p), td(String(l.length), "r"), td(eur(s.income), "r"), td(eur(s.exp), "r"), td(eur(s.result), "r " + (s.result < 0 ? "neg" : "pos"))]; }), 5);
+
+    const pageRows = list.slice((finPage.page - 1) * finPage.size, finPage.page * finPage.size);
+    fill("finTable", pageRows.map((e) => {
       const rcpt = document.createElement("td");
       if (e.receiptStatus === "ready") rcpt.append(link(`/api/admin?action=receipt&id=${encodeURIComponent(e.id)}`, "PDF", true));
+      else if (e.type === "expense" && !e.void) rcpt.append(btn("zuordnen", () => openAssign({ entry: e })));
       const act = document.createElement("td");
       act.className = "cell-actions";
       if (e.void) { act.textContent = "storniert"; act.classList.add("muted"); }
@@ -124,15 +156,34 @@
       const pill = document.createElement("span");
       pill.className = "pill " + e.type; pill.textContent = e.type === "income" ? "Einnahme" : "Ausgabe";
       kind.append(pill);
-      const row = [td(e.number), td(de(e.date)), kind, td(e.party), td(e.description + (e.refunded ? ` (erstattet ${eur(e.refunded)})` : "")), td(e.category),
+      const proj = document.createElement("td");
+      if (e.void) proj.textContent = projectOf(e);
+      else {
+        const sel = document.createElement("select");
+        sel.className = "mini"; sel.setAttribute("aria-label", `Projekt für ${e.number}`);
+        opts(sel, me.projects); sel.value = projectOf(e);
+        sel.onchange = async () => {
+          try { await api("entry-project", { method: "POST", body: { id: e.id, project: sel.value } }); e.project = sel.value; renderFin(); msg("finMsg", `${e.number}: Projekt ${sel.value}.`); }
+          catch (err) { msg("finMsg", "Fehler: " + err.message, true); sel.value = projectOf(e); }
+        };
+        proj.append(sel);
+      }
+      const desc = document.createElement("td");
+      desc.className = "clip";
+      desc.append(document.createTextNode(e.description + (e.refunded ? ` (erstattet ${eur(e.refunded)})` : "")));
+      const cat = document.createElement("small");
+      cat.textContent = e.category;
+      desc.append(cat);
+      const row = [td(e.number), td(de(e.date)), kind, proj, td(e.party, "clip"), desc,
         td((e.type === "expense" ? "-" : "") + eur(e.amount), "r " + (e.type === "income" ? "pos" : "neg")), rcpt, act];
       if (e.void) row.forEach((c) => c.classList.add("void"));
       return row;
     }), 9);
+    pager($("finPager"), finPage, list.length, renderFin);
   }
   async function loadFin() { entries = (await api("entries")).entries; renderFin(); }
 
-  const q = () => `&from=${$("fFrom").value || "2000-01-01"}&to=${$("fTo").value || "2099-12-31"}`;
+  const q = () => `&from=${$("fFrom").value || "2000-01-01"}&to=${$("fTo").value || "2099-12-31"}&project=${encodeURIComponent($("fProj").value)}`;
   $("csvBtn").onclick = () => (location.href = `/api/admin?action=csv${q()}`);
   $("zipBtn").onclick = () => (location.href = `/api/admin?action=tax-package${q()}`);
   $("syncBtn").onclick = async () => {
@@ -141,36 +192,82 @@
     catch (e) { msg("finMsg", "Fehler: " + e.message, true); }
   };
 
-  // --- Posten anlegen / bearbeiten ---
-  let editing = null;
-  async function openEntry(type, entry) {
+  // --- Posten anlegen / bearbeiten (mit Vorschau des gewählten Belegs) ---
+  const framePdf = (frame, wrap, id) => {
+    frame.src = id ? `/api/admin?action=inbox-preview&id=${encodeURIComponent(id)}#toolbar=0&navpanes=0` : "about:blank";
+    wrap.hidden = !id;
+    $("dlg").classList.toggle("with-preview", Boolean(id));
+  };
+  async function openEntry(type, entry, preset = {}) {
     editing = entry || null; editType = type;
     const exp = type === "expense";
-    $("dlgTitle").textContent = (entry ? "Bearbeiten: " : "Neu: ") + (exp ? "Ausgabe" : "Einnahme");
+    $("dlgTitle").textContent = (entry ? "Bearbeiten: " : preset.inboxId ? "Beleg buchen: " : "Neu: ") + (exp ? "Ausgabe" : "Einnahme");
     $("partyLbl").firstChild.textContent = exp ? "Lieferant" : "Kunde / Quelle";
-    $("eCat").replaceChildren(...(exp ? me.expenseCategories : me.incomeCategories).map((c) => new Option(c, c)));
+    opts($("eCat"), exp ? me.expenseCategories : me.incomeCategories);
+    opts($("eProj"), me.projects);
     $("eDate").value = entry?.date || ymd(new Date());
     $("eAmount").value = entry ? (entry.amount / 100).toFixed(2).replace(".", ",") : "";
     $("eParty").value = entry?.party || ""; $("eParty").required = exp;
     $("eDesc").value = entry?.description || ""; if (entry) $("eCat").value = entry.category;
+    $("eProj").value = entry ? projectOf(entry) : $("fProj").value || "Allgemein";
     $("eRec").value = ""; $("eUntil").value = "";
     ["recWrap", "recUntilWrap", "rcptWrap"].forEach((w) => ($(w).hidden = !exp || Boolean(entry)));
     const items = exp && !entry ? (await api("inbox")).items : [];
-    $("eInbox").replaceChildren(new Option("Keiner", ""), ...items.map((i) => new Option(i.filename, i.id)));
+    inboxItems = items;
+    opts($("eInbox"), items.map((i) => [i.id, i.filename]), "Keiner");
+    $("eInbox").value = preset.inboxId || "";
+    framePdf($("eFrame"), $("ePrev"), $("eInbox").value);
     $("dlg").showModal();
   }
+  $("eInbox").onchange = () => framePdf($("eFrame"), $("ePrev"), $("eInbox").value);
   $("newExp").onclick = () => openEntry("expense");
   $("newInc").onclick = () => openEntry("income");
-  $("entCancel").onclick = () => $("dlg").close();
+  const closeDlg = () => { framePdf($("eFrame"), $("ePrev"), ""); $("dlg").close(); };
+  $("entCancel").onclick = closeDlg;
+  $("dlg").addEventListener("cancel", () => framePdf($("eFrame"), $("ePrev"), ""));
   $("entForm").onsubmit = async (ev) => {
     ev.preventDefault();
-    const body = { type: editType, date: $("eDate").value, amount: $("eAmount").value, party: $("eParty").value, category: $("eCat").value, description: $("eDesc").value };
+    const body = { type: editType, date: $("eDate").value, amount: $("eAmount").value, party: $("eParty").value, category: $("eCat").value, description: $("eDesc").value, project: $("eProj").value };
     if (!editing) { body.recurrence = $("eRec").value; body.recurrenceUntil = $("eUntil").value; body.receiptInboxId = $("eInbox").value; }
     try {
       if (editing) await api("entry-update", { method: "POST", body: { ...body, id: editing.id } });
       else { const r = await api("entry-add", { method: "POST", body }); msg("finMsg", `Gespeichert als ${r.entry.number}${r.entries.length > 1 ? ` (+${r.entries.length - 1} Folgetermine)` : ""}.`); }
-      $("dlg").close(); loadFin();
-    } catch (e) { msg("finMsg", "Fehler: " + e.message, true); $("dlg").close(); }
+      closeDlg(); loadFin();
+      if (!$("tab-inbox").hidden) loadInbox();
+    } catch (e) { msg("finMsg", "Fehler: " + e.message, true); closeDlg(); }
+  };
+
+  // --- Beleg einem Posten zuordnen: aus der Inbox heraus (Ausgabe wählen) oder aus der Tabelle (Beleg wählen) ---
+  let assignCtx = null;
+  async function openAssign(ctx) {
+    assignCtx = ctx;
+    if (ctx.item) {
+      const open = (await api("entries")).entries.filter((e) => e.type === "expense" && !e.void && e.receiptStatus !== "ready").sort((a, b) => b.date.localeCompare(a.date));
+      $("aTitle").textContent = "Beleg einer Ausgabe zuordnen";
+      $("aHint").textContent = `${ctx.item.filename}: Ausgaben ohne Beleg.`;
+      $("aLbl").firstChild.textContent = "Ausgabe";
+      opts($("aSel"), open.map((e) => [e.id, `${e.number} · ${de(e.date)} · ${e.party} · ${eur(e.amount)}`]));
+      if (!open.length) { msg("inboxMsg", "Keine Ausgabe ohne Beleg vorhanden. Mit „Buchen“ legst du eine neue an.", true); return; }
+    } else {
+      const items = (await api("inbox")).items;
+      $("aTitle").textContent = `Beleg für ${ctx.entry.number} wählen`;
+      $("aHint").textContent = `${ctx.entry.party}, ${eur(ctx.entry.amount)}`;
+      $("aLbl").firstChild.textContent = "Beleg aus der Inbox";
+      opts($("aSel"), items.map((i) => [i.id, i.filename]));
+      if (!items.length) { msg("finMsg", "Die Beleg-Inbox ist leer. Zuerst einen Beleg hochladen.", true); return; }
+    }
+    $("adlg").showModal();
+  }
+  $("aCancel").onclick = () => $("adlg").close();
+  $("assignForm").onsubmit = async (ev) => {
+    ev.preventDefault();
+    const entryId = assignCtx.item ? $("aSel").value : assignCtx.entry.id;
+    const inboxId = assignCtx.item ? assignCtx.item.id : $("aSel").value;
+    try {
+      await api("receipt-assign", { method: "POST", body: { id: entryId, inboxId } });
+      $("adlg").close(); msg(assignCtx.item ? "inboxMsg" : "finMsg", "Beleg zugeordnet.");
+      await Promise.all([loadFin(), loadInbox()]);
+    } catch (e) { $("adlg").close(); msg(assignCtx.item ? "inboxMsg" : "finMsg", "Fehler: " + e.message, true); }
   };
 
   // --- Beleg-Inbox (Upload in 512-KB-Stücken wie in zuhause-web) ---
@@ -203,15 +300,21 @@
   ["dragenter", "dragover"].forEach((n) => drop.addEventListener(n, (e) => { e.preventDefault(); drop.classList.add("over"); }));
   ["dragleave", "drop"].forEach((n) => drop.addEventListener(n, (e) => { e.preventDefault(); drop.classList.remove("over"); }));
   drop.addEventListener("drop", (e) => uploadAll(e.dataTransfer.files));
+
+  const preview = (item) => { $("pTitle").textContent = item.filename; $("pFrame").src = `/api/admin?action=inbox-preview&id=${encodeURIComponent(item.id)}#navpanes=0`; $("pdlg").showModal(); };
+  $("pClose").onclick = () => $("pdlg").close();
+  $("pdlg").addEventListener("close", () => { $("pFrame").src = "about:blank"; });
   async function loadInbox() {
     const { items } = await api("inbox");
-    fill("inboxTable", items.map((i) => [td(i.filename), td(`${Math.max(1, Math.round(i.size / 1024))} KB`, "r"), (() => {
+    inboxItems = items;
+    fill("inboxTable", items.map((i) => {
       const c = document.createElement("td");
-      c.append(link(`/api/admin?action=inbox-preview&id=${encodeURIComponent(i.id)}`, "Ansehen", true), btn("Löschen", async () => {
+      c.className = "cell-actions";
+      c.append(btn("Ansehen", () => preview(i)), btn("Buchen", () => openEntry("expense", null, { inboxId: i.id })), btn("Zuordnen", () => openAssign({ item: i })), btn("Löschen", async () => {
         if (confirm(`${i.filename} löschen?`)) { await api("inbox-delete", { method: "POST", body: { id: i.id } }); loadInbox(); }
       }));
-      return c;
-    })()]), 3);
+      return [td(i.filename), td(de(day(i.createdAt)) || ""), td(`${Math.max(1, Math.round(i.size / 1024))} KB`, "r"), c];
+    }), 4);
   }
 
   // --- Berichte ---
@@ -219,7 +322,7 @@
     ev.preventDefault();
     msg("repMsg", "Bericht wird erzeugt …");
     try {
-      const r = await api("report-create", { method: "POST", body: { from: $("rFrom").value, to: $("rTo").value, mail: $("rMail").checked } });
+      const r = await api("report-create", { method: "POST", body: { from: $("rFrom").value, to: $("rTo").value, project: $("rProj").value, mail: $("rMail").checked } });
       msg("repMsg", `Bericht ${r.report.number} erzeugt${r.mailed ? " und per Mail gesendet" : ""}.`);
       loadReports();
     } catch (e) { msg("repMsg", "Fehler: " + e.message, true); }
@@ -229,23 +332,31 @@
     fill("repTable", reports.map((r) => {
       const files = document.createElement("td");
       for (const [t, l] of [["pdf", "PDF"], ["einnahmen", "Einnahmen CSV"], ["ausgaben", "Ausgaben CSV"]]) files.append(link(`/api/admin?action=download&number=${encodeURIComponent(r.number)}&type=${t}`, l));
-      return [td(r.number), td(`${de(r.from)} – ${de(r.to)}`), td(eur(r.totals.income), "r"), td(eur(r.totals.expenses), "r"), td(eur(r.totals.result), "r"), files];
-    }), 6);
+      return [td(r.number), td(`${de(r.from)} – ${de(r.to)}`), td(r.project || "Alle"), td(eur(r.totals.income), "r"), td(eur(r.totals.expenses), "r"), td(eur(r.totals.result), "r"), files];
+    }), 7);
   }
 
-  // --- Lizenzen (nur Systemadmin) ---
-  let licenses = [];
+  // --- Lizenzen (nur Systemadmin): filtern und seitenweise anzeigen ---
+  const licPage = { page: 1, size: 25 };
+  function licVisible() {
+    const qv = $("lQ").value.trim().toLowerCase(), prod = $("lProd").value, src = $("lSrc").value, from = $("lFrom").value, to = $("lTo").value;
+    return licenses.filter((l) => (!qv || `${l.number} ${l.firstName} ${l.lastName} ${l.email} ${l.note}`.toLowerCase().includes(qv))
+      && (!prod || l.product === prod) && (!src || l.source === src) && (!from || l.date >= from) && (!to || l.date <= to));
+  }
   function renderLic() {
-    const q = $("lQ").value.trim().toLowerCase();
-    fill("licTable", licenses.filter((l) => !q || `${l.number} ${l.firstName} ${l.lastName} ${l.email} ${l.product} ${l.note}`.toLowerCase().includes(q)).map((l) => {
+    const list = licVisible();
+    const rows = list.slice((licPage.page - 1) * licPage.size, licPage.page * licPage.size);
+    fill("licTable", rows.map((l) => {
       const k = document.createElement("td");
       if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
       const money = l.source === "manuell" ? "–" : eur(l.amount) + (l.refunded ? ` (erstattet ${eur(l.refunded)})` : "");
       const src = td(l.source === "manuell" ? (l.note ? `manuell · ${l.note}` : "manuell") : "Stripe");
       return [td(l.number), td(de(l.date)), td(l.product), td(l.firstName), td(l.lastName), td(l.email), src, td(money, "r"), k];
     }), 9);
+    pager($("licPager"), licPage, list.length, renderLic);
   }
-  $("lQ").oninput = renderLic;
+  ["lQ", "lProd", "lSrc", "lFrom", "lTo"].forEach((i) => ($(i).oninput = () => { licPage.page = 1; renderLic(); }));
+  $("lReset").onclick = () => { ["lQ", "lProd", "lSrc", "lFrom", "lTo"].forEach((i) => ($(i).value = "")); licPage.page = 1; renderLic(); };
   async function loadLic() { licenses = (await api("licenses")).licenses; renderLic(); }
   $("grantForm").onsubmit = async (ev) => {
     ev.preventDefault();
@@ -271,7 +382,10 @@
   }
   async function start() {
     me = await api("me");
+    me.projects = me.projects || ["Pythia Voice", "FlowUnion", "Allgemein"];
     $("login").hidden = true; $("app").hidden = false; $("logout").hidden = false;
+    opts($("fProj"), me.projects, "Alle Projekte");
+    opts($("rProj"), me.projects, "Alle Projekte");
     [$("fFrom").value, $("fTo").value] = ranges.month().map(ymd);
     [$("rFrom").value, $("rTo").value] = ranges.lastmonth().map(ymd);
     markRange();

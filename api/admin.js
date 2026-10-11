@@ -109,7 +109,7 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
     const actor = adminEmail();
 
     // --- Daten lesen ---
-    if (action === "me") return reply(200, { ok: true, expenseCategories: books.EXPENSE_CATEGORIES, incomeCategories: books.INCOME_CATEGORIES });
+    if (action === "me") return reply(200, { ok: true, expenseCategories: books.EXPENSE_CATEGORIES, incomeCategories: books.INCOME_CATEGORIES, projects: books.PROJECTS });
     if (action === "licenses") {
       if (session(req)?.role !== "sysadmin") return reply(403, { error: "forbidden" });
       return reply(200, { licenses: await books.listLicenses(issue) });
@@ -134,8 +134,8 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
     }
     if (action === "csv" || action === "tax-package") {
       if (!YMD.test(q.from || "") || !YMD.test(q.to || "")) return reply(400, { error: "Zeitraum ungültig" });
-      if (action === "csv") return file(Buffer.from(await books.entriesCsv(q.from, q.to), "utf8"), "text/csv; charset=utf-8", `pythiavoice-posten-${q.from}_${q.to}.csv`);
-      return file(await books.taxPackage(q.from, q.to), "application/zip", `pythiavoice-steuerberater-${q.from}_${q.to}.zip`);
+      if (action === "csv") return file(Buffer.from(await books.entriesCsv(q.from, q.to, String(q.project || "")), "utf8"), "text/csv; charset=utf-8", `pythiavoice-posten-${q.from}_${q.to}.csv`);
+      return file(await books.taxPackage(q.from, q.to, String(q.project || "")), "application/zip", `pythiavoice-steuerberater-${q.from}_${q.to}.zip`);
     }
 
     // --- Daten ändern ---
@@ -146,6 +146,7 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
     }
     if (action === "entry-add") { const entries = await books.addEntry(body, actor); return reply(201, { entry: entries[0], entries }); }
     if (action === "entry-update") return reply(200, { entry: await books.updateEntry(String(body.id || ""), body) });
+    if (action === "entry-project") return reply(200, { entry: await books.assignProject(String(body.id || ""), String(body.project || "")) });
     if (action === "entry-void") return reply(200, { entry: await books.voidEntry(String(body.id || "")) });
     if (action === "inbox-start") return reply(201, { item: await books.inboxStart(body, actor) });
     if (action === "inbox-chunk") { await books.inboxChunk(String(q.id || ""), Number(q.index), String(body.data || "")); return reply(200, { ok: true }); }
@@ -153,7 +154,7 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
     if (action === "inbox-delete") { await books.deleteInbox(String(body.id || "")); return reply(200, { ok: true }); }
     if (action === "receipt-assign") return reply(200, { receipt: await books.assignReceipt(String(body.id || ""), String(body.inboxId || "")) });
     if (action === "report-create") {
-      const rep = await books.createReport(body.from, body.to);
+      const rep = await books.createReport(body.from, body.to, String(body.project || ""));
       let mailed = false;
       if (body.mail !== false) { await books.mailReport(rep); mailed = true; }
       const { files, ...meta } = rep;

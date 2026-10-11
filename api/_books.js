@@ -12,6 +12,9 @@ const ENTRIES = "financeEntries", INBOX = "financeReceiptInbox", BLOBS = "financ
 const REPORTS = "financeReports", REPORT_BLOBS = "financeReportBlobs";
 const EXPENSE_CATEGORIES = ["Software und Abos", "Domain und Hosting", "Werbung", "Recht und Beratung", "Gebühren und Beiträge", "Hardware", "Sonstiges"];
 const INCOME_CATEGORIES = ["Verkauf (Stripe)", "Sonstige Einnahme"];
+// Zuordnung: ein Projekt oder "Allgemein" für Posten, die für alles gelten (z. B. Steuerberater, Büro)
+const PROJECTS = ["Pythia Voice", "FlowUnion", "Allgemein"];
+const projectOf = (e) => (PROJECTS.includes(e.project) ? e.project : e.source === "stripe" ? "Pythia Voice" : "Allgemein");
 const RECURRENCES = { monthly: 1, quarterly: 3, yearly: 12 };
 const YMD = /^\d{4}-\d{2}-\d{2}$/;
 const MAX_RECEIPT = 15 * 1024 * 1024;
@@ -44,9 +47,10 @@ function clean(input, fixedType) {
   if (!(amount > 0) || amount > 1e9) throw new Error("Betrag fehlt oder ist ungültig");
   const party = String(input.party || "").trim().slice(0, 120);
   if (type === "expense" && !party) throw new Error("Lieferant fehlt");
+  const project = PROJECTS.includes(input.project) ? input.project : "Allgemein";
   const list = type === "expense" ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
   return {
-    type, date, amount, category: list.includes(category) ? category : list[list.length - 1], party,
+    type, date, amount, project, category: list.includes(category) ? category : list[list.length - 1], party,
     description: String(input.description || "").trim().slice(0, 300),
     recurrence: type === "expense" && RECURRENCES[input.recurrence] ? String(input.recurrence) : null,
     recurrenceUntil: YMD.test(String(input.recurrenceUntil || "")) ? String(input.recurrenceUntil) : null,
@@ -70,7 +74,7 @@ async function addEntry(input, actor = "") {
   for (const [i, date] of dates.entries()) {
     const id = crypto.randomUUID();
     const { doc } = await db.numbered(ENTRIES, id, e.type === "expense" ? "AUS" : "EIN", Number(date.slice(0, 4)), (number) => ({
-      number, type: e.type, source: "manual", date, amount: e.amount, category: e.category, party: e.party, description: e.description,
+      number, type: e.type, source: "manual", date, amount: e.amount, project: e.project, category: e.category, party: e.party, description: e.description,
       void: false, seriesId, seriesIndex: i, createdBy: actor, createdAt: now(),
     }));
     out.push({ id, ...doc });
@@ -88,9 +92,18 @@ async function updateEntry(id, input) {
   if (cur.source === "stripe") throw new Error("Stripe-Verkäufe sind schreibgeschützt");
   if (cur.void) throw new Error("Stornierte Posten sind schreibgeschützt");
   const e = clean(input, cur.type);
-  const patch = { date: e.date, amount: e.amount, category: e.category, party: e.party, description: e.description, updatedAt: now() };
+  const patch = { date: e.date, amount: e.amount, project: e.project, category: e.category, party: e.party, description: e.description, updatedAt: now() };
   await db.set(ENTRIES, id, patch, { merge: true });
   return { id, ...cur, ...patch };
+}
+
+/** Projekt eines Postens ändern. Erlaubt auch bei Stripe-Verkäufen, denn Betrag und Nummer bleiben unberührt. */
+async function assignProject(id, project) {
+  if (!PROJECTS.includes(project)) throw new Error("Unbekanntes Projekt");
+  const cur = await db.get(ENTRIES, id);
+  if (!cur) throw new Error("Posten nicht gefunden");
+  await db.set(ENTRIES, id, { project, updatedAt: now() }, { merge: true });
+  return { id, ...cur, project };
 }
 
 /** Stornieren statt Löschen: die Nummer bleibt vergeben, die Folge bleibt lückenlos. Erstattungen von Verkäufen laufen über Stripe. */
@@ -125,7 +138,7 @@ async function invoiceFor(session) {
   const email = session.customer_details?.email || session.customer_email || "";
   const { doc } = await db.numbered(ENTRIES, id, "PV", new Date(session.created * 1000).getUTCFullYear(), (number) => ({
     number, type: "income", source: "stripe", date: inv.day(session.created), created: session.created, amount: session.amount_total || 0,
-    category: "Verkauf (Stripe)", party: email, email, description: (productOf(session.payment_link) || PRODUCTS[0]).de, item: (productOf(session.payment_link) || PRODUCTS[0]).item,
+    category: "Verkauf (Stripe)", project: "Pythia Voice", party: email, email, description: (productOf(session.payment_link) || PRODUCTS[0]).de, item: (productOf(session.payment_link) || PRODUCTS[0]).item,
     session: session.id, link: session.payment_link || "", version: (productOf(session.payment_link) || PRODUCTS[0]).version,
     name: String(session.customer_details?.name || "").trim(), ...splitName(session.customer_details?.name),
     fee: 0, refunded: 0, void: false, createdAt: now(),
@@ -294,11 +307,17 @@ function totals(entries) {
   return t;
 }
 
-const salesCsv = (entries) => csv(["Nummer", "Datum", "Art", "Quelle", "Kunde", "Kategorie", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
-  entries.filter((e) => e.type === "income").map((e) => [e.number, e.date, "Einnahme", e.source === "stripe" ? "Stripe" : "manuell", e.party, e.category,
+/** Kennzahlen je Projekt, in fester Reihenfolge; nicht belegte Projekte entfallen. */
+function byProject(entries) {
+  return PROJECTS.map((name) => ({ project: name, ...totals(entries.filter((e) => projectOf(e) === name)), count: entries.filter((e) => projectOf(e) === name).length }))
+    .filter((r) => r.count > 0);
+}
+
+const salesCsv = (entries) => csv(["Nummer", "Datum", "Art", "Quelle", "Projekt", "Kunde", "Kategorie", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
+  entries.filter((e) => e.type === "income").map((e) => [e.number, e.date, "Einnahme", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party, e.category,
     num(e.amount), num(e.fee), num(e.refunded), e.void ? "storniert" : "gültig"]));
-const expensesCsv = (entries) => csv(["Belegnummer", "Datum", "Lieferant", "Beschreibung", "Kategorie", "Betrag EUR", "Beleg", "Status"],
-  entries.filter((e) => e.type === "expense").map((e) => [e.number, e.date, e.party, e.description, e.category, num(e.amount),
+const expensesCsv = (entries) => csv(["Belegnummer", "Datum", "Projekt", "Lieferant", "Beschreibung", "Kategorie", "Betrag EUR", "Beleg", "Status"],
+  entries.filter((e) => e.type === "expense").map((e) => [e.number, e.date, projectOf(e), e.party, e.description, e.category, num(e.amount),
     e.receiptStatus === "ready" ? e.receiptFilename : "", e.void ? "storniert" : "gültig"]));
 
 /** Stripe-Verkauf als Sitzungs-Ersatz für die Rechnungsseite. */
@@ -316,6 +335,11 @@ async function reportPdf(number, from, to, entries, t) {
   w(`${t.sales} Verkäufe über Stripe. Stornierte Posten sind nicht eingerechnet.`, 56, y, 10, false, inv.colors.gray); y -= 14;
   w(inv.KLEIN, 56, y, 10, false, inv.colors.gray); y -= 14;
   w("Ergebnis = Einnahmen - Erstattungen - Stripe-Gebühren - Ausgaben. Keine Steuerberechnung.", 56, y, 10, false, inv.colors.gray);
+  y -= 30;
+  w("Je Projekt", 56, y, 12, true); y -= 20;
+  for (const r of byProject(entries)) {
+    w(r.project, 56, y, 11); w(`Einnahmen ${num(r.income)}  Ausgaben ${num(r.expenses)}  Ergebnis ${num(r.result)} €`, 190, y, 11); y -= 18;
+  }
   const table = (title, head, xs, rows) => {
     page(title); head.forEach((h, i) => w(h, xs[i], y, 9, true)); y -= 16;
     for (const r of rows) {
@@ -335,16 +359,17 @@ async function reportPdf(number, from, to, entries, t) {
 }
 
 /** Bericht für [from, to] (inklusive): speichert Kennzahlen und Dateien, gibt die Metadaten zurück. */
-async function createReport(from, to) {
+async function createReport(from, to, project = "") {
   if (!YMD.test(from || "") || !YMD.test(to || "") || from > to) throw new Error("Zeitraum ungültig");
   await syncStripe(from, to);
-  const entries = (await listEntries()).filter((e) => inRange(e, from, to));
+  if (project && !PROJECTS.includes(project)) throw new Error("Unbekanntes Projekt");
+  const entries = (await listEntries()).filter((e) => inRange(e, from, to) && (!project || projectOf(e) === project));
   const t = totals(entries);
   const number = await db.nextNumber("BER", new Date().getUTCFullYear());
   const pdf = await reportPdf(number, from, to, entries, t);
   const files = { einnahmen: Buffer.from(salesCsv(entries), "utf8"), ausgaben: Buffer.from(expensesCsv(entries), "utf8"), pdf };
   for (const [k, buf] of Object.entries(files)) await db.putBlob(REPORT_BLOBS, `${number}-${k}`, buf, { type: k });
-  const meta = { number, from, to, totals: t, createdAt: now(), entries: entries.length };
+  const meta = { number, from, to, project: project || "", totals: t, byProject: byProject(entries), createdAt: now(), entries: entries.length };
   await db.set(REPORTS, number, meta);
   return { ...meta, files };
 }
@@ -406,11 +431,11 @@ function zipStore(files) {
 }
 
 /** ZIP mit Postenliste, Ausgabenbelegen und erzeugten Rechnungen für [from, to]. */
-async function taxPackage(from, to) {
+async function taxPackage(from, to, project = "") {
   if (!YMD.test(from || "") || !YMD.test(to || "") || from > to) throw new Error("Zeitraum ungültig");
-  const entries = (await listEntries()).filter((e) => inRange(e, from, to)).sort((a, b) => a.number.localeCompare(b.number));
-  const head = ["Nummer", "Datum", "Art", "Quelle", "Partei", "Kategorie", "Beschreibung", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Beleg", "Status"];
-  const rows = entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", e.party,
+  const entries = (await listEntries()).filter((e) => inRange(e, from, to) && (!project || projectOf(e) === project)).sort((a, b) => a.number.localeCompare(b.number));
+  const head = ["Nummer", "Datum", "Art", "Quelle", "Projekt", "Partei", "Kategorie", "Beschreibung", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Beleg", "Status"];
+  const rows = entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party,
     e.category, e.description, num(e.amount), num(e.fee), num(e.refunded), e.receiptStatus === "ready" ? e.receiptFilename : "", e.void ? "storniert" : "gültig"]);
   const files = [{ name: "posten.csv", data: Buffer.from(csv(head, rows), "utf8") }];
   for (const e of entries) {
@@ -425,15 +450,15 @@ async function taxPackage(from, to) {
 }
 
 /** Posten des Zeitraums als CSV (Bank/Excel). */
-async function entriesCsv(from, to) {
-  const entries = (await listEntries()).filter((e) => inRange(e, from, to)).sort((a, b) => a.number.localeCompare(b.number));
-  return csv(["Nummer", "Datum", "Art", "Quelle", "Partei", "Kategorie", "Beschreibung", "Einnahme EUR", "Ausgabe EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
-    entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", e.party, e.category,
+async function entriesCsv(from, to, project = "") {
+  const entries = (await listEntries()).filter((e) => inRange(e, from, to) && (!project || projectOf(e) === project)).sort((a, b) => a.number.localeCompare(b.number));
+  return csv(["Nummer", "Datum", "Art", "Quelle", "Projekt", "Partei", "Kategorie", "Beschreibung", "Einnahme EUR", "Ausgabe EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
+    entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party, e.category,
       e.description, e.type === "income" ? num(e.amount) : "", e.type === "expense" ? num(e.amount) : "", num(e.fee), num(e.refunded), e.void ? "storniert" : "gültig"]));
 }
 
 module.exports = {
-  EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
+  PROJECTS, projectOf, byProject, assignProject, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
   productOf, totals, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };
