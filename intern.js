@@ -1,4 +1,4 @@
-// Interner Bereich: Anmeldung per Einmalcode, Finanzen, Beleg-Inbox, Berichte. Alle Daten kommen von /api/admin.
+// Interner Bereich: Anmeldung mit Passwort, Finanzen, Beleg-Inbox, Berichte, Lizenzen. Alle Daten kommen von /api/admin.
 (() => {
   const $ = (id) => document.getElementById(id);
   const eur = (c) => (c / 100).toFixed(2).replace(".", ",") + " €";
@@ -28,15 +28,23 @@
   const btn = (label, fn) => { const b = document.createElement("button"); b.className = "link"; b.type = "button"; b.textContent = label; b.onclick = fn; return b; };
   const link = (href, label, blank) => { const a = document.createElement("a"); a.href = href; a.textContent = label; a.className = "dl"; if (blank) { a.target = "_blank"; a.rel = "noopener"; } return a; };
 
-  // --- Anmeldung ---
-  $("send").onclick = async () => {
-    try { await api("login-request", { method: "POST" }); $("verify").hidden = false; msg("loginMsg", "Code gesendet. Er gilt 10 Minuten."); $("code").focus(); }
+  // --- Anmeldung: E-Mail + Passwort; Passwort festlegen oder vergessen läuft über einen Code per Mail ---
+  const show = (resetMode) => { $("loginForm").hidden = resetMode; $("resetForm").hidden = !resetMode; msg("loginMsg", ""); };
+  $("forgot").onclick = () => { show(true); $("lMail").value && ($("resetHint").textContent = "Wir senden einen Code an die hinterlegte Adresse."); };
+  $("backLogin").onclick = () => show(false);
+  $("loginForm").onsubmit = async (ev) => {
+    ev.preventDefault();
+    try { await api("login", { method: "POST", body: { email: $("lMail").value, password: $("lPw").value } }); start(); }
+    catch (e) { msg("loginMsg", e.status === 429 ? "Zu viele Versuche, bitte später erneut." : "E-Mail oder Passwort stimmt nicht.", true); }
+  };
+  $("sendCode").onclick = async () => {
+    try { await api("pw-request", { method: "POST" }); $("resetFields").hidden = false; msg("loginMsg", "Code gesendet. Er gilt 10 Minuten."); $("rCode").focus(); }
     catch (e) { msg("loginMsg", e.status === 429 ? "Zu viele Anfragen, bitte später erneut." : "Senden nicht möglich.", true); }
   };
-  $("verify").onsubmit = async (ev) => {
+  $("resetForm").onsubmit = async (ev) => {
     ev.preventDefault();
-    try { await api("login-verify", { method: "POST", body: { code: $("code").value } }); start(); }
-    catch { msg("loginMsg", "Code falsch oder abgelaufen.", true); }
+    try { await api("pw-reset", { method: "POST", body: { code: $("rCode").value, password: $("rPw").value } }); start(); }
+    catch (e) { msg("loginMsg", e.message && e.message !== "invalid" ? e.message : "Code falsch oder abgelaufen.", true); }
   };
   $("logout").onclick = async () => { await api("logout", { method: "POST" }).catch(() => {}); location.reload(); };
 
@@ -187,15 +195,33 @@
   let licenses = [];
   function renderLic() {
     const q = $("lQ").value.trim().toLowerCase();
-    fill("licTable", licenses.filter((l) => !q || `${l.number} ${l.firstName} ${l.lastName} ${l.email} ${l.product}`.toLowerCase().includes(q)).map((l) => {
+    fill("licTable", licenses.filter((l) => !q || `${l.number} ${l.firstName} ${l.lastName} ${l.email} ${l.product} ${l.note}`.toLowerCase().includes(q)).map((l) => {
       const k = document.createElement("td");
       if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
-      const refunded = l.refunded ? ` (erstattet ${eur(l.refunded)})` : "";
-      return [td(l.number), td(de(l.date)), td(l.product), td(l.firstName), td(l.lastName), td(l.email), td(eur(l.amount) + refunded), k];
-    }), 8);
+      const money = l.source === "manuell" ? "–" : eur(l.amount) + (l.refunded ? ` (erstattet ${eur(l.refunded)})` : "");
+      const src = td(l.source === "manuell" ? (l.note ? `manuell · ${l.note}` : "manuell") : "Stripe");
+      return [td(l.number), td(de(l.date)), td(l.product), td(l.firstName), td(l.lastName), td(l.email), src, td(money), k];
+    }), 9);
   }
   $("lQ").oninput = renderLic;
   async function loadLic() { licenses = (await api("licenses")).licenses; renderLic(); }
+  $("grantForm").onsubmit = async (ev) => {
+    ev.preventDefault();
+    msg("licMsg", "Schlüssel wird erzeugt …");
+    try {
+      const r = await api("license-create", { method: "POST", body: {
+        firstName: $("gFirst").value, lastName: $("gLast").value, email: $("gMail").value,
+        product: $("gProd").value, note: $("gNote").value, send: $("gSend").checked } });
+      const l = r.license;
+      $("grantInfo").textContent = `${l.number} · ${l.product} · ${[l.firstName, l.lastName].filter(Boolean).join(" ")}${r.mailed ? " · per Mail gesendet" : ""}`;
+      $("grantKey").textContent = l.key;
+      $("grantResult").hidden = false;
+      $("grantCopy").onclick = async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", "Schlüssel kopiert."); };
+      msg("licMsg", `Gespeichert als ${l.number}.`);
+      ["gFirst", "gLast", "gMail", "gNote"].forEach((i) => ($(i).value = "")); $("gSend").checked = false;
+      loadLic();
+    } catch (e) { msg("licMsg", "Fehler: " + e.message, true); }
+  };
 
   function load(tab) {
     const f = { fin: loadFin, reports: loadReports, inbox: loadInbox, lic: loadLic }[tab];

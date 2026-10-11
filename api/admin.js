@@ -1,4 +1,4 @@
-// Interner Bereich (/intern): Anmeldung per Einmalcode (Muster aus zuhause-web), Finanzen, Belege und Berichte.
+// Interner Bereich (/intern): Anmeldung mit E-Mail und Passwort, Passwort vergessen per Code (Muster aus zuhause-web), Finanzen, Belege und Berichte.
 // Eine einzige Funktion mit ?action=..., damit die Funktionszahl des Vercel-Tarifs nicht aufgebraucht wird.
 // Umgebungsvariablen: ADMIN_SECRET, ADMIN_EMAIL (Standard support@pythiavoice.app), RESEND_API_KEY, RESEND_FROM,
 //                     FIREBASE_SERVICE_ACCOUNT_JSON sowie die Bericht-Variablen aus _books.js
@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const db = require("./_db");
 const books = require("./_books");
 const { issue } = require("./_license");
+const { sendLicenseMail } = require("./_licensemail");
 
 const COOKIE = "pv_admin";
 const SESSION_SEC = 12 * 3600;
@@ -14,6 +15,16 @@ const hmac = (s) => crypto.createHmac("sha256", process.env.ADMIN_SECRET).update
 const same = (a, b) => a.length === b.length && crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
 const adminEmail = () => process.env.ADMIN_EMAIL || "support@pythiavoice.app";
 const YMD = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Passwort-Ablage: scrypt mit eigenem Salz. */
+function hashPassword(pw) {
+  const salt = crypto.randomBytes(16);
+  return { salt: salt.toString("hex"), hash: crypto.scryptSync(pw, salt, 64).toString("hex") };
+}
+function checkPassword(pw, u) {
+  const h = crypto.scryptSync(pw, Buffer.from(u.salt, "hex"), 64);
+  return crypto.timingSafeEqual(h, Buffer.from(u.hash, "hex"));
+}
 
 function token() {
   // Der Anmeldecode geht nur an ADMIN_EMAIL: wer sich anmeldet, ist Systemadmin. Weitere Rollen können später dazukommen.
@@ -53,24 +64,40 @@ module.exports = async (req, res) => {
   if (!process.env.ADMIN_SECRET) return reply(503, { error: "not_configured" });
   if (req.method === "POST" && req.headers["x-requested-with"] !== "pv") return reply(403, { error: "forbidden" }); // einfacher CSRF-Schutz
   try {
-    // --- Anmeldung ---
-    if (action === "login-request" && req.method === "POST") {
-      const hourKey = `otp-${Math.floor(Date.now() / 3.6e6)}`;
-      const rate = (await db.get("authRate", hourKey)) || { n: 0 };
-      if (rate.n >= 5) return reply(429, { error: "too_many" });
-      await db.set("authRate", hourKey, { n: rate.n + 1 });
-      const code = String(crypto.randomInt(100000, 1000000));
-      await db.set("authOtp", "admin", { hash: hmac("otp:" + code), tries: 0, exp: Math.floor(Date.now() / 1000) + 600 });
-      await mail([adminEmail()], "Pythia Voice: Anmeldecode", `Dein Code: ${code}\n\nGültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail.`);
+    // --- Anmeldung: E-Mail + Passwort. Passwort festlegen/vergessen läuft über einen Code per Mail ---
+    const setCookie = () => res.setHeader("Set-Cookie", `${COOKIE}=${token()}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${SESSION_SEC}`);
+    const hourKey = (p) => `${p}-${Math.floor(Date.now() / 3.6e6)}`;
+    if (action === "login" && req.method === "POST") {
+      const fk = hourKey("fail"), fails = (await db.get("authRate", fk)) || { n: 0 };
+      if (fails.n >= 10) return reply(429, { error: "too_many" });
+      const u = await db.get("authUsers", "admin");
+      const okMail = String(body.email || "").trim().toLowerCase() === adminEmail().toLowerCase();
+      const okPw = Boolean(u) && checkPassword(String(body.password || ""), u);
+      if (!(okMail && okPw)) { await db.set("authRate", fk, { n: fails.n + 1 }); return reply(401, { error: "invalid" }); }
+      setCookie();
       return reply(200, { ok: true });
     }
-    if (action === "login-verify" && req.method === "POST") {
+    if (action === "pw-request" && req.method === "POST") {
+      const rk = hourKey("otp"), rate = (await db.get("authRate", rk)) || { n: 0 };
+      if (rate.n >= 5) return reply(429, { error: "too_many" });
+      await db.set("authRate", rk, { n: rate.n + 1 });
+      const code = String(crypto.randomInt(100000, 1000000));
+      await db.set("authOtp", "admin", { hash: hmac("otp:" + code), tries: 0, exp: Math.floor(Date.now() / 1000) + 600 });
+      await mail([adminEmail()], "Pythia Voice: Code zum Festlegen des Passworts", `Dein Code: ${code}
+
+Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort bleibt unverändert.`);
+      return reply(200, { ok: true });
+    }
+    if (action === "pw-reset" && req.method === "POST") {
+      const pw = String(body.password || "");
+      if (pw.length < 12) return reply(400, { error: "Das Passwort braucht mindestens 12 Zeichen." });
       const o = await db.get("authOtp", "admin");
       if (!o || o.tries >= 5 || o.exp < Date.now() / 1000) return reply(401, { error: "invalid" });
       await db.set("authOtp", "admin", { tries: o.tries + 1 }, { merge: true });
       if (!same(o.hash, hmac("otp:" + String(body.code || "").trim()))) return reply(401, { error: "invalid" });
       await db.del("authOtp", "admin");
-      res.setHeader("Set-Cookie", `${COOKIE}=${token()}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${SESSION_SEC}`);
+      await db.set("authUsers", "admin", { ...hashPassword(pw), updatedAt: Math.floor(Date.now() / 1000) });
+      setCookie();
       return reply(200, { ok: true });
     }
     if (action === "logout") {
@@ -86,6 +113,14 @@ module.exports = async (req, res) => {
     if (action === "licenses") {
       if (session(req)?.role !== "sysadmin") return reply(403, { error: "forbidden" });
       return reply(200, { licenses: await books.listLicenses(issue) });
+    }
+    if (action === "license-create" && req.method === "POST") {
+      if (session(req)?.role !== "sysadmin") return reply(403, { error: "forbidden" });
+      const g = await books.grantLicense(body, issue);
+      let mailed = false;
+      if (body.send && g.email) { await sendLicenseMail([g.email], g.key, g.product); await books.markMailed(g.id); mailed = true; }
+      const { product, ...license } = g;
+      return reply(201, { license: { ...license, product: product.de }, mailed });
     }
     if (action === "entries") return reply(200, { entries: await books.listEntries() });
     if (action === "inbox") return reply(200, { items: await books.listInbox() });

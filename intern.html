@@ -11,14 +11,26 @@
 <body class="admin">
 <header class="top"><a class="brand" href="/"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice · Intern</span></a><button id="logout" class="link" hidden>Abmelden</button></header>
 
-<main class="legal wide">
-  <section id="login" class="panel">
-    <h1>Anmeldung</h1>
-    <p>Der Code geht per E-Mail an die hinterlegte Adresse.</p>
-    <p><button id="send" class="btn primary" type="button">Code senden</button></p>
-    <form id="verify" hidden>
-      <label>Code aus der E-Mail<br><input id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required></label>
-      <p><button class="btn primary" type="submit">Anmelden</button></p>
+<main class="legal">
+  <section id="login" class="panel login">
+    <h1>Anmelden</h1>
+    <p class="sub">Interner Bereich für Finanzen, Belege und Lizenzen.</p>
+
+    <form id="loginForm">
+      <div class="field"><label>E-Mail<input id="lMail" type="email" autocomplete="username" required></label></div>
+      <div class="field"><label>Passwort<input id="lPw" type="password" autocomplete="current-password" required></label></div>
+      <p class="actions"><button class="btn primary" type="submit">Anmelden</button> <button class="link" type="button" id="forgot">Passwort vergessen oder erstmals festlegen</button></p>
+    </form>
+
+    <form id="resetForm" hidden>
+      <p class="sub" id="resetHint">Wir senden einen Code an die hinterlegte Adresse.</p>
+      <p><button class="btn ghost" type="button" id="sendCode">Code senden</button></p>
+      <div id="resetFields" hidden>
+        <div class="field"><label>Code aus der E-Mail<input id="rCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6"></label></div>
+        <div class="field"><label>Neues Passwort (mindestens 12 Zeichen)<input id="rPw" type="password" autocomplete="new-password" minlength="12"></label></div>
+        <p class="actions"><button class="btn primary" type="submit">Passwort speichern und anmelden</button></p>
+      </div>
+      <p><button class="link" type="button" id="backLogin">Zurück zur Anmeldung</button></p>
     </form>
     <p id="loginMsg" class="msg" role="status"></p>
   </section>
@@ -39,17 +51,17 @@
         <label>Suche<input id="fQ" placeholder="Nummer, Partei, Beschreibung"></label>
       </div>
       <p class="quick">
-        <button class="link" data-range="month" type="button">Dieser Monat</button> ·
-        <button class="link" data-range="lastmonth" type="button">Letzter Monat</button> ·
-        <button class="link" data-range="year" type="button">Dieses Jahr</button> ·
-        <button class="link" data-range="lastyear" type="button">Letztes Jahr</button> ·
+        <button class="link" data-range="month" type="button">Dieser Monat</button>
+        <button class="link" data-range="lastmonth" type="button">Letzter Monat</button>
+        <button class="link" data-range="year" type="button">Dieses Jahr</button>
+        <button class="link" data-range="lastyear" type="button">Letztes Jahr</button>
         <button class="link" data-range="all" type="button">Alles</button>
       </p>
       <div class="kpis" id="kpis"></div>
-      <p class="row">
-        <button class="btn primary" id="newExp" type="button">+ Ausgabe</button>
-        <button class="btn ghost" id="newInc" type="button">+ Einnahme</button>
-        <button class="btn ghost" id="syncBtn" type="button">Stripe abgleichen</button>
+      <p class="actions">
+        <button class="btn primary" id="newExp" type="button">Ausgabe</button>
+        <button class="btn ghost" id="newInc" type="button">Einnahme</button>
+        <button class="btn ghost" id="syncBtn" type="button">Mit Stripe abgleichen</button>
         <button class="btn ghost" id="csvBtn" type="button">CSV-Export</button>
         <button class="btn ghost" id="zipBtn" type="button">Steuerberater-Paket</button>
       </p>
@@ -70,20 +82,33 @@
       <div class="scroll"><table id="repTable"><thead><tr><th>Nummer</th><th>Zeitraum</th><th>Einnahmen</th><th>Ausgaben</th><th>Ergebnis</th><th>Dateien</th></tr></thead><tbody></tbody></table></div>
     </div>
 
-    <div id="tab-lic" class="panel" hidden>
-      <h2>Alle Lizenzen</h2>
-      <p>Nur für Systemadmins sichtbar. Enthält personenbezogene Daten: nicht weitergeben.</p>
-      <p id="licMsg" class="msg" role="status"></p>
-      <p><label>Suche<input id="lQ" placeholder="Name, E-Mail, Nummer"></label></p>
-      <div class="scroll"><table id="licTable"><thead><tr><th>Rechnung</th><th>Datum</th><th>Produkt</th><th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Betrag</th><th>Schlüssel</th></tr></thead><tbody></tbody></table></div>
-    </div>
-
     <div id="tab-inbox" class="panel" hidden>
       <h2>Beleg-Inbox</h2>
-      <p>PDF-Belege hier ablegen, später einer Ausgabe zuordnen. Höchstens 15 MB je Datei.</p>
+      <p class="sub">PDF-Belege hier ablegen und später einer Ausgabe zuordnen. Höchstens 15 MB je Datei.</p>
       <p><input type="file" id="inboxFile" accept="application/pdf,.pdf" multiple></p>
       <p id="inboxMsg" class="msg" role="status"></p>
       <div class="scroll"><table id="inboxTable"><thead><tr><th>Datei</th><th>Größe</th><th></th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div id="tab-lic" class="panel" hidden>
+      <h2>Lizenz ausstellen</h2>
+      <p class="sub">Für Geschenke, Support oder Rezensenten. Der Schlüssel wird mit Name und Produkt gespeichert und taucht unten in der Übersicht auf. Es entsteht keine Einnahme.</p>
+      <form id="grantForm" class="grid">
+        <label>Vorname<input id="gFirst" maxlength="80" autocomplete="off"></label>
+        <label>Nachname<input id="gLast" maxlength="80" required autocomplete="off"></label>
+        <label>E-Mail (optional, für den Versand)<input id="gMail" type="email" maxlength="160" autocomplete="off"></label>
+        <label>Produkt<select id="gProd"><option value="dictation">Pythia Voice (Diktat)</option><option value="voice">Sprachnachrichten</option></select></label>
+        <label class="wide">Notiz (intern)<input id="gNote" maxlength="300" placeholder="z. B. Rezensent, Support-Fall"></label>
+        <label class="chk wide" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="gSend"> Schlüssel per E-Mail an den Kunden senden</label>
+        <p class="wide actions"><button class="btn primary" type="submit">Schlüssel erzeugen</button></p>
+      </form>
+      <div id="grantResult" class="keybox" hidden><span id="grantInfo"></span><code id="grantKey"></code><button class="btn ghost" id="grantCopy" type="button">Schlüssel kopieren</button></div>
+      <p id="licMsg" class="msg" role="status"></p>
+
+      <h2>Alle Lizenzen</h2>
+      <p class="sub">Nur für Systemadmins sichtbar. Enthält personenbezogene Daten: nicht weitergeben.</p>
+      <p><label>Suche<input id="lQ" placeholder="Name, E-Mail, Nummer, Produkt"></label></p>
+      <div class="scroll"><table id="licTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Produkt</th><th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Quelle</th><th>Betrag</th><th>Schlüssel</th></tr></thead><tbody></tbody></table></div>
     </div>
   </section>
 </main>
@@ -99,7 +124,7 @@
     <label id="recWrap">Wiederholen<select id="eRec"><option value="">Einmalig</option><option value="monthly">Monatlich</option><option value="quarterly">Vierteljährlich</option><option value="yearly">Jährlich</option></select></label>
     <label id="recUntilWrap">Bis<input type="date" id="eUntil"></label>
     <label id="rcptWrap" class="wide">Beleg aus der Inbox<select id="eInbox"><option value="">Keiner</option></select></label>
-    <p class="wide"><button class="btn primary" type="submit" id="entSave">Speichern</button> <button class="link" type="button" id="entCancel">Abbrechen</button></p>
+    <p class="wide actions"><button class="btn primary" type="submit" id="entSave">Speichern</button> <button class="link" type="button" id="entCancel">Abbrechen</button></p>
   </form>
 </dialog>
 <script src="/intern.js"></script>

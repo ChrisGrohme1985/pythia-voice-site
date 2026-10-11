@@ -124,39 +124,76 @@ footer a:hover { color: #fff; }
   .wave i, .btn, .rules div { transition: none; }
 }
 
-/* Interner Bereich */
-.admin .legal.wide { max-width: 1040px; }
-.panel { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 22px 24px; margin-bottom: 18px; }
-.admin h1, .admin h2 { background: none; color: var(--ivory); -webkit-text-fill-color: currentColor; font-size: 1.3rem; margin: 0 0 14px; }
-.tabs { display: flex; gap: 8px; margin-bottom: 18px; }
-.tabs button { background: rgba(255, 255, 255, .06); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font: inherit; cursor: pointer; }
-.tabs button.on { background: linear-gradient(135deg, var(--gold2), var(--gold)); color: var(--ink); border-color: transparent; font-weight: 700; }
-.admin label { display: block; color: var(--muted); font-size: .9rem; }
-.admin input, .admin select { width: 100%; margin-top: 4px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255, 255, 255, .07); color: var(--ivory); font: inherit; }
-.admin .row { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; }
-.admin .row label { flex: 1 1 150px; }
-.admin .row .chk { flex: 0 0 auto; display: flex; gap: 8px; align-items: center; padding-bottom: 12px; }
-.admin .chk input { width: auto; margin: 0; }
+/* Interner Bereich: ruhig, filigran, bündig mit der Kopfleiste */
+.admin main.legal { max-width: 1120px; margin: 0 auto; padding: 28px 0 96px; }
+.admin h1, .admin h2 { background: none; color: var(--ivory); -webkit-text-fill-color: currentColor; font-weight: 600; letter-spacing: -.01em; }
+.admin h1 { font-size: 1.5rem; margin: 0 0 6px; }
+.admin h2 { font-size: 1.05rem; margin: 26px 0 12px; }
+.admin section { padding: 0; }
+.admin .panel { background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 255, 255, .08); border-radius: 18px; padding: 24px 26px; margin-bottom: 18px; }
+.admin .sub { color: var(--muted); font-size: .92rem; margin: 0 0 18px; }
+.admin a { color: inherit; text-decoration: none; }
+.admin .login { max-width: 420px; margin: 56px auto; }
+.admin .login .field + .field { margin-top: 14px; }
+
+/* Reiter: dünne Unterstreichung statt Pillen */
+.tabs { display: flex; gap: 4px; margin: 0 0 22px; border-bottom: 1px solid rgba(255, 255, 255, .08); overflow-x: auto; }
+.tabs button { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 10px 16px; margin-bottom: -1px; font: inherit; font-size: .95rem; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; }
+.tabs button:hover { color: var(--ivory); }
+.tabs button.on { color: var(--gold2); border-bottom-color: var(--gold); }
+
+/* Formularfelder */
+.admin label { display: block; color: var(--muted); font-size: .8rem; letter-spacing: .02em; }
+.admin input, .admin select { width: 100%; margin-top: 6px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .04); color: var(--ivory); font: inherit; font-size: .95rem; font-weight: 400; transition: border-color .15s, background .15s; }
+.admin input:hover, .admin select:hover { border-color: rgba(255, 255, 255, .22); }
+.admin input:focus, .admin select:focus { outline: none; border-color: var(--gold); background: rgba(255, 255, 255, .06); }
+.admin input[type="checkbox"] { width: auto; margin: 0; accent-color: var(--gold); }
+.admin input[type="file"] { padding: 8px; }
+.admin .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+.admin .row label { flex: 1 1 160px; }
+.admin .row .chk { flex: 0 0 auto; display: flex; gap: 8px; align-items: center; padding-bottom: 10px; color: var(--ivory); }
 .admin .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .admin .grid .wide { grid-column: 1 / -1; }
-.admin .btn { cursor: pointer; font: inherit; font-weight: 700; }
-.link { background: none; border: 0; color: var(--gold); cursor: pointer; font: inherit; padding: 0; text-decoration: underline; }
-.msg { color: var(--gold2); min-height: 1.4em; }
+
+/* Knöpfe: klein und leicht */
+.admin .btn { padding: 9px 18px; font-size: .9rem; font-weight: 500; border-radius: 999px; cursor: pointer; font-family: inherit; box-shadow: none; }
+.admin .btn.primary { background: var(--gold); color: var(--ink); border: 1px solid var(--gold); }
+.admin .btn.primary:hover { background: var(--gold2); border-color: var(--gold2); transform: none; box-shadow: none; }
+.admin .btn.ghost { background: transparent; color: var(--ivory); border: 1px solid rgba(255, 255, 255, .16); }
+.admin .btn.ghost:hover { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .3); transform: none; }
+.admin .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+
+/* Textaktionen ohne Unterstreichung: Farbe und Hintergrund statt Linie */
+.link, .dl { background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; font-size: .9rem; padding: 3px 8px; border-radius: 8px; text-decoration: none; transition: color .15s, background .15s; }
+.link:hover, .dl:hover { color: var(--gold2); background: rgba(242, 193, 78, .1); }
+.top .link { color: var(--muted); }
+.msg { color: var(--gold2); min-height: 1.3em; font-size: .9rem; margin: 10px 0 0; }
 .msg.bad { color: #ff9b9b; }
-.quick { color: var(--muted); font-size: .9rem; }
-.scroll { overflow-x: auto; }
-.admin table { width: 100%; border-collapse: collapse; font-size: .92rem; }
-.admin th, .admin td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-.admin th { color: var(--gold); font-weight: 600; }
-.admin td.void { color: var(--muted); text-decoration: line-through; }
-.dl { color: var(--gold); margin-inline-end: 10px; }
-@media (max-width: 700px) { .admin .grid { grid-template-columns: 1fr; } }
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 14px 0; }
-.kpi { background: rgba(255, 255, 255, .06); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
-.kpi span { display: block; color: var(--muted); font-size: .85rem; }
-.kpi strong { font-size: 1.2rem; }
+.quick { color: var(--muted); font-size: .85rem; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 2px; }
+
+/* Kennzahlen */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 18px 0; }
+.kpi { border: 1px solid rgba(255, 255, 255, .08); border-radius: 14px; padding: 12px 16px; background: rgba(255, 255, 255, .025); }
+.kpi span { display: block; color: var(--muted); font-size: .78rem; letter-spacing: .03em; text-transform: uppercase; }
+.kpi strong { font-size: 1.15rem; font-weight: 600; }
 .kpi.neg strong { color: #ff9b9b; }
 .kpi.pos strong { color: var(--gold2); }
-.admin dialog { background: #131d3a; color: var(--ivory); border: 1px solid var(--line); border-radius: 20px; padding: 22px 24px; width: min(640px, 92vw); }
-.admin dialog::backdrop { background: rgba(0, 0, 0, .6); }
-.btn.ghost { cursor: pointer; font: inherit; font-weight: 700; }
+
+/* Tabellen: dünne Linien, wenig Gewicht */
+.scroll { overflow-x: auto; }
+.admin table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.admin th { text-align: left; padding: 10px 12px; color: var(--muted); font-weight: 500; font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; border-bottom: 1px solid rgba(255, 255, 255, .1); white-space: nowrap; }
+.admin td { padding: 11px 12px; border-bottom: 1px solid rgba(255, 255, 255, .05); white-space: nowrap; color: var(--ivory); font-weight: 400; }
+.admin tbody tr:hover td { background: rgba(255, 255, 255, .025); }
+.admin td.void { color: var(--muted); text-decoration: line-through; }
+.admin td.mono { font-family: Consolas, "Courier New", monospace; font-size: .82rem; }
+
+/* Dialog */
+.admin dialog { background: #121b36; color: var(--ivory); border: 1px solid rgba(255, 255, 255, .1); border-radius: 18px; padding: 24px 26px; width: min(600px, 92vw); }
+.admin dialog::backdrop { background: rgba(5, 9, 20, .7); backdrop-filter: blur(3px); }
+
+/* Ergebnis der Schlüsselvergabe */
+.keybox { margin-top: 16px; padding: 14px 16px; border: 1px solid rgba(242, 193, 78, .35); border-radius: 12px; background: rgba(242, 193, 78, .06); }
+.keybox code { display: block; font-family: Consolas, "Courier New", monospace; font-size: .85rem; word-break: break-all; color: var(--gold2); margin: 6px 0 10px; }
+
+@media (max-width: 700px) { .admin .grid { grid-template-columns: 1fr; } .admin .panel { padding: 18px; } .admin main.legal { padding-inline: 0; } }

@@ -7,6 +7,7 @@ const { PDFDocument } = require("pdf-lib");
 const db = require("./_db");
 const inv = require("./_invoice");
 
+const GRANTS = "licenseGrants";
 const ENTRIES = "financeEntries", INBOX = "financeReceiptInbox", BLOBS = "financeReceiptBlobs", PARTS = "financeUploadParts";
 const REPORTS = "financeReports", REPORT_BLOBS = "financeReportBlobs";
 const EXPENSE_CATEGORIES = ["Software und Abos", "Domain und Hosting", "Werbung", "Recht und Beratung", "Gebühren und Beiträge", "Hardware", "Sonstiges"];
@@ -171,14 +172,42 @@ async function syncStripe(from, to) {
 
 /** Alle verkauften Lizenzen (nur Stripe-Verkäufe) mit Kundendaten; der Schlüssel wird aus der Bestellung neu abgeleitet. */
 async function listLicenses(issue) {
-  return (await listEntries()).filter((e) => e.source === "stripe").sort((a, b) => b.number.localeCompare(a.number)).map((e) => {
+  const grants = (await db.list(GRANTS, { orderBy: "number" })).map((g) => {
+    const product = PRODUCTS.find((p) => p.version === g.version) || PRODUCTS[0];
+    return { id: g.id, number: g.number, date: g.date, product: product.de, firstName: g.firstName, lastName: g.lastName, email: g.email,
+      amount: 0, refunded: 0, key: g.key, source: "manuell", note: g.note || "", mailedAt: g.mailedAt || 0 };
+  });
+  const sales = (await listEntries()).filter((e) => e.source === "stripe").sort((a, b) => b.number.localeCompare(a.number)).map((e) => {
     let key = "";
     try { key = issue(e.session, e.version || 1); } catch { /* Signierschlüssel nicht gesetzt */ }
     const product = PRODUCTS.find((p) => p.version === (e.version || 1)) || PRODUCTS[0];
-    return { number: e.number, date: e.date, product: product.de, firstName: e.firstName || "", lastName: e.lastName || "", email: e.email || "",
-      amount: e.amount, refunded: e.refunded || 0, key };
+    return { id: e.id, number: e.number, date: e.date, product: product.de, firstName: e.firstName || "", lastName: e.lastName || "", email: e.email || "",
+      amount: e.amount, refunded: e.refunded || 0, key, source: "stripe", note: "", mailedAt: 0 };
   });
+  return [...grants, ...sales].sort((a, b) => b.date.localeCompare(a.date) || b.number.localeCompare(a.number));
 }
+
+/**
+ * Schlüssel von Hand ausstellen (Geschenk, Support, Rezensent). Wird mit Name, Produkt und Schlüssel in Firestore gespeichert,
+ * damit die Übersicht und der Support ihn jederzeit finden. Es entsteht keine Einnahme und keine Rechnung.
+ * @param issue Funktion (orderId, version) → Schlüssel
+ */
+async function grantLicense(input, issue) {
+  const product = PRODUCTS.find((p) => p.version === (input.product === "voice" ? 2 : 1));
+  const firstName = String(input.firstName || "").trim().slice(0, 80), lastName = String(input.lastName || "").trim().slice(0, 80);
+  const email = String(input.email || "").trim().slice(0, 160);
+  if (!lastName) throw new Error("Nachname fehlt");
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error("E-Mail-Adresse ist ungültig");
+  const id = crypto.randomUUID();
+  const key = issue(`grant-${id}`, product.version);
+  const { doc } = await db.numbered(GRANTS, id, "LIZ", new Date().getUTCFullYear(), (number) => ({
+    number, version: product.version, firstName, lastName, email, note: String(input.note || "").trim().slice(0, 300),
+    key, date: new Date().toISOString().slice(0, 10), createdAt: now(), mailedAt: 0,
+  }));
+  return { id, product, ...doc };
+}
+
+async function markMailed(id) { await db.set(GRANTS, id, { mailedAt: now() }, { merge: true }); }
 
 // ---------- Belege (PDF) ----------
 
@@ -406,5 +435,5 @@ async function entriesCsv(from, to) {
 module.exports = {
   EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
-  productOf, totals, listLicenses, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
+  productOf, totals, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };
