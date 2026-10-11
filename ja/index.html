@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pythia Voice：サブスクなしのAndroid用音声入力</title>
+<meta name="description" content="どのアプリでも話すだけで、Pythia Voice が書き起こします。90以上の言語。一度の支払いで一生使えます。サブスクなし、隠れた費用なし。">
+<link rel="canonical" href="https://pythiavoice.vercel.app/ja/">
+<link rel="alternate" hreflang="en" href="https://pythiavoice.vercel.app/en/">
+<link rel="alternate" hreflang="de" href="https://pythiavoice.vercel.app/de/">
+<link rel="alternate" hreflang="it" href="https://pythiavoice.vercel.app/it/">
+<link rel="alternate" hreflang="es" href="https://pythiavoice.vercel.app/es/">
+<link rel="alternate" hreflang="fr" href="https://pythiavoice.vercel.app/fr/">
+<link rel="alternate" hreflang="pt" href="https://pythiavoice.vercel.app/pt/">
+<link rel="alternate" hreflang="ru" href="https://pythiavoice.vercel.app/ru/">
+<link rel="alternate" hreflang="tr" href="https://pythiavoice.vercel.app/tr/">
+<link rel="alternate" hreflang="nl" href="https://pythiavoice.vercel.app/nl/">
+<link rel="alternate" hreflang="pl" href="https://pythiavoice.vercel.app/pl/">
+<link rel="alternate" hreflang="ja" href="https://pythiavoice.vercel.app/ja/">
+<link rel="alternate" hreflang="zh" href="https://pythiavoice.vercel.app/zh/">
+<link rel="alternate" hreflang="ko" href="https://pythiavoice.vercel.app/ko/">
+<link rel="alternate" hreflang="ar" href="https://pythiavoice.vercel.app/ar/">
+<link rel="alternate" hreflang="hi" href="https://pythiavoice.vercel.app/hi/">
+<link rel="alternate" hreflang="id" href="https://pythiavoice.vercel.app/id/">
+<link rel="alternate" hreflang="vi" href="https://pythiavoice.vercel.app/vi/">
+<link rel="alternate" hreflang="uk" href="https://pythiavoice.vercel.app/uk/">
+<link rel="alternate" hreflang="th" href="https://pythiavoice.vercel.app/th/">
+<link rel="alternate" hreflang="sv" href="https://pythiavoice.vercel.app/sv/">
+<link rel="alternate" hreflang="cs" href="https://pythiavoice.vercel.app/cs/">
+<link rel="alternate" hreflang="ro" href="https://pythiavoice.vercel.app/ro/">
+<link rel="alternate" hreflang="el" href="https://pythiavoice.vercel.app/el/">
+<link rel="alternate" hreflang="he" href="https://pythiavoice.vercel.app/he/">
+<link rel="alternate" hreflang="x-default" href="https://pythiavoice.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="どんな神託よりも確かに：あなたの言葉を、Pythiaが確実に。">
+<meta property="og:description" content="サブスクなし。隠れた費用なし。一度払えば一生使えます。">
+<meta property="og:image" content="https://pythiavoice.vercel.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#101A33">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/ja/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
+  <nav aria-label="Menu">
+    <a href="#ablauf">仕組み</a>
+    <a href="#preis">価格</a>
+    <a href="#fragen">よくある質問</a>
+    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja" selected>日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>どんな神託よりも確かに：あなたの言葉を、Pythiaが確実に。</h1>
+      <p class="lead">どのアプリでも話すだけ。Pythia Voice が書き起こし、「えーと」を取り除き、言い直しも反映します。</p>
+      <p class="promise">サブスクなし。隠れた費用なし。一度払えば一生使えます。</p>
+      <div class="cta">
+        <a class="btn primary" href="#download">Pythia Voice を試す</a>
+        <a class="btn ghost" href="#preis">価格を見る</a>
+      </div>
+      <p class="fine">7日間または3,000語まで無料でお試しいただけます。</p>
+    </div>
+
+    <figure class="oracle" id="oracle" data-fill="えーと" data-a="待ち合わせは" data-s="5時、あ、やっぱり" data-b="6時に駅前で" data-out="待ち合わせは6時に駅前で。">
+      <div class="wave" id="wave" aria-hidden="true"></div>
+      <div class="line">
+        <span class="label">あなたの発話</span>
+        <p id="said" class="said"></p>
+      </div>
+      <div class="line">
+        <span class="label">Pythiaの出力</span>
+        <p id="wrote" class="wrote" aria-live="polite"></p>
+      </div>
+      <button class="replay" id="replay" type="button">もう一度</button>
+    </figure>
+  </section>
+
+  <section class="light" id="funktionen">
+    <div class="wrap">
+      <h2>得られること</h2>
+      <dl class="rules">
+        <div><dt>一度払えば一生使える</dt><dd>サブスクなし、更新なし、お試し後の文字数制限なし。今日お支払いいただく金額が、Pythia Voice にかかる費用のすべてです。</dd></div>
+        <div><dt>どのアプリにも入力</dt><dd>WhatsApp、メール、メモ、ブラウザ。入力欄をタップすると、キーボードの上に丸いボタンが現れます。</dd></div>
+        <div><dt>後始末までおまかせ</dt><dd>言いよどみを取り除き、句読点を補います。「5時、いや6時」と言えば「6時」と書きます。</dd></div>
+        <div><dt>90以上の言語</dt><dd>1つの文の中で混ざっていても大丈夫。アプリ自体も24言語に対応しています。</dd></div>
+        <div><dt>ご自身のGroqアクセスで認識</dt><dd>認識はご自身のGroqキーで行われます。Groqのドキュメントによると、無料枠で1日最大8時間の音声が可能です。上限はGroqが決め、変更されることがあります。</dd></div>
+        <div><dt>手元に残る</dt><dd>アカウント不要。Pythia Voice は音声を保存しません。パスワード欄ではボタンが表示されません。</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="dark" id="ablauf">
+    <div class="wrap">
+      <h2>使い方</h2>
+      <ol class="steps">
+        <li><b>タップ</b><span>入力欄をタップし、キーボードの上の丸いボタンをタップします。</span></li>
+        <li><b>話す</b><span>書きたいことを話します。間があっても、言い直しても大丈夫です。</span></li>
+        <li><b>終わりを伝える</b><span>もう一度タップします。整ったテキストが入力欄に入ります。</span></li>
+      </ol>
+      <p class="hint">押し続ける方式も：ボタンを押したまま話し、離します。</p>
+    </div>
+  </section>
+
+  <section class="light" id="preis">
+    <div class="wrap price-wrap">
+      <div>
+        <h2>価格はひとつ。一生もの。</h2>
+        <p class="lead dark-text">サブスクなし、隠れた費用なし。一度のお支払いで Pythia Voice を一生お使いいただけます。</p>
+        <p class="note">ほかに必要なのは、音声認識用のご自身のGroqアクセスだけです。通常の利用なら無料で、条件はGroqが定めます。</p>
+      </div>
+      <div class="tablet">
+        <p class="amount"><span class="num" id="price">19,99 €</span></p>
+        <p class="sub">ユーロでの一括払いです。</p>
+        <ul>
+          <li>7日間または3,000語まで無料で試せる</li>
+          <li>90以上の全言語、全機能</li>
+          <li>購入後は文字数の制限なし</li>
+          <li>バージョン1のアップデートを含む</li>
+        </ul>
+        <a class="btn primary" id="buy" href="#download">ライセンスを購入</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark" id="download">
+    <div class="wrap">
+      <h2>Android向け</h2>
+      <p class="lead">Android 13以降。iPhone版はまだありません。</p>
+      <div class="cta">
+        <a class="btn primary" id="apk" href="#download">直接ダウンロード</a>
+        <span class="soon">Google Playは近日公開</span>
+      </div>
+      <p class="fine">初回起動時に、アプリが6つの簡単なステップで設定をご案内します。</p>
+    </div>
+  </section>
+
+  <section class="light" id="fragen">
+    <div class="wrap narrow">
+      <h2>よくある質問</h2>
+      <details open><summary>本当に一度きりの支払いですか？</summary><p>はい。一度の支払いで、サブスクも更新もありません。関わる他のサービスは音声認識のGroqだけです。無料枠で通常の利用はまかなえますが、上限や価格はGroqが決めます。</p></details>
+      <details><summary>Groqとは何ですか。アカウントは必要ですか？</summary><p>Groqは音声をテキストに変換するサービスです。そこで無料の個人キーを作成し、アプリに貼り付けます。アプリ内のガイドがすべての操作を示します。</p></details>
+      <details><summary>Groqの料金は？</summary><p>通常の利用なら無料です。Groqは無料枠で1日最大8時間のWhisper音声を挙げています。上限はGroqが変更するため、console.groq.comで確認してください。</p></details>
+      <details><summary>録音はどこに送られますか？</summary><p>音声とテキストは、文字起こしと整形のため、あなたのキーでGroqに直接送られます。Pythia Voice はそれらを保存せず、他者にも渡しません。</p></details>
+      <details><summary>なぜユーザー補助が必要ですか？</summary><p>それによって初めて、キーボードの上にボタンを表示し、入力中の欄にテキストを入れられます。読み取るのはその入力欄だけです。</p></details>
+      <details><summary>オフラインで使えますか？</summary><p>いいえ。認識にはインターネット接続が必要です。</p></details>
+      <details><summary>iPhone版やWindows版はありますか？</summary><p>まだありません。現時点ではAndroidのみです。</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© Pythia Voice</span>
+    <span><a href="/impressum">特定商取引法・運営者情報</a> · <a href="/privacy">プライバシー</a></span>
+  </div>
+</footer>
+
+<script src="/config.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

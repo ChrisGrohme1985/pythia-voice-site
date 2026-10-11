@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="id" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pythia Voice: dikte untuk Android tanpa langganan</title>
+<meta name="description" content="Bicara di aplikasi apa pun dan Pythia Voice menuliskannya. Lebih dari 90 bahasa. Bayar sekali, pakai seumur hidup. Tanpa langganan, tanpa biaya tersembunyi.">
+<link rel="canonical" href="https://pythiavoice.vercel.app/id/">
+<link rel="alternate" hreflang="en" href="https://pythiavoice.vercel.app/en/">
+<link rel="alternate" hreflang="de" href="https://pythiavoice.vercel.app/de/">
+<link rel="alternate" hreflang="it" href="https://pythiavoice.vercel.app/it/">
+<link rel="alternate" hreflang="es" href="https://pythiavoice.vercel.app/es/">
+<link rel="alternate" hreflang="fr" href="https://pythiavoice.vercel.app/fr/">
+<link rel="alternate" hreflang="pt" href="https://pythiavoice.vercel.app/pt/">
+<link rel="alternate" hreflang="ru" href="https://pythiavoice.vercel.app/ru/">
+<link rel="alternate" hreflang="tr" href="https://pythiavoice.vercel.app/tr/">
+<link rel="alternate" hreflang="nl" href="https://pythiavoice.vercel.app/nl/">
+<link rel="alternate" hreflang="pl" href="https://pythiavoice.vercel.app/pl/">
+<link rel="alternate" hreflang="ja" href="https://pythiavoice.vercel.app/ja/">
+<link rel="alternate" hreflang="zh" href="https://pythiavoice.vercel.app/zh/">
+<link rel="alternate" hreflang="ko" href="https://pythiavoice.vercel.app/ko/">
+<link rel="alternate" hreflang="ar" href="https://pythiavoice.vercel.app/ar/">
+<link rel="alternate" hreflang="hi" href="https://pythiavoice.vercel.app/hi/">
+<link rel="alternate" hreflang="id" href="https://pythiavoice.vercel.app/id/">
+<link rel="alternate" hreflang="vi" href="https://pythiavoice.vercel.app/vi/">
+<link rel="alternate" hreflang="uk" href="https://pythiavoice.vercel.app/uk/">
+<link rel="alternate" hreflang="th" href="https://pythiavoice.vercel.app/th/">
+<link rel="alternate" hreflang="sv" href="https://pythiavoice.vercel.app/sv/">
+<link rel="alternate" hreflang="cs" href="https://pythiavoice.vercel.app/cs/">
+<link rel="alternate" hreflang="ro" href="https://pythiavoice.vercel.app/ro/">
+<link rel="alternate" hreflang="el" href="https://pythiavoice.vercel.app/el/">
+<link rel="alternate" hreflang="he" href="https://pythiavoice.vercel.app/he/">
+<link rel="alternate" hreflang="x-default" href="https://pythiavoice.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lebih baik dari ramalan mana pun: kata-katamu, dituliskan Pythia dengan andal.">
+<meta property="og:description" content="Tanpa langganan. Tanpa biaya tersembunyi. Bayar sekali, pakai seumur hidup.">
+<meta property="og:image" content="https://pythiavoice.vercel.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#101A33">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/id/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
+  <nav aria-label="Menu">
+    <a href="#ablauf">Cara kerja</a>
+    <a href="#preis">Harga</a>
+    <a href="#fragen">Pertanyaan</a>
+    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id" selected>Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Lebih baik dari ramalan mana pun: kata-katamu, dituliskan Pythia dengan andal.</h1>
+      <p class="lead">Bicara di aplikasi apa pun. Pythia Voice menuliskannya, membuang “eh”, dan mengikuti koreksimu.</p>
+      <p class="promise">Tanpa langganan. Tanpa biaya tersembunyi. Bayar sekali, pakai seumur hidup.</p>
+      <div class="cta">
+        <a class="btn primary" href="#download">Coba Pythia Voice</a>
+        <a class="btn ghost" href="#preis">Lihat harga</a>
+      </div>
+      <p class="fine">Coba gratis 7 hari atau 3.000 kata.</p>
+    </div>
+
+    <figure class="oracle" id="oracle" data-fill="eh" data-a="kita bertemu jam" data-s="lima eh bukan sebenarnya jam" data-b="enam di depan stasiun" data-out="Kita bertemu jam enam di depan stasiun.">
+      <div class="wave" id="wave" aria-hidden="true"></div>
+      <div class="line">
+        <span class="label">Kamu bilang</span>
+        <p id="said" class="said"></p>
+      </div>
+      <div class="line">
+        <span class="label">Pythia menulis</span>
+        <p id="wrote" class="wrote" aria-live="polite"></p>
+      </div>
+      <button class="replay" id="replay" type="button">Ulangi</button>
+    </figure>
+  </section>
+
+  <section class="light" id="funktionen">
+    <div class="wrap">
+      <h2>Yang kamu dapat</h2>
+      <dl class="rules">
+        <div><dt>Bayar sekali, pakai seumur hidup</dt><dd>Tanpa langganan, tanpa perpanjangan, dan tanpa batas kata setelah masa uji coba. Yang kamu bayar hari ini adalah seluruh biaya Pythia Voice.</dd></div>
+        <div><dt>Menulis di aplikasi apa pun</dt><dd>WhatsApp, surel, catatan, peramban. Tombol bulat muncul di atas keyboard begitu kamu mengetuk kolom teks.</dd></div>
+        <div><dt>Merapikan untukmu</dt><dd>Kata pengisi dibuang, tanda baca ditambahkan. Katakan “jam lima, bukan, jam enam” dan ia menulis “jam enam”.</dd></div>
+        <div><dt>Lebih dari 90 bahasa</dt><dd>Bahkan bercampur dalam satu kalimat. Aplikasinya sendiri tersedia dalam 24 bahasa.</dd></div>
+        <div><dt>Pengenalan lewat akses Groq-mu</dt><dd>Pengenalan berjalan dengan kunci Groq milikmu sendiri. Menurut dokumentasi Groq, paket gratis mengizinkan hingga 8 jam suara per hari. Batasnya ditetapkan Groq dan dapat berubah.</dd></div>
+        <div><dt>Tetap bersamamu</dt><dd>Tanpa akun. Pythia Voice tidak menyimpan audio. Di kolom kata sandi tombol tetap tersembunyi.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="dark" id="ablauf">
+    <div class="wrap">
+      <h2>Cara mendikte</h2>
+      <ol class="steps">
+        <li><b>Ketuk</b><span>Ketuk kolom teks, lalu tombol bulat di atas keyboard.</span></li>
+        <li><b>Bicara</b><span>Katakan apa yang ingin kamu tulis. Dengan jeda, dengan koreksi.</span></li>
+        <li><b>Katakan selesai</b><span>Ketuk sekali lagi. Teks yang rapi ada di kolom.</span></li>
+      </ol>
+      <p class="hint">Lebih suka menahan? Tahan tombol, bicara, lepaskan.</p>
+    </div>
+  </section>
+
+  <section class="light" id="preis">
+    <div class="wrap price-wrap">
+      <div>
+        <h2>Satu harga. Seumur hidup.</h2>
+        <p class="lead dark-text">Tanpa langganan, tanpa biaya tersembunyi: bayar sekali dan pakai Pythia Voice seumur hidup.</p>
+        <p class="note">Satu-satunya bahan lain adalah akses Groq milikmu untuk pengenalan suara. Gratis untuk penggunaan normal, syaratnya ditetapkan Groq.</p>
+      </div>
+      <div class="tablet">
+        <p class="amount"><span class="num" id="price">€19,99</span></p>
+        <p class="sub">Pembayaran sekali dalam euro.</p>
+        <ul>
+          <li>Coba gratis 7 hari atau 3.000 kata</li>
+          <li>Semua 90+ bahasa, semua fitur</li>
+          <li>Tanpa batas kata setelah pembelian</li>
+          <li>Pembaruan versi 1 termasuk</li>
+        </ul>
+        <a class="btn primary" id="buy" href="#download">Beli lisensi</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark" id="download">
+    <div class="wrap">
+      <h2>Untuk Android</h2>
+      <p class="lead">Android 13 atau lebih baru. Versi iPhone belum ada.</p>
+      <div class="cta">
+        <a class="btn primary" id="apk" href="#download">Unduh langsung</a>
+        <span class="soon">Google Play segera hadir</span>
+      </div>
+      <p class="fine">Saat pertama dibuka, aplikasi memandu penyiapan dalam enam langkah singkat.</p>
+    </div>
+  </section>
+
+  <section class="light" id="fragen">
+    <div class="wrap narrow">
+      <h2>Pertanyaan umum</h2>
+      <details open><summary>Apakah benar sekali bayar?</summary><p>Ya. Satu pembayaran, tanpa langganan, tanpa perpanjangan. Satu-satunya layanan lain adalah Groq untuk pengenalan suara: paket gratisnya cukup untuk penggunaan normal, tetapi Groq menentukan sendiri batas dan harganya.</p></details>
+      <details><summary>Apa itu Groq dan perlukah akun?</summary><p>Groq adalah layanan yang mengubah suaramu menjadi teks. Di sana kamu membuat kunci pribadi gratis lalu menempelkannya ke aplikasi. Panduan di aplikasi menunjukkan setiap ketukan.</p></details>
+      <details><summary>Berapa biaya Groq?</summary><p>Untuk penggunaan normal, tidak ada. Groq menyebut hingga 8 jam audio Whisper per hari di paket gratis. Groq mengubah batasnya, periksa di console.groq.com.</p></details>
+      <details><summary>Ke mana rekamanku pergi?</summary><p>Audio dan teks langsung ke Groq dengan kuncimu untuk ditranskripsi dan dirapikan. Pythia Voice tidak menyimpannya dan tidak meneruskannya ke siapa pun.</p></details>
+      <details><summary>Mengapa aplikasi butuh Aksesibilitas?</summary><p>Hanya dengan itu tombol bisa muncul di atas keyboard dan teks masuk ke kolom tempat kamu mengetik. Yang dibaca hanya kolom teks itu.</p></details>
+      <details><summary>Apakah bisa offline?</summary><p>Tidak. Pengenalan membutuhkan koneksi internet.</p></details>
+      <details><summary>Apakah ada versi iPhone atau Windows?</summary><p>Belum. Untuk saat ini Pythia Voice hanya untuk Android.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© Pythia Voice</span>
+    <span><a href="/impressum">Informasi hukum</a> · <a href="/privacy">Privasi</a></span>
+  </div>
+</footer>
+
+<script src="/config.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

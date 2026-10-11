@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pythia Voice: ditado para Android, sem subscrição</title>
+<meta name="description" content="Fale em qualquer app e o Pythia Voice escreve. Mais de 90 idiomas. Paga uma vez, usa para sempre. Sem subscrição, sem custos escondidos.">
+<link rel="canonical" href="https://pythiavoice.vercel.app/pt/">
+<link rel="alternate" hreflang="en" href="https://pythiavoice.vercel.app/en/">
+<link rel="alternate" hreflang="de" href="https://pythiavoice.vercel.app/de/">
+<link rel="alternate" hreflang="it" href="https://pythiavoice.vercel.app/it/">
+<link rel="alternate" hreflang="es" href="https://pythiavoice.vercel.app/es/">
+<link rel="alternate" hreflang="fr" href="https://pythiavoice.vercel.app/fr/">
+<link rel="alternate" hreflang="pt" href="https://pythiavoice.vercel.app/pt/">
+<link rel="alternate" hreflang="ru" href="https://pythiavoice.vercel.app/ru/">
+<link rel="alternate" hreflang="tr" href="https://pythiavoice.vercel.app/tr/">
+<link rel="alternate" hreflang="nl" href="https://pythiavoice.vercel.app/nl/">
+<link rel="alternate" hreflang="pl" href="https://pythiavoice.vercel.app/pl/">
+<link rel="alternate" hreflang="ja" href="https://pythiavoice.vercel.app/ja/">
+<link rel="alternate" hreflang="zh" href="https://pythiavoice.vercel.app/zh/">
+<link rel="alternate" hreflang="ko" href="https://pythiavoice.vercel.app/ko/">
+<link rel="alternate" hreflang="ar" href="https://pythiavoice.vercel.app/ar/">
+<link rel="alternate" hreflang="hi" href="https://pythiavoice.vercel.app/hi/">
+<link rel="alternate" hreflang="id" href="https://pythiavoice.vercel.app/id/">
+<link rel="alternate" hreflang="vi" href="https://pythiavoice.vercel.app/vi/">
+<link rel="alternate" hreflang="uk" href="https://pythiavoice.vercel.app/uk/">
+<link rel="alternate" hreflang="th" href="https://pythiavoice.vercel.app/th/">
+<link rel="alternate" hreflang="sv" href="https://pythiavoice.vercel.app/sv/">
+<link rel="alternate" hreflang="cs" href="https://pythiavoice.vercel.app/cs/">
+<link rel="alternate" hreflang="ro" href="https://pythiavoice.vercel.app/ro/">
+<link rel="alternate" hreflang="el" href="https://pythiavoice.vercel.app/el/">
+<link rel="alternate" hreflang="he" href="https://pythiavoice.vercel.app/he/">
+<link rel="alternate" hreflang="x-default" href="https://pythiavoice.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Melhor do que qualquer oráculo: as suas palavras, com fiabilidade, pela Pythia.">
+<meta property="og:description" content="Sem subscrição. Sem custos escondidos. Paga uma vez, usa para sempre.">
+<meta property="og:image" content="https://pythiavoice.vercel.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#101A33">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/pt/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
+  <nav aria-label="Menu">
+    <a href="#ablauf">Como funciona</a>
+    <a href="#preis">Preço</a>
+    <a href="#fragen">Perguntas</a>
+    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt" selected>Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Melhor do que qualquer oráculo: as suas palavras, com fiabilidade, pela Pythia.</h1>
+      <p class="lead">Fale em qualquer app. O Pythia Voice escreve, tira os “hum” e respeita a sua correção.</p>
+      <p class="promise">Sem subscrição. Sem custos escondidos. Paga uma vez, usa para sempre.</p>
+      <div class="cta">
+        <a class="btn primary" href="#download">Experimentar o Pythia Voice</a>
+        <a class="btn ghost" href="#preis">Ver o preço</a>
+      </div>
+      <p class="fine">Experimente grátis durante 7 dias ou 3.000 palavras.</p>
+    </div>
+
+    <figure class="oracle" id="oracle" data-fill="hum" data-a="encontramo-nos às" data-s="cinco não, na verdade às" data-b="seis em frente à estação" data-out="Encontramo-nos às seis em frente à estação.">
+      <div class="wave" id="wave" aria-hidden="true"></div>
+      <div class="line">
+        <span class="label">Você diz</span>
+        <p id="said" class="said"></p>
+      </div>
+      <div class="line">
+        <span class="label">A Pythia escreve</span>
+        <p id="wrote" class="wrote" aria-live="polite"></p>
+      </div>
+      <button class="replay" id="replay" type="button">Repetir</button>
+    </figure>
+  </section>
+
+  <section class="light" id="funktionen">
+    <div class="wrap">
+      <h2>O que ganha</h2>
+      <dl class="rules">
+        <div><dt>Paga uma vez, usa para sempre</dt><dd>Sem subscrição, sem renovação e sem limite de palavras depois do teste. O que paga hoje é tudo o que paga pelo Pythia Voice.</dd></div>
+        <div><dt>Escreve em qualquer app</dt><dd>WhatsApp, e-mail, notas, navegador. O botão redondo aparece acima do teclado assim que toca num campo de texto.</dd></div>
+        <div><dt>Arruma por si</dt><dd>Saem as palavras de enchimento, entra a pontuação. Se disser “às cinco, não, às seis”, escreve “às seis”.</dd></div>
+        <div><dt>Mais de 90 idiomas</dt><dd>Até misturados na mesma frase. A própria app existe em 24 idiomas.</dd></div>
+        <div><dt>Reconhecimento com o seu acesso Groq</dt><dd>O reconhecimento corre com a sua própria chave Groq. Segundo a documentação da Groq, o plano gratuito permite até 8 horas de fala por dia. A Groq define os limites e pode alterá-los.</dd></div>
+        <div><dt>Fica consigo</dt><dd>Sem conta. O Pythia Voice não guarda áudio. Nos campos de palavra-passe o botão fica oculto.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="dark" id="ablauf">
+    <div class="wrap">
+      <h2>Como ditar</h2>
+      <ol class="steps">
+        <li><b>Toque</b><span>Toque num campo de texto e depois no botão redondo acima do teclado.</span></li>
+        <li><b>Fale</b><span>Diga o que quer escrever. Com pausas, com correções.</span></li>
+        <li><b>Diga que acabou</b><span>Toque mais uma vez. O texto limpo fica no campo.</span></li>
+      </ol>
+      <p class="hint">Prefere manter premido? Mantenha o botão premido, fale, solte.</p>
+    </div>
+  </section>
+
+  <section class="light" id="preis">
+    <div class="wrap price-wrap">
+      <div>
+        <h2>Um preço. Para sempre.</h2>
+        <p class="lead dark-text">Sem subscrição, sem custos escondidos: paga uma vez e usa o Pythia Voice para sempre.</p>
+        <p class="note">O único outro ingrediente é o seu acesso Groq para o reconhecimento de voz. É gratuito para uso normal; as condições são da Groq.</p>
+      </div>
+      <div class="tablet">
+        <p class="amount"><span class="num" id="price">19,99 €</span></p>
+        <p class="sub">Pagamento único em euros.</p>
+        <ul>
+          <li>Experimente grátis 7 dias ou 3.000 palavras</li>
+          <li>Mais de 90 idiomas, todas as funções</li>
+          <li>Sem limite de palavras após a compra</li>
+          <li>Atualizações da versão 1 incluídas</li>
+        </ul>
+        <a class="btn primary" id="buy" href="#download">Comprar licença</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark" id="download">
+    <div class="wrap">
+      <h2>Para Android</h2>
+      <p class="lead">Android 13 ou superior. Ainda não existe versão para iPhone.</p>
+      <div class="cta">
+        <a class="btn primary" id="apk" href="#download">Transferir diretamente</a>
+        <span class="soon">Google Play em breve</span>
+      </div>
+      <p class="fine">No primeiro arranque, a app guia-o na configuração em seis passos curtos.</p>
+    </div>
+  </section>
+
+  <section class="light" id="fragen">
+    <div class="wrap narrow">
+      <h2>Perguntas frequentes</h2>
+      <details open><summary>É mesmo um pagamento único?</summary><p>Sim. Um pagamento, sem subscrição nem renovação. O único outro serviço envolvido é a Groq para o reconhecimento de voz: o plano gratuito chega para uso normal, mas a Groq decide os seus limites e preços.</p></details>
+      <details><summary>O que é a Groq e preciso de uma conta?</summary><p>A Groq é o serviço que converte a sua voz em texto. Cria lá uma chave pessoal grátis e cola-a na app. O guia na app mostra cada toque.</p></details>
+      <details><summary>Quanto custa a Groq?</summary><p>Para uso normal, nada. A Groq indica até 8 horas de áudio Whisper por dia no plano gratuito. A Groq altera os limites: consulte console.groq.com.</p></details>
+      <details><summary>Para onde vão as minhas gravações?</summary><p>O áudio e o texto vão diretamente para a Groq com a sua chave, para serem transcritos e limpos. O Pythia Voice não os guarda nem os passa a ninguém.</p></details>
+      <details><summary>Porque precisa a app de acessibilidade?</summary><p>Só assim o botão pode aparecer acima do teclado e o texto chegar ao campo onde escreve. Só esse campo de texto é lido.</p></details>
+      <details><summary>Funciona offline?</summary><p>Não. O reconhecimento precisa de ligação à internet.</p></details>
+      <details><summary>Existe versão para iPhone ou Windows?</summary><p>Ainda não. Por agora o Pythia Voice é só para Android.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© Pythia Voice</span>
+    <span><a href="/impressum">Aviso legal</a> · <a href="/privacy">Privacidade</a></span>
+  </div>
+</footer>
+
+<script src="/config.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

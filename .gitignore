@@ -1,0 +1,6 @@
+*.apk
+*.pem
+.env*
+node_modules/
+.vercel/
+

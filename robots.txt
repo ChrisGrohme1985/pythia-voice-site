@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pythiavoice.vercel.app/sitemap.xml
