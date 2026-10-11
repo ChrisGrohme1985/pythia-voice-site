@@ -48,8 +48,12 @@ module.exports = async (req, res) => {
   try { ev = JSON.parse(body.toString("utf8")); } catch { return res.status(400).end(); }
   const s = ev?.data?.object;
   // In Stripe ausgelöste Erstattungen: als Gutschrift buchen und dem Verkauf zuordnen (Stripe-Ereignis charge.refunded)
-  if (ev?.type === "charge.refunded") {
-    try { await books.syncRefundFromCharge(s); return res.status(200).json({ ok: true }); }
+  if (ev?.type === "charge.refunded" || ev?.type === "refund.created" || ev?.type === "refund.updated") {
+    try {
+      if (ev.type === "charge.refunded") await books.syncRefundFromCharge(s);
+      else if (s?.status !== "failed" && s?.status !== "canceled") await books.syncRefundForPayment(typeof s?.payment_intent === "string" ? s.payment_intent : s?.payment_intent?.id);
+      return res.status(200).json({ ok: true });
+    }
     catch (e) { console.error("Erstattung: " + e.message); return res.status(500).end(); }
   }
   const email = s?.customer_details?.email || s?.customer_email;

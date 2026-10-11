@@ -384,3 +384,22 @@ footer { padding: 44px 0 36px; }
 .admin td.clip small { display: block; color: var(--muted); font-size: .76rem; margin-top: 2px; }
 .admin .lock { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: .84rem; cursor: help; }
 .admin .lock::before { content: ""; width: 9px; height: 11px; border: 2px solid currentColor; border-radius: 3px; box-sizing: border-box; background: linear-gradient(currentColor, currentColor) top / 100% 3px no-repeat; }
+
+/* Tabellen ohne Querscrollen: Zellen dürfen umbrechen, Zahlen, Nummern und Datum nicht */
+.admin td, .admin th { white-space: normal; }
+.admin td.nw, .admin th.r { white-space: nowrap; }
+.admin td.wrap { overflow-wrap: break-word; }
+.admin td.clip { min-width: 160px; }
+.admin td.clip { max-width: none; overflow: visible; text-overflow: clip; }
+.admin td, .admin th { padding-inline: 10px; }
+.admin .cell-actions { white-space: normal; min-width: 110px; }
+.admin .cell-actions .link { display: inline-block; }
+.admin .table-wrap select.mini { max-width: 130px; }
+
+/* Synchronisations-Symbol */
+.btn.with-ico { display: inline-flex; align-items: center; gap: 8px; }
+.btn .ico { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.btn.with-ico:hover .ico { color: var(--gold2); }
+.btn.spin .ico { animation: pv-spin 1s linear infinite; color: var(--gold2); }
+@keyframes pv-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .btn.spin .ico { animation: none; } }

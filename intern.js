@@ -138,7 +138,7 @@
     const noProj = visible(true);
     const rows = me.projects.map((p) => [p, noProj.filter((e) => projectOf(e) === p)]).filter(([, l]) => l.length);
     $("projBlock").hidden = rows.length < 2 && !$("fProj").value;
-    fill("projTable", rows.map(([p, l]) => { const s = sums(l); return [td(p), td(String(l.length), "r"), td(eur(s.income), "r"), td(eur(s.exp), "r"), td(eur(s.result), "r " + (s.result < 0 ? "neg" : "pos"))]; }), 5);
+    fill("projTable", rows.map(([p, l]) => { const s = sums(l); return [td(p), td(String(l.filter((x) => !x.void).length), "r"), td(eur(s.income), "r"), td(s.refunds ? "-" + eur(s.refunds) : eur(0), "r"), td(s.fees ? "-" + eur(s.fees) : eur(0), "r"), td(s.exp ? "-" + eur(s.exp) : eur(0), "r"), td(eur(s.result), "r " + (s.result < 0 ? "neg" : "pos"))]; }), 7);
 
     const pageRows = list.slice((finPage.page - 1) * finPage.size, finPage.page * finPage.size);
     fill("finTable", pageRows.map((e) => {
@@ -151,7 +151,14 @@
       if (e.void) { act.textContent = "storniert"; act.classList.add("muted"); }
       else if (e.type === "refund") { if (e.pending) { act.textContent = "wird erstattet …"; act.classList.add("muted"); } }
       else if (lockOf(e)) {
-        if (e.source === "stripe") { if (e.amount - (e.refunded || 0) > 0) act.append(btn("Erstatten", () => openRefund(e))); }
+        if (e.source === "stripe") {
+          if (e.amount - (e.refunded || 0) > 0) act.append(btn("Erstatten", () => openRefund(e)));
+          act.append(btn("Testkauf entfernen", async () => {
+            if (!confirm(`${e.number} als Testkauf entfernen?\n\nDer Kauf und seine Gutschriften verschwinden aus allen Listen, Summen und Berichten. Die Nummer bleibt vergeben. Das gilt nur für echte Probekäufe.`)) return;
+            try { await api("entry-test", { method: "POST", body: { id: e.id } }); msg("finMsg", `${e.number} als Testkauf entfernt.`); loadFin(); }
+            catch (err) { msg("finMsg", "Fehler: " + err.message, true); }
+          }));
+        }
         else act.append(btn("Stornieren", async () => {
           if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
         }));
@@ -165,6 +172,7 @@
       pill.className = "pill " + (e.type === "refund" ? "expense" : e.type); pill.textContent = e.type === "income" ? "Einnahme" : e.type === "refund" ? "Erstattung" : "Ausgabe";
       kind.append(pill);
       const proj = document.createElement("td");
+      proj.className = "nw";
       if (e.void || lockOf(e)) proj.textContent = projectOf(e);
       else {
         const sel = document.createElement("select");
@@ -182,8 +190,8 @@
       const cat = document.createElement("small");
       cat.textContent = e.category;
       desc.append(cat);
-      const row = [td(e.number), td(de(e.date)), kind, proj, td(e.party, "clip"), desc,
-        td((e.type === "income" ? "" : "-") + eur(e.amount), "r " + (e.type === "income" ? "pos" : "neg")), rcpt, act];
+      const row = [td(e.number, "nw"), td(de(e.date), "nw"), kind, proj, td(e.party, "nw"), desc,
+        td((e.type === "income" ? "" : "-") + eur(e.amount), "r nw " + (e.type === "income" ? "pos" : "neg")), rcpt, act];
       if (e.void) row.forEach((c) => c.classList.add("void"));
       return row;
     }), 9);
@@ -195,9 +203,11 @@
   $("csvBtn").onclick = () => (location.href = `/api/admin?action=csv${q()}`);
   $("zipBtn").onclick = () => (location.href = `/api/admin?action=tax-package${q()}`);
   $("syncBtn").onclick = async () => {
+    $("syncBtn").classList.add("spin"); $("syncBtn").disabled = true;
     msg("finMsg", "Gleiche mit Stripe ab …");
     try { const r = await api("sync", { method: "POST", body: { from: $("fFrom").value || ymd(new Date(Date.now() - 365 * 864e5)), to: $("fTo").value < ymd(new Date()) ? $("fTo").value : ymd(new Date()) } }); msg("finMsg", `${r.synced} Verkäufe geprüft.`); loadFin(); }
     catch (e) { msg("finMsg", "Fehler: " + e.message, true); }
+    finally { $("syncBtn").classList.remove("spin"); $("syncBtn").disabled = false; }
   };
 
   // --- Posten anlegen / bearbeiten (mit Vorschau des gewählten Belegs) ---
@@ -383,7 +393,7 @@
       if (l.key) k.append(btn("Kopieren", async () => { await navigator.clipboard.writeText(l.key); msg("licMsg", `Schlüssel von ${l.number} kopiert.`); }));
       const money = l.source === "manuell" ? "–" : eur(l.amount) + (l.refunded ? ` (erstattet ${eur(l.refunded)})` : "");
       const src = td(l.source === "manuell" ? (l.note ? `manuell · ${l.note}` : "manuell") : "Stripe");
-      return [td(l.number), td(de(l.date)), td(l.product), td(l.firstName), td(l.lastName), td(l.email), src, td(money, "r"), k];
+      return [td(l.number, "nw"), td(de(l.date), "nw"), td(l.product, "wrap"), td(l.firstName), td(l.lastName), td(l.email, "wrap"), src, td(money, "r nw"), k];
     }), 9);
     pager($("licPager"), licPage, list.length, renderLic);
   }

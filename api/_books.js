@@ -59,7 +59,8 @@ function clean(input, fixedType) {
 
 // ---------- Posten ----------
 
-const listEntries = () => db.list(ENTRIES, { orderBy: "date" });
+// Testbuchungen (Probekäufe) bleiben mit ihrer Nummer in der Datenbank, erscheinen aber nirgends
+const listEntries = async () => (await db.list(ENTRIES, { orderBy: "date" })).filter((e) => !e.test);
 
 /** Neue manuelle Posten; wiederkehrende Ausgaben erzeugen je Termin einen eigenen, eigens nummerierten Posten. */
 async function addEntry(input, actor = "") {
@@ -181,6 +182,7 @@ async function syncStripe(from, to) {
   const sessions = await paidSessions(unix(from), unix(to) + 86400);
   for (const s of sessions) {
     const e = await invoiceFor(s);
+    if (e.test) continue; // als Testkauf entfernt: nicht wieder aufleben lassen
     const ch = s.payment_intent?.latest_charge;
     const fee = ch?.balance_transaction?.fee || 0, refunded = ch?.amount_refunded || 0;
     const nm = String(s.customer_details?.name || "").trim();
@@ -200,7 +202,7 @@ async function listLicenses(issue) {
     return { id: g.id, number: g.number, date: g.date, product: product.de, firstName: g.firstName, lastName: g.lastName, email: g.email,
       amount: 0, refunded: 0, key: g.key, source: "manuell", note: g.note || "", mailedAt: g.mailedAt || 0 };
   });
-  const sales = (await listEntries()).filter((e) => e.source === "stripe" && e.type === "income").sort((a, b) => b.number.localeCompare(a.number)).map((e) => {
+  const sales = (await listEntries()).filter((e) => e.source === "stripe" && e.type === "income" && !e.test).sort((a, b) => b.number.localeCompare(a.number)).map((e) => {
     let key = "";
     try { key = issue(e.session, e.version || 1); } catch { /* Signierschlüssel nicht gesetzt */ }
     const product = PRODUCTS.find((p) => p.version === (e.version || 1)) || PRODUCTS[0];
@@ -257,6 +259,15 @@ async function bookMissingRefunds(sale, total) {
   const booked = await bookedRefunds(sale.id);
   if (total <= booked) return null;
   return createRefundDoc(sale, { amount: total - booked, total, reason: "in Stripe ausgelöst" });
+}
+
+/** Erstattung zu einer Zahlung (Ereignis refund.created/refund.updated): Gesamtstand bei Stripe holen und fehlende Gutschriften buchen. */
+async function syncRefundForPayment(pi) {
+  if (!pi) return null;
+  if (!process.env.STRIPE_READ_KEY) throw new Error("STRIPE_READ_KEY fehlt");
+  const j = await stripeGet(`payment_intents/${encodeURIComponent(pi)}`, [["expand[]", "latest_charge"]]);
+  const refunded = j?.latest_charge?.amount_refunded || 0;
+  return refunded > 0 ? syncRefundFromCharge({ payment_intent: pi, amount_refunded: refunded }) : null;
 }
 
 /** Meldung `charge.refunded` aus dem Webhook. Nur Verkäufe, die wir kennen (über payment_intent), werden gebucht. */
@@ -328,6 +339,18 @@ async function mailCreditNote(c) {
     }),
   });
   if (!r.ok) throw new Error(`Mailversand ${r.status}`);
+}
+
+/**
+ * Probekauf aus der Buchhaltung nehmen. Die Rechnungsnummer wird nie neu vergeben und bleibt in der Datenbank (Nummernkreis ohne Lücken
+ * im Zähler), der Posten samt Gutschriften erscheint aber in keiner Liste, Summe, Lizenzübersicht oder Auswertung mehr.
+ */
+async function markTest(id) {
+  const sale = await db.get(ENTRIES, id);
+  if (!sale || sale.source !== "stripe" || sale.type !== "income") throw new Error("Nur Stripe-Verkäufe lassen sich als Testkauf entfernen");
+  for (const x of await listEntries()) if (x.type === "refund" && x.refOf === id) await db.set(ENTRIES, x.id, { test: true, void: true }, { merge: true });
+  await db.set(ENTRIES, id, { test: true, void: true, testAt: now() }, { merge: true });
+  return { id, number: sale.number };
 }
 
 /** Beleg als PDF zu einem Posten: Rechnung bei Stripe-Verkauf, Gutschrift bei Erstattung. */
@@ -577,5 +600,5 @@ async function entriesCsv(from, to, project = "") {
 module.exports = {
   PROJECTS, projectOf, byProject, assignProject, lockReason, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
-  productOf, totals, refundSale, syncRefundFromCharge, documentPdf, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
+  productOf, totals, refundSale, syncRefundFromCharge, syncRefundForPayment, markTest, documentPdf, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };
