@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://pythia-voice-site.vercel.app/sitemap.xml
+Sitemap: https://www.pythiavoice.app/sitemap.xml
