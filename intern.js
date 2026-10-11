@@ -6,6 +6,8 @@
   const ymd = (d) => d.toISOString().slice(0, 10);
   const day = (unix) => (unix ? ymd(new Date(unix * 1000)) : "");
   let me = null, entries = [], inboxItems = [], licenses = [], editType = "expense", editing = null;
+  // Eindeutig zugeordnet (Stripe-Verkauf oder Beleg zugeordnet) = gesperrt; muss mit lockReason im Server übereinstimmen
+  const lockOf = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
   const projectOf = (e) => (me.projects.includes(e.project) ? e.project : e.source === "stripe" ? "Pythia Voice" : "Allgemein");
 
   async function api(action, { method = "GET", body, query = "" } = {}) {
@@ -146,8 +148,14 @@
       const act = document.createElement("td");
       act.className = "cell-actions";
       if (e.void) { act.textContent = "storniert"; act.classList.add("muted"); }
-      else if (e.source === "stripe") { act.textContent = "Stripe"; act.classList.add("muted"); }
-      else {
+      else if (lockOf(e)) {
+        const l = document.createElement("span");
+        l.className = "lock"; l.textContent = "gesperrt"; l.title = `${lockOf(e)}: eindeutig zugeordnet, nicht änderbar`;
+        act.append(l);
+        if (e.source !== "stripe") act.append(" ", btn("Stornieren", async () => {
+          if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
+        }));
+      } else {
         act.append(btn("Bearbeiten", () => openEntry(e.type, e)), " ", btn("Stornieren", async () => {
           if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
         }));
@@ -157,7 +165,7 @@
       pill.className = "pill " + e.type; pill.textContent = e.type === "income" ? "Einnahme" : "Ausgabe";
       kind.append(pill);
       const proj = document.createElement("td");
-      if (e.void) proj.textContent = projectOf(e);
+      if (e.void || lockOf(e)) { proj.textContent = projectOf(e); if (lockOf(e)) proj.title = `${lockOf(e)}: nicht änderbar`; }
       else {
         const sel = document.createElement("select");
         sel.className = "mini"; sel.setAttribute("aria-label", `Projekt für ${e.number}`);

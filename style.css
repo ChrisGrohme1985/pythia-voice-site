@@ -382,3 +382,5 @@ footer { padding: 44px 0 36px; }
 @media (max-width: 860px) { .admin dialog.with-preview .dlg-body { grid-template-columns: 1fr; } }
 .admin td.clip { max-width: 300px; overflow: hidden; text-overflow: ellipsis; }
 .admin td.clip small { display: block; color: var(--muted); font-size: .76rem; margin-top: 2px; }
+.admin .lock { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: .84rem; cursor: help; }
+.admin .lock::before { content: ""; width: 9px; height: 11px; border: 2px solid currentColor; border-radius: 3px; box-sizing: border-box; background: linear-gradient(currentColor, currentColor) top / 100% 3px no-repeat; }

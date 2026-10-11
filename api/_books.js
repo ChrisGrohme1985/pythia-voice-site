@@ -86,10 +86,13 @@ async function addEntry(input, actor = "") {
   return out;
 }
 
+/** Eindeutig zugeordnet = Stripe-Verkauf oder Ausgabe mit zugeordnetem Beleg. Solche Posten sind unveränderbar (nur Storno bei manuellen). */
+const lockReason = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
+
 async function updateEntry(id, input) {
   const cur = await db.get(ENTRIES, id);
   if (!cur) throw new Error("Posten nicht gefunden");
-  if (cur.source === "stripe") throw new Error("Stripe-Verkäufe sind schreibgeschützt");
+  if (lockReason(cur)) throw new Error(`Gesperrt (${lockReason(cur)}): eindeutig zugeordnete Posten sind nicht änderbar`);
   if (cur.void) throw new Error("Stornierte Posten sind schreibgeschützt");
   const e = clean(input, cur.type);
   const patch = { date: e.date, amount: e.amount, project: e.project, category: e.category, party: e.party, description: e.description, updatedAt: now() };
@@ -97,11 +100,13 @@ async function updateEntry(id, input) {
   return { id, ...cur, ...patch };
 }
 
-/** Projekt eines Postens ändern. Erlaubt auch bei Stripe-Verkäufen, denn Betrag und Nummer bleiben unberührt. */
+/** Projekt eines noch offenen Postens ändern (manuell, ohne Beleg). Stripe-Verkäufe und Posten mit Beleg sind gesperrt. */
 async function assignProject(id, project) {
   if (!PROJECTS.includes(project)) throw new Error("Unbekanntes Projekt");
   const cur = await db.get(ENTRIES, id);
   if (!cur) throw new Error("Posten nicht gefunden");
+  if (lockReason(cur)) throw new Error(`Gesperrt (${lockReason(cur)}): eindeutig zugeordnete Posten sind nicht änderbar`);
+  if (cur.void) throw new Error("Stornierte Posten sind schreibgeschützt");
   await db.set(ENTRIES, id, { project, updatedAt: now() }, { merge: true });
   return { id, ...cur, project };
 }
@@ -276,7 +281,7 @@ async function assignReceipt(entryId, inboxId) {
   const [entry, item] = await Promise.all([db.get(ENTRIES, entryId), db.get(INBOX, inboxId)]);
   if (!entry || !item || item.status !== "ready" || !item.blobId) throw new Error("Beleg nicht gefunden");
   if (entry.type !== "expense") throw new Error("Belege gibt es nur zu Ausgaben");
-  if (entry.receiptBlobId && entry.receiptBlobId !== item.blobId) await db.delBlob(BLOBS, entry.receiptBlobId);
+  if (entry.receiptStatus === "ready") throw new Error("Beleg ist bereits zugeordnet und gesperrt");
   const receipt = { receiptBlobId: item.blobId, receiptFilename: item.filename, receiptStatus: "ready", receiptUpdatedAt: now() };
   await db.set(ENTRIES, entryId, receipt, { merge: true });
   await db.del(INBOX, inboxId);
@@ -458,7 +463,7 @@ async function entriesCsv(from, to, project = "") {
 }
 
 module.exports = {
-  PROJECTS, projectOf, byProject, assignProject, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
+  PROJECTS, projectOf, byProject, assignProject, lockReason, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
   productOf, totals, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };
