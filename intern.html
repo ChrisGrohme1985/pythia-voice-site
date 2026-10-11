@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intern – Pythia Voice</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="admin">
+<header class="top"><a class="brand" href="/"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice · Intern</span></a><button id="logout" class="link" hidden>Abmelden</button></header>
+
+<main class="legal wide">
+  <section id="login" class="panel">
+    <h1>Anmeldung</h1>
+    <p>Der Code geht per E-Mail an die hinterlegte Adresse.</p>
+    <p><button id="send" class="btn primary" type="button">Code senden</button></p>
+    <form id="verify" hidden>
+      <label>Code aus der E-Mail<br><input id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required></label>
+      <p><button class="btn primary" type="submit">Anmelden</button></p>
+    </form>
+    <p id="loginMsg" class="msg" role="status"></p>
+  </section>
+
+  <section id="app" hidden>
+    <nav class="tabs" aria-label="Bereiche">
+      <button data-tab="reports" class="on">Berichte</button>
+      <button data-tab="expenses">Ausgaben</button>
+      <button data-tab="sales">Einnahmen</button>
+    </nav>
+
+    <div id="tab-reports" class="panel">
+      <h2>Bericht erzeugen</h2>
+      <form id="repForm" class="row">
+        <label>Von<input type="date" id="rFrom" required></label>
+        <label>Bis<input type="date" id="rTo" required></label>
+        <label class="chk"><input type="checkbox" id="rMail" checked> per Mail an mich</label>
+        <button class="btn primary" type="submit">Erzeugen</button>
+      </form>
+      <p class="quick">
+        <button class="link" data-range="lastmonth" type="button">Letzter Monat</button> ·
+        <button class="link" data-range="month" type="button">Dieser Monat</button> ·
+        <button class="link" data-range="year" type="button">Dieses Jahr</button> ·
+        <button class="link" data-range="lastyear" type="button">Letztes Jahr</button>
+      </p>
+      <p id="repMsg" class="msg" role="status"></p>
+      <h2>Gespeicherte Berichte</h2>
+      <div class="scroll"><table id="repTable"><thead><tr><th>Nummer</th><th>Zeitraum</th><th>Einnahmen</th><th>Ausgaben</th><th>Ergebnis</th><th>Dateien</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div id="tab-expenses" class="panel" hidden>
+      <h2>Ausgabe erfassen</h2>
+      <form id="expForm" class="grid">
+        <label>Datum<input type="date" id="eDate" required></label>
+        <label>Lieferant<input id="eVendor" required maxlength="120"></label>
+        <label>Betrag (€, brutto)<input id="eAmount" inputmode="decimal" required placeholder="12,50"></label>
+        <label>Kategorie<select id="eCat"></select></label>
+        <label class="wide">Beschreibung<input id="eDesc" maxlength="300"></label>
+        <label class="wide">Notiz<input id="eNote" maxlength="300"></label>
+        <p><button class="btn primary" type="submit">Speichern</button></p>
+      </form>
+      <p id="expMsg" class="msg" role="status"></p>
+      <h2>Ausgaben</h2>
+      <div class="scroll"><table id="expTable"><thead><tr><th>Beleg</th><th>Datum</th><th>Lieferant</th><th>Beschreibung</th><th>Kategorie</th><th>Betrag</th><th></th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div id="tab-sales" class="panel" hidden>
+      <h2>Einnahmen (Rechnungen)</h2>
+      <div class="scroll"><table id="saleTable"><thead><tr><th>Nummer</th><th>Datum</th><th>E-Mail</th><th>Betrag</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+</main>
+<script src="/intern.js"></script>
+</body>
+</html>

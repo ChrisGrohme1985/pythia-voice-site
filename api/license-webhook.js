@@ -3,6 +3,7 @@
 const crypto = require("crypto");
 const { issue } = require("./_license");
 const { invoicePdf, belegNr } = require("./_invoice");
+const books = require("./_books");
 
 async function rawBody(req) {
   if (Buffer.isBuffer(req.body)) return req.body;
@@ -63,7 +64,10 @@ async function sendMail(to, key, session) {
   // Beleg als PDF anhängen; scheitert die Erzeugung, geht der Schlüssel trotzdem raus
   let attachments;
   try {
-    attachments = [{ filename: `Rechnung-${belegNr(session)}.pdf`, content: (await invoicePdf([session])).toString("base64") }];
+    // Fortlaufende Rechnungsnummer aus dem Speicher; fällt dieser aus, geht die Mail mit Ersatznummer raus (Schlüssel hat Vorrang)
+    let nr;
+    try { nr = (await books.invoiceFor(session)).number; } catch (e) { console.error("Nummer: " + e.message); }
+    attachments = [{ filename: `Rechnung-${nr || belegNr(session)}.pdf`, content: (await invoicePdf([session], nr ? { [session.id]: nr } : {})).toString("base64") }];
   } catch (e) { console.error("PDF: " + e.message); }
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
