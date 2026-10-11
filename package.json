@@ -1,0 +1,6 @@
+{
+  "name": "pythia-voice-site",
+  "private": true,
+  "description": "Statische Seite plus Serverfunktionen unter /api",
+  "dependencies": { "pdf-lib": "^1.17.1" }
+}

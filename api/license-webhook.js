@@ -1,7 +1,8 @@
 // Webhook von Stripe: nach bezahlter Checkout-Sitzung Lizenzschlüssel erzeugen und per E-Mail senden.
-// Umgebungsvariablen: STRIPE_WEBHOOK_SECRET (ggf. "whsec_test,whsec_live"), PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
+// Umgebungsvariablen: PYTHIA_PAYMENT_LINKS (plink_…, Komma-getrennt), STRIPE_WEBHOOK_SECRET (ggf. "whsec_test,whsec_live"), PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
 const crypto = require("crypto");
 const { issue } = require("./_license");
+const { invoicePdf, belegNr } = require("./_invoice");
 
 async function rawBody(req) {
   if (Buffer.isBuffer(req.body)) return req.body;
@@ -58,7 +59,12 @@ function mailHtml(key) {
 </td></tr></table></body></html>`;
 }
 
-async function sendMail(to, key) {
+async function sendMail(to, key, session) {
+  // Beleg als PDF anhängen; scheitert die Erzeugung, geht der Schlüssel trotzdem raus
+  let attachments;
+  try {
+    attachments = [{ filename: `Rechnung-${belegNr(session)}.pdf`, content: (await invoicePdf([session])).toString("base64") }];
+  } catch (e) { console.error("PDF: " + e.message); }
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
@@ -68,6 +74,7 @@ async function sendMail(to, key) {
       reply_to: "support@pythiavoice.app", // Antworten der Kunden landen im echten Postfach
       subject: "Dein Pythia-Voice-Lizenzschlüssel / Your Pythia Voice license key",
       html: mailHtml(key),
+      ...(attachments && { attachments }),
       text:
         `Danke für deinen Kauf!\n\nDein Lizenzschlüssel:\n\n${key}\n\n` +
         `So aktivierst du ihn: App öffnen, bei der Testphase-Karte den Schlüssel einfügen und auf „Aktivieren“ tippen.\n\n` +
@@ -91,8 +98,11 @@ module.exports = async (req, res) => {
   // Nur bezahlte Checkout-Sitzungen (auch verzögerte Zahlarten); alles andere bestätigen wir ohne Aktion
   const paid = (ev?.type === "checkout.session.completed" && s?.payment_status === "paid") || ev?.type === "checkout.session.async_payment_succeeded";
   if (!paid || !s?.id || !email) return res.status(200).json({ ignored: true });
+  // Das Stripe-Konto wird auch für andere Produkte genutzt: nur Käufe über unseren Zahlungslink bekommen einen Schlüssel
+  const links = (process.env.PYTHIA_PAYMENT_LINKS || "").split(",").map((x) => x.trim()).filter(Boolean);
+  if (!links.includes(s.payment_link)) return res.status(200).json({ ignored: true });
   try {
-    await sendMail(email, issue(s.id));
+    await sendMail(email, issue(s.id), s);
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.error(e.message); // kein Schlüssel und keine Adresse im Log
