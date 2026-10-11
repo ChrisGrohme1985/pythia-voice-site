@@ -2,5 +2,8 @@
   "name": "pythia-voice-site",
   "private": true,
   "description": "Statische Seite plus Serverfunktionen unter /api",
-  "dependencies": { "pdf-lib": "^1.17.1" }
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "firebase-admin": "^13.6.0"
+  }
 }

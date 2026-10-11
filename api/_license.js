@@ -25,10 +25,10 @@ function privateKey() {
  * Gleiche Bestellung ergibt immer denselben Schlüssel: Die 128-Bit-ID wird aus der Bestell-ID abgeleitet (HMAC),
  * so erzeugt ein erneut zugestellter Webhook keinen zweiten Schlüssel.
  */
-function issue(orderId, idSecret = process.env.PYTHIA_ID_SECRET) {
+function issue(orderId, version = 1, idSecret = process.env.PYTHIA_ID_SECRET) {
   if (!idSecret) throw new Error("PYTHIA_ID_SECRET fehlt");
   const id = crypto.createHmac("sha256", idSecret).update(String(orderId)).digest().subarray(0, 16);
-  const payload = Buffer.concat([Buffer.from([1]), id]);
+  const payload = Buffer.concat([Buffer.from([version]), id]);
   const sig = crypto.sign(null, Buffer.concat([CONTEXT, payload]), privateKey());
   return "PV-" + b32(Buffer.concat([payload, sig])).match(/.{1,5}/g).join("-");
 }

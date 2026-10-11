@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
   try {
     const rep = await books.createReport(`${y}-${pad(mo + 1)}-01`, `${y}-${pad(mo + 1)}-${pad(last)}`);
     await books.mailReport(rep);
-    return res.status(200).json({ ok: true, report: rep.number, sales: rep.sales });
+    return res.status(200).json({ ok: true, report: rep.number, sales: rep.totals.sales });
   } catch (e) {
     console.error(e.message);
     return res.status(500).end();

@@ -1,41 +1,128 @@
-// Buchhaltung für Pythia Voice: fortlaufende Nummern, Einnahmen (aus Stripe), Ausgaben (von Hand), Berichte.
-// Nummernmodell wie in kroell-web: PRÄFIX-JAHR-0001, pro Jahr neu beginnend, vergeben über einen atomaren Zähler.
+// Buchhaltung für Pythia Voice, abgeleitet vom Finanzmodul von zuhause-web (server/api/admin/finance.js):
+// Posten (Einnahmen/Ausgaben) mit Belegen als PDF, Beleg-Inbox, wiederkehrende Ausgaben, CSV-Export, Steuerberater-Paket.
+// Neu gegenüber der Vorlage: fortlaufende Nummern (PRÄFIX-JAHR-0001, atomar), Stripe-Verkäufe werden automatisch Einnahmen,
+// Stornieren statt Löschen, gespeicherte Berichte. Alles liegt in Firestore (siehe _db.js).
+const crypto = require("crypto");
 const { PDFDocument } = require("pdf-lib");
-const store = require("./_store");
+const db = require("./_db");
 const inv = require("./_invoice");
 
-const CATEGORIES = ["Software und Abos", "Domain und Hosting", "Werbung", "Gebühren und Beiträge", "Hardware", "Sonstiges"];
+const ENTRIES = "financeEntries", INBOX = "financeReceiptInbox", BLOBS = "financeReceiptBlobs", PARTS = "financeUploadParts";
+const REPORTS = "financeReports", REPORT_BLOBS = "financeReportBlobs";
+const EXPENSE_CATEGORIES = ["Software und Abos", "Domain und Hosting", "Werbung", "Recht und Beratung", "Gebühren und Beiträge", "Hardware", "Sonstiges"];
+const INCOME_CATEGORIES = ["Verkauf (Stripe)", "Sonstige Einnahme"];
+const RECURRENCES = { monthly: 1, quarterly: 3, yearly: 12 };
 const YMD = /^\d{4}-\d{2}-\d{2}$/;
+const MAX_RECEIPT = 15 * 1024 * 1024;
+const now = () => Math.floor(Date.now() / 1000);
 const num = (cents) => (Number(cents || 0) / 100).toFixed(2).replace(".", ",");
 const unix = (ymd) => Math.floor(Date.parse(ymd + "T00:00:00Z") / 1000);
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const cleanName = (v) => String(v || "beleg.pdf").replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 160) || "beleg.pdf";
 
-async function nextNumber(prefix, year) {
-  return `${prefix}-${year}-${String(await store.incr(`pv:seq:${prefix}:${year}`)).padStart(4, "0")}`;
+/** Akzeptiert "1.234,56", "1,234.56", "49,90" und "49.9"; ergibt Cent oder NaN. */
+function cents(value) {
+  let s = String(value ?? "").trim().replace(/[€\s]/g, "");
+  if (s.includes(",") && s.includes(".")) s = s.lastIndexOf(",") > s.lastIndexOf(".") ? s.replace(/\./g, "").replace(",", ".") : s.replace(/,/g, "");
+  else s = s.replace(",", ".");
+  const n = Number(s);
+  return Number.isFinite(n) ? Math.round(n * 100) : NaN;
 }
 
-// ---------- Einnahmen ----------
+function addMonths(iso, months) {
+  const d = new Date(`${iso}T12:00:00Z`), day = d.getUTCDate();
+  d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth() + months);
+  d.setUTCDate(Math.min(day, new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate()));
+  return d.toISOString().slice(0, 10);
+}
 
-/** Idempotent: derselbe Kauf bekommt immer dieselbe Rechnungsnummer, auch bei doppelt zugestelltem Webhook. */
+function clean(input, fixedType) {
+  const type = fixedType || String(input.type || "");
+  const date = String(input.date || ""), amount = cents(input.amount), category = String(input.category || "");
+  if (type !== "income" && type !== "expense") throw new Error("Art muss Einnahme oder Ausgabe sein");
+  if (!YMD.test(date) || Number.isNaN(Date.parse(date + "T12:00:00Z"))) throw new Error("Datum fehlt oder ist ungültig");
+  if (!(amount > 0) || amount > 1e9) throw new Error("Betrag fehlt oder ist ungültig");
+  const party = String(input.party || "").trim().slice(0, 120);
+  if (type === "expense" && !party) throw new Error("Lieferant fehlt");
+  const list = type === "expense" ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
+  return {
+    type, date, amount, category: list.includes(category) ? category : list[list.length - 1], party,
+    description: String(input.description || "").trim().slice(0, 300),
+    recurrence: type === "expense" && RECURRENCES[input.recurrence] ? String(input.recurrence) : null,
+    recurrenceUntil: YMD.test(String(input.recurrenceUntil || "")) ? String(input.recurrenceUntil) : null,
+  };
+}
+
+// ---------- Posten ----------
+
+const listEntries = () => db.list(ENTRIES, { orderBy: "date" });
+
+/** Neue manuelle Posten; wiederkehrende Ausgaben erzeugen je Termin einen eigenen, eigens nummerierten Posten. */
+async function addEntry(input, actor = "") {
+  const e = clean(input);
+  const dates = [e.date];
+  if (e.recurrence) {
+    const step = RECURRENCES[e.recurrence], until = e.recurrenceUntil || addMonths(e.date, 24);
+    for (let i = 1, d = addMonths(e.date, step); d <= until && i < 25; i++, d = addMonths(e.date, step * (i))) dates.push(d);
+  }
+  const seriesId = dates.length > 1 ? crypto.randomUUID() : null;
+  const out = [];
+  for (const [i, date] of dates.entries()) {
+    const id = crypto.randomUUID();
+    const { doc } = await db.numbered(ENTRIES, id, e.type === "expense" ? "AUS" : "EIN", Number(date.slice(0, 4)), (number) => ({
+      number, type: e.type, source: "manual", date, amount: e.amount, category: e.category, party: e.party, description: e.description,
+      void: false, seriesId, seriesIndex: i, createdBy: actor, createdAt: now(),
+    }));
+    out.push({ id, ...doc });
+  }
+  if (input.receiptInboxId) {
+    try { Object.assign(out[0], await assignReceipt(out[0].id, String(input.receiptInboxId))); }
+    catch (err) { for (const x of out) await db.del(ENTRIES, x.id); throw err; } // wie in der Vorlage: ohne Beleg kein halber Posten
+  }
+  return out;
+}
+
+async function updateEntry(id, input) {
+  const cur = await db.get(ENTRIES, id);
+  if (!cur) throw new Error("Posten nicht gefunden");
+  if (cur.source === "stripe") throw new Error("Stripe-Verkäufe sind schreibgeschützt");
+  if (cur.void) throw new Error("Stornierte Posten sind schreibgeschützt");
+  const e = clean(input, cur.type);
+  const patch = { date: e.date, amount: e.amount, category: e.category, party: e.party, description: e.description, updatedAt: now() };
+  await db.set(ENTRIES, id, patch, { merge: true });
+  return { id, ...cur, ...patch };
+}
+
+/** Stornieren statt Löschen: die Nummer bleibt vergeben, die Folge bleibt lückenlos. Erstattungen von Verkäufen laufen über Stripe. */
+async function voidEntry(id) {
+  const cur = await db.get(ENTRIES, id);
+  if (!cur) throw new Error("Posten nicht gefunden");
+  if (cur.source === "stripe") throw new Error("Stripe-Verkäufe werden in Stripe erstattet");
+  const patch = { void: true, voidedAt: now() };
+  await db.set(ENTRIES, id, patch, { merge: true });
+  return { id, ...cur, ...patch };
+}
+
+// ---------- Stripe ----------
+
+const ids = (v) => String(v || "").split(",").map((s) => s.trim()).filter(Boolean);
+const PRODUCTS = [
+  { env: "PYTHIA_PAYMENT_LINKS", version: 1, de: "Pythia Voice (Diktat)", en: "Pythia Voice (dictation)", item: "Lebenslange Lizenz für die Android-App Pythia Voice (digital)" },
+  { env: "PYTHIA_VOICE_LINKS", version: 2, de: "Pythia Voice Sprachnachrichten", en: "Pythia Voice voice messages", item: "Lebenslange Lizenz Pythia Voice Sprachnachrichten (digital)" },
+];
+/** Produkt zu einem Zahlungslink; null, wenn der Kauf nicht zu uns gehört (z. B. FlowUnion im selben Stripe-Konto). */
+const productOf = (link) => PRODUCTS.find((p) => ids(process.env[p.env]).includes(link)) || null;
+
+/** Idempotent: derselbe Kauf ergibt immer denselben Posten mit derselben Rechnungsnummer (auch bei doppeltem Webhook). */
 async function invoiceFor(session) {
-  const mapKey = `pv:salemap:${session.id}`;
-  if (await store.setnx(mapKey, "pending", 60)) {
-    const number = await nextNumber("PV", new Date(session.created * 1000).getUTCFullYear());
-    const doc = {
-      number, session: session.id, created: session.created, date: inv.day(session.created),
-      email: session.customer_details?.email || session.customer_email || "", amount: session.amount_total || 0, link: session.payment_link || "",
-    };
-    await store.set(`pv:sale:${number}`, doc);
-    await store.zadd("pv:sales", session.created, number);
-    await store.set(mapKey, number);
-    return doc;
-  }
-  for (let i = 0; i < 10; i++) {
-    const v = await store.get(mapKey);
-    if (v && v !== "pending") return store.get(`pv:sale:${v}`);
-    await sleep(300);
-  }
-  throw new Error("Rechnungsnummer wird gerade vergeben");
+  const id = `st_${session.id}`;
+  const email = session.customer_details?.email || session.customer_email || "";
+  const { doc } = await db.numbered(ENTRIES, id, "PV", new Date(session.created * 1000).getUTCFullYear(), (number) => ({
+    number, type: "income", source: "stripe", date: inv.day(session.created), created: session.created, amount: session.amount_total || 0,
+    category: "Verkauf (Stripe)", party: email, email, description: (productOf(session.payment_link) || PRODUCTS[0]).de, item: (productOf(session.payment_link) || PRODUCTS[0]).item,
+    session: session.id, link: session.payment_link || "",
+    fee: 0, refunded: 0, void: false, createdAt: now(),
+  }));
+  return { id, ...doc };
 }
 
 async function stripeGet(path, params) {
@@ -48,146 +135,183 @@ async function stripeGet(path, params) {
 
 /** Bezahlte Sitzungen unseres Zahlungslinks im Zeitraum [from, to) (Unix-Sekunden), mit Gebühr und Erstattung. */
 async function paidSessions(from, to) {
-  const links = (process.env.PYTHIA_PAYMENT_LINKS || "").split(",").map((s) => s.trim()).filter(Boolean);
   const out = [];
   let after;
   for (;;) {
-    const params = [["limit", "100"], ["created[gte]", from], ["created[lt]", to],
-      ["expand[]", "data.payment_intent.latest_charge.balance_transaction"]];
+    const params = [["limit", "100"], ["created[gte]", from], ["created[lt]", to], ["expand[]", "data.payment_intent.latest_charge.balance_transaction"]];
     if (after) params.push(["starting_after", after]);
     const page = await stripeGet("checkout/sessions", params);
-    for (const s of page.data) {
-      if (s.status === "complete" && s.payment_status === "paid" && links.includes(s.payment_link)) out.push(s);
-    }
+    for (const s of page.data) if (s.status === "complete" && s.payment_status === "paid" && productOf(s.payment_link)) out.push(s);
     if (!page.has_more) break;
     after = page.data[page.data.length - 1].id;
   }
   return out.sort((a, b) => a.created - b.created);
 }
 
-async function listSales(from, to) {
-  const all = await Promise.all((await store.zrevrange("pv:sales")).map((n) => store.get(`pv:sale:${n}`)));
-  return all.filter((d) => d && (!from || d.date >= from) && (!to || d.date <= to)).sort((a, b) => a.number.localeCompare(b.number));
+/** Holt Käufe des Zeitraums aus Stripe: legt fehlende Posten an (chronologisch) und aktualisiert Gebühr und Erstattung. */
+async function syncStripe(from, to) {
+  if (!process.env.STRIPE_READ_KEY) return 0;
+  const sessions = await paidSessions(unix(from), unix(to) + 86400);
+  for (const s of sessions) {
+    const e = await invoiceFor(s);
+    const ch = s.payment_intent?.latest_charge;
+    const fee = ch?.balance_transaction?.fee || 0, refunded = ch?.amount_refunded || 0;
+    if (e.fee !== fee || e.refunded !== refunded) await db.set(ENTRIES, e.id, { fee, refunded }, { merge: true });
+  }
+  return sessions.length;
 }
 
-// ---------- Ausgaben ----------
+// ---------- Belege (PDF) ----------
 
-async function addExpense(e) {
-  const amount = Math.round(parseFloat(String(e.amount).replace(",", ".")) * 100);
-  if (!YMD.test(e.date || "")) throw new Error("Datum fehlt oder ist ungültig");
-  if (!Number.isFinite(amount) || amount <= 0) throw new Error("Betrag fehlt oder ist ungültig");
-  const vendor = String(e.vendor || "").trim().slice(0, 120);
-  if (!vendor) throw new Error("Lieferant fehlt");
-  const number = await nextNumber("AUS", Number(e.date.slice(0, 4)));
-  const doc = {
-    number, date: e.date, vendor, description: String(e.description || "").trim().slice(0, 300),
-    category: CATEGORIES.includes(e.category) ? e.category : "Sonstiges", note: String(e.note || "").trim().slice(0, 300),
-    amount, void: false, createdAt: Math.floor(Date.now() / 1000),
-  };
-  await store.set(`pv:exp:${number}`, doc);
-  await store.zadd("pv:exps", unix(e.date), number);
-  return doc;
+const listInbox = async () => (await db.list(INBOX, { orderBy: "createdAt" })).filter((x) => x.status === "ready")
+  .map(({ id, filename, size, createdAt }) => ({ id, filename, size, createdAt }));
+
+async function inboxStart({ filename, contentType, size }, actor = "") {
+  const name = cleanName(filename), n = Number(size || 0);
+  if (contentType !== "application/pdf" && !name.toLowerCase().endsWith(".pdf")) throw new Error("Nur PDF-Dateien");
+  if (!(n > 0) || n > MAX_RECEIPT) throw new Error("Datei zu groß (höchstens 15 MB)");
+  const id = crypto.randomUUID();
+  await db.set(INBOX, id, { filename: name, size: n, status: "uploading", createdBy: actor, createdAt: now() });
+  return { id, filename: name, size: n };
 }
 
-/** Ausgaben werden nie gelöscht, nur storniert: so bleibt die Nummernfolge lückenlos und nachvollziehbar. */
-async function voidExpense(number) {
-  const doc = await store.get(`pv:exp:${number}`);
-  if (!doc) throw new Error("Beleg nicht gefunden");
-  if (!doc.void) { doc.void = true; doc.voidedAt = Math.floor(Date.now() / 1000); await store.set(`pv:exp:${number}`, doc); }
-  return doc;
+async function inboxChunk(id, index, data) {
+  const item = await db.get(INBOX, id);
+  if (!item || item.status !== "uploading" || !Number.isInteger(index) || index < 0 || index > 31) throw new Error("Upload fehlgeschlagen");
+  if (!data || data.length > 1500000 || !/^[A-Za-z0-9+/]+={0,2}$/.test(data)) throw new Error("Upload fehlgeschlagen");
+  await db.set(PARTS, `${id}-${index}`, { data });
 }
 
-async function listExpenses(from, to) {
-  const all = await Promise.all((await store.zrevrange("pv:exps")).map((n) => store.get(`pv:exp:${n}`)));
-  return all.filter((d) => d && (!from || d.date >= from) && (!to || d.date <= to)).sort((a, b) => a.number.localeCompare(b.number));
+async function inboxFinish(id, chunks) {
+  const item = await db.get(INBOX, id);
+  if (!item || item.status !== "uploading" || !Number.isInteger(chunks) || chunks < 1 || chunks > 32) throw new Error("Upload fehlgeschlagen");
+  try {
+    const parts = [];
+    for (let i = 0; i < chunks; i++) {
+      const p = await db.get(PARTS, `${id}-${i}`);
+      if (!p) throw new Error("Teil fehlt");
+      parts.push(Buffer.from(p.data, "base64"));
+    }
+    const pdf = Buffer.concat(parts);
+    if (pdf.length !== item.size || pdf.length > MAX_RECEIPT) throw new Error("Größe stimmt nicht");
+    if (!pdf.subarray(0, Math.min(1024, pdf.length)).includes(Buffer.from("%PDF-"))) throw new Error("Keine PDF");
+    await db.putBlob(BLOBS, id, pdf, { filename: item.filename });
+    await db.set(INBOX, id, { status: "ready", blobId: id, confirmedAt: now() }, { merge: true });
+    return { id, filename: item.filename, size: pdf.length };
+  } catch (e) {
+    await db.delBlob(BLOBS, id); await db.del(INBOX, id);
+    throw new Error("Upload fehlgeschlagen: " + e.message);
+  } finally {
+    for (let i = 0; i < chunks; i++) await db.del(PARTS, `${id}-${i}`);
+  }
 }
 
-// ---------- Berichte ----------
+async function deleteInbox(id) {
+  const item = await db.get(INBOX, id);
+  if (item) { await db.delBlob(BLOBS, item.blobId || id); await db.del(INBOX, id); }
+}
 
-// Zellen, die mit = + - @ beginnen, würde Excel als Formel auslesen
-const cell = (v) => { let s = String(v ?? ""); if (/^[=+\-@]/.test(s)) s = "'" + s; return `"${s.replace(/"/g, '""')}"`; };
+async function assignReceipt(entryId, inboxId) {
+  const [entry, item] = await Promise.all([db.get(ENTRIES, entryId), db.get(INBOX, inboxId)]);
+  if (!entry || !item || item.status !== "ready" || !item.blobId) throw new Error("Beleg nicht gefunden");
+  if (entry.type !== "expense") throw new Error("Belege gibt es nur zu Ausgaben");
+  if (entry.receiptBlobId && entry.receiptBlobId !== item.blobId) await db.delBlob(BLOBS, entry.receiptBlobId);
+  const receipt = { receiptBlobId: item.blobId, receiptFilename: item.filename, receiptStatus: "ready", receiptUpdatedAt: now() };
+  await db.set(ENTRIES, entryId, receipt, { merge: true });
+  await db.del(INBOX, inboxId);
+  return receipt;
+}
+
+const receiptOf = async (entryId) => {
+  const e = await db.get(ENTRIES, entryId);
+  return e?.receiptBlobId ? db.getBlob(BLOBS, e.receiptBlobId) : null;
+};
+const inboxFile = async (id) => {
+  const item = await db.get(INBOX, id);
+  return item?.status === "ready" ? db.getBlob(BLOBS, item.blobId || id) : null;
+};
+
+// ---------- Auswertung ----------
+
+const cell = (v) => { let s = String(v ?? ""); if (/^[=+\-@]/.test(s)) s = "'" + s; return `"${s.replace(/"/g, '""')}"`; }; // Excel-Formeln entschärfen
 const csv = (head, rows) => "﻿" + [head, ...rows].map((r) => r.map(cell).join(";")).join("\r\n") + "\r\n";
+const inRange = (e, from, to) => e.date >= from && e.date <= to;
 
-async function reportPdf({ number, from, to, totals, sales, expenses, sessions, numbers }) {
+function totals(entries) {
+  const live = entries.filter((e) => !e.void);
+  const income = live.filter((e) => e.type === "income"), exp = live.filter((e) => e.type === "expense");
+  const sum = (l, k = "amount") => l.reduce((a, e) => a + Number(e[k] || 0), 0);
+  const t = { income: sum(income), refunds: sum(income, "refunded"), fees: sum(income, "fee"), expenses: sum(exp), sales: income.filter((e) => e.source === "stripe").length };
+  t.result = t.income - t.refunds - t.fees - t.expenses;
+  return t;
+}
+
+const salesCsv = (entries) => csv(["Nummer", "Datum", "Art", "Quelle", "Kunde", "Kategorie", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
+  entries.filter((e) => e.type === "income").map((e) => [e.number, e.date, "Einnahme", e.source === "stripe" ? "Stripe" : "manuell", e.party, e.category,
+    num(e.amount), num(e.fee), num(e.refunded), e.void ? "storniert" : "gültig"]));
+const expensesCsv = (entries) => csv(["Belegnummer", "Datum", "Lieferant", "Beschreibung", "Kategorie", "Betrag EUR", "Beleg", "Status"],
+  entries.filter((e) => e.type === "expense").map((e) => [e.number, e.date, e.party, e.description, e.category, num(e.amount),
+    e.receiptStatus === "ready" ? e.receiptFilename : "", e.void ? "storniert" : "gültig"]));
+
+/** Stripe-Verkauf als Sitzungs-Ersatz für die Rechnungsseite. */
+const asSession = (e) => ({ id: e.session || e.id, created: e.created || unix(e.date), amount_total: e.amount, customer_details: { email: e.email }, item: e.item });
+
+async function reportPdf(number, from, to, entries, t) {
   const doc = await PDFDocument.create();
   const fonts = await inv.fontsFor(doc);
-  let p, t, y;
-  const newPage = (title) => {
-    p = doc.addPage([595, 842]); t = inv.writer(p, fonts); y = 790;
-    t(title, 56, y, 14, true); y -= 28;
-  };
-  newPage(`Bericht ${number}: ${inv.de(from)} bis ${inv.de(to)}`);
-  const lines = [
-    ["Einnahmen (brutto)", num(totals.income)], ["Erstattungen", "-" + num(totals.refunds)], ["Stripe-Gebühren", "-" + num(totals.fees)],
-    ["Ausgaben", "-" + num(totals.expenses)], ["Ergebnis", num(totals.result)],
-  ];
-  lines.forEach(([l, v], i) => { const b = i === lines.length - 1; t(l, 56, y, 12, b); t(v + " €", 440, y, 12, b); y -= 20; });
+  let p, w, y;
+  const page = (title) => { p = doc.addPage([595, 842]); w = inv.writer(p, fonts); y = 790; w(title, 56, y, 14, true); y -= 28; };
+  page(`Bericht ${number}: ${inv.de(from)} bis ${inv.de(to)}`);
+  const lines = [["Einnahmen (brutto)", num(t.income)], ["Erstattungen", "-" + num(t.refunds)], ["Stripe-Gebühren", "-" + num(t.fees)], ["Ausgaben", "-" + num(t.expenses)], ["Ergebnis", num(t.result)]];
+  lines.forEach(([l, v], i) => { const b = i === lines.length - 1; w(l, 56, y, 12, b); w(v + " €", 440, y, 12, b); y -= 20; });
   y -= 10;
-  t(`${sales.length} Verkäufe, ${expenses.filter((e) => !e.void).length} Ausgabenbelege (stornierte nicht gezählt).`, 56, y, 10, false, inv.colors.gray); y -= 14;
-  t(inv.KLEIN, 56, y, 10, false, inv.colors.gray); y -= 14;
-  t("Ergebnis = Einnahmen - Erstattungen - Stripe-Gebühren - Ausgaben. Keine Steuerberechnung.", 56, y, 10, false, inv.colors.gray);
-
+  w(`${t.sales} Verkäufe über Stripe. Stornierte Posten sind nicht eingerechnet.`, 56, y, 10, false, inv.colors.gray); y -= 14;
+  w(inv.KLEIN, 56, y, 10, false, inv.colors.gray); y -= 14;
+  w("Ergebnis = Einnahmen - Erstattungen - Stripe-Gebühren - Ausgaben. Keine Steuerberechnung.", 56, y, 10, false, inv.colors.gray);
   const table = (title, head, xs, rows) => {
-    newPage(title);
-    head.forEach((h, i) => t(h, xs[i], y, 9, true)); y -= 16;
+    page(title); head.forEach((h, i) => w(h, xs[i], y, 9, true)); y -= 16;
     for (const r of rows) {
-      if (y < 60) { newPage(title + " (Fortsetzung)"); head.forEach((h, i) => t(h, xs[i], y, 9, true)); y -= 16; }
-      r.forEach((c, i) => t(String(c).slice(0, i === 2 ? 34 : 30), xs[i], y, 9));
+      if (y < 60) { page(title + " (Fortsetzung)"); head.forEach((h, i) => w(h, xs[i], y, 9, true)); y -= 16; }
+      r.forEach((c, i) => w(String(c).slice(0, i === 2 ? 34 : 30), xs[i], y, 9));
       y -= 13;
     }
   };
-  table("Einnahmen", ["Nummer", "Datum", "E-Mail", "Brutto €", "Gebühr €"], [56, 150, 220, 430, 490],
-    sales.map((s) => [s.doc.number, inv.de(s.doc.date), s.doc.email, num(s.doc.amount), num(s.fee)]));
+  const asc = [...entries].sort((a, b) => a.number.localeCompare(b.number));
+  table("Einnahmen", ["Nummer", "Datum", "Kunde", "Brutto €", "Gebühr €"], [56, 150, 220, 430, 490],
+    asc.filter((e) => e.type === "income").map((e) => [e.number, inv.de(e.date), e.party, num(e.amount), num(e.fee)]));
   table("Ausgaben", ["Nummer", "Datum", "Lieferant / Beschreibung", "Betrag €", "Status"], [56, 150, 220, 430, 490],
-    expenses.map((e) => [e.number, inv.de(e.date), `${e.vendor}${e.description ? " - " + e.description : ""}`, num(e.amount), e.void ? "storniert" : ""]));
-  if (sessions.length && sessions.length <= 200) for (const s of sessions) inv.invoicePage(doc, fonts, s, numbers[s.id]);
+    asc.filter((e) => e.type === "expense").map((e) => [e.number, inv.de(e.date), `${e.party}${e.description ? " - " + e.description : ""}`, num(e.amount), e.void ? "storniert" : ""]));
+  const sales = asc.filter((e) => e.source === "stripe" && !e.void);
+  if (sales.length && sales.length <= 200) for (const e of sales) inv.invoicePage(doc, fonts, asSession(e), e.number);
   return Buffer.from(await doc.save());
 }
 
-/** Erzeugt einen Bericht für [from, to] (inklusive, Datum JJJJ-MM-TT, nach UTC), speichert ihn und gibt die Metadaten zurück. */
+/** Bericht für [from, to] (inklusive): speichert Kennzahlen und Dateien, gibt die Metadaten zurück. */
 async function createReport(from, to) {
   if (!YMD.test(from || "") || !YMD.test(to || "") || from > to) throw new Error("Zeitraum ungültig");
-  const sessions = await paidSessions(unix(from), unix(to) + 86400);
-  const rows = [];
-  const numbers = {};
-  for (const s of sessions) { // chronologisch, damit nachträglich vergebene Nummern in der richtigen Reihenfolge liegen
-    const doc = await invoiceFor(s);
-    numbers[s.id] = doc.number;
-    const ch = s.payment_intent?.latest_charge, bt = ch?.balance_transaction;
-    rows.push({ doc, fee: bt?.fee || 0, net: bt?.net || 0, refunded: ch?.amount_refunded || 0 });
-  }
-  const expenses = await listExpenses(from, to);
-  const totals = {
-    income: rows.reduce((a, r) => a + r.doc.amount, 0), refunds: rows.reduce((a, r) => a + r.refunded, 0),
-    fees: rows.reduce((a, r) => a + r.fee, 0), expenses: expenses.filter((e) => !e.void).reduce((a, e) => a + e.amount, 0),
-  };
-  totals.result = totals.income - totals.refunds - totals.fees - totals.expenses;
-  const salesCsv = csv(["Rechnungsnummer", "Datum", "E-Mail", "Brutto EUR", "Stripe-Gebühr EUR", "Netto EUR", "Erstattet EUR", "Stripe-Sitzung"],
-    [...rows.map((r) => [r.doc.number, r.doc.date, r.doc.email, num(r.doc.amount), num(r.fee), num(r.net), num(r.refunded), r.doc.session]),
-      ["Summe", "", "", num(totals.income), num(totals.fees), num(rows.reduce((a, r) => a + r.net, 0)), num(totals.refunds), ""]]);
-  const expCsv = csv(["Belegnummer", "Datum", "Lieferant", "Beschreibung", "Kategorie", "Betrag EUR", "Status", "Notiz"],
-    [...expenses.map((e) => [e.number, e.date, e.vendor, e.description, e.category, num(e.amount), e.void ? "storniert" : "gültig", e.note]),
-      ["Summe", "", "", "", "", num(totals.expenses), "", ""]]);
-  const number = await nextNumber("BER", new Date().getUTCFullYear());
-  const pdf = await reportPdf({ number, from, to, totals, sales: rows, expenses, sessions, numbers });
-  const b64 = (v) => Buffer.from(v).toString("base64");
-  const report = {
-    number, from, to, createdAt: Math.floor(Date.now() / 1000), totals, sales: rows.length, expenses: expenses.length,
-    files: { einnahmen: b64(salesCsv), ausgaben: b64(expCsv), pdf: pdf.toString("base64") },
-  };
-  await store.set(`pv:rep:${number}`, report);
-  await store.zadd("pv:reps", report.createdAt, number);
-  return report;
+  await syncStripe(from, to);
+  const entries = (await listEntries()).filter((e) => inRange(e, from, to));
+  const t = totals(entries);
+  const number = await db.nextNumber("BER", new Date().getUTCFullYear());
+  const pdf = await reportPdf(number, from, to, entries, t);
+  const files = { einnahmen: Buffer.from(salesCsv(entries), "utf8"), ausgaben: Buffer.from(expensesCsv(entries), "utf8"), pdf };
+  for (const [k, buf] of Object.entries(files)) await db.putBlob(REPORT_BLOBS, `${number}-${k}`, buf, { type: k });
+  const meta = { number, from, to, totals: t, createdAt: now(), entries: entries.length };
+  await db.set(REPORTS, number, meta);
+  return { ...meta, files };
 }
 
-async function listReports() {
-  const all = await Promise.all((await store.zrevrange("pv:reps")).map((n) => store.get(`pv:rep:${n}`)));
-  return all.filter(Boolean).map(({ files, ...meta }) => meta);
+const listReports = async () => (await db.list(REPORTS, { orderBy: "number" }));
+async function reportFile(number, type) {
+  if (!["einnahmen", "ausgaben", "pdf"].includes(type)) return null;
+  const meta = await db.get(REPORTS, number);
+  const b = meta ? await db.getBlob(REPORT_BLOBS, `${number}-${type}`) : null;
+  return b ? { number, data: b.data } : null;
 }
-const getReport = (number) => store.get(`pv:rep:${number}`);
 
 /** Bericht an dich selbst mailen (nicht an den Steuerberater). */
 async function mailReport(report) {
+  const t = report.totals;
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
@@ -195,20 +319,73 @@ async function mailReport(report) {
       from: process.env.RESEND_FROM,
       to: [process.env.REPORT_EMAIL || "support@pythiavoice.app"],
       subject: `Pythia Voice Bericht ${report.number}: ${report.from} bis ${report.to}`,
-      text: `Bericht ${report.number} für ${report.from} bis ${report.to}\n\nEinnahmen: ${num(report.totals.income)} €\nErstattungen: ${num(report.totals.refunds)} €\n` +
-        `Stripe-Gebühren: ${num(report.totals.fees)} €\nAusgaben: ${num(report.totals.expenses)} €\nErgebnis: ${num(report.totals.result)} €\n\n` +
-        `Anhänge: Einnahmen (CSV), Ausgaben (CSV), Bericht mit Belegen (PDF).\n`,
+      text: `Bericht ${report.number} für ${report.from} bis ${report.to}\n\nEinnahmen: ${num(t.income)} €\nErstattungen: ${num(t.refunds)} €\n` +
+        `Stripe-Gebühren: ${num(t.fees)} €\nAusgaben: ${num(t.expenses)} €\nErgebnis: ${num(t.result)} €\n\n` +
+        `Anhänge: Einnahmen (CSV), Ausgaben (CSV), Bericht mit Rechnungen (PDF).\n`,
       attachments: [
-        { filename: `${report.number}-Einnahmen.csv`, content: report.files.einnahmen },
-        { filename: `${report.number}-Ausgaben.csv`, content: report.files.ausgaben },
-        { filename: `${report.number}-Bericht.pdf`, content: report.files.pdf },
+        { filename: `${report.number}-Einnahmen.csv`, content: report.files.einnahmen.toString("base64") },
+        { filename: `${report.number}-Ausgaben.csv`, content: report.files.ausgaben.toString("base64") },
+        { filename: `${report.number}-Bericht.pdf`, content: report.files.pdf.toString("base64") },
       ],
     }),
   });
   if (!r.ok) throw new Error(`Mailversand ${r.status}`);
 }
 
+// ---------- Steuerberater-Paket (ZIP ohne Kompression, wie in der Vorlage) ----------
+
+const CRC = (() => { const t = []; for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+const crc32 = (buf) => { let c = 0xffffffff; for (const b of buf) c = CRC[(c ^ b) & 255] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0; };
+function zipStore(files) {
+  const locals = [], centrals = [];
+  let offset = 0;
+  for (const f of files) {
+    const name = Buffer.from(f.name.replace(/\\/g, "/")), data = Buffer.isBuffer(f.data) ? f.data : Buffer.from(f.data), crc = crc32(data);
+    const l = Buffer.alloc(30);
+    l.writeUInt32LE(0x04034b50, 0); l.writeUInt16LE(20, 4); l.writeUInt16LE(0x800, 6); l.writeUInt32LE(crc, 14);
+    l.writeUInt32LE(data.length, 18); l.writeUInt32LE(data.length, 22); l.writeUInt16LE(name.length, 26);
+    locals.push(l, name, data);
+    const c = Buffer.alloc(46);
+    c.writeUInt32LE(0x02014b50, 0); c.writeUInt16LE(20, 4); c.writeUInt16LE(20, 6); c.writeUInt16LE(0x800, 8); c.writeUInt32LE(crc, 16);
+    c.writeUInt32LE(data.length, 20); c.writeUInt32LE(data.length, 24); c.writeUInt16LE(name.length, 28); c.writeUInt32LE(offset, 42);
+    centrals.push(c, name);
+    offset += l.length + name.length + data.length;
+  }
+  const central = Buffer.concat(centrals), end = Buffer.alloc(22);
+  end.writeUInt32LE(0x06054b50, 0); end.writeUInt16LE(files.length, 8); end.writeUInt16LE(files.length, 10);
+  end.writeUInt32LE(central.length, 12); end.writeUInt32LE(offset, 16);
+  return Buffer.concat([...locals, central, end]);
+}
+
+/** ZIP mit Postenliste, Ausgabenbelegen und erzeugten Rechnungen für [from, to]. */
+async function taxPackage(from, to) {
+  if (!YMD.test(from || "") || !YMD.test(to || "") || from > to) throw new Error("Zeitraum ungültig");
+  const entries = (await listEntries()).filter((e) => inRange(e, from, to)).sort((a, b) => a.number.localeCompare(b.number));
+  const head = ["Nummer", "Datum", "Art", "Quelle", "Partei", "Kategorie", "Beschreibung", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Beleg", "Status"];
+  const rows = entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", e.party,
+    e.category, e.description, num(e.amount), num(e.fee), num(e.refunded), e.receiptStatus === "ready" ? e.receiptFilename : "", e.void ? "storniert" : "gültig"]);
+  const files = [{ name: "posten.csv", data: Buffer.from(csv(head, rows), "utf8") }];
+  for (const e of entries) {
+    if (e.void) continue;
+    if (e.receiptStatus === "ready" && e.receiptBlobId) {
+      const b = await db.getBlob(BLOBS, e.receiptBlobId).catch(() => null);
+      if (b) files.push({ name: `Belege/${e.number}_${cleanName(e.receiptFilename)}`, data: b.data });
+    }
+    if (e.source === "stripe") files.push({ name: `Rechnungen/${e.number}.pdf`, data: await inv.invoicePdf([asSession(e)], { [asSession(e).id]: e.number }) });
+  }
+  return zipStore(files);
+}
+
+/** Posten des Zeitraums als CSV (Bank/Excel). */
+async function entriesCsv(from, to) {
+  const entries = (await listEntries()).filter((e) => inRange(e, from, to)).sort((a, b) => a.number.localeCompare(b.number));
+  return csv(["Nummer", "Datum", "Art", "Quelle", "Partei", "Kategorie", "Beschreibung", "Einnahme EUR", "Ausgabe EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
+    entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", e.party, e.category,
+      e.description, e.type === "income" ? num(e.amount) : "", e.type === "expense" ? num(e.amount) : "", num(e.fee), num(e.refunded), e.void ? "storniert" : "gültig"]));
+}
+
 module.exports = {
-  CATEGORIES, nextNumber, invoiceFor, listSales, addExpense, voidExpense, listExpenses,
-  createReport, listReports, getReport, mailReport, paidSessions,
+  EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
+  listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
+  productOf, totals, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };

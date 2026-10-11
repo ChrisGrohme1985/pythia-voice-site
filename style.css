@@ -151,3 +151,12 @@ footer a:hover { color: #fff; }
 .admin td.void { color: var(--muted); text-decoration: line-through; }
 .dl { color: var(--gold); margin-inline-end: 10px; }
 @media (max-width: 700px) { .admin .grid { grid-template-columns: 1fr; } }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 14px 0; }
+.kpi { background: rgba(255, 255, 255, .06); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.kpi span { display: block; color: var(--muted); font-size: .85rem; }
+.kpi strong { font-size: 1.2rem; }
+.kpi.neg strong { color: #ff9b9b; }
+.kpi.pos strong { color: var(--gold2); }
+.admin dialog { background: #131d3a; color: var(--ivory); border: 1px solid var(--line); border-radius: 20px; padding: 22px 24px; width: min(640px, 92vw); }
+.admin dialog::backdrop { background: rgba(0, 0, 0, .6); }
+.btn.ghost { cursor: pointer; font: inherit; font-weight: 700; }

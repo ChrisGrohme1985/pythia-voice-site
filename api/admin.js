@@ -1,9 +1,9 @@
-// Interner Bereich (/intern): Anmeldung per Einmalcode (wie in zuhause-web), Ausgaben, Rechnungen und Berichte.
+// Interner Bereich (/intern): Anmeldung per Einmalcode (Muster aus zuhause-web), Finanzen, Belege und Berichte.
 // Eine einzige Funktion mit ?action=..., damit die Funktionszahl des Vercel-Tarifs nicht aufgebraucht wird.
 // Umgebungsvariablen: ADMIN_SECRET, ADMIN_EMAIL (Standard support@pythiavoice.app), RESEND_API_KEY, RESEND_FROM,
-//                     Speicher (UPSTASH_REDIS_REST_URL/TOKEN) sowie die Bericht-Variablen aus _books.js
+//                     FIREBASE_SERVICE_ACCOUNT_JSON sowie die Bericht-Variablen aus _books.js
 const crypto = require("crypto");
-const store = require("./_store");
+const db = require("./_db");
 const books = require("./_books");
 
 const COOKIE = "pv_admin";
@@ -12,6 +12,7 @@ const b64 = (s) => Buffer.from(s).toString("base64url");
 const hmac = (s) => crypto.createHmac("sha256", process.env.ADMIN_SECRET).update(s).digest("base64url");
 const same = (a, b) => a.length === b.length && crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
 const adminEmail = () => process.env.ADMIN_EMAIL || "support@pythiavoice.app";
+const YMD = /^\d{4}-\d{2}-\d{2}$/;
 
 function token() {
   const body = b64(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + SESSION_SEC }));
@@ -40,24 +41,32 @@ module.exports = async (req, res) => {
   const action = String(q.action || "");
   const body = typeof req.body === "string" ? (() => { try { return JSON.parse(req.body); } catch { return {}; } })() : req.body || {};
   const reply = (code, json) => res.status(code).json(json);
+  const file = (f, type, name, disposition = "attachment") => {
+    if (!f) return reply(404, { error: "not_found" });
+    res.setHeader("Content-Type", type);
+    res.setHeader("Content-Disposition", `${disposition}; filename="${name}"`);
+    return res.status(200).send(f);
+  };
   if (!process.env.ADMIN_SECRET) return reply(503, { error: "not_configured" });
   if (req.method === "POST" && req.headers["x-requested-with"] !== "pv") return reply(403, { error: "forbidden" }); // einfacher CSRF-Schutz
   try {
     // --- Anmeldung ---
     if (action === "login-request" && req.method === "POST") {
-      const hour = Math.floor(Date.now() / 3.6e6);
-      if ((await store.incr(`pv:rl:otp:${hour}`)) > 5) return reply(429, { error: "too_many" });
+      const hourKey = `otp-${Math.floor(Date.now() / 3.6e6)}`;
+      const rate = (await db.get("authRate", hourKey)) || { n: 0 };
+      if (rate.n >= 5) return reply(429, { error: "too_many" });
+      await db.set("authRate", hourKey, { n: rate.n + 1 });
       const code = String(crypto.randomInt(100000, 1000000));
-      await store.set("pv:otp", { hash: hmac("otp:" + code), tries: 0 }, 600);
+      await db.set("authOtp", "admin", { hash: hmac("otp:" + code), tries: 0, exp: Math.floor(Date.now() / 1000) + 600 });
       await mail([adminEmail()], "Pythia Voice: Anmeldecode", `Dein Code: ${code}\n\nGültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail.`);
       return reply(200, { ok: true });
     }
     if (action === "login-verify" && req.method === "POST") {
-      const o = await store.get("pv:otp");
-      if (!o || o.tries >= 5) return reply(401, { error: "invalid" });
-      o.tries += 1; await store.set("pv:otp", o, 600);
+      const o = await db.get("authOtp", "admin");
+      if (!o || o.tries >= 5 || o.exp < Date.now() / 1000) return reply(401, { error: "invalid" });
+      await db.set("authOtp", "admin", { tries: o.tries + 1 }, { merge: true });
       if (!same(o.hash, hmac("otp:" + String(body.code || "").trim()))) return reply(401, { error: "invalid" });
-      await store.del("pv:otp");
+      await db.del("authOtp", "admin");
       res.setHeader("Set-Cookie", `${COOKIE}=${token()}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${SESSION_SEC}`);
       return reply(200, { ok: true });
     }
@@ -66,29 +75,47 @@ module.exports = async (req, res) => {
       return reply(200, { ok: true });
     }
     if (!loggedIn(req)) return reply(401, { error: "unauthorized" });
+    const post = req.method === "POST";
+    const actor = adminEmail();
 
-    // --- Daten ---
-    if (action === "me") return reply(200, { ok: true, categories: books.CATEGORIES });
-    if (action === "sales") return reply(200, { sales: await books.listSales(q.from, q.to) });
-    if (action === "expenses") return reply(200, { expenses: await books.listExpenses(q.from, q.to) });
-    if (action === "expense-add" && req.method === "POST") return reply(200, { expense: await books.addExpense(body) });
-    if (action === "expense-void" && req.method === "POST") return reply(200, { expense: await books.voidExpense(String(body.number || "")) });
+    // --- Daten lesen ---
+    if (action === "me") return reply(200, { ok: true, expenseCategories: books.EXPENSE_CATEGORIES, incomeCategories: books.INCOME_CATEGORIES });
+    if (action === "entries") return reply(200, { entries: await books.listEntries() });
+    if (action === "inbox") return reply(200, { items: await books.listInbox() });
+    if (action === "inbox-preview") { const f = await books.inboxFile(String(q.id || "")); return file(f?.data, "application/pdf", "beleg.pdf", "inline"); }
+    if (action === "receipt") { const f = await books.receiptOf(String(q.id || "")); return file(f?.data, "application/pdf", "beleg.pdf", "inline"); }
     if (action === "reports") return reply(200, { reports: await books.listReports() });
-    if (action === "report-create" && req.method === "POST") {
+    if (action === "download") {
+      const number = String(q.number || ""), type = String(q.type || "");
+      const f = await books.reportFile(number, type);
+      return file(f?.data, type === "pdf" ? "application/pdf" : "text/csv; charset=utf-8", `${number}-${type}.${type === "pdf" ? "pdf" : "csv"}`);
+    }
+    if (action === "csv" || action === "tax-package") {
+      if (!YMD.test(q.from || "") || !YMD.test(q.to || "")) return reply(400, { error: "Zeitraum ungültig" });
+      if (action === "csv") return file(Buffer.from(await books.entriesCsv(q.from, q.to), "utf8"), "text/csv; charset=utf-8", `pythiavoice-posten-${q.from}_${q.to}.csv`);
+      return file(await books.taxPackage(q.from, q.to), "application/zip", `pythiavoice-steuerberater-${q.from}_${q.to}.zip`);
+    }
+
+    // --- Daten ändern ---
+    if (!post) return reply(404, { error: "unknown_action" });
+    if (action === "sync") {
+      if (!YMD.test(body.from || "") || !YMD.test(body.to || "")) return reply(400, { error: "Zeitraum ungültig" });
+      return reply(200, { synced: await books.syncStripe(body.from, body.to) });
+    }
+    if (action === "entry-add") { const entries = await books.addEntry(body, actor); return reply(201, { entry: entries[0], entries }); }
+    if (action === "entry-update") return reply(200, { entry: await books.updateEntry(String(body.id || ""), body) });
+    if (action === "entry-void") return reply(200, { entry: await books.voidEntry(String(body.id || "")) });
+    if (action === "inbox-start") return reply(201, { item: await books.inboxStart(body, actor) });
+    if (action === "inbox-chunk") { await books.inboxChunk(String(q.id || ""), Number(q.index), String(body.data || "")); return reply(200, { ok: true }); }
+    if (action === "inbox-finish") return reply(200, { item: await books.inboxFinish(String(q.id || ""), Number(body.chunks)) });
+    if (action === "inbox-delete") { await books.deleteInbox(String(body.id || "")); return reply(200, { ok: true }); }
+    if (action === "receipt-assign") return reply(200, { receipt: await books.assignReceipt(String(body.id || ""), String(body.inboxId || "")) });
+    if (action === "report-create") {
       const rep = await books.createReport(body.from, body.to);
       let mailed = false;
       if (body.mail !== false) { await books.mailReport(rep); mailed = true; }
       const { files, ...meta } = rep;
       return reply(200, { report: meta, mailed });
-    }
-    if (action === "download") {
-      const rep = await books.getReport(String(q.number || ""));
-      const type = String(q.type || "");
-      if (!rep || !rep.files[type]) return reply(404, { error: "not_found" });
-      const ext = type === "pdf" ? "pdf" : "csv";
-      res.setHeader("Content-Type", type === "pdf" ? "application/pdf" : "text/csv; charset=utf-8");
-      res.setHeader("Content-Disposition", `attachment; filename="${rep.number}-${type}.${ext}"`);
-      return res.status(200).send(Buffer.from(rep.files[type], "base64"));
     }
     return reply(404, { error: "unknown_action" });
   } catch (e) {

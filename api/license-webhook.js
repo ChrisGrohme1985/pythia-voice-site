@@ -1,5 +1,5 @@
 // Webhook von Stripe: nach bezahlter Checkout-Sitzung Lizenzschlüssel erzeugen und per E-Mail senden.
-// Umgebungsvariablen: PYTHIA_PAYMENT_LINKS (plink_…, Komma-getrennt), STRIPE_WEBHOOK_SECRET (ggf. "whsec_test,whsec_live"), PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
+// Umgebungsvariablen: PYTHIA_PAYMENT_LINKS (Diktat) und PYTHIA_VOICE_LINKS (Sprachnachrichten), je plink_…, Komma-getrennt; STRIPE_WEBHOOK_SECRET (ggf. "whsec_test,whsec_live"), PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
 const crypto = require("crypto");
 const { issue } = require("./_license");
 const { invoicePdf, belegNr } = require("./_invoice");
@@ -26,7 +26,7 @@ function validSignature(body, header, secrets) {
 }
 
 // Markenmail: Tabellen-Layout mit Inline-Styles (so zeigen es auch Outlook und Gmail richtig an), Logo als gehostetes PNG
-function mailHtml(key) {
+function mailHtml(key, product) {
   const T = "font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0f1830;font-size:16px;line-height:1.6";
   const block = (h, intro, steps, outro) => `
     <h2 style="margin:0 0 8px;font-size:20px;color:#0f1830">${h}</h2>
@@ -44,11 +44,11 @@ function mailHtml(key) {
       <span style="font-size:24px;font-weight:700;color:#f5f1e6;letter-spacing:-0.5px">Pythia Voice</span>
     </td></tr>
     <tr><td style="padding:28px 28px 8px">
-      ${block("Danke für deinen Kauf!", "Hier ist dein Lizenzschlüssel:", "So aktivierst du ihn: App öffnen, bei der Testphase-Karte den Schlüssel einfügen und auf „Aktivieren“ tippen.", "Gültig ohne Ablauf. Bewahre diese Mail gut auf.")}
+      ${block("Danke für deinen Kauf!", `Hier ist dein Lizenzschlüssel für ${product.de}:`, "So aktivierst du ihn: App öffnen, bei der Testphase-Karte den Schlüssel einfügen und auf „Aktivieren“ tippen.", "Gültig ohne Ablauf. Bewahre diese Mail gut auf.")}
     </td></tr>
     <tr><td style="padding:8px 28px"><hr style="border:0;border-top:1px solid #e6e1d2"></td></tr>
     <tr><td style="padding:8px 28px 28px">
-      ${block("Thank you for your purchase!", "Here is your license key:", "To activate: open the app, paste the key into the trial card and tap “Activate”.", "It never expires. Please keep this e-mail.")}
+      ${block("Thank you for your purchase!", `Here is your license key for ${product.en}:`, "To activate: open the app, paste the key into the trial card and tap “Activate”.", "It never expires. Please keep this e-mail.")}
     </td></tr>
     <tr><td align="center" style="background:#f6f3ea;padding:16px 20px;font-size:13px;color:#4a5470">
       Fragen? Antworte einfach auf diese Mail. · Questions? Just reply to this e-mail.<br>
@@ -60,7 +60,7 @@ function mailHtml(key) {
 </td></tr></table></body></html>`;
 }
 
-async function sendMail(to, key, session) {
+async function sendMail(to, key, session, product) {
   // Beleg als PDF anhängen; scheitert die Erzeugung, geht der Schlüssel trotzdem raus
   let attachments;
   try {
@@ -76,8 +76,8 @@ async function sendMail(to, key, session) {
       from: process.env.RESEND_FROM,
       to,
       reply_to: "support@pythiavoice.app", // Antworten der Kunden landen im echten Postfach
-      subject: "Dein Pythia-Voice-Lizenzschlüssel / Your Pythia Voice license key",
-      html: mailHtml(key),
+      subject: `Dein Lizenzschlüssel: ${product.de} / Your license key: ${product.en}`,
+      html: mailHtml(key, product),
       ...(attachments && { attachments }),
       text:
         `Danke für deinen Kauf!\n\nDein Lizenzschlüssel:\n\n${key}\n\n` +
@@ -103,10 +103,10 @@ module.exports = async (req, res) => {
   const paid = (ev?.type === "checkout.session.completed" && s?.payment_status === "paid") || ev?.type === "checkout.session.async_payment_succeeded";
   if (!paid || !s?.id || !email) return res.status(200).json({ ignored: true });
   // Das Stripe-Konto wird auch für andere Produkte genutzt: nur Käufe über unseren Zahlungslink bekommen einen Schlüssel
-  const links = (process.env.PYTHIA_PAYMENT_LINKS || "").split(",").map((x) => x.trim()).filter(Boolean);
-  if (!links.includes(s.payment_link)) return res.status(200).json({ ignored: true });
+  const product = books.productOf(s.payment_link);
+  if (!product) return res.status(200).json({ ignored: true });
   try {
-    await sendMail(email, issue(s.id), s);
+    await sendMail(email, issue(s.id, product.version), s, product);
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.error(e.message); // kein Schlüssel und keine Adresse im Log

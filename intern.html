@@ -25,12 +25,38 @@
 
   <section id="app" hidden>
     <nav class="tabs" aria-label="Bereiche">
-      <button data-tab="reports" class="on">Berichte</button>
-      <button data-tab="expenses">Ausgaben</button>
-      <button data-tab="sales">Einnahmen</button>
+      <button data-tab="fin" class="on">Finanzen</button>
+      <button data-tab="reports">Berichte</button>
+      <button data-tab="inbox">Beleg-Inbox</button>
     </nav>
 
-    <div id="tab-reports" class="panel">
+    <div id="tab-fin" class="panel">
+      <div class="row">
+        <label>Von<input type="date" id="fFrom"></label>
+        <label>Bis<input type="date" id="fTo"></label>
+        <label>Art<select id="fType"><option value="">Alle</option><option value="income">Einnahmen</option><option value="expense">Ausgaben</option></select></label>
+        <label>Suche<input id="fQ" placeholder="Nummer, Partei, Beschreibung"></label>
+      </div>
+      <p class="quick">
+        <button class="link" data-range="month" type="button">Dieser Monat</button> ·
+        <button class="link" data-range="lastmonth" type="button">Letzter Monat</button> ·
+        <button class="link" data-range="year" type="button">Dieses Jahr</button> ·
+        <button class="link" data-range="lastyear" type="button">Letztes Jahr</button> ·
+        <button class="link" data-range="all" type="button">Alles</button>
+      </p>
+      <div class="kpis" id="kpis"></div>
+      <p class="row">
+        <button class="btn primary" id="newExp" type="button">+ Ausgabe</button>
+        <button class="btn ghost" id="newInc" type="button">+ Einnahme</button>
+        <button class="btn ghost" id="syncBtn" type="button">Stripe abgleichen</button>
+        <button class="btn ghost" id="csvBtn" type="button">CSV-Export</button>
+        <button class="btn ghost" id="zipBtn" type="button">Steuerberater-Paket</button>
+      </p>
+      <p id="finMsg" class="msg" role="status"></p>
+      <div class="scroll"><table id="finTable"><thead><tr><th>Nummer</th><th>Datum</th><th>Art</th><th>Partei</th><th>Beschreibung</th><th>Kategorie</th><th>Betrag</th><th>Beleg</th><th></th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div id="tab-reports" class="panel" hidden>
       <h2>Bericht erzeugen</h2>
       <form id="repForm" class="row">
         <label>Von<input type="date" id="rFrom" required></label>
@@ -38,39 +64,35 @@
         <label class="chk"><input type="checkbox" id="rMail" checked> per Mail an mich</label>
         <button class="btn primary" type="submit">Erzeugen</button>
       </form>
-      <p class="quick">
-        <button class="link" data-range="lastmonth" type="button">Letzter Monat</button> ·
-        <button class="link" data-range="month" type="button">Dieser Monat</button> ·
-        <button class="link" data-range="year" type="button">Dieses Jahr</button> ·
-        <button class="link" data-range="lastyear" type="button">Letztes Jahr</button>
-      </p>
       <p id="repMsg" class="msg" role="status"></p>
       <h2>Gespeicherte Berichte</h2>
       <div class="scroll"><table id="repTable"><thead><tr><th>Nummer</th><th>Zeitraum</th><th>Einnahmen</th><th>Ausgaben</th><th>Ergebnis</th><th>Dateien</th></tr></thead><tbody></tbody></table></div>
     </div>
 
-    <div id="tab-expenses" class="panel" hidden>
-      <h2>Ausgabe erfassen</h2>
-      <form id="expForm" class="grid">
-        <label>Datum<input type="date" id="eDate" required></label>
-        <label>Lieferant<input id="eVendor" required maxlength="120"></label>
-        <label>Betrag (€, brutto)<input id="eAmount" inputmode="decimal" required placeholder="12,50"></label>
-        <label>Kategorie<select id="eCat"></select></label>
-        <label class="wide">Beschreibung<input id="eDesc" maxlength="300"></label>
-        <label class="wide">Notiz<input id="eNote" maxlength="300"></label>
-        <p><button class="btn primary" type="submit">Speichern</button></p>
-      </form>
-      <p id="expMsg" class="msg" role="status"></p>
-      <h2>Ausgaben</h2>
-      <div class="scroll"><table id="expTable"><thead><tr><th>Beleg</th><th>Datum</th><th>Lieferant</th><th>Beschreibung</th><th>Kategorie</th><th>Betrag</th><th></th></tr></thead><tbody></tbody></table></div>
-    </div>
-
-    <div id="tab-sales" class="panel" hidden>
-      <h2>Einnahmen (Rechnungen)</h2>
-      <div class="scroll"><table id="saleTable"><thead><tr><th>Nummer</th><th>Datum</th><th>E-Mail</th><th>Betrag</th></tr></thead><tbody></tbody></table></div>
+    <div id="tab-inbox" class="panel" hidden>
+      <h2>Beleg-Inbox</h2>
+      <p>PDF-Belege hier ablegen, später einer Ausgabe zuordnen. Höchstens 15 MB je Datei.</p>
+      <p><input type="file" id="inboxFile" accept="application/pdf,.pdf" multiple></p>
+      <p id="inboxMsg" class="msg" role="status"></p>
+      <div class="scroll"><table id="inboxTable"><thead><tr><th>Datei</th><th>Größe</th><th></th></tr></thead><tbody></tbody></table></div>
     </div>
   </section>
 </main>
+
+<dialog id="dlg">
+  <form id="entForm" method="dialog" class="grid">
+    <h2 id="dlgTitle" class="wide">Posten</h2>
+    <label>Datum<input type="date" id="eDate" required></label>
+    <label>Betrag (€, brutto)<input id="eAmount" inputmode="decimal" required placeholder="12,50"></label>
+    <label id="partyLbl">Lieferant<input id="eParty" maxlength="120"></label>
+    <label>Kategorie<select id="eCat"></select></label>
+    <label class="wide">Beschreibung<input id="eDesc" maxlength="300"></label>
+    <label id="recWrap">Wiederholen<select id="eRec"><option value="">Einmalig</option><option value="monthly">Monatlich</option><option value="quarterly">Vierteljährlich</option><option value="yearly">Jährlich</option></select></label>
+    <label id="recUntilWrap">Bis<input type="date" id="eUntil"></label>
+    <label id="rcptWrap" class="wide">Beleg aus der Inbox<select id="eInbox"><option value="">Keiner</option></select></label>
+    <p class="wide"><button class="btn primary" type="submit" id="entSave">Speichern</button> <button class="link" type="button" id="entCancel">Abbrechen</button></p>
+  </form>
+</dialog>
 <script src="/intern.js"></script>
 </body>
 </html>
