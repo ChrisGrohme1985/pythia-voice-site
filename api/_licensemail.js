@@ -20,24 +20,29 @@ ${rows}
 </td></tr></table></body></html>`;
 }
 
+/** Link, der die App öffnet und den Schlüssel einlöst; der Schlüssel steht im Fragment und erreicht so nie einen Server. */
+const openLink = (key) => `https://www.pythiavoice.app/open#${key}`;
+
 // Markenmail: Tabellen-Layout mit Inline-Styles (so zeigen es auch Outlook und Gmail richtig an), Logo als gehostetes PNG
 function mailHtml(key, product) {
   const T = "font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0f1830;font-size:16px;line-height:1.6";
-  const block = (h, intro, steps, outro) => `
+  const link = openLink(key);
+  const block = (h, intro, button, steps, outro) => `
     <h2 style="margin:0 0 8px;font-size:20px;color:#0f1830">${h}</h2>
     <p style="margin:0 0 14px">${intro}</p>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="background:#fff8e1;border:2px solid #e9b949;border-radius:12px;padding:18px 10px">
       <span style="font-family:Consolas,'Courier New',monospace;font-size:20px;font-weight:700;letter-spacing:1px;color:#101a33;word-break:break-all">${key}</span>
     </td></tr></table>
+    <p style="margin:16px 0 0;text-align:center"><a href="${link}" style="display:inline-block;background:#e9b949;color:#101a33;font-weight:700;text-decoration:none;border-radius:999px;padding:13px 26px">${button}</a></p>
     <p style="margin:14px 0 0">${steps}</p>
     <p style="margin:10px 0 0;color:#4a5470;font-size:14px">${outro}</p>`;
   return shell(`
     <tr><td style="padding:28px 28px 8px">
-      ${block("Danke für deinen Kauf!", `Hier ist dein Lizenzschlüssel für ${product.de}:`, "So aktivierst du ihn: App öffnen, bei der Testphase-Karte den Schlüssel einfügen und auf „Aktivieren“ tippen.", "Gültig ohne Ablauf. Bewahre diese Mail gut auf.")}
+      ${block("Danke für deinen Kauf!", `Hier ist dein Lizenzschlüssel für ${product.de}:`, "In der App freischalten", "Am Handy genügt ein Tippen auf den Knopf. Sonst: Schlüssel kopieren, die App öffnen, sie erkennt ihn selbst oder du fügst ihn bei der Testphase-Karte ein.", "Gültig ohne Ablauf. Bewahre diese Mail gut auf.")}
     </td></tr>
     <tr><td style="padding:8px 28px"><hr style="border:0;border-top:1px solid #e6e1d2"></td></tr>
     <tr><td style="padding:8px 28px 28px">
-      ${block("Thank you for your purchase!", `Here is your license key for ${product.en}:`, "To activate: open the app, paste the key into the trial card and tap “Activate”.", "It never expires. Please keep this e-mail.")}
+      ${block("Thank you for your purchase!", `Here is your license key for ${product.en}:`, "Activate in the app", "On your phone, just tap the button. Otherwise copy the key and open the app: it recognizes the key, or paste it into the trial card.", "It never expires. Please keep this e-mail.")}
     </td></tr>
   `);
 }
@@ -84,7 +89,8 @@ Dein Lizenzschlüssel:
 ${key}
 
 ` +
-        `So aktivierst du ihn: App öffnen, bei der Testphase-Karte den Schlüssel einfügen und auf „Aktivieren“ tippen.
+        `Am Handy: ${openLink(key)}
+Oder Schlüssel kopieren und die App öffnen, sie erkennt ihn selbst.
 
 ` +
         `Thank you for your purchase!
@@ -94,7 +100,8 @@ Your license key:
 ${key}
 
 ` +
-        `To activate: open the app, paste the key into the trial card and tap “Activate”.
+        `On your phone: ${openLink(key)}
+Or copy the key and open the app, it recognizes it.
 `,
     }),
   });
