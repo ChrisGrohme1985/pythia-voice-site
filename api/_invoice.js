@@ -50,6 +50,36 @@ function invoicePage(doc, fonts, s, nr) {
   t("Bezahlt per Stripe. Der Betrag ist beglichen.", 56, 412, 10, false, colors.gray);
 }
 
+/** Gutschrift (Erstattung) zu einer Rechnung. c: {number, date, amount (Cent), refNumber, email, name, reason} */
+function creditPage(doc, fonts, c) {
+  const p = doc.addPage([595, 842]);
+  const t = writer(p, fonts);
+  if (fonts.logo) p.drawImage(fonts.logo, { x: 56, y: 744, width: 64, height: 64 });
+  const x0 = fonts.logo ? 134 : 56;
+  t("Pythia Voice", x0, 788, 20, true);
+  SELLER.forEach((l, i) => t(l, x0, 766 - i * 14, 10, false, colors.gray));
+  t("Gutschrift (Erstattung)", 56, 650, 16, true);
+  t("Gutschriftnummer:", 56, 620); t(c.number, 190, 620);
+  t("Datum:", 56, 602); t(de(c.date), 190, 602);
+  t("Zu Rechnung:", 56, 584); t(c.refNumber || "-", 190, 584);
+  t("Kunde (E-Mail):", 56, 566); t(c.email || "-", 190, 566);
+  if (c.name) { t("Name:", 56, 548); t(c.name, 190, 548); }
+  t("Leistung", 56, 512, 11, true); t("Betrag", 470, 512, 11, true);
+  p.drawLine({ start: { x: 56, y: 504 }, end: { x: 539, y: 504 }, thickness: 0.7, color: colors.gray });
+  t("Erstattung zu " + (c.refNumber || "der Rechnung"), 56, 486);
+  t("-" + eur(c.amount), 470, 486);
+  p.drawLine({ start: { x: 56, y: 472 }, end: { x: 539, y: 472 }, thickness: 0.7, color: colors.gray });
+  t("Erstattungsbetrag", 56, 450, 12, true); t("-" + eur(c.amount), 470, 450, 12, true);
+  t(KLEIN, 56, 412, 10);
+  t("Der Betrag wird über das ursprüngliche Zahlungsmittel erstattet.", 56, 394, 10, false, colors.gray);
+}
+
+async function creditPdf(c) {
+  const doc = await PDFDocument.create();
+  creditPage(doc, await fontsFor(doc), c);
+  return Buffer.from(await doc.save());
+}
+
 /** @param sessions Stripe-Checkout-Sitzungen, @param numbers Map Sitzungs-ID → Rechnungsnummer (optional). */
 async function invoicePdf(sessions, numbers = {}) {
   const doc = await PDFDocument.create();
@@ -58,4 +88,4 @@ async function invoicePdf(sessions, numbers = {}) {
   return Buffer.from(await doc.save());
 }
 
-module.exports = { invoicePdf, invoicePage, fontsFor, writer, colors, belegNr, eur, day, de, safe, KLEIN, SELLER };
+module.exports = { invoicePdf, invoicePage, creditPdf, creditPage, fontsFor, writer, colors, belegNr, eur, day, de, safe, KLEIN, SELLER };

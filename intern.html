@@ -181,6 +181,22 @@
   </form>
 </dialog>
 
+<!-- Erstattung auslösen -->
+<dialog id="rdlg">
+  <form id="refundForm" method="dialog">
+    <h2>Erstattung auslösen</h2>
+    <p class="sub" id="rInfo"></p>
+    <div class="grid">
+      <label>Betrag (€)<input id="rAmount" inputmode="decimal" required></label>
+      <label>Grund<select id="rReason"><option value="requested_by_customer">Kunde wünscht Erstattung</option><option value="duplicate">Doppelte Zahlung</option><option value="fraudulent">Betrug</option></select></label>
+      <label class="wide">Interne Notiz<input id="rNote" maxlength="300"></label>
+      <label class="chk wide"><input type="checkbox" id="rNotify" checked> Kunde per E-Mail informieren (Gutschrift als PDF)</label>
+    </div>
+    <p class="sub">Die Erstattung geht sofort an Stripe, wird als Gutschrift gebucht und dem Verkauf zugeordnet. Der Lizenzschlüssel bleibt technisch gültig.</p>
+    <p class="actions"><button class="btn primary" type="submit" id="rSave">Jetzt erstatten</button> <button class="link" type="button" id="rCancel">Abbrechen</button></p>
+  </form>
+</dialog>
+
 <!-- Beleg ansehen -->
 <dialog id="pdlg" class="wide-dlg">
   <div class="dlg-head"><h2 id="pTitle">Beleg</h2><button class="link" type="button" id="pClose">Schließen</button></div>

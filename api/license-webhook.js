@@ -47,6 +47,11 @@ module.exports = async (req, res) => {
   let ev;
   try { ev = JSON.parse(body.toString("utf8")); } catch { return res.status(400).end(); }
   const s = ev?.data?.object;
+  // In Stripe ausgelöste Erstattungen: als Gutschrift buchen und dem Verkauf zuordnen (Stripe-Ereignis charge.refunded)
+  if (ev?.type === "charge.refunded") {
+    try { await books.syncRefundFromCharge(s); return res.status(200).json({ ok: true }); }
+    catch (e) { console.error("Erstattung: " + e.message); return res.status(500).end(); }
+  }
   const email = s?.customer_details?.email || s?.customer_email;
   // Nur bezahlte Checkout-Sitzungen (auch verzögerte Zahlarten); alles andere bestätigen wir ohne Aktion
   const paid = (ev?.type === "checkout.session.completed" && s?.payment_status === "paid") || ev?.type === "checkout.session.async_payment_succeeded";

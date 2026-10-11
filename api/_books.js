@@ -144,7 +144,8 @@ async function invoiceFor(session) {
   const { doc } = await db.numbered(ENTRIES, id, "PV", new Date(session.created * 1000).getUTCFullYear(), (number) => ({
     number, type: "income", source: "stripe", date: inv.day(session.created), created: session.created, amount: session.amount_total || 0,
     category: "Verkauf (Stripe)", project: "Pythia Voice", party: email, email, description: (productOf(session.payment_link) || PRODUCTS[0]).de, item: (productOf(session.payment_link) || PRODUCTS[0]).item,
-    session: session.id, link: session.payment_link || "", version: (productOf(session.payment_link) || PRODUCTS[0]).version,
+    session: session.id, payment_intent: typeof session.payment_intent === "string" ? session.payment_intent : session.payment_intent?.id || "",
+    link: session.payment_link || "", version: (productOf(session.payment_link) || PRODUCTS[0]).version,
     name: String(session.customer_details?.name || "").trim(), ...splitName(session.customer_details?.name),
     fee: 0, refunded: 0, void: false, createdAt: now(),
   }));
@@ -183,7 +184,11 @@ async function syncStripe(from, to) {
     const ch = s.payment_intent?.latest_charge;
     const fee = ch?.balance_transaction?.fee || 0, refunded = ch?.amount_refunded || 0;
     const nm = String(s.customer_details?.name || "").trim();
-    if (e.fee !== fee || e.refunded !== refunded || (nm && !e.name)) await db.set(ENTRIES, e.id, { fee, refunded, ...(nm && !e.name ? { name: nm, ...splitName(nm) } : {}) }, { merge: true });
+    const pi = s.payment_intent?.id || "";
+    if (e.fee !== fee || (nm && !e.name) || (pi && !e.payment_intent)) {
+      await db.set(ENTRIES, e.id, { fee, ...(pi && !e.payment_intent ? { payment_intent: pi } : {}), ...(nm && !e.name ? { name: nm, ...splitName(nm) } : {}) }, { merge: true });
+    }
+    if (refunded > 0) await bookMissingRefunds({ ...e, payment_intent: e.payment_intent || pi }, refunded);
   }
   return sessions.length;
 }
@@ -195,7 +200,7 @@ async function listLicenses(issue) {
     return { id: g.id, number: g.number, date: g.date, product: product.de, firstName: g.firstName, lastName: g.lastName, email: g.email,
       amount: 0, refunded: 0, key: g.key, source: "manuell", note: g.note || "", mailedAt: g.mailedAt || 0 };
   });
-  const sales = (await listEntries()).filter((e) => e.source === "stripe").sort((a, b) => b.number.localeCompare(a.number)).map((e) => {
+  const sales = (await listEntries()).filter((e) => e.source === "stripe" && e.type === "income").sort((a, b) => b.number.localeCompare(a.number)).map((e) => {
     let key = "";
     try { key = issue(e.session, e.version || 1); } catch { /* Signierschlüssel nicht gesetzt */ }
     const product = PRODUCTS.find((p) => p.version === (e.version || 1)) || PRODUCTS[0];
@@ -226,6 +231,112 @@ async function grantLicense(input, issue) {
 }
 
 async function markMailed(id) { await db.set(GRANTS, id, { mailedAt: now() }, { merge: true }); }
+
+// ---------- Erstattungen ----------
+
+/**
+ * Gutschrift ("GS-JJJJ-0001") zu einem Stripe-Verkauf. Die Kennung hängt am Gesamtbetrag nach der Erstattung:
+ * Auslösung hier und Meldung aus Stripe landen so auf demselben Dokument und buchen nie doppelt.
+ */
+async function createRefundDoc(sale, { amount, total, reason = "", note = "", actor = "", pending = false, stripeRefund = "" }) {
+  const id = `rf_${sale.id}_${total}`;
+  const { doc, created } = await db.numbered(ENTRIES, id, "GS", new Date().getUTCFullYear(), (number) => ({
+    number, type: "refund", source: "stripe", date: new Date().toISOString().slice(0, 10), amount, project: sale.project || "Pythia Voice",
+    refOf: sale.id, refNumber: sale.number, party: sale.email || sale.party || "", email: sale.email || "", name: sale.name || "",
+    session: sale.session, category: "Erstattung", description: `Erstattung zu ${sale.number}`, reason, note, pending, stripeRefund,
+    void: false, createdBy: actor, createdAt: now(),
+  }));
+  if (created) await db.set(ENTRIES, sale.id, { refunded: total }, { merge: true });
+  return { id, doc: { id, ...doc }, created };
+}
+
+const bookedRefunds = async (saleId) => (await listEntries()).filter((x) => x.type === "refund" && x.refOf === saleId && !x.void).reduce((a, x) => a + x.amount, 0);
+
+/** Stripe meldet insgesamt `total` erstattet; was noch nicht als Gutschrift gebucht ist, wird nachgebucht (z. B. im Dashboard ausgelöst). */
+async function bookMissingRefunds(sale, total) {
+  const booked = await bookedRefunds(sale.id);
+  if (total <= booked) return null;
+  return createRefundDoc(sale, { amount: total - booked, total, reason: "in Stripe ausgelöst" });
+}
+
+/** Meldung `charge.refunded` aus dem Webhook. Nur Verkäufe, die wir kennen (über payment_intent), werden gebucht. */
+async function syncRefundFromCharge(charge) {
+  const pi = typeof charge?.payment_intent === "string" ? charge.payment_intent : charge?.payment_intent?.id;
+  if (!pi || !(charge.amount_refunded > 0)) return null;
+  const sale = (await listEntries()).find((e) => e.source === "stripe" && e.type === "income" && e.payment_intent === pi);
+  return sale ? bookMissingRefunds(sale, charge.amount_refunded) : null;
+}
+
+async function stripeRefundCall(sale, amount, reason, rfId) {
+  if (!process.env.STRIPE_REFUND_KEY) throw new Error("STRIPE_REFUND_KEY fehlt (eingeschränkter Stripe-Schlüssel mit Schreibrecht für Erstattungen)");
+  let pi = sale.payment_intent;
+  if (!pi && process.env.STRIPE_READ_KEY) pi = (await stripeGet(`checkout/sessions/${encodeURIComponent(sale.session)}`, [])).payment_intent;
+  if (!pi) throw new Error("Zahlung bei Stripe nicht gefunden (payment_intent fehlt)");
+  const body = new URLSearchParams({ payment_intent: pi, amount: String(amount), reason, "metadata[invoice]": sale.number, "metadata[entry]": sale.id });
+  const r = await fetch("https://api.stripe.com/v1/refunds", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${process.env.STRIPE_REFUND_KEY}`, "Content-Type": "application/x-www-form-urlencoded", "Idempotency-Key": `pv-${rfId}` },
+    body,
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error("Stripe: " + (j.error?.message || r.status));
+  return j;
+}
+
+/**
+ * Erstattung auslösen: erst die Gutschrift buchen (reserviert Betrag und Nummer, verhindert Doppelklick),
+ * dann bei Stripe erstatten. Scheitert Stripe, wird die Gutschrift storniert und der Verkauf unverändert gelassen.
+ */
+async function refundSale(saleId, { amount, reason, note, notify = true } = {}, actor = "") {
+  const sale = await db.get(ENTRIES, saleId);
+  if (!sale || sale.source !== "stripe" || sale.type !== "income") throw new Error("Nur Stripe-Verkäufe lassen sich erstatten");
+  if (sale.void) throw new Error("Stornierte Posten lassen sich nicht erstatten");
+  const s = { id: saleId, ...sale };
+  const booked = await bookedRefunds(saleId);
+  const remaining = s.amount - booked;
+  const cents_ = String(amount ?? "").trim() === "" ? remaining : cents(amount); // "5,00" und "5.00" gleichermaßen; leer = Rest
+  if (!(cents_ > 0) || cents_ > remaining) throw new Error(`Betrag ungültig (höchstens ${num(remaining)} €)`);
+  const why = ["requested_by_customer", "duplicate", "fraudulent"].includes(reason) ? reason : "requested_by_customer";
+  const total = booked + cents_;
+  const rf = await createRefundDoc(s, { amount: cents_, total, reason: why, note: String(note || "").slice(0, 300), actor, pending: true });
+  if (!rf.created) throw new Error("Diese Erstattung ist bereits gebucht");
+  let stripe;
+  try { stripe = await stripeRefundCall(s, cents_, why, rf.id); }
+  catch (e) {
+    await db.set(ENTRIES, rf.id, { void: true, pending: false, failure: e.message }, { merge: true });
+    await db.set(ENTRIES, saleId, { refunded: booked }, { merge: true });
+    throw e;
+  }
+  await db.set(ENTRIES, rf.id, { pending: false, stripeRefund: stripe.id || "", stripeStatus: stripe.status || "" }, { merge: true });
+  const credit = { ...rf.doc, pending: false, stripeRefund: stripe.id || "" };
+  let mailed = false;
+  if (notify && s.email) { try { await mailCreditNote(credit); mailed = true; } catch (e) { console.error("Gutschrift-Mail: " + e.message); } }
+  return { credit, mailed };
+}
+
+async function mailCreditNote(c) {
+  const pdf = await inv.creditPdf({ number: c.number, date: c.date, amount: c.amount, refNumber: c.refNumber, email: c.email, name: c.name });
+  const r = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: process.env.RESEND_FROM, to: [c.email], reply_to: "support@pythiavoice.app",
+      subject: `Erstattung ${num(c.amount)} € / Refund ${num(c.amount)} €`,
+      text: `Wir haben ${num(c.amount)} € zu deiner Rechnung ${c.refNumber} erstattet. Das Geld kommt über dein ursprüngliches Zahlungsmittel zurück, das dauert meist einige Werktage. Die Gutschrift hängt an.\n\n` +
+        `We have refunded ${num(c.amount)} € for your invoice ${c.refNumber}. The money returns via your original payment method, usually within a few business days. The credit note is attached.\n`,
+      attachments: [{ filename: `Gutschrift-${c.number}.pdf`, content: pdf.toString("base64") }],
+    }),
+  });
+  if (!r.ok) throw new Error(`Mailversand ${r.status}`);
+}
+
+/** Beleg als PDF zu einem Posten: Rechnung bei Stripe-Verkauf, Gutschrift bei Erstattung. */
+async function documentPdf(id) {
+  const e = await db.get(ENTRIES, id);
+  if (!e || e.source !== "stripe") return null;
+  if (e.type === "refund") return inv.creditPdf({ number: e.number, date: e.date, amount: e.amount, refNumber: e.refNumber, email: e.email, name: e.name });
+  return inv.invoicePdf([asSession({ id, ...e })], { [asSession({ id, ...e }).id]: e.number });
+}
 
 // ---------- Belege (PDF) ----------
 
@@ -358,7 +469,7 @@ async function reportPdf(number, from, to, entries, t) {
     asc.filter((e) => e.type === "income").map((e) => [e.number, inv.de(e.date), e.party, num(e.amount), num(e.fee)]));
   table("Ausgaben", ["Nummer", "Datum", "Lieferant / Beschreibung", "Betrag €", "Status"], [56, 150, 220, 430, 490],
     asc.filter((e) => e.type === "expense").map((e) => [e.number, inv.de(e.date), `${e.party}${e.description ? " - " + e.description : ""}`, num(e.amount), e.void ? "storniert" : ""]));
-  const sales = asc.filter((e) => e.source === "stripe" && !e.void);
+  const sales = asc.filter((e) => e.source === "stripe" && e.type === "income" && !e.void);
   if (sales.length && sales.length <= 200) for (const e of sales) inv.invoicePage(doc, fonts, asSession(e), e.number);
   return Buffer.from(await doc.save());
 }
@@ -440,7 +551,7 @@ async function taxPackage(from, to, project = "") {
   if (!YMD.test(from || "") || !YMD.test(to || "") || from > to) throw new Error("Zeitraum ungültig");
   const entries = (await listEntries()).filter((e) => inRange(e, from, to) && (!project || projectOf(e) === project)).sort((a, b) => a.number.localeCompare(b.number));
   const head = ["Nummer", "Datum", "Art", "Quelle", "Projekt", "Partei", "Kategorie", "Beschreibung", "Brutto EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Beleg", "Status"];
-  const rows = entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party,
+  const rows = entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : e.type === "refund" ? "Erstattung" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party,
     e.category, e.description, num(e.amount), num(e.fee), num(e.refunded), e.receiptStatus === "ready" ? e.receiptFilename : "", e.void ? "storniert" : "gültig"]);
   const files = [{ name: "posten.csv", data: Buffer.from(csv(head, rows), "utf8") }];
   for (const e of entries) {
@@ -449,7 +560,8 @@ async function taxPackage(from, to, project = "") {
       const b = await db.getBlob(BLOBS, e.receiptBlobId).catch(() => null);
       if (b) files.push({ name: `Belege/${e.number}_${cleanName(e.receiptFilename)}`, data: b.data });
     }
-    if (e.source === "stripe") files.push({ name: `Rechnungen/${e.number}.pdf`, data: await inv.invoicePdf([asSession(e)], { [asSession(e).id]: e.number }) });
+    if (e.source === "stripe" && e.type === "income") files.push({ name: `Rechnungen/${e.number}.pdf`, data: await inv.invoicePdf([asSession(e)], { [asSession(e).id]: e.number }) });
+    if (e.type === "refund") files.push({ name: `Gutschriften/${e.number}.pdf`, data: await documentPdf(e.id) });
   }
   return zipStore(files);
 }
@@ -458,12 +570,12 @@ async function taxPackage(from, to, project = "") {
 async function entriesCsv(from, to, project = "") {
   const entries = (await listEntries()).filter((e) => inRange(e, from, to) && (!project || projectOf(e) === project)).sort((a, b) => a.number.localeCompare(b.number));
   return csv(["Nummer", "Datum", "Art", "Quelle", "Projekt", "Partei", "Kategorie", "Beschreibung", "Einnahme EUR", "Ausgabe EUR", "Stripe-Gebühr EUR", "Erstattet EUR", "Status"],
-    entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party, e.category,
-      e.description, e.type === "income" ? num(e.amount) : "", e.type === "expense" ? num(e.amount) : "", num(e.fee), num(e.refunded), e.void ? "storniert" : "gültig"]));
+    entries.map((e) => [e.number, e.date, e.type === "income" ? "Einnahme" : e.type === "refund" ? "Erstattung" : "Ausgabe", e.source === "stripe" ? "Stripe" : "manuell", projectOf(e), e.party, e.category,
+      e.description, e.type === "income" ? num(e.amount) : "", e.type === "expense" ? num(e.amount) : e.type === "refund" ? "-" + num(e.amount) : "", num(e.fee), num(e.refunded), e.void ? "storniert" : "gültig"]));
 }
 
 module.exports = {
   PROJECTS, projectOf, byProject, assignProject, lockReason, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
-  productOf, totals, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
+  productOf, totals, refundSale, syncRefundFromCharge, documentPdf, listLicenses, grantLicense, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };

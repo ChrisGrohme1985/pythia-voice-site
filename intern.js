@@ -144,15 +144,15 @@
     fill("finTable", pageRows.map((e) => {
       const rcpt = document.createElement("td");
       if (e.receiptStatus === "ready") rcpt.append(link(`/api/admin?action=receipt&id=${encodeURIComponent(e.id)}`, "PDF", true));
+      else if (e.source === "stripe") rcpt.append(link(`/api/admin?action=invoice&id=${encodeURIComponent(e.id)}`, e.type === "refund" ? "Gutschrift" : "Rechnung", true));
       else if (e.type === "expense" && !e.void) rcpt.append(btn("zuordnen", () => openAssign({ entry: e })));
       const act = document.createElement("td");
       act.className = "cell-actions";
       if (e.void) { act.textContent = "storniert"; act.classList.add("muted"); }
+      else if (e.type === "refund") { if (e.pending) { act.textContent = "wird erstattet …"; act.classList.add("muted"); } }
       else if (lockOf(e)) {
-        const l = document.createElement("span");
-        l.className = "lock"; l.textContent = "gesperrt"; l.title = `${lockOf(e)}: eindeutig zugeordnet, nicht änderbar`;
-        act.append(l);
-        if (e.source !== "stripe") act.append(" ", btn("Stornieren", async () => {
+        if (e.source === "stripe") { if (e.amount - (e.refunded || 0) > 0) act.append(btn("Erstatten", () => openRefund(e))); }
+        else act.append(btn("Stornieren", async () => {
           if (confirm(`${e.number} stornieren? Die Nummer bleibt erhalten.`)) { await api("entry-void", { method: "POST", body: { id: e.id } }); loadFin(); }
         }));
       } else {
@@ -162,10 +162,10 @@
       }
       const kind = document.createElement("td");
       const pill = document.createElement("span");
-      pill.className = "pill " + e.type; pill.textContent = e.type === "income" ? "Einnahme" : "Ausgabe";
+      pill.className = "pill " + (e.type === "refund" ? "expense" : e.type); pill.textContent = e.type === "income" ? "Einnahme" : e.type === "refund" ? "Erstattung" : "Ausgabe";
       kind.append(pill);
       const proj = document.createElement("td");
-      if (e.void || lockOf(e)) { proj.textContent = projectOf(e); if (lockOf(e)) proj.title = `${lockOf(e)}: nicht änderbar`; }
+      if (e.void || lockOf(e)) proj.textContent = projectOf(e);
       else {
         const sel = document.createElement("select");
         sel.className = "mini"; sel.setAttribute("aria-label", `Projekt für ${e.number}`);
@@ -183,7 +183,7 @@
       cat.textContent = e.category;
       desc.append(cat);
       const row = [td(e.number), td(de(e.date)), kind, proj, td(e.party, "clip"), desc,
-        td((e.type === "expense" ? "-" : "") + eur(e.amount), "r " + (e.type === "income" ? "pos" : "neg")), rcpt, act];
+        td((e.type === "income" ? "" : "-") + eur(e.amount), "r " + (e.type === "income" ? "pos" : "neg")), rcpt, act];
       if (e.void) row.forEach((c) => c.classList.add("void"));
       return row;
     }), 9);
@@ -243,6 +243,30 @@
       closeDlg(); loadFin();
       if (!$("tab-inbox").hidden) loadInbox();
     } catch (e) { msg("finMsg", "Fehler: " + e.message, true); closeDlg(); }
+  };
+
+  // --- Erstattung auslösen (Stripe + Gutschrift) ---
+  let refunding = null;
+  function openRefund(e) {
+    refunding = e;
+    const rest = e.amount - (e.refunded || 0);
+    $("rInfo").textContent = `${e.number} · ${e.party} · bezahlt ${eur(e.amount)}${e.refunded ? `, bereits erstattet ${eur(e.refunded)}` : ""}, noch erstattbar ${eur(rest)}`;
+    $("rAmount").value = (rest / 100).toFixed(2).replace(".", ",");
+    $("rNote").value = ""; $("rNotify").checked = Boolean(e.email);
+    $("rdlg").showModal();
+  }
+  $("rCancel").onclick = () => $("rdlg").close();
+  $("refundForm").onsubmit = async (ev) => {
+    ev.preventDefault();
+    if (!confirm(`${$("rAmount").value} € jetzt bei Stripe erstatten? Das lässt sich nicht zurücknehmen.`)) return;
+    $("rSave").disabled = true;
+    try {
+      const r = await api("refund", { method: "POST", body: { id: refunding.id, amount: $("rAmount").value, reason: $("rReason").value, note: $("rNote").value, notify: $("rNotify").checked } });
+      $("rdlg").close();
+      msg("finMsg", `Erstattet: ${r.credit.number}${r.mailed ? ", Kunde per Mail informiert" : ""}.`);
+      loadFin();
+    } catch (e) { $("rdlg").close(); msg("finMsg", "Fehler: " + e.message, true); }
+    finally { $("rSave").disabled = false; }
   };
 
   // --- Beleg einem Posten zuordnen: aus der Inbox heraus (Ausgabe wählen) oder aus der Tabelle (Beleg wählen) ---

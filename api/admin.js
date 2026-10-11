@@ -124,6 +124,7 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
     }
     if (action === "entries") return reply(200, { entries: await books.listEntries() });
     if (action === "inbox") return reply(200, { items: await books.listInbox() });
+    if (action === "invoice") { const f = await books.documentPdf(String(q.id || "")); return file(f, "application/pdf", "beleg.pdf", "inline"); }
     if (action === "inbox-preview") { const f = await books.inboxFile(String(q.id || "")); return file(f?.data, "application/pdf", "beleg.pdf", "inline"); }
     if (action === "receipt") { const f = await books.receiptOf(String(q.id || "")); return file(f?.data, "application/pdf", "beleg.pdf", "inline"); }
     if (action === "reports") return reply(200, { reports: await books.listReports() });
@@ -147,6 +148,10 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
     if (action === "entry-add") { const entries = await books.addEntry(body, actor); return reply(201, { entry: entries[0], entries }); }
     if (action === "entry-update") return reply(200, { entry: await books.updateEntry(String(body.id || ""), body) });
     if (action === "entry-project") return reply(200, { entry: await books.assignProject(String(body.id || ""), String(body.project || "")) });
+    if (action === "refund") {
+      const r = await books.refundSale(String(body.id || ""), { amount: body.amount, reason: body.reason, note: body.note, notify: body.notify !== false }, actor);
+      return reply(200, r);
+    }
     if (action === "entry-void") return reply(200, { entry: await books.voidEntry(String(body.id || "")) });
     if (action === "inbox-start") return reply(201, { item: await books.inboxStart(body, actor) });
     if (action === "inbox-chunk") { await books.inboxChunk(String(q.id || ""), Number(q.index), String(body.data || "")); return reply(200, { ok: true }); }
