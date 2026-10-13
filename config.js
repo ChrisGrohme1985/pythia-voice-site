@@ -3,6 +3,6 @@ window.PV = {
   buyUrl: "https://buy.stripe.com/aFacN64Wu8AlbAH6900oM00",   // Stripe-Zahlungslink Diktat (Live); leer = Knopf springt zum Download-Abschnitt
   voiceBuyUrl: "https://buy.stripe.com/9B614oagO5o948f54W0oM01", // Stripe-Zahlungslink Sprachnachrichten (Live)
   apkUrl: "https://github.com/ChrisGrohme1985/pythia-voice-site/releases/latest/download/PythiaVoice.apk", // GitHub-Release; stets die neueste Fassung   // Direktdownload der APK (Variante "direct")
-  recapBuyUrl: "",  // Stripe-Zahlungslink Pythia Recap; leer = Knopf springt zum Download-Abschnitt
+  recapBuyUrl: "https://buy.stripe.com/7sY14ogFc03P5cj9lc0oM02", // Stripe-Zahlungslink Pythia Recap (Live); leer = Knopf springt zum Download-Abschnitt
   recapApkUrl: "",  // Direktdownload der Recap-APK (GitHub-Release); leer = "bald verfügbar"
 };
