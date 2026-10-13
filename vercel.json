@@ -1,6 +1,14 @@
 {
   "cleanUrls": true,
   "crons": [{ "path": "/api/monthly-report", "schedule": "0 6 1 * *" }],
+  "rewrites": {
+    "beforeFiles": [
+      { "source": "/api/:path*", "has": [{ "type": "host", "value": "grohme.dev" }], "destination": "/api/:path*" },
+      { "source": "/:path*", "has": [{ "type": "host", "value": "grohme.dev" }], "destination": "/grohme/:path*" },
+      { "source": "/api/:path*", "has": [{ "type": "host", "value": "www.grohme.dev" }], "destination": "/api/:path*" },
+      { "source": "/:path*", "has": [{ "type": "host", "value": "www.grohme.dev" }], "destination": "/grohme/:path*" }
+    ]
+  },
   "headers": [
     { "source": "/intern", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow" } ] },
     { "source": "/api/:path*", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow" }, { "key": "Cache-Control", "value": "no-store" } ] },
@@ -8,7 +16,7 @@
       { "key": "X-Content-Type-Options", "value": "nosniff" },
       { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
       { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-      { "key": "Content-Security-Policy", "value": "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'" }
+      { "key": "Content-Security-Policy", "value": "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; frame-src 'self' data:; base-uri 'none'; form-action 'self'" }
     ] }
   ]
 }
