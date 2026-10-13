@@ -1,12 +1,10 @@
-// Interner Bereich (/intern, auf grohme.dev unter /intern): Anmeldung mit E-Mail und Passwort, Passwort vergessen per Code, Finanzen, Belege, Berichte,
-// dazu die Produkte der Startseite (Firestore, siehe _products.js) und das Postfach (Resend: empfangen und senden).
+// Interner Bereich (/intern): Anmeldung mit E-Mail und Passwort, Passwort vergessen per Code (Muster aus zuhause-web), Finanzen, Belege und Berichte.
 // Eine einzige Funktion mit ?action=..., damit die Funktionszahl des Vercel-Tarifs nicht aufgebraucht wird.
 // Umgebungsvariablen: ADMIN_SECRET, ADMIN_EMAIL (Standard support@pythiavoice.app), RESEND_API_KEY, RESEND_FROM,
-//                     FIREBASE_SERVICE_ACCOUNT_JSON sowie die Bericht-Variablen aus _books.js; für das Postfach MAIL_FROM (sonst RESEND_FROM)
+//                     FIREBASE_SERVICE_ACCOUNT_JSON sowie die Bericht-Variablen aus _books.js
 const crypto = require("crypto");
 const db = require("./_db");
 const books = require("./_books");
-const products = require("./_products");
 const { issue } = require("./_license");
 const { sendLicenseMail } = require("./_licensemail");
 
@@ -51,20 +49,6 @@ async function mail(to, subject, text) {
   if (!r.ok) throw new Error(`Mailversand ${r.status}`);
 }
 
-// --- Postfach: Resend speichert die empfangenen Mails, hier wird nur gelesen und gesendet ---
-async function resend(path, init = {}) {
-  const r = await fetch(`https://api.resend.com${path}`, { ...init, headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" } });
-  const j = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(`Resend ${r.status}${j.message ? ": " + j.message : ""}`);
-  return j;
-}
-async function sendMail({ to, subject, text }) {
-  to = String(to || "").trim(); subject = String(subject || "").trim().slice(0, 200); text = String(text || "").slice(0, 20000);
-  if (!/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(to)) throw new Error("Empfänger-Adresse ist ungültig");
-  if (!subject || !text.trim()) throw new Error("Betreff und Text dürfen nicht leer sein");
-  return resend("/emails", { method: "POST", body: JSON.stringify({ from: process.env.MAIL_FROM || process.env.RESEND_FROM, to: [to], subject, text }) });
-}
-
 module.exports = async (req, res) => {
   res.setHeader("Cache-Control", "no-store");
   const q = req.query || {};
@@ -77,11 +61,6 @@ module.exports = async (req, res) => {
     res.setHeader("Content-Disposition", `${disposition}; filename="${name}"`);
     return res.status(200).send(f);
   };
-  // Öffentlich und nur lesend: die Startseite holt ihre Karten hierüber. Vor der Anmeldung, damit sie auch ohne Sitzung funktioniert.
-  if (action === "public-products") {
-    res.setHeader("Cache-Control", "public, s-maxage=60");
-    return reply(200, { products: await products.load() });
-  }
   if (!process.env.ADMIN_SECRET) return reply(503, { error: "not_configured" });
   if (req.method === "POST" && req.headers["x-requested-with"] !== "pv") return reply(403, { error: "forbidden" }); // einfacher CSRF-Schutz
   try {
@@ -104,7 +83,7 @@ module.exports = async (req, res) => {
       await db.set("authRate", rk, { n: rate.n + 1 });
       const code = String(crypto.randomInt(100000, 1000000));
       await db.set("authOtp", "admin", { hash: hmac("otp:" + code), tries: 0, exp: Math.floor(Date.now() / 1000) + 600 });
-      await mail([adminEmail()], "Interner Bereich: Code zum Festlegen des Passworts", `Dein Code: ${code}
+      await mail([adminEmail()], "Pythia Voice: Code zum Festlegen des Passworts", `Dein Code: ${code}
 
 Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort bleibt unverändert.`);
       return reply(200, { ok: true });
@@ -148,13 +127,6 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
       const { product, ...license } = g;
       return reply(201, { license: { ...license, product: product.de }, mailed });
     }
-    if (action === "products") return reply(200, { products: await products.load() });
-    if (action === "mails") return reply(200, { mails: (await resend("/emails/receiving?limit=100")).data || [] });
-    if (action === "mail") {
-      const id = String(q.id || "");
-      if (!/^[\w-]{8,64}$/.test(id)) return reply(400, { error: "Mail-ID ungültig" });
-      return reply(200, { mail: await resend(`/emails/receiving/${id}`) });
-    }
     if (action === "entries") return reply(200, { entries: await books.listEntries() });
     if (action === "inbox") return reply(200, { items: await books.listInbox() });
     if (action === "invoice") { const f = await books.documentPdf(String(q.id || "")).catch((e) => { console.error("Rechnung: " + e.message); return null; }); return file(f, "application/pdf", "rechnung.pdf", "inline"); }
@@ -174,8 +146,6 @@ Gültig 10 Minuten. Nicht angefordert? Dann ignoriere diese Mail, dein Passwort 
 
     // --- Daten ändern ---
     if (!post) return reply(404, { error: "unknown_action" });
-    if (action === "products-save") return reply(200, { products: await products.save(body.products) });
-    if (action === "mail-send") { await sendMail(body); return reply(200, { ok: true }); }
     if (action === "sync-flowunion") {
       if (!YMD.test(body.from || "") || !YMD.test(body.to || "")) return reply(400, { error: "Zeitraum ungültig" });
       return reply(200, await books.syncFlowUnion(body.from, body.to));
