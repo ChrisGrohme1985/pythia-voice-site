@@ -16,7 +16,7 @@ const REPORTS = "financeReports", REPORT_BLOBS = "financeReportBlobs";
 const EXPENSE_CATEGORIES = ["Software und Abos", "Domain und Hosting", "Werbung", "Recht und Beratung", "Gebühren und Beiträge", "Hardware", "Sonstiges"];
 const INCOME_CATEGORIES = ["Verkauf (Stripe)", "Sonstige Einnahme"];
 // Zuordnung: ein Projekt oder "Allgemein" für Posten, die für alles gelten (z. B. Steuerberater, Büro)
-const PROJECTS = ["Pythia Voice", "FlowUnion", "Allgemein"];
+const PROJECTS = ["Pythia Voice", "Pythia Recap", "FlowUnion", "Allgemein"];
 const projectOf = (e) => (PROJECTS.includes(e.project) ? e.project : e.source === "stripe" ? "Pythia Voice" : "Allgemein");
 const RECURRENCES = { monthly: 1, quarterly: 3, yearly: 12 };
 const YMD = /^\d{4}-\d{2}-\d{2}$/;
@@ -130,6 +130,7 @@ async function voidEntry(id) {
 const ids = (v) => String(v || "").split(",").map((s) => s.trim()).filter(Boolean);
 const PRODUCTS = [
   { env: "PYTHIA_PAYMENT_LINKS", version: 1, de: "Pythia Voice (Diktat)", en: "Pythia Voice (dictation)", item: "Lebenslange Lizenz für die Android-App Pythia Voice (digital)" },
+  { env: "PYTHIA_RECAP_LINKS", version: 3, project: "Pythia Recap", de: "Pythia Recap", en: "Pythia Recap", item: "Lebenslange Lizenz für die Android-App Pythia Recap (digital)" },
   { env: "PYTHIA_VOICE_LINKS", version: 2, de: "Pythia Voice Sprachnachrichten", en: "Pythia Voice voice messages", item: "Lebenslange Lizenz Pythia Voice Sprachnachrichten (digital)" },
 ];
 /** Produkt zu einem Zahlungslink; null, wenn der Kauf nicht zu uns gehört (z. B. FlowUnion im selben Stripe-Konto). */
@@ -147,7 +148,7 @@ async function invoiceFor(session) {
   const email = session.customer_details?.email || session.customer_email || "";
   const { doc } = await db.numbered(ENTRIES, id, "PV", new Date(session.created * 1000).getUTCFullYear(), (number) => ({
     number, type: "income", source: "stripe", date: inv.day(session.created), created: session.created, amount: session.amount_total || 0,
-    category: "Verkauf (Stripe)", project: "Pythia Voice", party: email, email, description: (productOf(session.payment_link) || PRODUCTS[0]).de, item: (productOf(session.payment_link) || PRODUCTS[0]).item,
+    category: "Verkauf (Stripe)", project: (productOf(session.payment_link) || PRODUCTS[0]).project || "Pythia Voice", party: email, email, description: (productOf(session.payment_link) || PRODUCTS[0]).de, item: (productOf(session.payment_link) || PRODUCTS[0]).item,
     session: session.id, payment_intent: typeof session.payment_intent === "string" ? session.payment_intent : session.payment_intent?.id || "",
     link: session.payment_link || "", version: (productOf(session.payment_link) || PRODUCTS[0]).version,
     name: String(session.customer_details?.name || "").trim(), ...splitName(session.customer_details?.name),
@@ -227,7 +228,7 @@ async function listLicenses(issue) {
  * @param issue Funktion (orderId, version) → Schlüssel
  */
 async function grantLicense(input, issue) {
-  const product = PRODUCTS.find((p) => p.version === (input.product === "voice" ? 2 : 1));
+  const product = PRODUCTS.find((p) => p.version === (input.product === "voice" ? 2 : input.product === "recap" ? 3 : 1));
   const firstName = String(input.firstName || "").trim().slice(0, 80), lastName = String(input.lastName || "").trim().slice(0, 80);
   const email = String(input.email || "").trim().slice(0, 160);
   if (!lastName) throw new Error("Nachname fehlt");

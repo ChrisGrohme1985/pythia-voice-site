@@ -441,7 +441,7 @@
     const list = licVisible();
     const rows = list.slice((licPage.page - 1) * licPage.size, licPage.page * licPage.size);
     fill("licTable", rows.map((l) => {
-      const label = /Sprachnachrichten/.test(l.product) ? "Sprachnachrichten" : "Basis";
+      const label = /Sprachnachrichten/.test(l.product) ? "Sprachnachrichten" : /Recap/.test(l.product) ? "Recap" : "Basis";
       const nr = td(l.number, "nw tip");
       nr.dataset.tip = [`Produkt: ${label}`, `Quelle: ${l.source === "manuell" ? "manuell" : "Stripe"}`, l.note && `Notiz: ${l.note}`].filter(Boolean).join("\n");
       const name = td(`${l.firstName} ${l.lastName}`.trim() || "–", "nw name" + (l.email ? " tip" : ""));
