@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.pythiavoice.app/</loc></url>
+  <url><loc>https://www.pythiavoice.app/recap</loc></url>
   <url><loc>https://www.pythiavoice.app/en/</loc></url>
   <url><loc>https://www.pythiavoice.app/de/</loc></url>
   <url><loc>https://www.pythiavoice.app/it/</loc></url>
@@ -25,4 +26,28 @@
   <url><loc>https://www.pythiavoice.app/ro/</loc></url>
   <url><loc>https://www.pythiavoice.app/el/</loc></url>
   <url><loc>https://www.pythiavoice.app/he/</loc></url>
+  <url><loc>https://www.pythiavoice.app/en/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/de/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/it/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/es/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/fr/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/pt/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/ru/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/tr/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/nl/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/pl/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/ja/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/zh/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/ko/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/ar/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/hi/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/id/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/vi/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/uk/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/th/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/sv/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/cs/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/ro/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/el/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/he/recap</loc></url>
 </urlset>
