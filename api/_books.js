@@ -270,11 +270,24 @@ async function createRefundDoc(sale, { amount, total, reason = "", note = "", ac
 
 const bookedRefunds = async (saleId) => (await listEntries()).filter((x) => x.type === "refund" && x.refOf === saleId && !x.void).reduce((a, x) => a + x.amount, 0);
 
+/**
+ * Vollständig erstattete Verkäufe sperren ihren Lizenzschlüssel (Sammlung licenseRevoked, geprüft in activate.js).
+ * shortcut: Teilerstattungen sperren nicht; die Sperre wird nicht automatisch aufgehoben, falls eine Gutschrift später storniert wird.
+ */
+async function revokeIfFullyRefunded(sale, total) {
+  if (!sale.session || !(total >= sale.amount)) return false;
+  const { idFor } = require("./_license");
+  await db.set("licenseRevoked", idFor(sale.session), { session: sale.session, number: sale.number || "", at: now() }, { merge: true });
+  return true;
+}
+
 /** Stripe meldet insgesamt `total` erstattet; was noch nicht als Gutschrift gebucht ist, wird nachgebucht (z. B. im Dashboard ausgelöst). */
 async function bookMissingRefunds(sale, total) {
   const booked = await bookedRefunds(sale.id);
   if (total <= booked) return null;
-  return createRefundDoc(sale, { amount: total - booked, total, reason: "in Stripe ausgelöst" });
+  const doc = await createRefundDoc(sale, { amount: total - booked, total, reason: "in Stripe ausgelöst" });
+  await revokeIfFullyRefunded(sale, total);
+  return doc;
 }
 
 /** Erstattung zu einer Zahlung (Ereignis refund.created/refund.updated): Gesamtstand bei Stripe holen und fehlende Gutschriften buchen. */
@@ -335,10 +348,11 @@ async function refundSale(saleId, { amount, reason, note, notify = true } = {}, 
     throw e;
   }
   await db.set(ENTRIES, rf.id, { pending: false, stripeRefund: stripe.id || "", stripeStatus: stripe.status || "" }, { merge: true });
+  const revoked = await revokeIfFullyRefunded(s, total);
   const credit = { ...rf.doc, pending: false, stripeRefund: stripe.id || "" };
   let mailed = false;
   if (notify && s.email) { try { await mailCreditNote(credit); mailed = true; } catch (e) { console.error("Gutschrift-Mail: " + e.message); } }
-  return { credit, mailed };
+  return { credit, mailed, revoked };
 }
 
 async function mailCreditNote(c) {

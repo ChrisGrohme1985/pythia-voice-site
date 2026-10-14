@@ -71,6 +71,6 @@ module.exports = async (req, res) => {
     return res.status(500).end(); // Stripe wiederholt die Zustellung; derselbe Schlüssel entsteht erneut
   }
 };
-// shortcut: Erstattungen widerrufen den Schlüssel nicht (offline prüfbar); bei Bedarf eine Sperrliste ergänzen.
+// Vollständige Erstattungen sperren den Schlüssel über die Sperrliste (_books.js: revokeIfFullyRefunded, activate.js); die App fragt regelmäßig nach.
 // Falls Vercel den Body schon geparst hat (Signatur schlägt dann fehl): bodyParser deaktivieren oder den Web-Handler nutzen.
 module.exports.config = { api: { bodyParser: false } };

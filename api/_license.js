@@ -25,9 +25,14 @@ function privateKey() {
  * Gleiche Bestellung ergibt immer denselben Schlüssel: Die 128-Bit-ID wird aus der Bestell-ID abgeleitet (HMAC),
  * so erzeugt ein erneut zugestellter Webhook keinen zweiten Schlüssel.
  */
-function issue(orderId, version = 1, idSecret = process.env.PYTHIA_ID_SECRET) {
+/** Schlüssel-ID (hex) einer Bestellung: dieselbe Ableitung wie in issue(), damit eine Erstattung den richtigen Schlüssel findet. */
+function idFor(orderId, idSecret = process.env.PYTHIA_ID_SECRET) {
   if (!idSecret) throw new Error("PYTHIA_ID_SECRET fehlt");
-  const id = crypto.createHmac("sha256", idSecret).update(String(orderId)).digest().subarray(0, 16);
+  return crypto.createHmac("sha256", idSecret).update(String(orderId)).digest().subarray(0, 16).toString("hex");
+}
+
+function issue(orderId, version = 1, idSecret = process.env.PYTHIA_ID_SECRET) {
+  const id = Buffer.from(idFor(orderId, idSecret), "hex");
   const payload = Buffer.concat([Buffer.from([version]), id]);
   const sig = crypto.sign(null, Buffer.concat([CONTEXT, payload]), privateKey());
   return "PV-" + b32(Buffer.concat([payload, sig])).match(/.{1,5}/g).join("-");
@@ -62,4 +67,4 @@ function receipt(version, idHex, deviceHashHex) {
   return Buffer.concat([payload, crypto.sign(null, Buffer.concat([RECEIPT_CONTEXT, payload]), privateKey())]).toString("base64url");
 }
 
-module.exports = { issue, b32, parse, receipt };
+module.exports = { issue, idFor, b32, parse, receipt };

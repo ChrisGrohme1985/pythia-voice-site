@@ -1,5 +1,6 @@
 // Aktivierung eines Lizenzschlüssels: bindet ihn an genau ein Gerät und stellt dafür eine signierte Quittung aus.
-// POST { key, device } → 200 { receipt } | 400 ungültig | 409 schon auf einem anderen Gerät | 429 zu viele Versuche.
+// POST { key, device } → 200 { receipt } | 400 ungültig | 403 gesperrt (erstattet) | 409 schon auf einem anderen Gerät | 429 zu viele Versuche.
+// Die App fragt hier regelmäßig nach (siehe Activation.kt): so greift eine Sperre auch auf Geräten, die schon aktiviert sind.
 // Der Schlüssel selbst bleibt offline prüfbar; neu ist die Bindung: wer ihn weitergibt, kann ihn nicht ein zweites Mal aktivieren.
 // Binden wir an die Geräte-ID statt an die IP-Adresse: Die IP wechselt ständig (WLAN, Mobilfunk, Unterwegs) und teilen sich viele Kunden.
 const crypto = require("crypto");
@@ -7,6 +8,7 @@ const db = require("./_db");
 const { parse, receipt } = require("./_license");
 
 const BINDINGS = "licenseBindings";
+const REVOKED = "licenseRevoked";
 
 module.exports = async (req, res) => {
   res.setHeader("Cache-Control", "no-store");
@@ -25,6 +27,7 @@ module.exports = async (req, res) => {
 
     const lic = parse(key);
     if (!lic) return res.status(400).json({ error: "invalid" });
+    if (await db.get(REVOKED, lic.idHex)) return res.status(403).json({ error: "revoked" });
     const deviceHash = crypto.createHash("sha256").update(device).digest("hex").slice(0, 32);
     const now = Date.now();
     if (!(await db.create(BINDINGS, lic.idHex, { device: deviceHash, version: lic.version, boundAt: now, lastSeen: now }))) {
