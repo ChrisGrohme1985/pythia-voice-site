@@ -28,6 +28,11 @@
     else new IntersectionObserver((es, io) => es.forEach((e) => { if (e.isIntersecting) { demo.classList.add("in-view"); io.disconnect(); } }), { threshold: 0.35 }).observe(demo);
   }
   if (P.apkUrl) document.getElementById("apk").href = P.apkUrl;
+  if (P.recapApkUrl) {
+    const r = document.getElementById("rc-apk-h");
+    r.href = P.recapApkUrl; r.hidden = false;
+    document.getElementById("rc-soon-h").hidden = true;
+  }
 
   // --- Demo: Balken steigen, der gesprochene Satz erscheint, dann der bereinigte ----------------------------
   const o = document.getElementById("oracle").dataset;

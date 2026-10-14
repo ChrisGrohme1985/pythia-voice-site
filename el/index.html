@@ -39,6 +39,7 @@
 <meta name="theme-color" content="#101A33">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style-v2.css">
 </head>
 <body>
 
@@ -60,8 +61,6 @@
       <p class="lead">Μίλα σε οποιαδήποτε εφαρμογή. Το Pythia Voice γράφει, αφαιρεί τα «εε» και κρατά τη διόρθωσή σου.</p>
       <p class="promise">Χωρίς συνδρομή. Χωρίς κρυφά κόστη. Πληρώνεις μία φορά, το χρησιμοποιείς για πάντα.</p>
       <p class="promise">Δύο άδειες χρήσης: Υπαγόρευση και Φωνητικά μηνύματα. Η κάθε μία αγοράζεται χωριστά, μία φορά, και λειτουργεί αυτόνομα.</p>
-      <p><a class="badge-new" href="#sprachnachrichten">Νέο: διαβάστε τα μεγάλα φωνητικά μηνύματα αντί να τα ακούτε →</a></p>
-      <p><a class="badge-new" href="/el/recap">Νέο: Pythia Recap, συναντήσεις συνοπτικά →</a></p>
       <div class="cta">
         <a class="btn primary" href="#download">Δοκίμασε το Pythia Voice</a>
         <a class="btn ghost" href="#preis">Δες την τιμή</a>
@@ -82,6 +81,12 @@
       <button class="replay" id="replay" type="button">Ξανά</button>
     </figure>
   </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
+    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Υπαγόρευση</span></h3><p>Μιλήστε σε οποιαδήποτε εφαρμογή και εμφανίζεται καθαρό κείμενο.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Φωνητικά μηνύματα</span></h3><p>Διαβάστε μεγάλα φωνητικά μηνύματα ως κείμενο.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-recap"><a href="/el/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Συναντήσεις και φωνητικές σημειώσεις, συνοπτικά.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+  </ul></div></section>
 
   <section class="light" id="funktionen">
     <div class="wrap">
@@ -145,6 +150,7 @@
         </div>
       </div>
       <p class="note">Κάθε άδεια αγοράζεται χωριστά και λειτουργεί αυτόνομα. Το μόνο άλλο συστατικό είναι η δική σου πρόσβαση στο Groq για αναγνώριση ομιλίας. Είναι δωρεάν για κανονική χρήση, οι όροι ορίζονται από το Groq.</p>
+      <a class="cross" href="/el/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Συναντήσεις και φωνητικές σημειώσεις, συνοπτικά.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Μάθετε περισσότερα</span></a>
     </div>
   </section>
 
@@ -201,9 +207,23 @@
         <li><b>3. Σας αρέσει; Αγοράστε άδεια</b><span>Επιλέξτε Υπαγόρευση, Φωνητικά μηνύματα ή και τα δύο. Εισαγάγετε το κλειδί στην εφαρμογή και τελειώσατε.</span></li>
       </ol>
       <p class="lead">Android 13 ή νεότερο. Δεν υπάρχει ακόμη έκδοση για iPhone.</p>
-      <div class="cta">
-        <a class="btn primary" id="apk" href="#download">Άμεση λήψη</a>
-        <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Το Google Play έρχεται σύντομα</span></span>
+      <div class="get">
+        <div class="get-card">
+          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Υπαγόρευση · Φωνητικά μηνύματα</p></div></div>
+          <p>Μιλήστε σε οποιαδήποτε εφαρμογή και εμφανίζεται καθαρό κείμενο. Διαβάστε μεγάλα φωνητικά μηνύματα ως κείμενο.</p>
+          <div class="cta">
+            <a class="btn primary" id="apk" href="#download">Άμεση λήψη</a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Το Google Play έρχεται σύντομα</span></span>
+          </div>
+        </div>
+        <div class="get-card recap">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Συναντήσεις και φωνητικές σημειώσεις, συνοπτικά.</p></div></div>
+          <p id="rc-soon-h">Το Pythia Recap είναι σχεδόν έτοιμο. Η λήψη και το κουμπί αγοράς θα εμφανιστούν εδώ μόλις κυκλοφορήσει.</p>
+          <div class="cta">
+            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Άμεση λήψη</a>
+            <a class="btn ghost" href="/el/recap">Μάθετε περισσότερα</a>
+          </div>
+        </div>
       </div>
       <p class="fine">Στην πρώτη εκκίνηση η εφαρμογή σε καθοδηγεί στη ρύθμιση σε έξι σύντομα βήματα.</p>
       <p class="setup">Η εφάπαξ ρύθμιση διαρκεί περίπου 1 λεπτό: δημιούργησε δωρεάν λογαριασμό Groq (αρκεί η σύνδεση με Google), δημιούργησε ένα κλειδί και επικόλλησέ το. Μετά απλώς υπαγορεύεις.</p>

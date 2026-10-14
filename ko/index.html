@@ -39,6 +39,7 @@
 <meta name="theme-color" content="#101A33">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style-v2.css">
 </head>
 <body>
 
@@ -60,8 +61,6 @@
       <p class="lead">어떤 앱에서든 말하세요. Pythia Voice가 받아 적고, “음…”을 지우고, 정정한 내용을 반영합니다.</p>
       <p class="promise">구독 없음. 숨은 비용 없음. 한 번 결제하고 평생 사용하세요.</p>
       <p class="promise">라이선스는 두 가지입니다: 받아쓰기와 음성 메시지. 각각 따로, 한 번만 구매하며, 단독으로 작동합니다.</p>
-      <p><a class="badge-new" href="#sprachnachrichten">신규: 긴 음성 메시지를 듣는 대신 읽어 보세요 →</a></p>
-      <p><a class="badge-new" href="/ko/recap">신규: Pythia Recap, 회의를 간단히 →</a></p>
       <div class="cta">
         <a class="btn primary" href="#download">Pythia Voice 체험하기</a>
         <a class="btn ghost" href="#preis">가격 보기</a>
@@ -82,6 +81,12 @@
       <button class="replay" id="replay" type="button">다시 보기</button>
     </figure>
   </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
+    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>받아쓰기</span></h3><p>아무 앱에서나 말하면 깔끔한 텍스트가 나타납니다.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>음성 메시지</span></h3><p>긴 음성 메시지를 텍스트로 읽으세요.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-recap"><a href="/ko/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>회의와 음성 메모를 간단히.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+  </ul></div></section>
 
   <section class="light" id="funktionen">
     <div class="wrap">
@@ -145,6 +150,7 @@
         </div>
       </div>
       <p class="note">각 라이선스는 따로 구매하며 단독으로 작동합니다. 필요한 것은 음성 인식을 위한 본인의 Groq 접근뿐입니다. 일반적인 사용은 무료이며, 조건은 Groq가 정합니다.</p>
+      <a class="cross" href="/ko/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> 회의와 음성 메모를 간단히.</span><span class="cross-p">19,99 €</span><span class="btn ghost">자세히 보기</span></a>
     </div>
   </section>
 
@@ -201,9 +207,23 @@
         <li><b>3. 마음에 드셨나요? 라이선스 구매</b><span>받아쓰기, 음성 메시지 또는 둘 다 선택하세요. 앱에 키를 입력하면 끝입니다.</span></li>
       </ol>
       <p class="lead">Android 13 이상. 아직 iPhone 버전은 없습니다.</p>
-      <div class="cta">
-        <a class="btn primary" id="apk" href="#download">바로 다운로드</a>
-        <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play 출시 예정</span></span>
+      <div class="get">
+        <div class="get-card">
+          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>받아쓰기 · 음성 메시지</p></div></div>
+          <p>아무 앱에서나 말하면 깔끔한 텍스트가 나타납니다. 긴 음성 메시지를 텍스트로 읽으세요.</p>
+          <div class="cta">
+            <a class="btn primary" id="apk" href="#download">바로 다운로드</a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play 출시 예정</span></span>
+          </div>
+        </div>
+        <div class="get-card recap">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>회의와 음성 메모를 간단히.</p></div></div>
+          <p id="rc-soon-h">Pythia Recap이 거의 준비되었습니다. 출시되는 즉시 다운로드와 구매 버튼이 여기에 나타납니다.</p>
+          <div class="cta">
+            <a class="btn primary" id="rc-apk-h" href="#download" hidden>바로 다운로드</a>
+            <a class="btn ghost" href="/ko/recap">자세히 보기</a>
+          </div>
+        </div>
       </div>
       <p class="fine">처음 실행하면 앱이 여섯 단계로 짧게 설정을 안내합니다.</p>
       <p class="setup">최초 설정은 약 1분 걸립니다. 무료 Groq 계정을 만들고(Google 로그인이면 충분합니다), 키를 만들어 붙여 넣으세요. 그다음부터는 말하기만 하면 됩니다.</p>

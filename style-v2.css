@@ -1,0 +1,110 @@
+/* Pythia Voice und Pythia Recap: gemeinsames, ruhigeres Design. Lädt nach style.css und überschreibt dessen helle Abschnitte. */
+:root { --bg: #070b16; --surface: rgba(255, 255, 255, .045); --line: rgba(255, 255, 255, .1); --r: 24px; --accent: var(--gold); }
+body.recap-page { --gold: #5fd0c0; --gold2: #b4f2e8; --violet: #3aa6a0; --accent: #5fd0c0; }
+body { background: var(--bg); text-rendering: optimizeLegibility; }
+/* Leuchtflächen hinter der ganzen Seite, damit keine flachen Streifen entstehen */
+body::before { content: ""; position: fixed; inset: 0; z-index: -2; background: radial-gradient(900px 600px at 12% -10%, rgba(124, 108, 255, .22), transparent 65%), radial-gradient(800px 560px at 95% 5%, color-mix(in srgb, var(--gold) 16%, transparent), transparent 65%), radial-gradient(900px 700px at 50% 110%, rgba(124, 108, 255, .12), transparent 70%); }
+body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .5; background-image: linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000, transparent 75%); }
+
+/* Abschnitte: überall derselbe dunkle Grund, Gliederung durch Abstand und feine Linien */
+section.light, section.dark { background: transparent; color: var(--ivory); border-radius: 0; }
+section { padding: 104px 0; }
+section.light + section.dark, section.dark + section.light { border-top: 1px solid var(--line); }
+.dark-text { color: var(--muted); }
+.note { color: var(--muted); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; line-height: 1.08; margin-bottom: 44px; text-wrap: balance; }
+.hero { padding-top: 96px; padding-bottom: 72px; }
+.hero::before { display: none; }
+h1 { font-size: clamp(2.6rem, 5.8vw, 4.6rem); line-height: 1.02; letter-spacing: -.045em; }
+.btn { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+.btn:active { transform: translateY(0) scale(.98); }
+
+/* Produktleiste: alle Produkte nebeneinander, das aktuelle ist hervorgehoben */
+.suite { padding: 0 0 8px; }
+.suite ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.suite a { position: relative; display: flex; align-items: center; gap: 16px; height: 100%; padding: 20px 22px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+.suite a:hover { transform: translateY(-3px); background: rgba(255, 255, 255, .075); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.suite a[aria-current="page"] { border-color: color-mix(in srgb, var(--accent) 60%, transparent); background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 14%, transparent), var(--surface)); }
+.suite img, .suite svg { flex: none; width: 44px; height: 44px; border-radius: 12px; }
+.suite h3 { margin: 0 0 3px; font: 750 1.05rem/1.25 var(--sans); letter-spacing: -.01em; }
+.suite h3 span { color: var(--gold2); font-weight: 600; }
+.suite p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.45; }
+.suite .arr { flex: none; margin-inline-start: auto; width: 9px; height: 9px; border-top: 2px solid var(--muted); border-inline-end: 2px solid var(--muted); transform: rotate(45deg); transition: transform .2s, border-color .2s; }
+[dir="rtl"] .suite .arr { transform: rotate(-135deg); }
+.suite a:hover .arr { border-color: var(--gold2); transform: rotate(45deg) translate(2px, -2px); }
+[dir="rtl"] .suite a:hover .arr { transform: rotate(-135deg) translate(2px, -2px); }
+
+/* Funktionen: Kachelraster, die erste Kachel ist die wichtigste */
+.rules { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: f; }
+.rules div, .rules div:hover { counter-increment: f; position: relative; background: var(--surface); border: 1px solid var(--line); border-top: 1px solid var(--line); border-radius: var(--r); padding: 30px 28px 32px; box-shadow: none; transform: none; transition: border-color .2s, background .2s; }
+.rules div:hover { border-color: color-mix(in srgb, var(--gold) 45%, transparent); background: rgba(255, 255, 255, .07); }
+.rules div::before { content: counter(f, decimal-leading-zero); display: block; margin-bottom: 18px; font: 700 .8rem var(--sans); letter-spacing: .12em; color: var(--gold); }
+.rules div:first-child, .rules div:first-child:hover { grid-column: span 2; background: linear-gradient(140deg, color-mix(in srgb, var(--gold) 20%, transparent), rgba(124, 108, 255, .12)); border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent); border-radius: var(--r); padding: 30px 28px 32px; }
+.rules div:first-child dt { font-size: 1.6rem; letter-spacing: -.02em; }
+.rules dt { color: var(--ivory); font-size: 1.15rem; margin-bottom: 8px; }
+.rules dd, .rules div:first-child dd { color: var(--muted); max-width: 38em; }
+.rules div:first-child dd { color: #d9deee; font-size: 1.05rem; }
+
+/* Ablauf */
+.steps { gap: 16px; counter-reset: s; }
+.steps li { background: var(--surface); border: 1px solid var(--line); border-top: 1px solid var(--line); border-radius: var(--r); padding: 28px; }
+.steps li::before { font-size: 3.4rem; letter-spacing: -.04em; background: linear-gradient(135deg, var(--gold2), var(--gold)); -webkit-background-clip: text; background-clip: text; }
+.setup { background: color-mix(in srgb, var(--gold) 10%, transparent); border-color: color-mix(in srgb, var(--gold) 35%, transparent); border-radius: 18px; }
+
+/* Preise */
+.tablet { border-radius: 28px; background: linear-gradient(165deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025)); border: 1px solid var(--line); box-shadow: 0 40px 80px -50px #000; }
+.tablet:first-child { border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.cross { display: flex; align-items: center; gap: 16px; margin-top: 26px; padding: 18px 22px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); transition: border-color .2s, background .2s, transform .2s; }
+.cross:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .075); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+.cross img { flex: none; border-radius: 11px; }
+.cross-t { flex: 1; min-width: 0; color: var(--muted); }
+.cross-t b { color: var(--ivory); margin-inline-end: 6px; }
+.cross-p { font: 800 1.15rem var(--sans); color: var(--gold2); white-space: nowrap; }
+.cross .btn { padding: 10px 20px; }
+
+/* Sprachnachrichten, Recap, Ton */
+.voice, .rc-teaser { background: none; border-top: 1px solid var(--line); }
+.rc-teaser { display: none; } /* ersetzt durch Produktleiste und Hinweis im Preisbereich */
+.audio-list li { background: var(--surface); border: 1px solid var(--line); color: var(--ivory); }
+
+/* Download: beide Apps nebeneinander */
+.get { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0 0 28px; }
+.get-card { display: flex; flex-direction: column; gap: 16px; padding: 28px; border-radius: 28px; background: var(--surface); border: 1px solid var(--line); }
+.get-card.recap { border-color: rgba(95, 208, 192, .35); }
+.get-card > p { margin: 0; color: var(--muted); flex: 1; }
+.get-h { display: flex; align-items: center; gap: 14px; }
+.get-h img { border-radius: 12px; }
+.get-h h3 { margin: 0; font: 800 1.35rem var(--sans); letter-spacing: -.02em; }
+.get-h p { margin: 2px 0 0; color: var(--muted); font-size: .92rem; }
+
+/* Fragen */
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: none; padding: 20px 24px; transition: border-color .2s, background .2s; }
+details:hover { background: rgba(255, 255, 255, .06); }
+details[open] { border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+summary::after { color: var(--gold); }
+details p { color: var(--muted); }
+
+footer { background: transparent; }
+
+@media (max-width: 960px) {
+  .suite ul { grid-template-columns: 1fr; }
+  .rules { grid-template-columns: 1fr 1fr; }
+  .rules div:first-child, .rules div:first-child:hover { grid-column: 1 / -1; }
+  .get { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  section { padding: 72px 0; }
+  .rules { grid-template-columns: 1fr; }
+  .cross { flex-wrap: wrap; }
+  .cross .btn { width: 100%; }
+}
+/* Inhalte gleiten beim Scrollen ein, wo der Browser es unterstützt */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rules div, .steps li, .get-card, .tablet, details, .suite li { animation: v2rise linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+    @keyframes v2rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  }
+}
+.rules div:last-child:nth-child(6) { grid-column: 1 / -1; }
+@media (max-width: 960px) { .rules div:last-child:nth-child(6) { grid-column: auto; } }
+.wrap { max-width: 1180px; } .narrow { max-width: 860px; }

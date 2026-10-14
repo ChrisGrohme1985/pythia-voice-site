@@ -39,6 +39,7 @@
 <meta name="theme-color" content="#101A33">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style-v2.css">
 </head>
 <body>
 
@@ -60,8 +61,6 @@
       <p class="lead">在任何应用里直接说。Pythia Voice 帮你写下来，去掉“呃”，并采纳你的更正。</p>
       <p class="promise">无订阅。无隐藏费用。一次付费，终身使用。</p>
       <p class="promise">两种许可：听写和语音消息。每种单独购买，一次付费，各自独立使用。</p>
-      <p><a class="badge-new" href="#sprachnachrichten">新功能：阅读长语音消息，无需再听 →</a></p>
-      <p><a class="badge-new" href="/zh/recap">新品：Pythia Recap，会议一目了然 →</a></p>
       <div class="cta">
         <a class="btn primary" href="#download">试用 Pythia Voice</a>
         <a class="btn ghost" href="#preis">查看价格</a>
@@ -82,6 +81,12 @@
       <button class="replay" id="replay" type="button">重播</button>
     </figure>
   </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
+    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>听写</span></h3><p>对任意应用说话，即出现干净的文字。</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>语音消息</span></h3><p>把长语音消息当作文字来读。</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-recap"><a href="/zh/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>会议与语音笔记，一目了然。</p></div><i class="arr" aria-hidden="true"></i></a></li>
+  </ul></div></section>
 
   <section class="light" id="funktionen">
     <div class="wrap">
@@ -145,6 +150,7 @@
         </div>
       </div>
       <p class="note">每种许可单独购买，各自独立使用。 唯一还需要的是你自己的 Groq 访问，用于语音识别。正常使用免费，条款由 Groq 决定。</p>
+      <a class="cross" href="/zh/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> 会议与语音笔记，一目了然。</span><span class="cross-p">19,99 €</span><span class="btn ghost">了解更多</span></a>
     </div>
   </section>
 
@@ -201,9 +207,23 @@
         <li><b>3. 满意？购买许可</b><span>选择听写、语音消息或两者都要。在应用中输入密钥即可。</span></li>
       </ol>
       <p class="lead">需要 Android 13 或更高版本。目前还没有 iPhone 版本。</p>
-      <div class="cta">
-        <a class="btn primary" id="apk" href="#download">直接下载</a>
-        <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play 即将上线</span></span>
+      <div class="get">
+        <div class="get-card">
+          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>听写 · 语音消息</p></div></div>
+          <p>对任意应用说话，即出现干净的文字。 把长语音消息当作文字来读。</p>
+          <div class="cta">
+            <a class="btn primary" id="apk" href="#download">直接下载</a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play 即将上线</span></span>
+          </div>
+        </div>
+        <div class="get-card recap">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>会议与语音笔记，一目了然。</p></div></div>
+          <p id="rc-soon-h">Pythia Recap 即将完成。发布后，下载和购买按钮会出现在这里。</p>
+          <div class="cta">
+            <a class="btn primary" id="rc-apk-h" href="#download" hidden>直接下载</a>
+            <a class="btn ghost" href="/zh/recap">了解更多</a>
+          </div>
+        </div>
       </div>
       <p class="fine">首次启动时，应用会用六个简短步骤带你完成设置。</p>
       <p class="setup">一次性设置大约需要 1 分钟：创建免费的 Groq 账号（用 Google 登录即可），生成密钥并粘贴。之后只管听写。</p>

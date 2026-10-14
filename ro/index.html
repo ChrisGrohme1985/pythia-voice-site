@@ -39,6 +39,7 @@
 <meta name="theme-color" content="#101A33">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style-v2.css">
 </head>
 <body>
 
@@ -60,8 +61,6 @@
       <p class="lead">Vorbește în orice aplicație. Pythia Voice scrie, scoate „ăă” și păstrează corectura ta.</p>
       <p class="promise">Fără abonament. Fără costuri ascunse. Plătești o dată, folosești pe viață.</p>
       <p class="promise">Două licențe: Dictare și Mesaje vocale. Fiecare se cumpără separat, o singură dată, și funcționează de sine stătător.</p>
-      <p><a class="badge-new" href="#sprachnachrichten">Nou: citește mesajele vocale lungi în loc să le asculți →</a></p>
-      <p><a class="badge-new" href="/ro/recap">Nou: Pythia Recap, ședințe pe scurt →</a></p>
       <div class="cta">
         <a class="btn primary" href="#download">Încearcă Pythia Voice</a>
         <a class="btn ghost" href="#preis">Vezi prețul</a>
@@ -82,6 +81,12 @@
       <button class="replay" id="replay" type="button">Din nou</button>
     </figure>
   </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
+    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dictare</span></h3><p>Vorbește în orice aplicație și apare text curat.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Mesaje vocale</span></h3><p>Citește mesajele vocale lungi ca text.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-recap"><a href="/ro/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Ședințe și note vocale, pe scurt.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+  </ul></div></section>
 
   <section class="light" id="funktionen">
     <div class="wrap">
@@ -145,6 +150,7 @@
         </div>
       </div>
       <p class="note">Fiecare licență se cumpără separat și funcționează de sine stătătoare. Singurul alt ingredient este accesul tău Groq pentru recunoașterea vorbirii. Este gratuit pentru utilizare normală, iar condițiile le stabilește Groq.</p>
+      <a class="cross" href="/ro/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Ședințe și note vocale, pe scurt.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Află mai multe</span></a>
     </div>
   </section>
 
@@ -201,9 +207,23 @@
         <li><b>3. Îți place? Cumpără o licență</b><span>Alege Dictare, Mesaje vocale sau ambele. Introdu cheia în aplicație și gata.</span></li>
       </ol>
       <p class="lead">Android 13 sau mai nou. Nu există încă o versiune pentru iPhone.</p>
-      <div class="cta">
-        <a class="btn primary" id="apk" href="#download">Descarcă direct</a>
-        <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play în curând</span></span>
+      <div class="get">
+        <div class="get-card">
+          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Dictare · Mesaje vocale</p></div></div>
+          <p>Vorbește în orice aplicație și apare text curat. Citește mesajele vocale lungi ca text.</p>
+          <div class="cta">
+            <a class="btn primary" id="apk" href="#download">Descarcă direct</a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play în curând</span></span>
+          </div>
+        </div>
+        <div class="get-card recap">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Ședințe și note vocale, pe scurt.</p></div></div>
+          <p id="rc-soon-h">Pythia Recap este aproape gata. Descărcarea și butonul de cumpărare vor apărea aici imediat ce este lansată.</p>
+          <div class="cta">
+            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Descarcă direct</a>
+            <a class="btn ghost" href="/ro/recap">Află mai multe</a>
+          </div>
+        </div>
       </div>
       <p class="fine">La prima pornire, aplicația te ghidează prin configurare în șase pași scurți.</p>
       <p class="setup">Configurarea unică durează aproximativ 1 minut: creează un cont Groq gratuit (ajunge autentificarea cu Google), generează o cheie și lipește-o. După aceea doar dictezi.</p>

@@ -39,6 +39,7 @@
 <meta name="theme-color" content="#101A33">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style-v2.css">
 </head>
 <body>
 
@@ -60,8 +61,6 @@
       <p class="lead">Mów w dowolnej aplikacji. Pythia Voice zapisze, usunie „yyy” i uwzględni twoją poprawkę.</p>
       <p class="promise">Bez abonamentu. Bez ukrytych kosztów. Płacisz raz, korzystasz do końca życia.</p>
       <p class="promise">Dwie licencje: Dyktowanie i Wiadomości głosowe. Każdą kupuje się osobno, jednorazowo, i działa samodzielnie.</p>
-      <p><a class="badge-new" href="#sprachnachrichten">Nowość: czytaj długie wiadomości głosowe zamiast ich słuchać →</a></p>
-      <p><a class="badge-new" href="/pl/recap">Nowość: Pythia Recap, spotkania w skrócie →</a></p>
       <div class="cta">
         <a class="btn primary" href="#download">Wypróbuj Pythia Voice</a>
         <a class="btn ghost" href="#preis">Zobacz cenę</a>
@@ -82,6 +81,12 @@
       <button class="replay" id="replay" type="button">Jeszcze raz</button>
     </figure>
   </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
+    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dyktowanie</span></h3><p>Mów w dowolnej aplikacji, a pojawi się czysty tekst.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Wiadomości głosowe</span></h3><p>Czytaj długie wiadomości głosowe jako tekst.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+    <li class="s-recap"><a href="/pl/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Spotkania i notatki głosowe w skrócie.</p></div><i class="arr" aria-hidden="true"></i></a></li>
+  </ul></div></section>
 
   <section class="light" id="funktionen">
     <div class="wrap">
@@ -145,6 +150,7 @@
         </div>
       </div>
       <p class="note">Każdą licencję kupuje się osobno i działa ona samodzielnie. Jedynym dodatkiem jest twój dostęp do Groq do rozpoznawania mowy. Przy zwykłym użyciu jest darmowy, warunki ustala Groq.</p>
+      <a class="cross" href="/pl/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Spotkania i notatki głosowe w skrócie.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Dowiedz się więcej</span></a>
     </div>
   </section>
 
@@ -201,9 +207,23 @@
         <li><b>3. Podoba się? Kup licencję</b><span>Wybierz Dyktowanie, Wiadomości głosowe lub obie. Wpisz klucz w aplikacji i gotowe.</span></li>
       </ol>
       <p class="lead">Android 13 lub nowszy. Wersji na iPhone’a jeszcze nie ma.</p>
-      <div class="cta">
-        <a class="btn primary" id="apk" href="#download">Pobierz bezpośrednio</a>
-        <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play wkrótce</span></span>
+      <div class="get">
+        <div class="get-card">
+          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Dyktowanie · Wiadomości głosowe</p></div></div>
+          <p>Mów w dowolnej aplikacji, a pojawi się czysty tekst. Czytaj długie wiadomości głosowe jako tekst.</p>
+          <div class="cta">
+            <a class="btn primary" id="apk" href="#download">Pobierz bezpośrednio</a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play wkrótce</span></span>
+          </div>
+        </div>
+        <div class="get-card recap">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Spotkania i notatki głosowe w skrócie.</p></div></div>
+          <p id="rc-soon-h">Pythia Recap jest prawie gotowa. Pobieranie i przycisk zakupu pojawią się tutaj zaraz po wydaniu.</p>
+          <div class="cta">
+            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Pobierz bezpośrednio</a>
+            <a class="btn ghost" href="/pl/recap">Dowiedz się więcej</a>
+          </div>
+        </div>
       </div>
       <p class="fine">Przy pierwszym uruchomieniu aplikacja przeprowadzi cię przez konfigurację w sześciu krótkich krokach.</p>
       <p class="setup">Jednorazowa konfiguracja zajmuje około 1 minuty: załóż darmowe konto Groq (wystarczy logowanie przez Google), wygeneruj klucz i wklej go. Potem po prostu dyktujesz.</p>
