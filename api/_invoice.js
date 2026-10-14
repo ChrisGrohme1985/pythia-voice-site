@@ -2,7 +2,7 @@
 // Gemeinsam genutzt vom Webhook (Beleg zur Kaufmail) und von den Berichten (_books.js).
 const { PDFDocument, StandardFonts, rgb } = require("pdf-lib");
 
-const SELLER = ["Christoph Grohme", "Im Bröltal 108", "53773 Hennef", "Deutschland", "support@pythiavoice.app"];
+const SELLER = ["Christoph Daniel Grohme", "Im Bröltal 108", "53773 Hennef (Sieg)", "Deutschland", "support@pythiavoice.app"];
 const KLEIN = "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.";
 
 const eur = (cents) => (Number(cents || 0) / 100).toFixed(2).replace(".", ",") + " €";
