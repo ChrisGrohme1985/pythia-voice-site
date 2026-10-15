@@ -32,146 +32,109 @@
 <link rel="alternate" hreflang="he" href="https://www.pythiavoice.app/he/">
 <link rel="alternate" hreflang="x-default" href="https://www.pythiavoice.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mejor que cualquier oráculo: tus palabras, con fiabilidad, por Pythia.">
-<meta property="og:description" content="Sin suscripción. Sin costes ocultos. Pagas una vez, lo usas de por vida.">
+<meta property="og:title" content="Tú hablas. Pythia escribe. Sin esfuerzo.">
+<meta property="og:description" content="Pythia Voice quita los «eh», pone la puntuación y entiende tus correcciones. Pagas una vez, sin suscripción.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
-<body>
-
-<header class="top">
-  <a class="brand" href="/es/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
-  <nav aria-label="Menu">
-    <a href="#ablauf">Cómo funciona</a>
-    <a href="#preis">Precio</a>
-    <a href="#fragen">Preguntas</a>
-    <a href="/es/recap">Pythia Recap</a>
-    <a class="nav-dl" href="#download">Descargar directamente</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es" selected>Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<body data-page="home">
+<header class="nav"><a class="brand" href="/es/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Productos<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/es/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dictado</a><a href="/es/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Mensajes de voz</a><a href="/es/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/es/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Todos los productos</a></div></div><a class="l" href="#funktionen">Funciones</a><a class="l" href="#produkte">Precio</a><a class="l" href="#fragen">Preguntas</a><a class="btn sm" id="apk-nav" href="/es/#download"><span>Descargar directamente</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es" selected>Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Mejor que cualquier oráculo: tus palabras, con fiabilidad, por Pythia.</h1>
-      <p class="lead">Habla en cualquier app. Pythia Voice lo escribe, quita los “eh” y respeta tu corrección.</p>
-      <p class="promise">Sin suscripción. Sin costes ocultos. Pagas una vez, lo usas de por vida.</p>
-      <p class="promise">Dos licencias: Dictado y Mensajes de voz. Cada una se compra por separado, una sola vez, y funciona por sí sola.</p>
-      <div class="cta">
-        <a class="btn primary" href="#download">Probar Pythia Voice</a>
-        <a class="btn ghost" href="#preis">Ver el precio</a>
-      </div>
-      <p class="fine">Prueba gratis durante 7 días o 3.000 palabras.</p>
-    </div>
-
-    <figure class="oracle" id="oracle" data-fill="eh" data-a="nos vemos a las" data-s="cinco no mejor a las" data-b="seis delante de la estación" data-out="Nos vemos a las seis delante de la estación.">
-      <div class="wave" id="wave" aria-hidden="true"></div>
-      <div class="line">
-        <span class="label">Tú dices</span>
-        <p id="said" class="said"></p>
-      </div>
-      <div class="line">
-        <span class="label">Pythia escribe</span>
-        <p id="wrote" class="wrote" aria-live="polite"></p>
-      </div>
-      <button class="replay" id="replay" type="button">Repetir</button>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dictado</span></h3><p>Habla en cualquier app y aparece texto limpio.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Mensajes de voz</span></h3><p>Lee mensajes de voz largos como texto.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/es/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Reuniones y notas de voz, al grano.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">La app en acción</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/v_home.webp" alt="Pythia Voice: Dictado" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Dictado</b><span>Habla en cualquier app y aparece texto limpio.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_msg.webp" alt="Pythia Voice: Mensajes de voz" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Mensajes de voz</b><span>Lee mensajes de voz largos como texto.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_words.webp" alt="Pythia Voice: Palabras" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Palabras</b><span>Nombres y términos técnicos que deben escribirse correctamente.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_style.webp" alt="Pythia Voice: Estilo" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Estilo</b><span>Estilo de escritura de los textos limpiados</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_snip.webp" alt="Pythia Voice: Fragmentos" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Fragmentos</b><span>Di el atajo y se inserta el texto completo.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Lo que obtienes</h2>
-      <dl class="rules">
-        <div><dt>Pagas una vez, lo usas de por vida</dt><dd>Sin suscripción, sin renovación y sin límite de palabras tras la prueba. Lo que pagas hoy es todo lo que pagas por Pythia Voice.</dd></div>
-        <div><dt>Escribe en cualquier app</dt><dd>WhatsApp, correo, notas, navegador. El botón redondo aparece sobre el teclado en cuanto tocas un campo de texto.</dd></div>
+      <div class="rv">
+        <h1>Tú hablas. Pythia escribe. Sin esfuerzo.</h1>
+        <p class="lead">Pythia Voice quita los «eh», pone la puntuación y entiende tus correcciones. Pagas una vez, sin suscripción.</p>
+        <div class="row">
+          <a class="btn" href="#download"><span>Probar Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#produkte"><span>Ver el precio</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Prueba gratis durante 7 días o 3.000 palabras.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play próximamente</span></span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/v_home.webp" alt="Dictado" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="eh" data-a="nos vemos a las" data-s="cinco no mejor a las" data-b="seis delante de la estación" data-out="Nos vemos a las seis delante de la estación.">
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <div class="line"><span class="label">Tú dices</span><p id="said" class="said"></p></div>
+          <div class="line"><span class="label">Pythia escribe</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
+          <button class="replay" id="replay" type="button">Repetir</button>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video" id="video" hidden>
+    <div class="wrap">
+      <h2>Pythia en diez segundos</h2><p class="lead" style="margin-top:14px">Hablar, enviar, listo.</p>
+      <div class="vbox bezel"><div class="core"><video controls playsinline preload="none" aria-label="Pythia en diez segundos"></video></div></div>
+    </div>
+  </section>
+
+  <section id="produkte">
+    <div class="wrap">
+      <div class="prod-head rv"><h2>Tres herramientas que te quitan el teclear.</h2><p class="lead">Sin suscripción ni costes ocultos. Compras cada licencia una vez y es tuya para siempre.</p></div>
+      <div class="cols">
+        <div class="bezel hl rv" id="diktat"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Dictado</span></h3>
+          <p class="tag">Habla y Pythia escribe: cómodo, limpio, listo.</p>
+          <p class="price">19,99 €<small>Pago único en euros.</small></p>
+          <ul><li class="key">Prueba gratis 7 días o 3.000 palabras</li><li>Más de 90 idiomas, todas las funciones</li><li>Sin límite de palabras tras la compra</li><li class="key">Actualizaciones incluidas</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Más información</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Comprar licencia</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Mensajes de voz</span></h3>
+          <p class="tag">Lee los mensajes de voz largos como texto, sin escucharlos.</p>
+          <p class="price">19,99 €<small>Pago único en euros.</small></p>
+          <ul><li class="key">Prueba gratis con 15 mensajes o 7 días</li><li>Dividido por minutos y en párrafos</li><li>Comparte desde WhatsApp y otros mensajeros</li><li class="key">Actualizaciones incluidas</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Más información</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Comprar mensajes de voz</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+          <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Recap<span>Reuniones y notas de voz, al grano.</span></h3>
+          <p class="tag">Graba una reunión y recibe un resumen listo con tareas.</p>
+          <p class="price">19,99 €<small>Pago único en euros.</small></p>
+          <ul><li class="key">Prueba gratis 7 días o 3 reuniones</li><li>Transcripción, resumen, tareas, hablantes, marcadores, exportación a PDF</li><li>Tras la compra, sin límite de duración ni de número de reuniones</li><li class="key">Actualizaciones incluidas</li></ul>
+          <div class="acts"><a class="btn ghost block" href="/es/recap"><span>Más información</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/es/recap#preis"><span>Comprar Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+      </div>
+      <p class="note">Cada licencia se compra por separado y funciona por sí sola. El único ingrediente más es tu acceso a Groq para el reconocimiento de voz. Es gratuito para un uso normal; las condiciones las fija Groq.</p>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Lo que Pythia hace por ti</h2>
+      <dl class="rules rv">
+        <div><dt>Hablar en vez de teclear</dt><dd>Toca un campo de texto, pulsa el botón redondo sobre el teclado y habla. Pythia escribe el texto ahí mismo, por ejemplo en WhatsApp, el correo o las notas.</dd></div>
         <div><dt>Ordena por ti</dt><dd>Fuera las muletillas, dentro la puntuación. Si dices “a las cinco, no, a las seis”, escribe “a las seis”.</dd></div>
         <div><dt>Más de 90 idiomas</dt><dd>Incluso mezclados en una misma frase. La app está disponible en 24 idiomas.</dd></div>
+        <div><dt>Pagas una vez, lo usas de por vida</dt><dd>Sin suscripción, sin renovación y sin límite de palabras tras la prueba. Lo que pagas hoy es todo lo que pagas por Pythia Voice.</dd></div>
         <div><dt>Reconocimiento con tu acceso a Groq</dt><dd>El reconocimiento funciona con tu propia clave de Groq. Según la documentación de Groq, el plan gratuito permite hasta 8 horas de voz al día. Groq fija los límites y puede cambiarlos.</dd></div>
         <div><dt>Se queda contigo</dt><dd>Sin cuenta. Pythia Voice no guarda audio. En los campos de contraseña el botón permanece oculto.</dd></div>
       </dl>
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
-    <div class="wrap">
-      <h2>Cómo se dicta</h2>
-      <ol class="steps">
-        <li><b>Toca</b><span>Toca un campo de texto y luego el botón redondo sobre el teclado.</span></li>
-        <li><b>Habla</b><span>Di lo que quieres escribir. Con pausas, con correcciones.</span></li>
-        <li><b>Di que has terminado</b><span>Vuelve a tocar. El texto limpio queda en el campo.</span></li>
-      </ol>
-      <p class="hint">¿Prefieres mantener pulsado? Mantén el botón, habla, suelta.</p>
-      <p class="setup">La configuración única lleva alrededor de 1 minuto: crea una cuenta gratuita de Groq (basta con iniciar sesión con Google), genera una clave y pégala. Después solo dictas.</p>
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">La app en acción</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Dictado" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Dictado</b><span>Tú hablas, Pythia escribe. Cómodo y limpio.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="Mensajes de voz" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Mensajes de voz</b><span>Lee cómodamente los mensajes de voz largos como texto.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="Palabras" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Palabras</b><span>Nombres y términos técnicos que deben escribirse correctamente.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="Estilo" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Estilo</b><span>Estilo de escritura de los textos limpiados</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="Fragmentos" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Fragmentos</b><span>Di el atajo y se inserta el texto completo.</span></figcaption></figure>
     </div>
   </section>
 
-  <section class="light" id="preis">
-    <div class="wrap">
-      <div class="price-head">
-        <h2>Dos licencias. Se paga una vez por cada una.</h2>
-        <p class="lead dark-text">Pythia Voice tiene dos licencias: Dictado y Mensajes de voz. Sin suscripción ni costes ocultos: pagas una vez por licencia y la usas para siempre.</p>
-      </div>
-      <div class="tablets">
-        <div class="tablet">
-          <p class="plan">Dictado</p>
-          <p class="plan-d">Habla en cualquier app y aparece texto limpio.</p>
-          <p class="amount"><span class="num" id="price">19,99 €</span></p>
-          <p class="sub">Pago único en euros.</p>
-          <ul>
-            <li>Prueba gratis 7 días o 3.000 palabras</li>
-            <li>Más de 90 idiomas, todas las funciones</li>
-            <li>Sin límite de palabras tras la compra</li>
-            <li>Actualizaciones incluidas</li>
-          </ul>
-          <a class="btn primary" id="buy" href="#download">Comprar licencia</a>
-        </div>
-        <div class="tablet">
-          <p class="plan">Mensajes de voz</p>
-          <p class="plan-d">Lee mensajes de voz largos como texto.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Pago único en euros.</p>
-          <ul>
-            <li>Prueba gratis con 15 mensajes o 7 días</li>
-            <li>Dividido por minutos y en párrafos</li>
-            <li>Comparte desde WhatsApp y otros mensajeros</li>
-            <li>Actualizaciones incluidas</li>
-          </ul>
-          <a class="btn primary" id="buy-voice-2" href="#download">Comprar mensajes de voz</a>
-        </div>
-      </div>
-      <p class="note">Cada licencia se compra por separado y funciona por sí sola. El único ingrediente más es tu acceso a Groq para el reconocimiento de voz. Es gratuito para un uso normal; las condiciones las fija Groq.</p>
-      <a class="cross" href="/es/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Reuniones y notas de voz, al grano.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Más información</span></a>
-    </div>
-  </section>
-
-  <section class="voice" id="sprachnachrichten">
+  <section id="sprachnachrichten">
     <div class="wrap voice-grid">
-      <div class="voice-text">
-        <p class="eyebrow">Mensajes de voz como texto</p>
+      <div class="voice-text rv">
         <h2>¿Cansado de los mensajes de voz largos?</h2>
         <p class="lead">¿Solo quieres leer rápido y ahora no puedes escuchar? ¿O no tienes paciencia para las novelas que algunas personas graban, y lees más rápido de lo que hablan? Entonces Pythia Voice es para ti: comparte el mensaje y léelo como texto.</p>
         <ul class="voice-points">
@@ -179,12 +142,13 @@
           <li>Dividido por minutos y en párrafos, cómodo para la vista</li>
           <li>Pruébalo gratis con 15 mensajes o 7 días</li>
         </ul>
-        <div class="cta">
-          <a class="btn primary" id="buy-voice" href="#download">Comprar mensajes de voz · 19,99 € pago único</a>
-          <span class="fine inline">Licencia aparte del dictado. Sin suscripción.</span>
+        <div class="row">
+          <a class="btn ghost" href="/es/pythia"><span>Más información</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Comprar mensajes de voz · 19,99 € pago único</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
+        <p class="dim" style="margin-top:14px;font-size:.92rem">Licencia aparte del dictado. Sin suscripción.</p>
       </div>
-      <figure class="vm-demo" aria-label="Pythia Voice lo convierte en texto, dividido por minutos">
+      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice lo convierte en texto, dividido por minutos">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -199,54 +163,57 @@
           <div><b>3:00</b><p>Vale, eso es todo. ¡Hasta pronto!</p></div>
         </div>
         <p class="vm-cap">Pythia Voice lo convierte en texto, dividido por minutos</p>
-      </figure>
+      </figure></div>
     </div>
   </section>
 
-  <section class="rc-teaser" id="recap">
+  <section id="ablauf">
     <div class="wrap">
-      <p class="eyebrow">Pythia Recap</p>
-      <h2>También de Pythia: Pythia Recap</h2>
-      <p class="lead">Graba o comparte una reunión y obtén transcripción, resumen y lista de tareas. Asigna quién dijo qué. 19,99 € una vez, sin suscripción.</p>
-      <a class="btn primary" href="/es/recap">Más información</a>
+      <h2 class="sec-h rv">Cómo se dicta</h2>
+      <ol class="steps rv">
+        <li><b>Toca</b><span>Toca un campo de texto y luego el botón redondo sobre el teclado.</span></li>
+        <li><b>Habla</b><span>Di lo que quieres escribir. Con pausas, con correcciones.</span></li>
+        <li><b>Di que has terminado</b><span>Vuelve a tocar. El texto limpio queda en el campo.</span></li>
+      </ol>
+      <p class="hint">¿Prefieres mantener pulsado? Mantén el botón, habla, suelta.</p>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
-      <h2>Para Android</h2>
-      <ol class="steps">
+      <h2 class="rv">Para Android</h2>
+      <ol class="steps rv" style="margin-top:32px">
         <li><b>1. Descarga la app</b><span>Descarga el APK de abajo e instálalo en tu teléfono Android.</span></li>
         <li><b>2. Pruébala</b><span>Prueba todo gratis: el dictado durante 7 días o 3.000 palabras, los mensajes de voz durante 7 días o 15 mensajes.</span></li>
         <li><b>3. ¿Te gusta? Compra una licencia</b><span>Elige Dictado, Mensajes de voz o ambas. Introduce la clave en la app y listo.</span></li>
       </ol>
-      <p class="lead">Android 13 o posterior. Todavía no hay versión para iPhone.</p>
       <div class="get">
-        <div class="get-card">
-          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Dictado · Mensajes de voz</p></div></div>
-          <p>Habla en cualquier app y aparece texto limpio. Lee mensajes de voz largos como texto.</p>
-          <div class="cta">
-            <a class="btn primary" id="apk" href="#download">Descargar directamente</a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play próximamente</span></span>
+        <div class="get-card rv">
+          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>Dictado · Mensajes de voz</p></div></div>
+          <p>Tú hablas, Pythia escribe. Cómodo y limpio. Lee cómodamente los mensajes de voz largos como texto.</p>
+          <div class="row">
+            <a class="btn" id="apk" href="#download"><span>Descargar directamente</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play próximamente</span></span>
           </div>
         </div>
-        <div class="get-card recap">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Reuniones y notas de voz, al grano.</p></div></div>
+        <div class="get-card recap rv" style="--d:.08s">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>Reuniones y notas de voz, al grano.</p></div></div>
           <p id="rc-soon-h">Pythia Recap está casi lista. La descarga y el botón de compra aparecerán aquí en cuanto se publique.</p>
-          <div class="cta">
-            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Descargar directamente</a>
-            <a class="btn ghost" href="/es/recap">Más información</a>
+          <div class="row">
+            <a class="btn teal" id="rc-apk-h" href="#download" hidden><span>Descargar directamente</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <a class="btn ghost" href="/es/recap"><span>Más información</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
           </div>
         </div>
       </div>
-      <p class="fine">En el primer arranque la app te guía por la configuración en seis pasos cortos.</p>
+      <p class="dim">Android 13 o posterior. Todavía no hay versión para iPhone.</p>
+      <p class="dim" style="margin-top:8px">En el primer arranque la app te guía por la configuración en seis pasos cortos.</p>
       <p class="setup">La configuración única lleva alrededor de 1 minuto: crea una cuenta gratuita de Groq (basta con iniciar sesión con Google), genera una clave y pégala. Después solo dictas.</p>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Preguntas frecuentes</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Preguntas frecuentes</h2>
       <details open><summary>¿De verdad es un pago único?</summary><p>Sí. Un solo pago, sin suscripción, sin renovación. El único otro servicio implicado es Groq para el reconocimiento de voz. Su plan gratuito cubre actualmente unas 8 horas de voz al día, de sobra para un uso normal. Groq fija por su cuenta sus límites y precios.</p></details>
       <details><summary>¿Qué es Groq y necesito una cuenta?</summary><p>Groq es el servicio que convierte tu voz en texto. Allí creas gratis una clave personal y la pegas en la app. La guía de la app te muestra cada toque.</p></details>
       <details><summary>¿Cuánto cuesta Groq?</summary><p>Para un uso normal, nada. Groq indica hasta 8 horas de audio Whisper al día en el plan gratuito. Groq cambia los límites: revísalos en console.groq.com.</p></details>
@@ -258,25 +225,17 @@
       <details><summary>¿Cuánto puede durar un mensaje de voz?</summary><p>Funcionan archivos de hasta 25 MB, es decir, muchas horas de habla. Un mensaje de tres minutos tarda solo segundos. Groq fija sus propios límites y puede cambiarlos.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Pruébalo 7 días gratis.</h2>
+      <p class="lead">Sin cuenta ni suscripción. Si te gusta, pagas una sola vez.</p>
+      <div class="row"><a class="btn" href="#download"><span>Probar Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/es/pythia"><span>Todos los productos</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/es/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
-      <p>Dictado y mensajes de voz para Android.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/es/recap">Pythia Recap</a>
-      <a href="/impressum">Aviso legal</a>
-      <a href="/privacy">Privacidad</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/es/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Dictado y mensajes de voz para Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/es/">Pythia Voice</a><a href="/es/recap">Pythia Recap</a><a href="/es/pythia">Todos los productos</a><a href="/impressum">Aviso legal</a><a href="/privacy">Privacidad</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/app.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

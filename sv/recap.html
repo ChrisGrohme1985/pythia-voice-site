@@ -36,72 +36,44 @@
 <meta property="og:description" content="Inget abonnemang. Inga dolda kostnader. Betala en gång, använd för alltid.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
 <body class="recap-page" data-page="recap">
-
-<header class="top">
-  <a class="brand" href="/sv/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="34" height="34"><span>Pythia Recap</span></a>
-  <nav aria-label="Menu">
-    <a href="/sv/">Pythia Voice</a>
-    <a href="#ablauf">Så fungerar det</a>
-    <a href="#preis">Pris</a>
-    <a href="#fragen">Frågor</a>
-    <a class="nav-dl" href="#download">Ladda ner direkt</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv" selected>Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<header class="nav"><a class="brand" href="/sv/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="30" height="30"><span>Pythia Recap</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produkter<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/sv/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Diktering</a><a href="/sv/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Röstmeddelanden</a><a href="/sv/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/sv/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Alla produkter</a></div></div><a class="l" href="/sv/#funktionen">Funktioner</a><a class="l" href="#preis">Pris</a><a class="l" href="/sv/#fragen">Frågor</a><a class="btn sm" id="apk-nav" href="/sv/#download"><span>Ladda ner direkt</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv" selected>Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Möten, kort och gott.</h1>
-      <p class="lead">Spela in ett möte eller dela en inspelning från Zoom, Teams eller WhatsApp. Pythia Recap skriver utskriften, sammanfattningen, besluten och din uppgiftslista. Du avgör vem som sa vad.</p>
-      <p class="promise">Inget abonnemang. Inga dolda kostnader. Betala en gång, använd för alltid.</p>
-      <div class="cta">
-        <a class="btn primary" id="buy-recap" href="#download">Köp Pythia Recap · 19,99 €</a>
-        <a class="btn ghost" href="#funktionen">Se hur det fungerar</a>
-      </div>
-      <p class="fine">För Android. Testa gratis i 7 dagar eller 3 möten. Du behöver din egen gratis Groq-nyckel.</p>
-    </div>
-
-    <figure class="rc-demo" aria-label="Från inspelning till sammanfattning">
-      <h3>Från inspelning till sammanfattning · Veckoplanering</h3>
-      <div class="rc-wave" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        <b class="t"></b><b class="w"></b><b class="s"></b>
-      </div>
-      <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>God morgon alla, vi börjar med planeringen av nästa vecka.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Jag behöver lagersiffrorna till fredag, annars kan jag inte beställa.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:41</span><div><span class="rc-sp a">Anna</span><p>Det fixar vi, jag skickar dem i morgon bitti.</p></div></div>
-      <div class="rc-sum"><p><b>★</b> Sammanfattning: lagersiffror behövs till fredag</p><p><b>☑</b> Skicka lagersiffrorna (Anna, i morgon bitti)</p></div>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="/sv/#funktionen"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Diktering</span></h3><p>Prata i vilken app som helst så visas ren text.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="/sv/#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Röstmeddelanden</span></h3><p>Läs långa röstmeddelanden som text.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/sv/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Möten och röstanteckningar, kort och gott.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Appen i användning</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/r_home.webp" alt="Pythia Recap: Spela in eller dela" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Spela in eller dela</b><span>Spela in i rummet eller dela ljud och video från Zoom, Teams, Meet, WhatsApp eller din röstinspelare. Långa möten är inga problem.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap: Markörer och bläddring" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Markörer och bläddring</b><span>Sätt markörer under inspelningen: viktigt, uppgift, talarbyte. Senare hoppar du dit och bläddrar exakt med tummen.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_tasks.webp" alt="Pythia Recap: Sammanfattning och uppgifter" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Sammanfattning och uppgifter</b><span>En kort sammanfattning, beslut, öppna frågor och en uppgiftslista med vem och när. Dela som text eller PDF.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Det här får du</h2>
-      <dl class="rules">
+      <div class="rv">
+        <h1>Möten, kort och gott.</h1>
+        <p class="lead">Spela in ett möte eller dela en inspelning från Zoom, Teams eller WhatsApp. Pythia Recap skriver utskriften, sammanfattningen, besluten och din uppgiftslista. Du avgör vem som sa vad.</p>
+        <div class="row">
+          <a class="btn" id="buy-recap" href="#preis"><span>Köp Pythia Recap · 19,99 €</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#funktionen"><span>Se hur det fungerar</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>För Android. Testa gratis i 7 dagar eller 3 möten. Du behöver din egen gratis Groq-nyckel.</span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core rc-demo" aria-label="Från inspelning till sammanfattning">
+          <h3>Från inspelning till sammanfattning · Veckoplanering</h3>
+          <div class="rc-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="t"></b><b class="w"></b><b class="s"></b></div>
+          <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>God morgon alla, vi börjar med planeringen av nästa vecka.</p></div></div>
+          <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Jag behöver lagersiffrorna till fredag, annars kan jag inte beställa.</p></div></div>
+          <div class="rc-sum"><p><b>★</b> Sammanfattning: lagersiffror behövs till fredag</p><p><b>☑</b> Skicka lagersiffrorna (Anna, i morgon bitti)</p></div>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul><li><a href="/sv/"><img src="/logo.svg" alt="" width="42" height="42"><div><h3>Pythia Voice <span>Diktering</span></h3><p>Prata på, Pythia skriver: smidigt, rent, klart.</p></div></a></li><li><a href="/sv/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Röstmeddelanden</span></h3><p>Läs långa röstmeddelanden som text, utan att lyssna.</p></div></a></li><li><a href="/sv/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="42" height="42"><div><h3>Pythia Recap</h3><p>Spela in ett möte och få en färdig sammanfattning med uppgifter.</p></div></a></li></ul></div></section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Det här får du</h2>
+      <dl class="rules rv">
         <div><dt>Spela in eller dela</dt><dd>Spela in i rummet eller dela ljud och video från Zoom, Teams, Meet, WhatsApp eller din röstinspelare. Långa möten är inga problem.</dd></div>
         <div><dt>Sammanfattning och uppgifter</dt><dd>En kort sammanfattning, beslut, öppna frågor och en uppgiftslista med vem och när. Dela som text eller PDF.</dd></div>
         <div><dt>Vem sa vad</dt><dd>Tilldela talare efter tidsstämpel. Ett tryck gäller till nästa talarbyte, och sammanfattningen använder sedan de riktiga namnen.</dd></div>
@@ -112,10 +84,19 @@
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Appen i användning</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/r_home.webp" alt="Spela in eller dela" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Spela in eller dela</b><span>Spela in i rummet eller dela ljud och video från Zoom, Teams, Meet, WhatsApp eller din röstinspelare. Långa möten är inga problem.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.08s"><div class="phone"><img src="/shots/r_meet.webp" alt="Markörer och bläddring" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Markörer och bläddring</b><span>Sätt markörer under inspelningen: viktigt, uppgift, talarbyte. Senare hoppar du dit och bläddrar exakt med tummen.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.16s"><div class="phone"><img src="/shots/r_tasks.webp" alt="Sammanfattning och uppgifter" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Sammanfattning och uppgifter</b><span>En kort sammanfattning, beslut, öppna frågor och en uppgiftslista med vem och när. Dela som text eller PDF.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ablauf">
     <div class="wrap">
-      <h2>Så fungerar det</h2>
-      <ol class="steps">
+      <h2 class="sec-h rv">Så fungerar det</h2>
+      <ol class="steps rv">
         <li><b>1. Spela in eller dela</b><span>Tryck på Spela in och lägg telefonen på bordet, eller dela en inspelning med appen.</span></li>
         <li><b>2. Vänta några minuter</b><span>Pythia Recap skriver ut och sammanfattar. Det fortsätter när du stänger appen.</span></li>
         <li><b>3. Granska och dela</b><span>Tilldela talare, hoppa till markörer och skicka sedan sammanfattningen som text eller PDF.</span></li>
@@ -123,10 +104,10 @@
     </div>
   </section>
 
-  <section class="voice" id="marker">
-    <div class="wrap narrow">
+  <section id="marker">
+    <div class="narrow rv">
       <h2>Hitta rätt ställe med tummen</h2>
-      <p class="lead">I ett långt möte är det svårt att hitta något. Pythia Recap visar hela mötet och en närbild på två minuter, med stora markörer som du faktiskt träffar.</p>
+      <p class="lead" style="margin:16px 0 22px">I ett långt möte är det svårt att hitta något. Pythia Recap visar hela mötet och en närbild på två minuter, med stora markörer som du faktiskt träffar.</p>
       <ul class="voice-points">
         <li>Markörer är 48 dp stora tryckytor: ett tryck hoppar fem sekunder före</li>
         <li>Dra närbilden för att bläddra exakt, med ett förstoringsglas som visar tid och text</li>
@@ -135,10 +116,10 @@
     </div>
   </section>
 
-  <section class="light" id="ton">
-    <div class="wrap narrow">
+  <section id="ton">
+    <div class="narrow rv">
       <h2>Onlinemöten: så får du ljudet</h2>
-      <p class="dark-text">Android låter inte appar spela in Zoom, Teams eller Meet direkt. Så här får du ändå ett ljudspår:</p>
+      <p class="lead" style="margin-top:16px">Android låter inte appar spela in Zoom, Teams eller Meet direkt. Så här får du ändå ett ljudspår:</p>
       <ul class="audio-list">
         <li>Zoom: spela in lokalt och dela den rena ljudfilen (m4a).</li>
         <li>Microsoft Teams: dela inspelningen från OneDrive eller SharePoint.</li>
@@ -146,48 +127,35 @@
         <li>Windows eller Mac: spela in systemljudet med OBS, Audacity eller BlackHole.</li>
         <li>Fungerar inget annat: lägg telefonen bredvid datorn (datorläge).</li>
       </ul>
-      <p class="note">Berätta alltid för alla att du spelar in och få deras samtycke först. Att spela in utan samtycke kan vara brottsligt.</p>
+      <p class="dim">Berätta alltid för alla att du spelar in och få deras samtycke först. Att spela in utan samtycke kan vara brottsligt.</p>
     </div>
   </section>
 
-  <section class="light" id="preis">
+  <section id="preis">
     <div class="wrap">
-      <div class="price-head">
-        <h2>En licens. Betala en gång.</h2>
-        <p class="lead dark-text">Ingen prenumeration, inga dolda kostnader. Du betalar en gång och behåller den för alltid.</p>
-      </div>
-      <div class="tablets one">
-        <div class="tablet">
-          <p class="plan">Pythia Recap</p>
-          <p class="plan-d">Möten och röstanteckningar, kort och gott.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Engångsbetalning i euro.</p>
-          <ul>
-            <li>Testa gratis i 7 dagar eller 3 möten</li>
-            <li>Efter köpet ingen gräns för längd eller antal möten</li>
-            <li>Utskrift, sammanfattning, uppgifter, talare, markörer, PDF-export</li>
-            <li>En licens för en telefon, kan flyttas på begäran</li>
-          </ul>
-          <a class="btn primary" id="buy-recap-2" href="#download">Köp Pythia Recap</a>
-        </div>
-      </div>
+      <div class="prod-head rv"><h2>En licens. Betala en gång.</h2><p class="lead">Ingen prenumeration, inga dolda kostnader. Du betalar en gång och behåller den för alltid.</p></div>
+      <div class="bezel rc rv" style="max-width:560px;margin-inline:auto"><div class="core col r spot">
+        <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_tasks.webp" alt="" width="540" height="1080" loading="lazy"></div>
+        <h3>Pythia Recap<span>Möten och röstanteckningar, kort och gott.</span></h3>
+        <p class="price">19,99 €<small>Engångsbetalning i euro.</small></p>
+        <ul><li class="key">Testa gratis i 7 dagar eller 3 möten</li><li>Efter köpet ingen gräns för längd eller antal möten</li><li>Utskrift, sammanfattning, uppgifter, talare, markörer, PDF-export</li><li>En licens för en telefon, kan flyttas på begäran</li><li class="key">Uppdateringar ingår</li></ul>
+        <div class="acts"><a class="btn teal block" id="buy-recap-2" href="#download"><span>Köp Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      </div></div>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
       <h2>Skaffa appen</h2>
-      <p class="lead" id="rc-soon">Pythia Recap är nästan klar. Nedladdningen och köpknappen visas här så snart den är släppt.</p>
-      <div class="cta">
-        <a class="btn primary" id="rc-apk" href="#download" hidden>Ladda ner direkt</a>
-      </div>
-      <a class="cross" href="/sv/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Prata i vilken app som helst så visas ren text. Läs långa röstmeddelanden som text.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Läs mer</span></a>
+      <p class="lead" id="rc-soon" style="margin-top:16px">Pythia Recap är nästan klar. Nedladdningen och köpknappen visas här så snart den är släppt.</p>
+      <div class="row" style="margin-top:22px"><a class="btn teal" id="rc-apk" href="#download" hidden><span>Ladda ner direkt</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <a class="cross rv" href="/sv/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Du pratar, Pythia skriver. Smidigt och rent. Läs långa röstmeddelanden bekvämt som text.</span><span class="cross-p">19,99 €</span><span class="btn ghost sm"><span>Läs mer</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Vanliga frågor</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Vanliga frågor</h2>
       <details open><summary>Behöver jag ett konto?</summary><p>Nej. Du behöver appen och din egen gratis Groq-nyckel. Vi har varken konton eller servrar för dina möten.</p></details>
       <details><summary>Vad kostar Groq?</summary><p>Groq erbjuder en gratisnivå som räcker till många möten. Gränserna kan pausa mycket långa jobb en stund. Utöver det kostar användningen några ören per timme ljud.</p></details>
       <details><summary>Kan den spela in Zoom eller Teams direkt?</summary><p>Android tillåter inte det för appar. Använd mötesprogrammets inspelning, systemljudet på datorn eller datorläget. Guiderna i appen förklarar varje väg.</p></details>
@@ -196,25 +164,17 @@
       <details><summary>Vilka språk fungerar?</summary><p>Taligenkänningen fungerar på mer än 90 språk och identifierar språket automatiskt. Sammanfattningen kan skrivas på det språk du väljer.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Testa gratis i 7 dagar.</h2>
+      <p class="lead">Inget konto, ingen prenumeration. Gillar du det betalar du en gång.</p>
+      <div class="row"><a class="btn teal" href="#preis"><span>Köp Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/sv/pythia"><span>Alla produkter</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/sv/recap"><img src="/recap-logo.svg" alt="" width="28" height="28"><span>Pythia Recap</span></a>
-      <p>Möten och röstanteckningar, kort och gott.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/sv/">Pythia Voice</a>
-      <a href="/impressum">Juridisk information</a>
-      <a href="/privacy">Integritet</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/sv/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Diktering och röstmeddelanden för Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/sv/">Pythia Voice</a><a href="/sv/recap">Pythia Recap</a><a href="/sv/pythia">Alla produkter</a><a href="/impressum">Juridisk information</a><a href="/privacy">Integritet</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/recap.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

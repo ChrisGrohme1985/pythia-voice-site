@@ -32,146 +32,109 @@
 <link rel="alternate" hreflang="he" href="https://www.pythiavoice.app/he/">
 <link rel="alternate" hreflang="x-default" href="https://www.pythiavoice.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="טוב מכל אורקל: המילים שלכם, בצורה אמינה מ-Pythia.">
-<meta property="og:description" content="בלי מנוי. בלי עלויות נסתרות. משלמים פעם אחת, משתמשים לכל החיים.">
+<meta property="og:title" content="אתם מדברים. Pythia כותבת. בלי מאמץ.">
+<meta property="og:description" content="Pythia Voice מוחק את ה״אהה״, מוסיף פיסוק ומבין גם את התיקונים שלך. משלמים פעם אחת, בלי מנוי.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
-<body>
-
-<header class="top">
-  <a class="brand" href="/he/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
-  <nav aria-label="Menu">
-    <a href="#ablauf">איך זה עובד</a>
-    <a href="#preis">מחיר</a>
-    <a href="#fragen">שאלות</a>
-    <a href="/he/recap">Pythia Recap</a>
-    <a class="nav-dl" href="#download">הורדה ישירה</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he" selected>עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<body data-page="home">
+<header class="nav"><a class="brand" href="/he/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">מוצרים<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/he/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · הכתבה</a><a href="/he/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · הודעות קוליות</a><a href="/he/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/he/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>כל המוצרים</a></div></div><a class="l" href="#funktionen">תכונות</a><a class="l" href="#produkte">מחיר</a><a class="l" href="#fragen">שאלות</a><a class="btn sm" id="apk-nav" href="/he/#download"><span>הורדה ישירה</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he" selected>עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>טוב מכל אורקל: המילים שלכם, בצורה אמינה מ-Pythia.</h1>
-      <p class="lead">דברו בכל אפליקציה. Pythia Voice כותבת, מוחקת את ה״אממ״ ומאמצת את התיקון שלכם.</p>
-      <p class="promise">בלי מנוי. בלי עלויות נסתרות. משלמים פעם אחת, משתמשים לכל החיים.</p>
-      <p class="promise">שני רישיונות: הכתבה והודעות קוליות. כל אחד נרכש בנפרד, פעם אחת, ופועל בפני עצמו.</p>
-      <div class="cta">
-        <a class="btn primary" href="#download">נסו את Pythia Voice</a>
-        <a class="btn ghost" href="#preis">ראו את המחיר</a>
-      </div>
-      <p class="fine">נסו בחינם ל-7 ימים או 3,000 מילים.</p>
-    </div>
-
-    <figure class="oracle" id="oracle" data-fill="אממ" data-a="נפגשים בשעה" data-s="חמש לא בעצם בשעה" data-b="שש מול התחנה" data-out="נפגשים בשעה שש מול התחנה.">
-      <div class="wave" id="wave" aria-hidden="true"></div>
-      <div class="line">
-        <span class="label">אתם אומרים</span>
-        <p id="said" class="said"></p>
-      </div>
-      <div class="line">
-        <span class="label">Pythia כותבת</span>
-        <p id="wrote" class="wrote" aria-live="polite"></p>
-      </div>
-      <button class="replay" id="replay" type="button">שוב</button>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>הכתבה</span></h3><p>מדברים בכל אפליקציה ומופיע טקסט נקי.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>הודעות קוליות</span></h3><p>קוראים הודעות קוליות ארוכות כטקסט.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/he/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>פגישות והערות קוליות בקצרה.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">האפליקציה בפעולה</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/v_home.webp" alt="Pythia Voice: הכתבה" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>הכתבה</b><span>מדברים בכל אפליקציה ומופיע טקסט נקי.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_msg.webp" alt="Pythia Voice: הודעות קוליות" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>הודעות קוליות</b><span>קוראים הודעות קוליות ארוכות כטקסט.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_words.webp" alt="Pythia Voice: מילים" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>מילים</b><span>שמות ומונחים מקצועיים שיש לכתוב נכון.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_style.webp" alt="Pythia Voice: סגנון" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>סגנון</b><span>סגנון הכתיבה של הטקסטים המנוקים</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_snip.webp" alt="Pythia Voice: קטעים" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>קטעים</b><span>אמור את הקיצור והטקסט המלא יוכנס.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>מה מקבלים</h2>
-      <dl class="rules">
-        <div><dt>משלמים פעם אחת, משתמשים לכל החיים</dt><dd>בלי מנוי, בלי חידוש ובלי מגבלת מילים אחרי תקופת הניסיון. מה שאתם משלמים היום הוא כל מה שתשלמו עבור Pythia Voice.</dd></div>
-        <div><dt>כותבת בכל אפליקציה</dt><dd>וואטסאפ, מייל, פתקים, דפדפן. הכפתור העגול מופיע מעל המקלדת ברגע שנוגעים בשדה טקסט.</dd></div>
+      <div class="rv">
+        <h1>אתם מדברים. Pythia כותבת. בלי מאמץ.</h1>
+        <p class="lead">Pythia Voice מוחק את ה״אהה״, מוסיף פיסוק ומבין גם את התיקונים שלך. משלמים פעם אחת, בלי מנוי.</p>
+        <div class="row">
+          <a class="btn" href="#download"><span>נסו את Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#produkte"><span>ראו את המחיר</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>נסו בחינם ל-7 ימים או 3,000 מילים.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play בקרוב</span></span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/v_home.webp" alt="הכתבה" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="אממ" data-a="נפגשים בשעה" data-s="חמש לא בעצם בשעה" data-b="שש מול התחנה" data-out="נפגשים בשעה שש מול התחנה.">
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <div class="line"><span class="label">אתם אומרים</span><p id="said" class="said"></p></div>
+          <div class="line"><span class="label">Pythia כותבת</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
+          <button class="replay" id="replay" type="button">שוב</button>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video" id="video" hidden>
+    <div class="wrap">
+      <h2>Pythia בעשר שניות</h2><p class="lead" style="margin-top:14px">מדברים, שולחים, סיימנו.</p>
+      <div class="vbox bezel"><div class="core"><video controls playsinline preload="none" aria-label="Pythia בעשר שניות"></video></div></div>
+    </div>
+  </section>
+
+  <section id="produkte">
+    <div class="wrap">
+      <div class="prod-head rv"><h2>שלושה כלים שחוסכים לכם הקלדה.</h2><p class="lead">בלי מנוי ובלי עלויות נסתרות. כל רישיון נרכש פעם אחת ונשאר שלכם לתמיד.</p></div>
+      <div class="cols">
+        <div class="bezel hl rv" id="diktat"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>הכתבה</span></h3>
+          <p class="tag">מדברים, Pythia כותבת: נוח, נקי, גמור.</p>
+          <p class="price">19,99 €<small>תשלום חד-פעמי באירו.</small></p>
+          <ul><li class="key">נסו בחינם 7 ימים או 3,000 מילים</li><li>כל 90+ השפות, כל התכונות</li><li>בלי מגבלת מילים אחרי הרכישה</li><li class="key">כולל עדכונים</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>מידע נוסף</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>קנו רישיון</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>הודעות קוליות</span></h3>
+          <p class="tag">קראו הודעות קוליות ארוכות כטקסט, בלי להאזין להן.</p>
+          <p class="price">19.99 €<small>תשלום חד-פעמי באירו.</small></p>
+          <ul><li class="key">מנסים בחינם עם 15 הודעות או 7 ימים</li><li>מחולק לפי דקות ולפסקאות</li><li>משתפים מוואטסאפ ומאפליקציות מסרים אחרות</li><li class="key">עדכונים כלולים</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>מידע נוסף</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>רכישת הודעות קוליות</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+          <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Recap<span>פגישות והערות קוליות בקצרה.</span></h3>
+          <p class="tag">הקליטו פגישה וקבלו סיכום מוכן עם משימות.</p>
+          <p class="price">19,99 €<small>תשלום חד-פעמי באירו.</small></p>
+          <ul><li class="key">נסו בחינם 7 ימים או 3 פגישות</li><li>תמלול, סיכום, משימות, דוברים, סימנים, ייצוא PDF</li><li>אחרי הרכישה אין הגבלה על אורך או מספר הפגישות</li><li class="key">כולל עדכונים</li></ul>
+          <div class="acts"><a class="btn ghost block" href="/he/recap"><span>מידע נוסף</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/he/recap#preis"><span>קנו את Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+      </div>
+      <p class="note">כל רישיון נרכש בנפרד ופועל בפני עצמו. המרכיב הנוסף היחיד הוא הגישה האישית שלכם ל-Groq לזיהוי דיבור. היא חינמית לשימוש רגיל, והתנאים נקבעים על ידי Groq.</p>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">מה Pythia עושה בשבילכם</h2>
+      <dl class="rules rv">
+        <div><dt>מדברים במקום להקליד</dt><dd>הקישו על שדה טקסט, לחצו על הכפתור העגול מעל המקלדת ודברו. Pythia כותבת את הטקסט ישר שם, למשל ב-WhatsApp, בדוא״ל או בהערות.</dd></div>
         <div><dt>מסדרת אחריכם</dt><dd>מילות מילוי נעלמות, סימני פיסוק נכנסים. אם תאמרו ״בחמש, לא, בשש״, יופיע ״בשש״.</dd></div>
         <div><dt>מעל 90 שפות</dt><dd>גם בערבוב באותו משפט. האפליקציה עצמה זמינה ב-24 שפות.</dd></div>
+        <div><dt>משלמים פעם אחת, משתמשים לכל החיים</dt><dd>בלי מנוי, בלי חידוש ובלי מגבלת מילים אחרי תקופת הניסיון. מה שאתם משלמים היום הוא כל מה שתשלמו עבור Pythia Voice.</dd></div>
         <div><dt>זיהוי דרך הגישה שלכם ל-Groq</dt><dd>הזיהוי פועל עם מפתח ה-Groq האישי שלכם. לפי התיעוד של Groq, המסלול החינמי מאפשר עד 8 שעות דיבור ביום. את המגבלות קובעת Groq והיא עשויה לשנות אותן.</dd></div>
         <div><dt>נשאר אצלכם</dt><dd>בלי חשבון. Pythia Voice לא שומרת אודיו. בשדות סיסמה הכפתור נשאר מוסתר.</dd></div>
       </dl>
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
-    <div class="wrap">
-      <h2>איך מכתיבים</h2>
-      <ol class="steps">
-        <li><b>גענו</b><span>געו בשדה טקסט ואז בכפתור העגול מעל המקלדת.</span></li>
-        <li><b>דברו</b><span>אמרו מה אתם רוצים לכתוב. עם הפסקות, עם תיקונים.</span></li>
-        <li><b>אמרו שסיימתם</b><span>געו שוב. הטקסט הנקי נמצא בשדה.</span></li>
-      </ol>
-      <p class="hint">מעדיפים ללחוץ ממושכות? לחצו על הכפתור, דברו, שחררו.</p>
-      <p class="setup">ההגדרה החד-פעמית לוקחת כדקה: פתחו חשבון Groq חינמי (מספיקה כניסה עם Google), צרו מפתח והדביקו אותו. אחר כך פשוט מכתיבים.</p>
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">האפליקציה בפעולה</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="הכתבה" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>הכתבה</b><span>אתם מדברים, Pythia כותבת. נוח ונקי.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="הודעות קוליות" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>הודעות קוליות</b><span>קראו הודעות קוליות ארוכות כטקסט בנוחות.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="מילים" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>מילים</b><span>שמות ומונחים מקצועיים שיש לכתוב נכון.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="סגנון" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>סגנון</b><span>סגנון הכתיבה של הטקסטים המנוקים</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="קטעים" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>קטעים</b><span>אמור את הקיצור והטקסט המלא יוכנס.</span></figcaption></figure>
     </div>
   </section>
 
-  <section class="light" id="preis">
-    <div class="wrap">
-      <div class="price-head">
-        <h2>שני רישיונות. משלמים פעם אחת על כל אחד.</h2>
-        <p class="lead dark-text">ל-Pythia Voice יש שני רישיונות: הכתבה והודעות קוליות. בלי מנוי ובלי עלויות נסתרות: משלמים פעם אחת על כל רישיון ומשתמשים בו לכל החיים.</p>
-      </div>
-      <div class="tablets">
-        <div class="tablet">
-          <p class="plan">הכתבה</p>
-          <p class="plan-d">מדברים בכל אפליקציה ומופיע טקסט נקי.</p>
-          <p class="amount"><span class="num" id="price">19,99 €</span></p>
-          <p class="sub">תשלום חד-פעמי באירו.</p>
-          <ul>
-            <li>נסו בחינם 7 ימים או 3,000 מילים</li>
-            <li>כל 90+ השפות, כל התכונות</li>
-            <li>בלי מגבלת מילים אחרי הרכישה</li>
-            <li>כולל עדכונים</li>
-          </ul>
-          <a class="btn primary" id="buy" href="#download">קנו רישיון</a>
-        </div>
-        <div class="tablet">
-          <p class="plan">הודעות קוליות</p>
-          <p class="plan-d">קוראים הודעות קוליות ארוכות כטקסט.</p>
-          <p class="amount"><span class="num">19.99 €</span></p>
-          <p class="sub">תשלום חד-פעמי באירו.</p>
-          <ul>
-            <li>מנסים בחינם עם 15 הודעות או 7 ימים</li>
-            <li>מחולק לפי דקות ולפסקאות</li>
-            <li>משתפים מוואטסאפ ומאפליקציות מסרים אחרות</li>
-            <li>עדכונים כלולים</li>
-          </ul>
-          <a class="btn primary" id="buy-voice-2" href="#download">רכישת הודעות קוליות</a>
-        </div>
-      </div>
-      <p class="note">כל רישיון נרכש בנפרד ופועל בפני עצמו. המרכיב הנוסף היחיד הוא הגישה האישית שלכם ל-Groq לזיהוי דיבור. היא חינמית לשימוש רגיל, והתנאים נקבעים על ידי Groq.</p>
-      <a class="cross" href="/he/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> פגישות והערות קוליות בקצרה.</span><span class="cross-p">19,99 €</span><span class="btn ghost">מידע נוסף</span></a>
-    </div>
-  </section>
-
-  <section class="voice" id="sprachnachrichten">
+  <section id="sprachnachrichten">
     <div class="wrap voice-grid">
-      <div class="voice-text">
-        <p class="eyebrow">הודעות קוליות כטקסט</p>
+      <div class="voice-text rv">
         <h2>נמאס לכם מהודעות קוליות ארוכות?</h2>
         <p class="lead">רוצים פשוט לקרוא מהר ואין לכם אפשרות להאזין עכשיו? או שאין לכם סבלנות ל״רומנים״ שחלק מהאנשים מקליטים, ואתם קוראים מהר יותר ממה שהם מדברים? אז Pythia Voice בשבילכם: משתפים את ההודעה וקוראים אותה כטקסט.</p>
         <ul class="voice-points">
@@ -179,12 +142,13 @@
           <li>מחולק לפי דקות ולפסקאות, נעים לעיניים</li>
           <li>מנסים בחינם עם 15 הודעות או 7 ימים</li>
         </ul>
-        <div class="cta">
-          <a class="btn primary" id="buy-voice" href="#download">רכישת הודעות קוליות · 19.99 € חד-פעמי</a>
-          <span class="fine inline">רישיון נפרד מההכתבה. בלי מנוי.</span>
+        <div class="row">
+          <a class="btn ghost" href="/he/pythia"><span>מידע נוסף</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>רכישת הודעות קוליות · 19.99 € חד-פעמי</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
+        <p class="dim" style="margin-top:14px;font-size:.92rem">רישיון נפרד מההכתבה. בלי מנוי.</p>
       </div>
-      <figure class="vm-demo" aria-label="Pythia Voice הופכת אותה לטקסט המחולק לפי דקות">
+      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice הופכת אותה לטקסט המחולק לפי דקות">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -199,54 +163,57 @@
           <div><b>3:00</b><p>טוב, זה הכול. נדבר בקרוב!</p></div>
         </div>
         <p class="vm-cap">Pythia Voice הופכת אותה לטקסט המחולק לפי דקות</p>
-      </figure>
+      </figure></div>
     </div>
   </section>
 
-  <section class="rc-teaser" id="recap">
+  <section id="ablauf">
     <div class="wrap">
-      <p class="eyebrow">Pythia Recap</p>
-      <h2>גם מ-Pythia: Pythia Recap</h2>
-      <p class="lead">הקליטו או שתפו פגישה וקבלו תמלול, סיכום ורשימת משימות. שייכו מי אמר מה. פעם אחת 19.99 €, בלי מנוי.</p>
-      <a class="btn primary" href="/he/recap">מידע נוסף</a>
+      <h2 class="sec-h rv">איך מכתיבים</h2>
+      <ol class="steps rv">
+        <li><b>גענו</b><span>געו בשדה טקסט ואז בכפתור העגול מעל המקלדת.</span></li>
+        <li><b>דברו</b><span>אמרו מה אתם רוצים לכתוב. עם הפסקות, עם תיקונים.</span></li>
+        <li><b>אמרו שסיימתם</b><span>געו שוב. הטקסט הנקי נמצא בשדה.</span></li>
+      </ol>
+      <p class="hint">מעדיפים ללחוץ ממושכות? לחצו על הכפתור, דברו, שחררו.</p>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
-      <h2>לאנדרואיד</h2>
-      <ol class="steps">
+      <h2 class="rv">לאנדרואיד</h2>
+      <ol class="steps rv" style="margin-top:32px">
         <li><b>1. מורידים את האפליקציה</b><span>מורידים את קובץ ה-APK למטה ומתקינים אותו בטלפון האנדרואיד שלכם.</span></li>
         <li><b>2. מנסים</b><span>מנסים הכול בחינם: הכתבה ל-7 ימים או 3,000 מילים, הודעות קוליות ל-7 ימים או 15 הודעות.</span></li>
         <li><b>3. אהבתם? רוכשים רישיון</b><span>בוחרים הכתבה, הודעות קוליות או שניהם. מזינים את המפתח באפליקציה וזהו.</span></li>
       </ol>
-      <p class="lead">אנדרואיד 13 ומעלה. עדיין אין גרסה לאייפון.</p>
       <div class="get">
-        <div class="get-card">
-          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>הכתבה · הודעות קוליות</p></div></div>
-          <p>מדברים בכל אפליקציה ומופיע טקסט נקי. קוראים הודעות קוליות ארוכות כטקסט.</p>
-          <div class="cta">
-            <a class="btn primary" id="apk" href="#download">הורדה ישירה</a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play בקרוב</span></span>
+        <div class="get-card rv">
+          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>הכתבה · הודעות קוליות</p></div></div>
+          <p>אתם מדברים, Pythia כותבת. נוח ונקי. קראו הודעות קוליות ארוכות כטקסט בנוחות.</p>
+          <div class="row">
+            <a class="btn" id="apk" href="#download"><span>הורדה ישירה</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play בקרוב</span></span>
           </div>
         </div>
-        <div class="get-card recap">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>פגישות והערות קוליות בקצרה.</p></div></div>
+        <div class="get-card recap rv" style="--d:.08s">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>פגישות והערות קוליות בקצרה.</p></div></div>
           <p id="rc-soon-h">Pythia Recap כמעט מוכנה. ההורדה וכפתור הרכישה יופיעו כאן מיד עם הפרסום.</p>
-          <div class="cta">
-            <a class="btn primary" id="rc-apk-h" href="#download" hidden>הורדה ישירה</a>
-            <a class="btn ghost" href="/he/recap">מידע נוסף</a>
+          <div class="row">
+            <a class="btn teal" id="rc-apk-h" href="#download" hidden><span>הורדה ישירה</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <a class="btn ghost" href="/he/recap"><span>מידע נוסף</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
           </div>
         </div>
       </div>
-      <p class="fine">בהפעלה הראשונה האפליקציה מובילה אתכם בהגדרה בשישה שלבים קצרים.</p>
+      <p class="dim">אנדרואיד 13 ומעלה. עדיין אין גרסה לאייפון.</p>
+      <p class="dim" style="margin-top:8px">בהפעלה הראשונה האפליקציה מובילה אתכם בהגדרה בשישה שלבים קצרים.</p>
       <p class="setup">ההגדרה החד-פעמית לוקחת כדקה: פתחו חשבון Groq חינמי (מספיקה כניסה עם Google), צרו מפתח והדביקו אותו. אחר כך פשוט מכתיבים.</p>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>שאלות נפוצות</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">שאלות נפוצות</h2>
       <details open><summary>האם זה באמת תשלום חד-פעמי?</summary><p>כן. תשלום אחד, בלי מנוי ובלי חידוש. השירות הנוסף היחיד הוא Groq לזיהוי דיבור. המסלול החינמי שלו מכסה כרגע כ-8 שעות דיבור ביום, די והותר לשימוש רגיל. Groq קובע בעצמו את המגבלות והמחירים.</p></details>
       <details><summary>מה זה Groq והאם צריך חשבון?</summary><p>Groq היא השירות שהופך את הדיבור שלכם לטקסט. שם יוצרים בחינם מפתח אישי ומדביקים אותו באפליקציה. המדריך באפליקציה מראה כל נגיעה.</p></details>
       <details><summary>כמה עולה Groq?</summary><p>לשימוש רגיל, כלום. Groq מציינת עד 8 שעות אודיו של Whisper ביום במסלול החינמי. Groq משנה את המגבלות, בדקו ב-console.groq.com.</p></details>
@@ -258,25 +225,17 @@
       <details><summary>כמה ארוכה יכולה להיות הודעה קולית?</summary><p>קבצים של עד 25 MB עובדים, וזה שעות רבות של דיבור. הודעה של שלוש דקות לוקחת רק שניות. Groq קובעת מגבלות משלה ויכולה לשנות אותן.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>נסו בחינם ל-7 ימים.</h2>
+      <p class="lead">בלי חשבון ובלי מנוי. אם זה מוצא חן, משלמים פעם אחת.</p>
+      <div class="row"><a class="btn" href="#download"><span>נסו את Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/he/pythia"><span>כל המוצרים</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/he/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
-      <p>הכתבה והודעות קוליות לאנדרואיד.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/he/recap">Pythia Recap</a>
-      <a href="/impressum">פרטים משפטיים</a>
-      <a href="/privacy">פרטיות</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/he/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>הכתבה והודעות קוליות לאנדרואיד.</p></div><nav class="foot-links" aria-label="Info"><a href="/he/">Pythia Voice</a><a href="/he/recap">Pythia Recap</a><a href="/he/pythia">כל המוצרים</a><a href="/impressum">פרטים משפטיים</a><a href="/privacy">פרטיות</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/app.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

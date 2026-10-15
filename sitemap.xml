@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.pythiavoice.app/</loc></url>
   <url><loc>https://www.pythiavoice.app/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/pythia</loc></url>
   <url><loc>https://www.pythiavoice.app/en/</loc></url>
   <url><loc>https://www.pythiavoice.app/de/</loc></url>
   <url><loc>https://www.pythiavoice.app/it/</loc></url>
@@ -50,4 +51,28 @@
   <url><loc>https://www.pythiavoice.app/ro/recap</loc></url>
   <url><loc>https://www.pythiavoice.app/el/recap</loc></url>
   <url><loc>https://www.pythiavoice.app/he/recap</loc></url>
+  <url><loc>https://www.pythiavoice.app/en/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/de/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/it/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/es/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/fr/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/pt/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/ru/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/tr/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/nl/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/pl/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/ja/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/zh/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/ko/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/ar/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/hi/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/id/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/vi/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/uk/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/th/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/sv/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/cs/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/ro/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/el/pythia</loc></url>
+  <url><loc>https://www.pythiavoice.app/he/pythia</loc></url>
 </urlset>

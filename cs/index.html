@@ -32,146 +32,109 @@
 <link rel="alternate" hreflang="he" href="https://www.pythiavoice.app/he/">
 <link rel="alternate" hreflang="x-default" href="https://www.pythiavoice.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Lepší než jakákoli věštba: vaše slova, spolehlivě od Pythie.">
-<meta property="og:description" content="Žádné předplatné. Žádné skryté poplatky. Zaplatíte jednou, používáte celý život.">
+<meta property="og:title" content="Vy mluvíte. Pythia píše. Bez námahy.">
+<meta property="og:description" content="Pythia Voice vyřadí „ehm“, doplní interpunkci a respektuje vaše opravy. Platíte jednou, bez předplatného.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
-<body>
-
-<header class="top">
-  <a class="brand" href="/cs/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
-  <nav aria-label="Menu">
-    <a href="#ablauf">Jak to funguje</a>
-    <a href="#preis">Cena</a>
-    <a href="#fragen">Otázky</a>
-    <a href="/cs/recap">Pythia Recap</a>
-    <a class="nav-dl" href="#download">Stáhnout přímo</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs" selected>Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<body data-page="home">
+<header class="nav"><a class="brand" href="/cs/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produkty<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/cs/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Diktování</a><a href="/cs/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Hlasové zprávy</a><a href="/cs/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/cs/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Všechny produkty</a></div></div><a class="l" href="#funktionen">Funkce</a><a class="l" href="#produkte">Cena</a><a class="l" href="#fragen">Otázky</a><a class="btn sm" id="apk-nav" href="/cs/#download"><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs" selected>Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Lepší než jakákoli věštba: vaše slova, spolehlivě od Pythie.</h1>
-      <p class="lead">Mluvte v jakékoli aplikaci. Pythia Voice zapíše, vynechá „ehm“ a převezme vaši opravu.</p>
-      <p class="promise">Žádné předplatné. Žádné skryté poplatky. Zaplatíte jednou, používáte celý život.</p>
-      <p class="promise">Dvě licence: Diktování a Hlasové zprávy. Každá se kupuje zvlášť, jednorázově, a funguje samostatně.</p>
-      <div class="cta">
-        <a class="btn primary" href="#download">Vyzkoušet Pythia Voice</a>
-        <a class="btn ghost" href="#preis">Zobrazit cenu</a>
-      </div>
-      <p class="fine">Zdarma vyzkoušejte 7 dní nebo 3 000 slov.</p>
-    </div>
-
-    <figure class="oracle" id="oracle" data-fill="ehm" data-a="sejdeme se v" data-s="pět ne vlastně v" data-b="šest před nádražím" data-out="Sejdeme se v šest před nádražím.">
-      <div class="wave" id="wave" aria-hidden="true"></div>
-      <div class="line">
-        <span class="label">Říkáte</span>
-        <p id="said" class="said"></p>
-      </div>
-      <div class="line">
-        <span class="label">Pythia píše</span>
-        <p id="wrote" class="wrote" aria-live="polite"></p>
-      </div>
-      <button class="replay" id="replay" type="button">Znovu</button>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Diktování</span></h3><p>Mluvte do jakékoli aplikace a objeví se čistý text.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Hlasové zprávy</span></h3><p>Čtěte dlouhé hlasové zprávy jako text.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/cs/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Schůzky a hlasové poznámky stručně.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Aplikace v akci</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/v_home.webp" alt="Pythia Voice: Diktování" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Diktování</b><span>Mluvte do jakékoli aplikace a objeví se čistý text.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_msg.webp" alt="Pythia Voice: Hlasové zprávy" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Hlasové zprávy</b><span>Čtěte dlouhé hlasové zprávy jako text.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_words.webp" alt="Pythia Voice: Slova" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Slova</b><span>Jména a odborné výrazy, které se mají psát správně.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_style.webp" alt="Pythia Voice: Styl" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Styl</b><span>Styl psaní vyčištěných textů</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_snip.webp" alt="Pythia Voice: Úryvky" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Úryvky</b><span>Řekněte zkratku a vloží se celý text.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Co získáte</h2>
-      <dl class="rules">
-        <div><dt>Zaplatíte jednou, používáte celý život</dt><dd>Žádné předplatné, žádné obnovování a žádný limit slov po zkušební době. Co zaplatíte dnes, je vše, co za Pythia Voice zaplatíte.</dd></div>
-        <div><dt>Píše v jakékoli aplikaci</dt><dd>WhatsApp, e-mail, poznámky, prohlížeč. Kulaté tlačítko se objeví nad klávesnicí, jakmile klepnete do textového pole.</dd></div>
+      <div class="rv">
+        <h1>Vy mluvíte. Pythia píše. Bez námahy.</h1>
+        <p class="lead">Pythia Voice vyřadí „ehm“, doplní interpunkci a respektuje vaše opravy. Platíte jednou, bez předplatného.</p>
+        <div class="row">
+          <a class="btn" href="#download"><span>Vyzkoušet Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#produkte"><span>Zobrazit cenu</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Zdarma vyzkoušejte 7 dní nebo 3 000 slov.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play brzy</span></span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/v_home.webp" alt="Diktování" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="ehm" data-a="sejdeme se v" data-s="pět ne vlastně v" data-b="šest před nádražím" data-out="Sejdeme se v šest před nádražím.">
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <div class="line"><span class="label">Říkáte</span><p id="said" class="said"></p></div>
+          <div class="line"><span class="label">Pythia píše</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
+          <button class="replay" id="replay" type="button">Znovu</button>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video" id="video" hidden>
+    <div class="wrap">
+      <h2>Pythia za deset sekund</h2><p class="lead" style="margin-top:14px">Říct, odeslat, hotovo.</p>
+      <div class="vbox bezel"><div class="core"><video controls playsinline preload="none" aria-label="Pythia za deset sekund"></video></div></div>
+    </div>
+  </section>
+
+  <section id="produkte">
+    <div class="wrap">
+      <div class="prod-head rv"><h2>Tři nástroje, které za vás odvedou psaní.</h2><p class="lead">Žádné předplatné, žádné skryté poplatky. Každou licenci koupíte jednou a zůstane vaše navždy.</p></div>
+      <div class="cols">
+        <div class="bezel hl rv" id="diktat"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Diktování</span></h3>
+          <p class="tag">Mluvte, Pythia píše: pohodlně, čistě, hotovo.</p>
+          <p class="price">19,99 €<small>Jednorázová platba v eurech.</small></p>
+          <ul><li class="key">Zdarma 7 dní nebo 3 000 slov</li><li>Všech 90+ jazyků, všechny funkce</li><li>Po koupi žádný limit slov</li><li class="key">Aktualizace v ceně</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Koupit licenci</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Hlasové zprávy</span></h3>
+          <p class="tag">Čtěte dlouhé hlasové zprávy jako text, bez poslouchání.</p>
+          <p class="price">19,99 €<small>Jednorázová platba v eurech.</small></p>
+          <ul><li class="key">Vyzkoušejte zdarma s 15 zprávami nebo 7 dny</li><li>Rozdělené po minutách a do odstavců</li><li>Sdílení z WhatsAppu a dalších messengerů</li><li class="key">Aktualizace v ceně</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Koupit hlasové zprávy</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+          <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Recap<span>Schůzky a hlasové poznámky stručně.</span></h3>
+          <p class="tag">Nahrajte schůzku a získejte hotové shrnutí s úkoly.</p>
+          <p class="price">19,99 €<small>Jednorázová platba v eurech.</small></p>
+          <ul><li class="key">Vyzkoušejte zdarma 7 dní nebo 3 schůzky</li><li>Přepis, shrnutí, úkoly, mluvčí, značky, export do PDF</li><li>Po nákupu bez omezení délky či počtu schůzek</li><li class="key">Aktualizace v ceně</li></ul>
+          <div class="acts"><a class="btn ghost block" href="/cs/recap"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/cs/recap#preis"><span>Koupit Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+      </div>
+      <p class="note">Každá licence se kupuje zvlášť a funguje samostatně. Jediná další ingredience je váš vlastní přístup ke Groq pro rozpoznávání řeči. Pro běžné použití je zdarma, podmínky určuje Groq.</p>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Co za vás Pythia udělá</h2>
+      <dl class="rules rv">
+        <div><dt>Mluvit místo psaní</dt><dd>Klepněte do textového pole, stiskněte kulaté tlačítko nad klávesnicí a mluvte. Pythia napíše text rovnou tam, například ve WhatsAppu, v e-mailu nebo v poznámkách.</dd></div>
         <div><dt>Uklízí za vás</dt><dd>Vycpávková slova mizí, interpunkce přibývá. Řeknete-li „v pět, ne, v šest“, napíše „v šest“.</dd></div>
         <div><dt>Přes 90 jazyků</dt><dd>I promíchaných v jedné větě. Aplikace sama je ve 24 jazycích.</dd></div>
+        <div><dt>Zaplatíte jednou, používáte celý život</dt><dd>Žádné předplatné, žádné obnovování a žádný limit slov po zkušební době. Co zaplatíte dnes, je vše, co za Pythia Voice zaplatíte.</dd></div>
         <div><dt>Rozpoznávání přes váš přístup ke Groq</dt><dd>Rozpoznávání běží na vašem vlastním klíči Groq. Podle dokumentace Groq umožňuje bezplatný tarif až 8 hodin řeči denně. Limity určuje Groq a může je měnit.</dd></div>
         <div><dt>Zůstává u vás</dt><dd>Žádný účet. Pythia Voice neukládá zvuk. V polích pro heslo zůstává tlačítko skryté.</dd></div>
       </dl>
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
-    <div class="wrap">
-      <h2>Jak diktovat</h2>
-      <ol class="steps">
-        <li><b>Klepněte</b><span>Klepněte do textového pole a potom na kulaté tlačítko nad klávesnicí.</span></li>
-        <li><b>Mluvte</b><span>Řekněte, co chcete napsat. S pauzami, s opravami.</span></li>
-        <li><b>Řekněte, že jste hotovi</b><span>Klepněte ještě jednou. Čistý text je v poli.</span></li>
-      </ol>
-      <p class="hint">Raději přidržet? Podržte tlačítko, mluvte, pusťte.</p>
-      <p class="setup">Jednorázové nastavení trvá asi 1 minutu: vytvořte si bezplatný účet Groq (stačí přihlášení přes Google), vygenerujte klíč a vložte ho. Potom už jen diktujete.</p>
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Aplikace v akci</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Diktování" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Diktování</b><span>Vy mluvíte, Pythia píše. Pohodlně a čistě.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="Hlasové zprávy" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Hlasové zprávy</b><span>Dlouhé hlasové zprávy pohodlně čtěte jako text.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="Slova" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Slova</b><span>Jména a odborné výrazy, které se mají psát správně.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="Styl" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Styl</b><span>Styl psaní vyčištěných textů</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="Úryvky" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Úryvky</b><span>Řekněte zkratku a vloží se celý text.</span></figcaption></figure>
     </div>
   </section>
 
-  <section class="light" id="preis">
-    <div class="wrap">
-      <div class="price-head">
-        <h2>Dvě licence. Za každou platíte jednou.</h2>
-        <p class="lead dark-text">Pythia Voice má dvě licence: Diktování a Hlasové zprávy. Žádné předplatné, žádné skryté náklady: za licenci zaplatíte jednou a používáte ji napořád.</p>
-      </div>
-      <div class="tablets">
-        <div class="tablet">
-          <p class="plan">Diktování</p>
-          <p class="plan-d">Mluvte do jakékoli aplikace a objeví se čistý text.</p>
-          <p class="amount"><span class="num" id="price">19,99 €</span></p>
-          <p class="sub">Jednorázová platba v eurech.</p>
-          <ul>
-            <li>Zdarma 7 dní nebo 3 000 slov</li>
-            <li>Všech 90+ jazyků, všechny funkce</li>
-            <li>Po koupi žádný limit slov</li>
-            <li>Aktualizace v ceně</li>
-          </ul>
-          <a class="btn primary" id="buy" href="#download">Koupit licenci</a>
-        </div>
-        <div class="tablet">
-          <p class="plan">Hlasové zprávy</p>
-          <p class="plan-d">Čtěte dlouhé hlasové zprávy jako text.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Jednorázová platba v eurech.</p>
-          <ul>
-            <li>Vyzkoušejte zdarma s 15 zprávami nebo 7 dny</li>
-            <li>Rozdělené po minutách a do odstavců</li>
-            <li>Sdílení z WhatsAppu a dalších messengerů</li>
-            <li>Aktualizace v ceně</li>
-          </ul>
-          <a class="btn primary" id="buy-voice-2" href="#download">Koupit hlasové zprávy</a>
-        </div>
-      </div>
-      <p class="note">Každá licence se kupuje zvlášť a funguje samostatně. Jediná další ingredience je váš vlastní přístup ke Groq pro rozpoznávání řeči. Pro běžné použití je zdarma, podmínky určuje Groq.</p>
-      <a class="cross" href="/cs/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Schůzky a hlasové poznámky stručně.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Zjistit více</span></a>
-    </div>
-  </section>
-
-  <section class="voice" id="sprachnachrichten">
+  <section id="sprachnachrichten">
     <div class="wrap voice-grid">
-      <div class="voice-text">
-        <p class="eyebrow">Hlasové zprávy jako text</p>
+      <div class="voice-text rv">
         <h2>Unavují vás dlouhé hlasové zprávy?</h2>
         <p class="lead">Chcete si jen rychle přečíst a právě teď nemůžete poslouchat? Nebo nemáte trpělivost na romány, které někteří lidé namlouvají, a čtete rychleji, než oni mluví? Pak je Pythia Voice pro vás: sdílejte zprávu a čtěte ji jako text.</p>
         <ul class="voice-points">
@@ -179,12 +142,13 @@
           <li>Rozdělené po minutách a do odstavců, šetrné k očím</li>
           <li>Vyzkoušejte zdarma s 15 zprávami nebo 7 dny</li>
         </ul>
-        <div class="cta">
-          <a class="btn primary" id="buy-voice" href="#download">Koupit hlasové zprávy · 19,99 € jednorázově</a>
-          <span class="fine inline">Samostatná licence nezávislá na diktování. Bez předplatného.</span>
+        <div class="row">
+          <a class="btn ghost" href="/cs/pythia"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Koupit hlasové zprávy · 19,99 € jednorázově</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
+        <p class="dim" style="margin-top:14px;font-size:.92rem">Samostatná licence nezávislá na diktování. Bez předplatného.</p>
       </div>
-      <figure class="vm-demo" aria-label="Pythia Voice z ní udělá text rozdělený po minutách">
+      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice z ní udělá text rozdělený po minutách">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -199,54 +163,57 @@
           <div><b>3:00</b><p>Dobře, to je všechno. Brzy na slyšenou!</p></div>
         </div>
         <p class="vm-cap">Pythia Voice z ní udělá text rozdělený po minutách</p>
-      </figure>
+      </figure></div>
     </div>
   </section>
 
-  <section class="rc-teaser" id="recap">
+  <section id="ablauf">
     <div class="wrap">
-      <p class="eyebrow">Pythia Recap</p>
-      <h2>Také od Pythie: Pythia Recap</h2>
-      <p class="lead">Nahrajte nebo sdílejte schůzku a získejte přepis, shrnutí a seznam úkolů. Přiřaďte, kdo co řekl. Jednorázově 19,99 €, bez předplatného.</p>
-      <a class="btn primary" href="/cs/recap">Zjistit více</a>
+      <h2 class="sec-h rv">Jak diktovat</h2>
+      <ol class="steps rv">
+        <li><b>Klepněte</b><span>Klepněte do textového pole a potom na kulaté tlačítko nad klávesnicí.</span></li>
+        <li><b>Mluvte</b><span>Řekněte, co chcete napsat. S pauzami, s opravami.</span></li>
+        <li><b>Řekněte, že jste hotovi</b><span>Klepněte ještě jednou. Čistý text je v poli.</span></li>
+      </ol>
+      <p class="hint">Raději přidržet? Podržte tlačítko, mluvte, pusťte.</p>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
-      <h2>Pro Android</h2>
-      <ol class="steps">
+      <h2 class="rv">Pro Android</h2>
+      <ol class="steps rv" style="margin-top:32px">
         <li><b>1. Stáhněte aplikaci</b><span>Stáhněte níže soubor APK a nainstalujte ho do telefonu s Androidem.</span></li>
         <li><b>2. Vyzkoušejte</b><span>Vše si můžete vyzkoušet zdarma: diktování 7 dní nebo 3 000 slov, hlasové zprávy 7 dní nebo 15 zpráv.</span></li>
         <li><b>3. Líbí se vám? Kupte licenci</b><span>Vyberte Diktování, Hlasové zprávy, nebo obojí. Zadejte klíč v aplikaci a máte hotovo.</span></li>
       </ol>
-      <p class="lead">Android 13 nebo novější. Verze pro iPhone zatím neexistuje.</p>
       <div class="get">
-        <div class="get-card">
-          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Diktování · Hlasové zprávy</p></div></div>
-          <p>Mluvte do jakékoli aplikace a objeví se čistý text. Čtěte dlouhé hlasové zprávy jako text.</p>
-          <div class="cta">
-            <a class="btn primary" id="apk" href="#download">Stáhnout přímo</a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play brzy</span></span>
+        <div class="get-card rv">
+          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>Diktování · Hlasové zprávy</p></div></div>
+          <p>Vy mluvíte, Pythia píše. Pohodlně a čistě. Dlouhé hlasové zprávy pohodlně čtěte jako text.</p>
+          <div class="row">
+            <a class="btn" id="apk" href="#download"><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play brzy</span></span>
           </div>
         </div>
-        <div class="get-card recap">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Schůzky a hlasové poznámky stručně.</p></div></div>
+        <div class="get-card recap rv" style="--d:.08s">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>Schůzky a hlasové poznámky stručně.</p></div></div>
           <p id="rc-soon-h">Pythia Recap je téměř hotová. Stažení a tlačítko nákupu se tu objeví, jakmile vyjde.</p>
-          <div class="cta">
-            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Stáhnout přímo</a>
-            <a class="btn ghost" href="/cs/recap">Zjistit více</a>
+          <div class="row">
+            <a class="btn teal" id="rc-apk-h" href="#download" hidden><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <a class="btn ghost" href="/cs/recap"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
           </div>
         </div>
       </div>
-      <p class="fine">Při prvním spuštění vás aplikace provede nastavením v šesti krátkých krocích.</p>
+      <p class="dim">Android 13 nebo novější. Verze pro iPhone zatím neexistuje.</p>
+      <p class="dim" style="margin-top:8px">Při prvním spuštění vás aplikace provede nastavením v šesti krátkých krocích.</p>
       <p class="setup">Jednorázové nastavení trvá asi 1 minutu: vytvořte si bezplatný účet Groq (stačí přihlášení přes Google), vygenerujte klíč a vložte ho. Potom už jen diktujete.</p>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Časté otázky</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Časté otázky</h2>
       <details open><summary>Je to opravdu jednorázová platba?</summary><p>Ano. Jedna platba, žádné předplatné ani obnovování. Jedinou další službou je Groq pro rozpoznávání řeči. Jeho bezplatný tarif aktuálně pokrývá zhruba 8 hodin řeči denně, což pro běžné používání bohatě stačí. Limity a ceny si určuje Groq sám.</p></details>
       <details><summary>Co je Groq a potřebuji účet?</summary><p>Groq je služba, která převádí vaši řeč na text. Vytvoříte si tam zdarma osobní klíč a vložíte ho do aplikace. Průvodce v aplikaci ukáže každé klepnutí.</p></details>
       <details><summary>Kolik Groq stojí?</summary><p>Při běžném použití nic. Groq uvádí v bezplatném tarifu až 8 hodin zvuku Whisper denně. Limity Groq mění, zkontrolujte je na console.groq.com.</p></details>
@@ -258,25 +225,17 @@
       <details><summary>Jak dlouhá může hlasová zpráva být?</summary><p>Fungují soubory do 25 MB, což jsou mnohé hodiny řeči. Tříminutová zpráva zabere jen vteřiny. Groq si stanovuje vlastní limity a může je změnit.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Vyzkoušejte 7 dní zdarma.</h2>
+      <p class="lead">Bez účtu a bez předplatného. Když se vám zalíbí, zaplatíte jednou.</p>
+      <div class="row"><a class="btn" href="#download"><span>Vyzkoušet Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/cs/pythia"><span>Všechny produkty</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/cs/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
-      <p>Diktování a hlasové zprávy pro Android.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/cs/recap">Pythia Recap</a>
-      <a href="/impressum">Právní informace</a>
-      <a href="/privacy">Soukromí</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/cs/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Diktování a hlasové zprávy pro Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/cs/">Pythia Voice</a><a href="/cs/recap">Pythia Recap</a><a href="/cs/pythia">Všechny produkty</a><a href="/impressum">Právní informace</a><a href="/privacy">Soukromí</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/app.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

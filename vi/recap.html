@@ -36,72 +36,44 @@
 <meta property="og:description" content="Không đăng ký. Không phí ẩn. Trả một lần, dùng trọn đời.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
 <body class="recap-page" data-page="recap">
-
-<header class="top">
-  <a class="brand" href="/vi/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="34" height="34"><span>Pythia Recap</span></a>
-  <nav aria-label="Menu">
-    <a href="/vi/">Pythia Voice</a>
-    <a href="#ablauf">Cách hoạt động</a>
-    <a href="#preis">Giá</a>
-    <a href="#fragen">Câu hỏi</a>
-    <a class="nav-dl" href="#download">Tải trực tiếp</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi" selected>Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<header class="nav"><a class="brand" href="/vi/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="30" height="30"><span>Pythia Recap</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Sản phẩm<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/vi/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Đọc chính tả</a><a href="/vi/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Tin nhắn thoại</a><a href="/vi/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/vi/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Tất cả sản phẩm</a></div></div><a class="l" href="/vi/#funktionen">Tính năng</a><a class="l" href="#preis">Giá</a><a class="l" href="/vi/#fragen">Câu hỏi</a><a class="btn sm" id="apk-nav" href="/vi/#download"><span>Tải trực tiếp</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi" selected>Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Cuộc họp, gọn gàng.</h1>
-      <p class="lead">Ghi âm một cuộc họp hoặc chia sẻ bản ghi từ Zoom, Teams hay WhatsApp. Pythia Recap viết bản chép lời, bản tóm tắt, các quyết định và danh sách việc cần làm của bạn. Bạn quyết định ai nói gì.</p>
-      <p class="promise">Không đăng ký. Không phí ẩn. Trả một lần, dùng trọn đời.</p>
-      <div class="cta">
-        <a class="btn primary" id="buy-recap" href="#download">Mua Pythia Recap · 19,99 €</a>
-        <a class="btn ghost" href="#funktionen">Xem cách hoạt động</a>
-      </div>
-      <p class="fine">Dành cho Android. Dùng thử miễn phí 7 ngày hoặc 3 cuộc họp. Cần khóa Groq miễn phí của riêng bạn.</p>
-    </div>
-
-    <figure class="rc-demo" aria-label="Từ bản ghi đến bản tóm tắt">
-      <h3>Từ bản ghi đến bản tóm tắt · Lập kế hoạch tuần</h3>
-      <div class="rc-wave" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        <b class="t"></b><b class="w"></b><b class="s"></b>
-      </div>
-      <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Chào buổi sáng mọi người, chúng ta bắt đầu với kế hoạch tuần tới.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Tôi cần số liệu kho trước thứ Sáu, nếu không tôi không thể đặt hàng.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:41</span><div><span class="rc-sp a">Anna</span><p>Làm được, sáng mai tôi gửi cho bạn.</p></div></div>
-      <div class="rc-sum"><p><b>★</b> Tóm tắt: cần số liệu kho trước thứ Sáu</p><p><b>☑</b> Gửi số liệu kho (Anna, sáng mai)</p></div>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="/vi/#funktionen"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Đọc chính tả</span></h3><p>Nói vào bất kỳ ứng dụng nào, văn bản sạch sẽ hiện ra.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="/vi/#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Tin nhắn thoại</span></h3><p>Đọc tin nhắn thoại dài dưới dạng văn bản.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/vi/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Cuộc họp và ghi chú giọng nói, gọn gàng.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Ứng dụng khi hoạt động</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/r_home.webp" alt="Pythia Recap: Ghi âm hoặc chia sẻ" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Ghi âm hoặc chia sẻ</b><span>Ghi âm tại phòng hoặc chia sẻ âm thanh và video từ Zoom, Teams, Meet, WhatsApp hay máy ghi âm của bạn. Cuộc họp dài không thành vấn đề.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap: Dấu mốc và tua" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Dấu mốc và tua</b><span>Đặt dấu mốc khi ghi âm: quan trọng, công việc, đổi người nói. Sau đó nhảy tới đó và tua chính xác bằng ngón cái.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_tasks.webp" alt="Pythia Recap: Tóm tắt và công việc" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Tóm tắt và công việc</b><span>Bản tóm tắt ngắn, các quyết định, câu hỏi còn mở và danh sách việc cần làm kèm ai và khi nào. Chia sẻ dưới dạng văn bản hoặc PDF.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Bạn nhận được gì</h2>
-      <dl class="rules">
+      <div class="rv">
+        <h1>Cuộc họp, gọn gàng.</h1>
+        <p class="lead">Ghi âm một cuộc họp hoặc chia sẻ bản ghi từ Zoom, Teams hay WhatsApp. Pythia Recap viết bản chép lời, bản tóm tắt, các quyết định và danh sách việc cần làm của bạn. Bạn quyết định ai nói gì.</p>
+        <div class="row">
+          <a class="btn" id="buy-recap" href="#preis"><span>Mua Pythia Recap · 19,99 €</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#funktionen"><span>Xem cách hoạt động</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Dành cho Android. Dùng thử miễn phí 7 ngày hoặc 3 cuộc họp. Cần khóa Groq miễn phí của riêng bạn.</span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core rc-demo" aria-label="Từ bản ghi đến bản tóm tắt">
+          <h3>Từ bản ghi đến bản tóm tắt · Lập kế hoạch tuần</h3>
+          <div class="rc-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="t"></b><b class="w"></b><b class="s"></b></div>
+          <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Chào buổi sáng mọi người, chúng ta bắt đầu với kế hoạch tuần tới.</p></div></div>
+          <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Tôi cần số liệu kho trước thứ Sáu, nếu không tôi không thể đặt hàng.</p></div></div>
+          <div class="rc-sum"><p><b>★</b> Tóm tắt: cần số liệu kho trước thứ Sáu</p><p><b>☑</b> Gửi số liệu kho (Anna, sáng mai)</p></div>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul><li><a href="/vi/"><img src="/logo.svg" alt="" width="42" height="42"><div><h3>Pythia Voice <span>Đọc chính tả</span></h3><p>Cứ nói, Pythia viết: tiện, gọn, xong.</p></div></a></li><li><a href="/vi/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Tin nhắn thoại</span></h3><p>Đọc tin nhắn thoại dài dưới dạng văn bản, không cần nghe.</p></div></a></li><li><a href="/vi/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="42" height="42"><div><h3>Pythia Recap</h3><p>Ghi âm cuộc họp và nhận bản tóm tắt kèm công việc.</p></div></a></li></ul></div></section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Bạn nhận được gì</h2>
+      <dl class="rules rv">
         <div><dt>Ghi âm hoặc chia sẻ</dt><dd>Ghi âm tại phòng hoặc chia sẻ âm thanh và video từ Zoom, Teams, Meet, WhatsApp hay máy ghi âm của bạn. Cuộc họp dài không thành vấn đề.</dd></div>
         <div><dt>Tóm tắt và công việc</dt><dd>Bản tóm tắt ngắn, các quyết định, câu hỏi còn mở và danh sách việc cần làm kèm ai và khi nào. Chia sẻ dưới dạng văn bản hoặc PDF.</dd></div>
         <div><dt>Ai nói gì</dt><dd>Gán người nói theo mốc thời gian. Một lần chạm có hiệu lực đến lần đổi người nói kế tiếp, rồi bản tóm tắt dùng tên thật.</dd></div>
@@ -112,10 +84,19 @@
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Ứng dụng khi hoạt động</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/r_home.webp" alt="Ghi âm hoặc chia sẻ" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Ghi âm hoặc chia sẻ</b><span>Ghi âm tại phòng hoặc chia sẻ âm thanh và video từ Zoom, Teams, Meet, WhatsApp hay máy ghi âm của bạn. Cuộc họp dài không thành vấn đề.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.08s"><div class="phone"><img src="/shots/r_meet.webp" alt="Dấu mốc và tua" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Dấu mốc và tua</b><span>Đặt dấu mốc khi ghi âm: quan trọng, công việc, đổi người nói. Sau đó nhảy tới đó và tua chính xác bằng ngón cái.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.16s"><div class="phone"><img src="/shots/r_tasks.webp" alt="Tóm tắt và công việc" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Tóm tắt và công việc</b><span>Bản tóm tắt ngắn, các quyết định, câu hỏi còn mở và danh sách việc cần làm kèm ai và khi nào. Chia sẻ dưới dạng văn bản hoặc PDF.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ablauf">
     <div class="wrap">
-      <h2>Cách hoạt động</h2>
-      <ol class="steps">
+      <h2 class="sec-h rv">Cách hoạt động</h2>
+      <ol class="steps rv">
         <li><b>1. Ghi âm hoặc chia sẻ</b><span>Chạm Ghi âm và đặt điện thoại lên bàn, hoặc chia sẻ một bản ghi với ứng dụng.</span></li>
         <li><b>2. Đợi vài phút</b><span>Pythia Recap chép lời và tóm tắt. Nó vẫn tiếp tục làm việc khi bạn đóng ứng dụng.</span></li>
         <li><b>3. Kiểm tra và chia sẻ</b><span>Gán người nói, nhảy tới các dấu mốc, rồi gửi bản tóm tắt dưới dạng văn bản hoặc PDF.</span></li>
@@ -123,10 +104,10 @@
     </div>
   </section>
 
-  <section class="voice" id="marker">
-    <div class="wrap narrow">
+  <section id="marker">
+    <div class="narrow rv">
       <h2>Tìm đúng chỗ bằng ngón cái</h2>
-      <p class="lead">Trong cuộc họp dài rất khó tìm. Pythia Recap hiển thị toàn bộ cuộc họp và cận cảnh hai phút, với các dấu mốc lớn mà bạn thực sự chạm trúng.</p>
+      <p class="lead" style="margin:16px 0 22px">Trong cuộc họp dài rất khó tìm. Pythia Recap hiển thị toàn bộ cuộc họp và cận cảnh hai phút, với các dấu mốc lớn mà bạn thực sự chạm trúng.</p>
       <ul class="voice-points">
         <li>Dấu mốc có vùng chạm 48 dp: chạm để nhảy về trước năm giây</li>
         <li>Kéo cận cảnh để tua chính xác, kèm kính lúp hiển thị thời gian và văn bản</li>
@@ -135,10 +116,10 @@
     </div>
   </section>
 
-  <section class="light" id="ton">
-    <div class="wrap narrow">
+  <section id="ton">
+    <div class="narrow rv">
       <h2>Họp trực tuyến: cách lấy âm thanh</h2>
-      <p class="dark-text">Android không cho ứng dụng ghi trực tiếp Zoom, Teams hay Meet. Đây là các cách vẫn lấy được một bản âm thanh:</p>
+      <p class="lead" style="margin-top:16px">Android không cho ứng dụng ghi trực tiếp Zoom, Teams hay Meet. Đây là các cách vẫn lấy được một bản âm thanh:</p>
       <ul class="audio-list">
         <li>Zoom: ghi cục bộ và chia sẻ tệp chỉ có âm thanh (m4a).</li>
         <li>Microsoft Teams: chia sẻ bản ghi từ OneDrive hoặc SharePoint.</li>
@@ -146,48 +127,35 @@
         <li>Windows hoặc Mac: ghi âm thanh hệ thống bằng OBS, Audacity hoặc BlackHole.</li>
         <li>Nếu không còn cách nào khác: đặt điện thoại cạnh laptop (chế độ laptop).</li>
       </ul>
-      <p class="note">Luôn báo cho mọi người biết bạn đang ghi âm và xin sự đồng ý trước. Ghi âm khi không có sự đồng ý có thể là hành vi phạm tội.</p>
+      <p class="dim">Luôn báo cho mọi người biết bạn đang ghi âm và xin sự đồng ý trước. Ghi âm khi không có sự đồng ý có thể là hành vi phạm tội.</p>
     </div>
   </section>
 
-  <section class="light" id="preis">
+  <section id="preis">
     <div class="wrap">
-      <div class="price-head">
-        <h2>Một giấy phép. Trả một lần.</h2>
-        <p class="lead dark-text">Không đăng ký, không phí ẩn. Bạn trả một lần và giữ mãi mãi.</p>
-      </div>
-      <div class="tablets one">
-        <div class="tablet">
-          <p class="plan">Pythia Recap</p>
-          <p class="plan-d">Cuộc họp và ghi chú giọng nói, gọn gàng.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Thanh toán một lần bằng euro.</p>
-          <ul>
-            <li>Dùng thử miễn phí 7 ngày hoặc 3 cuộc họp</li>
-            <li>Sau khi mua không giới hạn độ dài hay số cuộc họp</li>
-            <li>Bản chép lời, tóm tắt, công việc, người nói, dấu mốc, xuất PDF</li>
-            <li>Một giấy phép cho một điện thoại, có thể chuyển khi yêu cầu</li>
-          </ul>
-          <a class="btn primary" id="buy-recap-2" href="#download">Mua Pythia Recap</a>
-        </div>
-      </div>
+      <div class="prod-head rv"><h2>Một giấy phép. Trả một lần.</h2><p class="lead">Không đăng ký, không phí ẩn. Bạn trả một lần và giữ mãi mãi.</p></div>
+      <div class="bezel rc rv" style="max-width:560px;margin-inline:auto"><div class="core col r spot">
+        <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_tasks.webp" alt="" width="540" height="1080" loading="lazy"></div>
+        <h3>Pythia Recap<span>Cuộc họp và ghi chú giọng nói, gọn gàng.</span></h3>
+        <p class="price">19,99 €<small>Thanh toán một lần bằng euro.</small></p>
+        <ul><li class="key">Dùng thử miễn phí 7 ngày hoặc 3 cuộc họp</li><li>Sau khi mua không giới hạn độ dài hay số cuộc họp</li><li>Bản chép lời, tóm tắt, công việc, người nói, dấu mốc, xuất PDF</li><li>Một giấy phép cho một điện thoại, có thể chuyển khi yêu cầu</li><li class="key">Bao gồm cập nhật</li></ul>
+        <div class="acts"><a class="btn teal block" id="buy-recap-2" href="#download"><span>Mua Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      </div></div>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
       <h2>Tải ứng dụng</h2>
-      <p class="lead" id="rc-soon">Pythia Recap sắp hoàn thiện. Nút tải xuống và nút mua sẽ xuất hiện ở đây ngay khi phát hành.</p>
-      <div class="cta">
-        <a class="btn primary" id="rc-apk" href="#download" hidden>Tải trực tiếp</a>
-      </div>
-      <a class="cross" href="/vi/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Nói vào bất kỳ ứng dụng nào, văn bản sạch sẽ hiện ra. Đọc tin nhắn thoại dài dưới dạng văn bản.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Tìm hiểu thêm</span></a>
+      <p class="lead" id="rc-soon" style="margin-top:16px">Pythia Recap sắp hoàn thiện. Nút tải xuống và nút mua sẽ xuất hiện ở đây ngay khi phát hành.</p>
+      <div class="row" style="margin-top:22px"><a class="btn teal" id="rc-apk" href="#download" hidden><span>Tải trực tiếp</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <a class="cross rv" href="/vi/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Bạn nói, Pythia viết. Tiện và gọn. Đọc tin nhắn thoại dài dưới dạng văn bản thật thoải mái.</span><span class="cross-p">19,99 €</span><span class="btn ghost sm"><span>Tìm hiểu thêm</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Câu hỏi thường gặp</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Câu hỏi thường gặp</h2>
       <details open><summary>Tôi có cần tài khoản không?</summary><p>Không. Bạn cần ứng dụng và khóa Groq miễn phí của riêng bạn. Chúng tôi không vận hành tài khoản hay máy chủ cho cuộc họp của bạn.</p></details>
       <details><summary>Groq tốn bao nhiêu?</summary><p>Groq có gói miễn phí đủ cho nhiều cuộc họp. Giới hạn của nó có thể tạm dừng những tác vụ rất dài một lúc. Ngoài ra, việc sử dụng tốn vài xu mỗi giờ âm thanh.</p></details>
       <details><summary>Có ghi trực tiếp Zoom hoặc Teams được không?</summary><p>Android không cho phép ứng dụng làm vậy. Hãy dùng bản ghi của phần mềm họp, âm thanh hệ thống trên máy tính hoặc chế độ laptop. Các hướng dẫn trong ứng dụng giải thích từng cách.</p></details>
@@ -196,25 +164,17 @@
       <details><summary>Những ngôn ngữ nào hoạt động?</summary><p>Nhận dạng giọng nói hoạt động với hơn 90 ngôn ngữ và tự phát hiện ngôn ngữ. Bản tóm tắt có thể được viết bằng ngôn ngữ bạn chọn.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Dùng thử miễn phí 7 ngày.</h2>
+      <p class="lead">Không cần tài khoản, không đăng ký. Thích thì trả một lần.</p>
+      <div class="row"><a class="btn teal" href="#preis"><span>Mua Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/vi/pythia"><span>Tất cả sản phẩm</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/vi/recap"><img src="/recap-logo.svg" alt="" width="28" height="28"><span>Pythia Recap</span></a>
-      <p>Cuộc họp và ghi chú giọng nói, gọn gàng.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/vi/">Pythia Voice</a>
-      <a href="/impressum">Thông tin pháp lý</a>
-      <a href="/privacy">Quyền riêng tư</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/vi/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Đọc chính tả và tin nhắn thoại cho Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/vi/">Pythia Voice</a><a href="/vi/recap">Pythia Recap</a><a href="/vi/pythia">Tất cả sản phẩm</a><a href="/impressum">Thông tin pháp lý</a><a href="/privacy">Quyền riêng tư</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/recap.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

@@ -32,146 +32,109 @@
 <link rel="alternate" hreflang="he" href="https://www.pythiavoice.app/he/">
 <link rel="alternate" hreflang="x-default" href="https://www.pythiavoice.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Lebih baik dari ramalan mana pun: kata-katamu, dituliskan Pythia dengan andal.">
-<meta property="og:description" content="Tanpa langganan. Tanpa biaya tersembunyi. Bayar sekali, pakai seumur hidup.">
+<meta property="og:title" content="Kamu bicara. Pythia menulis. Tanpa repot.">
+<meta property="og:description" content="Pythia Voice menghapus «eh», menambahkan tanda baca, dan mengikuti koreksimu. Bayar sekali, tanpa langganan.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
-<body>
-
-<header class="top">
-  <a class="brand" href="/id/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
-  <nav aria-label="Menu">
-    <a href="#ablauf">Cara kerja</a>
-    <a href="#preis">Harga</a>
-    <a href="#fragen">Pertanyaan</a>
-    <a href="/id/recap">Pythia Recap</a>
-    <a class="nav-dl" href="#download">Unduh langsung</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id" selected>Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<body data-page="home">
+<header class="nav"><a class="brand" href="/id/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produk<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/id/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dikte</a><a href="/id/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Pesan suara</a><a href="/id/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/id/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Semua produk</a></div></div><a class="l" href="#funktionen">Fitur</a><a class="l" href="#produkte">Harga</a><a class="l" href="#fragen">Pertanyaan</a><a class="btn sm" id="apk-nav" href="/id/#download"><span>Unduh langsung</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id" selected>Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Lebih baik dari ramalan mana pun: kata-katamu, dituliskan Pythia dengan andal.</h1>
-      <p class="lead">Bicara di aplikasi apa pun. Pythia Voice menuliskannya, membuang “eh”, dan mengikuti koreksimu.</p>
-      <p class="promise">Tanpa langganan. Tanpa biaya tersembunyi. Bayar sekali, pakai seumur hidup.</p>
-      <p class="promise">Dua lisensi: Dikte dan Pesan suara. Masing-masing dibeli terpisah, sekali bayar, dan berfungsi sendiri.</p>
-      <div class="cta">
-        <a class="btn primary" href="#download">Coba Pythia Voice</a>
-        <a class="btn ghost" href="#preis">Lihat harga</a>
-      </div>
-      <p class="fine">Coba gratis 7 hari atau 3.000 kata.</p>
-    </div>
-
-    <figure class="oracle" id="oracle" data-fill="eh" data-a="kita bertemu jam" data-s="lima eh bukan sebenarnya jam" data-b="enam di depan stasiun" data-out="Kita bertemu jam enam di depan stasiun.">
-      <div class="wave" id="wave" aria-hidden="true"></div>
-      <div class="line">
-        <span class="label">Kamu bilang</span>
-        <p id="said" class="said"></p>
-      </div>
-      <div class="line">
-        <span class="label">Pythia menulis</span>
-        <p id="wrote" class="wrote" aria-live="polite"></p>
-      </div>
-      <button class="replay" id="replay" type="button">Ulangi</button>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dikte</span></h3><p>Bicara di aplikasi apa pun, teks yang rapi muncul.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Pesan suara</span></h3><p>Baca pesan suara panjang sebagai teks.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/id/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Rapat dan catatan suara, ringkas.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Aplikasi saat digunakan</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/v_home.webp" alt="Pythia Voice: Dikte" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Dikte</b><span>Bicara di aplikasi apa pun, teks yang rapi muncul.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_msg.webp" alt="Pythia Voice: Pesan suara" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Pesan suara</b><span>Baca pesan suara panjang sebagai teks.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_words.webp" alt="Pythia Voice: Kata" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Kata</b><span>Nama dan istilah teknis yang harus ditulis dengan benar.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_style.webp" alt="Pythia Voice: Gaya" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Gaya</b><span>Gaya penulisan teks yang dirapikan</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_snip.webp" alt="Pythia Voice: Cuplikan" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Cuplikan</b><span>Ucapkan pintasan dan seluruh teks akan dimasukkan.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Yang kamu dapat</h2>
-      <dl class="rules">
-        <div><dt>Bayar sekali, pakai seumur hidup</dt><dd>Tanpa langganan, tanpa perpanjangan, dan tanpa batas kata setelah masa uji coba. Yang kamu bayar hari ini adalah seluruh biaya Pythia Voice.</dd></div>
-        <div><dt>Menulis di aplikasi apa pun</dt><dd>WhatsApp, surel, catatan, peramban. Tombol bulat muncul di atas keyboard begitu kamu mengetuk kolom teks.</dd></div>
+      <div class="rv">
+        <h1>Kamu bicara. Pythia menulis. Tanpa repot.</h1>
+        <p class="lead">Pythia Voice menghapus «eh», menambahkan tanda baca, dan mengikuti koreksimu. Bayar sekali, tanpa langganan.</p>
+        <div class="row">
+          <a class="btn" href="#download"><span>Coba Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#produkte"><span>Lihat harga</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Coba gratis 7 hari atau 3.000 kata.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play segera hadir</span></span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/v_home.webp" alt="Dikte" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="eh" data-a="kita bertemu jam" data-s="lima eh bukan sebenarnya jam" data-b="enam di depan stasiun" data-out="Kita bertemu jam enam di depan stasiun.">
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <div class="line"><span class="label">Kamu bilang</span><p id="said" class="said"></p></div>
+          <div class="line"><span class="label">Pythia menulis</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
+          <button class="replay" id="replay" type="button">Ulangi</button>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video" id="video" hidden>
+    <div class="wrap">
+      <h2>Pythia dalam sepuluh detik</h2><p class="lead" style="margin-top:14px">Bicara, kirim, selesai.</p>
+      <div class="vbox bezel"><div class="core"><video controls playsinline preload="none" aria-label="Pythia dalam sepuluh detik"></video></div></div>
+    </div>
+  </section>
+
+  <section id="produkte">
+    <div class="wrap">
+      <div class="prod-head rv"><h2>Tiga alat yang mengambil alih kerja mengetik.</h2><p class="lead">Tanpa langganan, tanpa biaya tersembunyi. Setiap lisensi dibeli sekali dan jadi milikmu selamanya.</p></div>
+      <div class="cols">
+        <div class="bezel hl rv" id="diktat"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Dikte</span></h3>
+          <p class="tag">Bicara saja, Pythia yang menulis: praktis, rapi, selesai.</p>
+          <p class="price">€19,99<small>Pembayaran sekali dalam euro.</small></p>
+          <ul><li class="key">Coba gratis 7 hari atau 3.000 kata</li><li>Semua 90+ bahasa, semua fitur</li><li>Tanpa batas kata setelah pembelian</li><li class="key">Pembaruan termasuk</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Pelajari lebih lanjut</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Beli lisensi</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Pesan suara</span></h3>
+          <p class="tag">Baca pesan suara panjang sebagai teks, tanpa perlu mendengarkan.</p>
+          <p class="price">€19,99<small>Pembayaran sekali dalam euro.</small></p>
+          <ul><li class="key">Coba gratis dengan 15 pesan atau 7 hari</li><li>Dibagi per menit dan per paragraf</li><li>Bagikan dari WhatsApp dan aplikasi pesan lain</li><li class="key">Termasuk pembaruan</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Pelajari lebih lanjut</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Beli pesan suara</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+          <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Recap<span>Rapat dan catatan suara, ringkas.</span></h3>
+          <p class="tag">Rekam rapat dan terima ringkasan siap pakai beserta tugas.</p>
+          <p class="price">€19,99<small>Pembayaran sekali dalam euro.</small></p>
+          <ul><li class="key">Coba gratis 7 hari atau 3 rapat</li><li>Transkrip, ringkasan, tugas, pembicara, penanda, ekspor PDF</li><li>Setelah pembelian tanpa batas panjang atau jumlah rapat</li><li class="key">Pembaruan termasuk</li></ul>
+          <div class="acts"><a class="btn ghost block" href="/id/recap"><span>Pelajari lebih lanjut</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/id/recap#preis"><span>Beli Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+      </div>
+      <p class="note">Setiap lisensi dibeli terpisah dan berfungsi sendiri. Satu-satunya bahan lain adalah akses Groq milikmu untuk pengenalan suara. Gratis untuk penggunaan normal, syaratnya ditetapkan Groq.</p>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Yang Pythia kerjakan untukmu</h2>
+      <dl class="rules rv">
+        <div><dt>Bicara, bukan mengetik</dt><dd>Ketuk kolom teks, tekan tombol bulat di atas keyboard, lalu bicara. Pythia menulis teksnya langsung di sana, misalnya di WhatsApp, email, atau catatan.</dd></div>
         <div><dt>Merapikan untukmu</dt><dd>Kata pengisi dibuang, tanda baca ditambahkan. Katakan “jam lima, bukan, jam enam” dan ia menulis “jam enam”.</dd></div>
         <div><dt>Lebih dari 90 bahasa</dt><dd>Bahkan bercampur dalam satu kalimat. Aplikasinya sendiri tersedia dalam 24 bahasa.</dd></div>
+        <div><dt>Bayar sekali, pakai seumur hidup</dt><dd>Tanpa langganan, tanpa perpanjangan, dan tanpa batas kata setelah masa uji coba. Yang kamu bayar hari ini adalah seluruh biaya Pythia Voice.</dd></div>
         <div><dt>Pengenalan lewat akses Groq-mu</dt><dd>Pengenalan berjalan dengan kunci Groq milikmu sendiri. Menurut dokumentasi Groq, paket gratis mengizinkan hingga 8 jam suara per hari. Batasnya ditetapkan Groq dan dapat berubah.</dd></div>
         <div><dt>Tetap bersamamu</dt><dd>Tanpa akun. Pythia Voice tidak menyimpan audio. Di kolom kata sandi tombol tetap tersembunyi.</dd></div>
       </dl>
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
-    <div class="wrap">
-      <h2>Cara mendikte</h2>
-      <ol class="steps">
-        <li><b>Ketuk</b><span>Ketuk kolom teks, lalu tombol bulat di atas keyboard.</span></li>
-        <li><b>Bicara</b><span>Katakan apa yang ingin kamu tulis. Dengan jeda, dengan koreksi.</span></li>
-        <li><b>Katakan selesai</b><span>Ketuk sekali lagi. Teks yang rapi ada di kolom.</span></li>
-      </ol>
-      <p class="hint">Lebih suka menahan? Tahan tombol, bicara, lepaskan.</p>
-      <p class="setup">Penyiapan satu kali memakan waktu sekitar 1 menit: buat akun Groq gratis (cukup masuk dengan Google), buat kunci, lalu tempel. Setelah itu kamu tinggal mendikte.</p>
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Aplikasi saat digunakan</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Dikte" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Dikte</b><span>Kamu bicara, Pythia menulis. Praktis dan rapi.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="Pesan suara" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Pesan suara</b><span>Baca pesan suara panjang dengan nyaman sebagai teks.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="Kata" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Kata</b><span>Nama dan istilah teknis yang harus ditulis dengan benar.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="Gaya" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Gaya</b><span>Gaya penulisan teks yang dirapikan</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="Cuplikan" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Cuplikan</b><span>Ucapkan pintasan dan seluruh teks akan dimasukkan.</span></figcaption></figure>
     </div>
   </section>
 
-  <section class="light" id="preis">
-    <div class="wrap">
-      <div class="price-head">
-        <h2>Dua lisensi. Bayar sekali untuk masing-masing.</h2>
-        <p class="lead dark-text">Pythia Voice hadir dengan dua lisensi: Dikte dan Pesan suara. Tanpa langganan, tanpa biaya tersembunyi: Anda membayar sekali per lisensi dan memakainya seumur hidup.</p>
-      </div>
-      <div class="tablets">
-        <div class="tablet">
-          <p class="plan">Dikte</p>
-          <p class="plan-d">Bicara di aplikasi apa pun, teks yang rapi muncul.</p>
-          <p class="amount"><span class="num" id="price">€19,99</span></p>
-          <p class="sub">Pembayaran sekali dalam euro.</p>
-          <ul>
-            <li>Coba gratis 7 hari atau 3.000 kata</li>
-            <li>Semua 90+ bahasa, semua fitur</li>
-            <li>Tanpa batas kata setelah pembelian</li>
-            <li>Pembaruan termasuk</li>
-          </ul>
-          <a class="btn primary" id="buy" href="#download">Beli lisensi</a>
-        </div>
-        <div class="tablet">
-          <p class="plan">Pesan suara</p>
-          <p class="plan-d">Baca pesan suara panjang sebagai teks.</p>
-          <p class="amount"><span class="num">€19,99</span></p>
-          <p class="sub">Pembayaran sekali dalam euro.</p>
-          <ul>
-            <li>Coba gratis dengan 15 pesan atau 7 hari</li>
-            <li>Dibagi per menit dan per paragraf</li>
-            <li>Bagikan dari WhatsApp dan aplikasi pesan lain</li>
-            <li>Termasuk pembaruan</li>
-          </ul>
-          <a class="btn primary" id="buy-voice-2" href="#download">Beli pesan suara</a>
-        </div>
-      </div>
-      <p class="note">Setiap lisensi dibeli terpisah dan berfungsi sendiri. Satu-satunya bahan lain adalah akses Groq milikmu untuk pengenalan suara. Gratis untuk penggunaan normal, syaratnya ditetapkan Groq.</p>
-      <a class="cross" href="/id/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Rapat dan catatan suara, ringkas.</span><span class="cross-p">€19,99</span><span class="btn ghost">Pelajari lebih lanjut</span></a>
-    </div>
-  </section>
-
-  <section class="voice" id="sprachnachrichten">
+  <section id="sprachnachrichten">
     <div class="wrap voice-grid">
-      <div class="voice-text">
-        <p class="eyebrow">Pesan suara sebagai teks</p>
+      <div class="voice-text rv">
         <h2>Lelah dengan pesan suara yang panjang?</h2>
         <p class="lead">Ingin membaca dengan cepat dan sedang tidak bisa mendengarkan? Atau tidak sabar dengan “novel” yang direkam sebagian orang, dan Anda membaca lebih cepat daripada mereka berbicara? Maka Pythia Voice cocok untuk Anda: bagikan pesannya, baca sebagai teks.</p>
         <ul class="voice-points">
@@ -179,12 +142,13 @@
           <li>Dibagi per menit dan per paragraf, nyaman di mata</li>
           <li>Coba gratis dengan 15 pesan atau 7 hari</li>
         </ul>
-        <div class="cta">
-          <a class="btn primary" id="buy-voice" href="#download">Beli pesan suara · €19,99 sekali bayar</a>
-          <span class="fine inline">Lisensi terpisah dari dikte. Tanpa langganan.</span>
+        <div class="row">
+          <a class="btn ghost" href="/id/pythia"><span>Pelajari lebih lanjut</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Beli pesan suara · €19,99 sekali bayar</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
+        <p class="dim" style="margin-top:14px;font-size:.92rem">Lisensi terpisah dari dikte. Tanpa langganan.</p>
       </div>
-      <figure class="vm-demo" aria-label="Pythia Voice mengubahnya menjadi teks, dibagi per menit">
+      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice mengubahnya menjadi teks, dibagi per menit">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -199,54 +163,57 @@
           <div><b>3:00</b><p>Oke, itu saja. Sampai jumpa!</p></div>
         </div>
         <p class="vm-cap">Pythia Voice mengubahnya menjadi teks, dibagi per menit</p>
-      </figure>
+      </figure></div>
     </div>
   </section>
 
-  <section class="rc-teaser" id="recap">
+  <section id="ablauf">
     <div class="wrap">
-      <p class="eyebrow">Pythia Recap</p>
-      <h2>Juga dari Pythia: Pythia Recap</h2>
-      <p class="lead">Rekam atau bagikan rapat dan dapatkan transkrip, ringkasan, dan daftar tugas. Tentukan siapa mengatakan apa. Sekali bayar 19,99 €, tanpa langganan.</p>
-      <a class="btn primary" href="/id/recap">Pelajari lebih lanjut</a>
+      <h2 class="sec-h rv">Cara mendikte</h2>
+      <ol class="steps rv">
+        <li><b>Ketuk</b><span>Ketuk kolom teks, lalu tombol bulat di atas keyboard.</span></li>
+        <li><b>Bicara</b><span>Katakan apa yang ingin kamu tulis. Dengan jeda, dengan koreksi.</span></li>
+        <li><b>Katakan selesai</b><span>Ketuk sekali lagi. Teks yang rapi ada di kolom.</span></li>
+      </ol>
+      <p class="hint">Lebih suka menahan? Tahan tombol, bicara, lepaskan.</p>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
-      <h2>Untuk Android</h2>
-      <ol class="steps">
+      <h2 class="rv">Untuk Android</h2>
+      <ol class="steps rv" style="margin-top:32px">
         <li><b>1. Unduh aplikasi</b><span>Unduh APK di bawah ini dan pasang di ponsel Android Anda.</span></li>
         <li><b>2. Coba</b><span>Coba semuanya gratis: dikte selama 7 hari atau 3.000 kata, pesan suara selama 7 hari atau 15 pesan.</span></li>
         <li><b>3. Suka? Beli lisensi</b><span>Pilih Dikte, Pesan suara, atau keduanya. Masukkan kunci di aplikasi, selesai.</span></li>
       </ol>
-      <p class="lead">Android 13 atau lebih baru. Versi iPhone belum ada.</p>
       <div class="get">
-        <div class="get-card">
-          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Dikte · Pesan suara</p></div></div>
-          <p>Bicara di aplikasi apa pun, teks yang rapi muncul. Baca pesan suara panjang sebagai teks.</p>
-          <div class="cta">
-            <a class="btn primary" id="apk" href="#download">Unduh langsung</a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play segera hadir</span></span>
+        <div class="get-card rv">
+          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>Dikte · Pesan suara</p></div></div>
+          <p>Kamu bicara, Pythia menulis. Praktis dan rapi. Baca pesan suara panjang dengan nyaman sebagai teks.</p>
+          <div class="row">
+            <a class="btn" id="apk" href="#download"><span>Unduh langsung</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play segera hadir</span></span>
           </div>
         </div>
-        <div class="get-card recap">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Rapat dan catatan suara, ringkas.</p></div></div>
+        <div class="get-card recap rv" style="--d:.08s">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>Rapat dan catatan suara, ringkas.</p></div></div>
           <p id="rc-soon-h">Pythia Recap hampir siap. Unduhan dan tombol beli akan muncul di sini begitu dirilis.</p>
-          <div class="cta">
-            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Unduh langsung</a>
-            <a class="btn ghost" href="/id/recap">Pelajari lebih lanjut</a>
+          <div class="row">
+            <a class="btn teal" id="rc-apk-h" href="#download" hidden><span>Unduh langsung</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <a class="btn ghost" href="/id/recap"><span>Pelajari lebih lanjut</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
           </div>
         </div>
       </div>
-      <p class="fine">Saat pertama dibuka, aplikasi memandu penyiapan dalam enam langkah singkat.</p>
+      <p class="dim">Android 13 atau lebih baru. Versi iPhone belum ada.</p>
+      <p class="dim" style="margin-top:8px">Saat pertama dibuka, aplikasi memandu penyiapan dalam enam langkah singkat.</p>
       <p class="setup">Penyiapan satu kali memakan waktu sekitar 1 menit: buat akun Groq gratis (cukup masuk dengan Google), buat kunci, lalu tempel. Setelah itu kamu tinggal mendikte.</p>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Pertanyaan umum</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Pertanyaan umum</h2>
       <details open><summary>Apakah benar sekali bayar?</summary><p>Ya. Sekali bayar, tanpa langganan, tanpa perpanjangan. Satu-satunya layanan lain yang terlibat adalah Groq untuk pengenalan suara. Paket gratisnya saat ini mencakup sekitar 8 jam suara per hari, cukup untuk pemakaian normal. Groq menentukan sendiri batas dan harganya.</p></details>
       <details><summary>Apa itu Groq dan perlukah akun?</summary><p>Groq adalah layanan yang mengubah suaramu menjadi teks. Di sana kamu membuat kunci pribadi gratis lalu menempelkannya ke aplikasi. Panduan di aplikasi menunjukkan setiap ketukan.</p></details>
       <details><summary>Berapa biaya Groq?</summary><p>Untuk penggunaan normal, tidak ada. Groq menyebut hingga 8 jam audio Whisper per hari di paket gratis. Groq mengubah batasnya, periksa di console.groq.com.</p></details>
@@ -258,25 +225,17 @@
       <details><summary>Seberapa panjang pesan suara yang didukung?</summary><p>File hingga 25 MB bisa digunakan, setara banyak jam percakapan. Pesan tiga menit hanya butuh beberapa detik. Groq menetapkan batasnya sendiri dan dapat mengubahnya.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Coba gratis 7 hari.</h2>
+      <p class="lead">Tanpa akun, tanpa langganan. Kalau suka, bayar sekali saja.</p>
+      <div class="row"><a class="btn" href="#download"><span>Coba Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/id/pythia"><span>Semua produk</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/id/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
-      <p>Dikte dan pesan suara untuk Android.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/id/recap">Pythia Recap</a>
-      <a href="/impressum">Informasi hukum</a>
-      <a href="/privacy">Privasi</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/id/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Dikte dan pesan suara untuk Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/id/">Pythia Voice</a><a href="/id/recap">Pythia Recap</a><a href="/id/pythia">Semua produk</a><a href="/impressum">Informasi hukum</a><a href="/privacy">Privasi</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/app.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

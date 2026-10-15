@@ -36,72 +36,44 @@
 <meta property="og:description" content="无订阅。无隐藏费用。一次付费，终身使用。">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
 <body class="recap-page" data-page="recap">
-
-<header class="top">
-  <a class="brand" href="/zh/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="34" height="34"><span>Pythia Recap</span></a>
-  <nav aria-label="Menu">
-    <a href="/zh/">Pythia Voice</a>
-    <a href="#ablauf">工作方式</a>
-    <a href="#preis">价格</a>
-    <a href="#fragen">常见问题</a>
-    <a class="nav-dl" href="#download">直接下载</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh" selected>中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<header class="nav"><a class="brand" href="/zh/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="30" height="30"><span>Pythia Recap</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">产品<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/zh/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · 听写</a><a href="/zh/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · 语音消息</a><a href="/zh/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/zh/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>全部产品</a></div></div><a class="l" href="/zh/#funktionen">功能</a><a class="l" href="#preis">价格</a><a class="l" href="/zh/#fragen">常见问题</a><a class="btn sm" id="apk-nav" href="/zh/#download"><span>直接下载</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh" selected>中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>会议，一目了然。</h1>
-      <p class="lead">录制会议，或分享来自 Zoom、Teams 或 WhatsApp 的录音。Pythia Recap 会写出文字稿、摘要、决定和你的任务清单。谁说了什么由你决定。</p>
-      <p class="promise">无订阅。无隐藏费用。一次付费，终身使用。</p>
-      <div class="cta">
-        <a class="btn primary" id="buy-recap" href="#download">购买 Pythia Recap · 19,99 €</a>
-        <a class="btn ghost" href="#funktionen">了解如何运作</a>
-      </div>
-      <p class="fine">适用于 Android。免费试用 7 天或 3 场会议。需要你自己的免费 Groq 密钥。</p>
-    </div>
-
-    <figure class="rc-demo" aria-label="从录音到回顾">
-      <h3>从录音到回顾 · 每周计划</h3>
-      <div class="rc-wave" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        <b class="t"></b><b class="w"></b><b class="s"></b>
-      </div>
-      <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>大家早上好，我们从下周的计划开始。</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>我需要在周五前拿到仓库的数字，否则没法下单。</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:41</span><div><span class="rc-sp a">Anna</span><p>没问题，我明天早上发给你。</p></div></div>
-      <div class="rc-sum"><p><b>★</b> 摘要：周五前需要仓库数字</p><p><b>☑</b> 发送仓库数字（Anna，明天早上）</p></div>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="/zh/#funktionen"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>听写</span></h3><p>对任意应用说话，即出现干净的文字。</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="/zh/#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>语音消息</span></h3><p>把长语音消息当作文字来读。</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/zh/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>会议与语音笔记，一目了然。</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">应用实拍</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/r_home.webp" alt="Pythia Recap: 录制或分享" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>录制或分享</b><span>在现场录音，或分享来自 Zoom、Teams、Meet、WhatsApp 或录音笔的音频和视频。长会议也没问题。</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap: 标记与拖动浏览" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>标记与拖动浏览</b><span>录音时添加标记：重要、任务、发言人切换。之后可跳转到这些位置，并用拇指精确拖动。</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_tasks.webp" alt="Pythia Recap: 摘要与任务" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>摘要与任务</b><span>简短摘要、决定、未解决的问题，以及包含负责人和时间的任务清单。可作为文字或 PDF 分享。</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>你将获得</h2>
-      <dl class="rules">
+      <div class="rv">
+        <h1>会议，一目了然。</h1>
+        <p class="lead">录制会议，或分享来自 Zoom、Teams 或 WhatsApp 的录音。Pythia Recap 会写出文字稿、摘要、决定和你的任务清单。谁说了什么由你决定。</p>
+        <div class="row">
+          <a class="btn" id="buy-recap" href="#preis"><span>购买 Pythia Recap · 19,99 €</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#funktionen"><span>了解如何运作</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>适用于 Android。免费试用 7 天或 3 场会议。需要你自己的免费 Groq 密钥。</span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core rc-demo" aria-label="从录音到回顾">
+          <h3>从录音到回顾 · 每周计划</h3>
+          <div class="rc-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="t"></b><b class="w"></b><b class="s"></b></div>
+          <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>大家早上好，我们从下周的计划开始。</p></div></div>
+          <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>我需要在周五前拿到仓库的数字，否则没法下单。</p></div></div>
+          <div class="rc-sum"><p><b>★</b> 摘要：周五前需要仓库数字</p><p><b>☑</b> 发送仓库数字（Anna，明天早上）</p></div>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul><li><a href="/zh/"><img src="/logo.svg" alt="" width="42" height="42"><div><h3>Pythia Voice <span>听写</span></h3><p>开口说，Pythia来写：轻松、干净、搞定。</p></div></a></li><li><a href="/zh/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>语音消息</span></h3><p>长语音消息直接读文字，不用再听。</p></div></a></li><li><a href="/zh/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="42" height="42"><div><h3>Pythia Recap</h3><p>录下会议，就能得到带任务清单的完整摘要。</p></div></a></li></ul></div></section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">你将获得</h2>
+      <dl class="rules rv">
         <div><dt>录制或分享</dt><dd>在现场录音，或分享来自 Zoom、Teams、Meet、WhatsApp 或录音笔的音频和视频。长会议也没问题。</dd></div>
         <div><dt>摘要与任务</dt><dd>简短摘要、决定、未解决的问题，以及包含负责人和时间的任务清单。可作为文字或 PDF 分享。</dd></div>
         <div><dt>谁说了什么</dt><dd>按时间戳指定发言人。轻点一次，有效至下一次发言人切换，之后摘要会使用真实姓名。</dd></div>
@@ -112,10 +84,19 @@
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">应用实拍</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/r_home.webp" alt="录制或分享" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>录制或分享</b><span>在现场录音，或分享来自 Zoom、Teams、Meet、WhatsApp 或录音笔的音频和视频。长会议也没问题。</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.08s"><div class="phone"><img src="/shots/r_meet.webp" alt="标记与拖动浏览" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>标记与拖动浏览</b><span>录音时添加标记：重要、任务、发言人切换。之后可跳转到这些位置，并用拇指精确拖动。</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.16s"><div class="phone"><img src="/shots/r_tasks.webp" alt="摘要与任务" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>摘要与任务</b><span>简短摘要、决定、未解决的问题，以及包含负责人和时间的任务清单。可作为文字或 PDF 分享。</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ablauf">
     <div class="wrap">
-      <h2>如何运作</h2>
-      <ol class="steps">
+      <h2 class="sec-h rv">如何运作</h2>
+      <ol class="steps rv">
         <li><b>1. 录制或分享</b><span>点按录制并把手机放在桌上，或把录音分享给应用。</span></li>
         <li><b>2. 等待几分钟</b><span>Pythia Recap 会转写并生成摘要。即使关闭应用也会继续工作。</span></li>
         <li><b>3. 检查并分享</b><span>指定发言人，跳转到标记，然后把摘要以文字或 PDF 发送出去。</span></li>
@@ -123,10 +104,10 @@
     </div>
   </section>
 
-  <section class="voice" id="marker">
-    <div class="wrap narrow">
+  <section id="marker">
+    <div class="narrow rv">
       <h2>用拇指找到正确的位置</h2>
-      <p class="lead">在长会议中很难查找。Pythia Recap 显示整场会议和两分钟的放大视图，并配有真正点得中的大标记。</p>
+      <p class="lead" style="margin:16px 0 22px">在长会议中很难查找。Pythia Recap 显示整场会议和两分钟的放大视图，并配有真正点得中的大标记。</p>
       <ul class="voice-points">
         <li>标记是 48 dp 的触控区域：轻点即可跳到五秒之前</li>
         <li>拖动放大视图即可精确浏览，并有放大镜显示时间和文字</li>
@@ -135,10 +116,10 @@
     </div>
   </section>
 
-  <section class="light" id="ton">
-    <div class="wrap narrow">
+  <section id="ton">
+    <div class="narrow rv">
       <h2>在线会议：如何获取声音</h2>
-      <p class="dark-text">Android 不允许应用直接录制 Zoom、Teams 或 Meet。以下是仍能获得音轨的方法：</p>
+      <p class="lead" style="margin-top:16px">Android 不允许应用直接录制 Zoom、Teams 或 Meet。以下是仍能获得音轨的方法：</p>
       <ul class="audio-list">
         <li>Zoom：本地录制，并分享纯音频文件（m4a）。</li>
         <li>Microsoft Teams：分享 OneDrive 或 SharePoint 中的录制文件。</li>
@@ -146,48 +127,35 @@
         <li>Windows 或 Mac：用 OBS、Audacity 或 BlackHole 录制系统声音。</li>
         <li>实在没有办法：把手机放在笔记本电脑旁边（笔记本模式）。</li>
       </ul>
-      <p class="note">务必告知所有人你在录音，并先取得他们的同意。未经同意录音可能构成犯罪。</p>
+      <p class="dim">务必告知所有人你在录音，并先取得他们的同意。未经同意录音可能构成犯罪。</p>
     </div>
   </section>
 
-  <section class="light" id="preis">
+  <section id="preis">
     <div class="wrap">
-      <div class="price-head">
-        <h2>一个许可。只付一次。</h2>
-        <p class="lead dark-text">无需订阅，没有隐藏费用。只付一次，终身使用。</p>
-      </div>
-      <div class="tablets one">
-        <div class="tablet">
-          <p class="plan">Pythia Recap</p>
-          <p class="plan-d">会议与语音笔记，一目了然。</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">以欧元一次性支付。</p>
-          <ul>
-            <li>免费试用 7 天或 3 场会议</li>
-            <li>购买后会议时长和数量不限</li>
-            <li>文字稿、摘要、任务、发言人、标记、PDF 导出</li>
-            <li>一部手机一个许可，可应要求转移</li>
-          </ul>
-          <a class="btn primary" id="buy-recap-2" href="#download">购买 Pythia Recap</a>
-        </div>
-      </div>
+      <div class="prod-head rv"><h2>一个许可。只付一次。</h2><p class="lead">无需订阅，没有隐藏费用。只付一次，终身使用。</p></div>
+      <div class="bezel rc rv" style="max-width:560px;margin-inline:auto"><div class="core col r spot">
+        <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_tasks.webp" alt="" width="540" height="1080" loading="lazy"></div>
+        <h3>Pythia Recap<span>会议与语音笔记，一目了然。</span></h3>
+        <p class="price">19,99 €<small>以欧元一次性支付。</small></p>
+        <ul><li class="key">免费试用 7 天或 3 场会议</li><li>购买后会议时长和数量不限</li><li>文字稿、摘要、任务、发言人、标记、PDF 导出</li><li>一部手机一个许可，可应要求转移</li><li class="key">含更新</li></ul>
+        <div class="acts"><a class="btn teal block" id="buy-recap-2" href="#download"><span>购买 Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      </div></div>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
       <h2>获取应用</h2>
-      <p class="lead" id="rc-soon">Pythia Recap 即将完成。发布后，下载和购买按钮会出现在这里。</p>
-      <div class="cta">
-        <a class="btn primary" id="rc-apk" href="#download" hidden>直接下载</a>
-      </div>
-      <a class="cross" href="/zh/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> 对任意应用说话，即出现干净的文字。 把长语音消息当作文字来读。</span><span class="cross-p">19,99 €</span><span class="btn ghost">了解更多</span></a>
+      <p class="lead" id="rc-soon" style="margin-top:16px">Pythia Recap 即将完成。发布后，下载和购买按钮会出现在这里。</p>
+      <div class="row" style="margin-top:22px"><a class="btn teal" id="rc-apk" href="#download" hidden><span>直接下载</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <a class="cross rv" href="/zh/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> 你来说，Pythia来写。轻松又干净。 长语音消息，轻松读成文字。</span><span class="cross-p">19,99 €</span><span class="btn ghost sm"><span>了解更多</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>常见问题</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">常见问题</h2>
       <details open><summary>我需要账号吗？</summary><p>不需要。你只需要应用和你自己的免费 Groq 密钥。我们不为你的会议运营账号或服务器。</p></details>
       <details><summary>Groq 要多少钱？</summary><p>Groq 提供足够许多会议使用的免费额度。其限制可能让很长的任务暂停一会儿。超出之后，每小时音频的费用只有几美分。</p></details>
       <details><summary>能直接录制 Zoom 或 Teams 吗？</summary><p>Android 不允许应用这样做。请使用会议软件的录制文件、电脑上的系统声音或笔记本模式。应用内的指南会说明每种方法。</p></details>
@@ -196,25 +164,17 @@
       <details><summary>支持哪些语言？</summary><p>语音识别支持 90 多种语言，并能自动检测语言。摘要可以用你选择的语言撰写。</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>免费试用 7 天。</h2>
+      <p class="lead">无需账号，无需订阅。喜欢再一次性付费。</p>
+      <div class="row"><a class="btn teal" href="#preis"><span>购买 Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/zh/pythia"><span>全部产品</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/zh/recap"><img src="/recap-logo.svg" alt="" width="28" height="28"><span>Pythia Recap</span></a>
-      <p>会议与语音笔记，一目了然。</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/zh/">Pythia Voice</a>
-      <a href="/impressum">法律声明</a>
-      <a href="/privacy">隐私</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/zh/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>适用于 Android 的听写和语音消息。</p></div><nav class="foot-links" aria-label="Info"><a href="/zh/">Pythia Voice</a><a href="/zh/recap">Pythia Recap</a><a href="/zh/pythia">全部产品</a><a href="/impressum">法律声明</a><a href="/privacy">隐私</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/recap.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

@@ -32,146 +32,109 @@
 <link rel="alternate" hreflang="he" href="https://www.pythiavoice.app/he/">
 <link rel="alternate" hreflang="x-default" href="https://www.pythiavoice.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Her kehanetten iyisi: sözcükleriniz, Pythia ile güvenilir biçimde.">
-<meta property="og:description" content="Abonelik yok. Gizli ücret yok. Bir kez ödeyin, ömür boyu kullanın.">
+<meta property="og:title" content="Sen konuş. Pythia yazsın. Zahmetsizce.">
+<meta property="og:description" content="Pythia Voice «ııı»&#x27;ları siler, noktalama işaretlerini koyar ve düzeltmelerini takip eder. Bir kez öde, abonelik yok.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
-<body>
-
-<header class="top">
-  <a class="brand" href="/tr/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
-  <nav aria-label="Menu">
-    <a href="#ablauf">Nasıl çalışır</a>
-    <a href="#preis">Fiyat</a>
-    <a href="#fragen">Sorular</a>
-    <a href="/tr/recap">Pythia Recap</a>
-    <a class="nav-dl" href="#download">Doğrudan indir</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr" selected>Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<body data-page="home">
+<header class="nav"><a class="brand" href="/tr/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Ürünler<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/tr/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dikte</a><a href="/tr/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Sesli mesajlar</a><a href="/tr/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/tr/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Tüm ürünler</a></div></div><a class="l" href="#funktionen">Özellikler</a><a class="l" href="#produkte">Fiyat</a><a class="l" href="#fragen">Sorular</a><a class="btn sm" id="apk-nav" href="/tr/#download"><span>Doğrudan indir</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr" selected>Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Her kehanetten iyisi: sözcükleriniz, Pythia ile güvenilir biçimde.</h1>
-      <p class="lead">Herhangi bir uygulamada konuşun. Pythia Voice yazar, “şey”leri atar ve düzeltmenizi alır.</p>
-      <p class="promise">Abonelik yok. Gizli ücret yok. Bir kez ödeyin, ömür boyu kullanın.</p>
-      <p class="promise">İki lisans: Dikte ve Sesli mesajlar. Her biri ayrı ayrı, tek seferlik satın alınır ve kendi başına çalışır.</p>
-      <div class="cta">
-        <a class="btn primary" href="#download">Pythia Voice’u deneyin</a>
-        <a class="btn ghost" href="#preis">Fiyatı gör</a>
-      </div>
-      <p class="fine">7 gün veya 3.000 kelime ücretsiz deneyin.</p>
-    </div>
-
-    <figure class="oracle" id="oracle" data-fill="şey" data-a="buluşuyoruz saat" data-s="beş hayır aslında saat" data-b="altıda istasyonun önünde" data-out="Saat altıda istasyonun önünde buluşuyoruz.">
-      <div class="wave" id="wave" aria-hidden="true"></div>
-      <div class="line">
-        <span class="label">Siz söylersiniz</span>
-        <p id="said" class="said"></p>
-      </div>
-      <div class="line">
-        <span class="label">Pythia yazar</span>
-        <p id="wrote" class="wrote" aria-live="polite"></p>
-      </div>
-      <button class="replay" id="replay" type="button">Tekrar</button>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dikte</span></h3><p>Herhangi bir uygulamaya konuşun, temiz metin belirsin.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Sesli mesajlar</span></h3><p>Uzun sesli mesajları metin olarak okuyun.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/tr/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Toplantılar ve sesli notlar, özetle.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Uygulama iş başında</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/v_home.webp" alt="Pythia Voice: Dikte" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Dikte</b><span>Herhangi bir uygulamaya konuşun, temiz metin belirsin.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_msg.webp" alt="Pythia Voice: Sesli mesajlar" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Sesli mesajlar</b><span>Uzun sesli mesajları metin olarak okuyun.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_words.webp" alt="Pythia Voice: Kelimeler" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Kelimeler</b><span>Doğru yazılması gereken adlar ve terimler.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_style.webp" alt="Pythia Voice: Stil" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Stil</b><span>Temizlenmiş metinlerin yazım stili</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_snip.webp" alt="Pythia Voice: Kısayollar" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Kısayollar</b><span>Kısayolu söyleyin, metnin tamamı eklenir.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Ne kazanırsınız</h2>
-      <dl class="rules">
-        <div><dt>Bir kez ödeyin, ömür boyu kullanın</dt><dd>Denemeden sonra abonelik, yenileme ve kelime sınırı yok. Bugün ödediğiniz, Pythia Voice için ödediğiniz her şeydir.</dd></div>
-        <div><dt>Her uygulamaya yazar</dt><dd>WhatsApp, e-posta, notlar, tarayıcı. Bir metin alanına dokunur dokunmaz yuvarlak düğme klavyenin üstünde belirir.</dd></div>
+      <div class="rv">
+        <h1>Sen konuş. Pythia yazsın. Zahmetsizce.</h1>
+        <p class="lead">Pythia Voice «ııı»&#x27;ları siler, noktalama işaretlerini koyar ve düzeltmelerini takip eder. Bir kez öde, abonelik yok.</p>
+        <div class="row">
+          <a class="btn" href="#download"><span>Pythia Voice’u deneyin</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#produkte"><span>Fiyatı gör</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>7 gün veya 3.000 kelime ücretsiz deneyin.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play yakında</span></span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/v_home.webp" alt="Dikte" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="şey" data-a="buluşuyoruz saat" data-s="beş hayır aslında saat" data-b="altıda istasyonun önünde" data-out="Saat altıda istasyonun önünde buluşuyoruz.">
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <div class="line"><span class="label">Siz söylersiniz</span><p id="said" class="said"></p></div>
+          <div class="line"><span class="label">Pythia yazar</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
+          <button class="replay" id="replay" type="button">Tekrar</button>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video" id="video" hidden>
+    <div class="wrap">
+      <h2>Pythia on saniyede</h2><p class="lead" style="margin-top:14px">Konuş, gönder, bitti.</p>
+      <div class="vbox bezel"><div class="core"><video controls playsinline preload="none" aria-label="Pythia on saniyede"></video></div></div>
+    </div>
+  </section>
+
+  <section id="produkte">
+    <div class="wrap">
+      <div class="prod-head rv"><h2>Yazma zahmetini üstünüzden alan üç araç.</h2><p class="lead">Abonelik yok, gizli ücret yok. Her lisansı bir kez alırsınız ve sonsuza dek sizin olur.</p></div>
+      <div class="cols">
+        <div class="bezel hl rv" id="diktat"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Dikte</span></h3>
+          <p class="tag">Konuşun, Pythia yazsın: rahat, temiz, tamam.</p>
+          <p class="price">19,99 €<small>Euro olarak tek seferlik ödeme.</small></p>
+          <ul><li class="key">7 gün veya 3.000 kelime ücretsiz deneme</li><li>90’dan fazla dil, tüm özellikler</li><li>Satın almadan sonra kelime sınırı yok</li><li class="key">Güncellemeler dahil</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Daha fazla bilgi</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Lisans satın al</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Sesli mesajlar</span></h3>
+          <p class="tag">Uzun sesli mesajları dinlemeden metin olarak okuyun.</p>
+          <p class="price">19,99 €<small>Euro cinsinden tek seferlik ödeme.</small></p>
+          <ul><li class="key">15 mesaj veya 7 gün ücretsiz deneyin</li><li>Dakikaya göre ve paragraflara bölünmüş</li><li>WhatsApp ve diğer mesajlaşma uygulamalarından paylaşın</li><li class="key">Güncellemeler dahil</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Daha fazla bilgi</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Sesli mesajları satın al</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+          <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Recap<span>Toplantılar ve sesli notlar, özetle.</span></h3>
+          <p class="tag">Toplantıyı kaydedin, görevleriyle hazır bir özet alın.</p>
+          <p class="price">19,99 €<small>Euro olarak tek seferlik ödeme.</small></p>
+          <ul><li class="key">7 gün veya 3 toplantı ücretsiz deneyin</li><li>Döküm, özet, görevler, konuşmacılar, işaretler, PDF dışa aktarma</li><li>Satın aldıktan sonra uzunluk veya toplantı sayısında sınır yok</li><li class="key">Güncellemeler dahil</li></ul>
+          <div class="acts"><a class="btn ghost block" href="/tr/recap"><span>Daha fazla bilgi</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/tr/recap#preis"><span>Pythia Recap satın al</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+      </div>
+      <p class="note">Her lisans ayrı satın alınır ve kendi başına çalışır. Tek ek unsur, ses tanıma için kendi Groq erişiminizdir. Normal kullanım için ücretsizdir, koşulları Groq belirler.</p>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Pythia sizin için ne yapıyor</h2>
+      <dl class="rules rv">
+        <div><dt>Yazmak yerine konuşun</dt><dd>Bir metin alanına dokunun, klavyenin üstündeki yuvarlak düğmeye basın ve konuşun. Pythia metni tam oraya yazar, örneğin WhatsApp&#x27;ta, postada veya notlarda.</dd></div>
         <div><dt>Arkanızı toplar</dt><dd>Dolgu sözcükler gider, noktalama gelir. “Beşte, hayır, altıda” derseniz “altıda” yazar.</dd></div>
         <div><dt>90’dan fazla dil</dt><dd>Aynı cümlede karışık olsa bile. Uygulamanın kendisi 24 dilde.</dd></div>
+        <div><dt>Bir kez ödeyin, ömür boyu kullanın</dt><dd>Denemeden sonra abonelik, yenileme ve kelime sınırı yok. Bugün ödediğiniz, Pythia Voice için ödediğiniz her şeydir.</dd></div>
         <div><dt>Groq erişiminizle tanıma</dt><dd>Tanıma kendi Groq anahtarınızla çalışır. Groq belgelerine göre ücretsiz katman günde 8 saate kadar konuşmaya izin verir. Sınırları Groq belirler ve değiştirebilir.</dd></div>
         <div><dt>Sizde kalır</dt><dd>Hesap yok. Pythia Voice ses saklamaz. Parola alanlarında düğme gizli kalır.</dd></div>
       </dl>
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
-    <div class="wrap">
-      <h2>Nasıl dikte edilir</h2>
-      <ol class="steps">
-        <li><b>Dokunun</b><span>Bir metin alanına, ardından klavyenin üstündeki yuvarlak düğmeye dokunun.</span></li>
-        <li><b>Konuşun</b><span>Yazmak istediğinizi söyleyin. Duraklamalarla, düzeltmelerle.</span></li>
-        <li><b>Bittiğini söyleyin</b><span>Bir kez daha dokunun. Temiz metin alandadır.</span></li>
-      </ol>
-      <p class="hint">Basılı tutmayı mı seversiniz? Düğmeyi basılı tutun, konuşun, bırakın.</p>
-      <p class="setup">Tek seferlik kurulum yaklaşık 1 dakika sürer: ücretsiz bir Groq hesabı açın (Google ile giriş yeterli), anahtar oluşturun, yapıştırın. Sonrasında sadece dikte edersiniz.</p>
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Uygulama iş başında</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Dikte" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Dikte</b><span>Siz konuşun, Pythia yazsın. Rahat ve temiz.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="Sesli mesajlar" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Sesli mesajlar</b><span>Uzun sesli mesajları rahatça metin olarak okuyun.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="Kelimeler" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Kelimeler</b><span>Doğru yazılması gereken adlar ve terimler.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="Stil" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Stil</b><span>Temizlenmiş metinlerin yazım stili</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="Kısayollar" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Kısayollar</b><span>Kısayolu söyleyin, metnin tamamı eklenir.</span></figcaption></figure>
     </div>
   </section>
 
-  <section class="light" id="preis">
-    <div class="wrap">
-      <div class="price-head">
-        <h2>İki lisans. Her biri için bir kez ödersiniz.</h2>
-        <p class="lead dark-text">Pythia Voice iki lisansla gelir: Dikte ve Sesli mesajlar. Abonelik yok, gizli ücret yok: lisans başına bir kez ödersiniz ve ömür boyu kullanırsınız.</p>
-      </div>
-      <div class="tablets">
-        <div class="tablet">
-          <p class="plan">Dikte</p>
-          <p class="plan-d">Herhangi bir uygulamaya konuşun, temiz metin belirsin.</p>
-          <p class="amount"><span class="num" id="price">19,99 €</span></p>
-          <p class="sub">Euro olarak tek seferlik ödeme.</p>
-          <ul>
-            <li>7 gün veya 3.000 kelime ücretsiz deneme</li>
-            <li>90’dan fazla dil, tüm özellikler</li>
-            <li>Satın almadan sonra kelime sınırı yok</li>
-            <li>Güncellemeler dahil</li>
-          </ul>
-          <a class="btn primary" id="buy" href="#download">Lisans satın al</a>
-        </div>
-        <div class="tablet">
-          <p class="plan">Sesli mesajlar</p>
-          <p class="plan-d">Uzun sesli mesajları metin olarak okuyun.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Euro cinsinden tek seferlik ödeme.</p>
-          <ul>
-            <li>15 mesaj veya 7 gün ücretsiz deneyin</li>
-            <li>Dakikaya göre ve paragraflara bölünmüş</li>
-            <li>WhatsApp ve diğer mesajlaşma uygulamalarından paylaşın</li>
-            <li>Güncellemeler dahil</li>
-          </ul>
-          <a class="btn primary" id="buy-voice-2" href="#download">Sesli mesajları satın al</a>
-        </div>
-      </div>
-      <p class="note">Her lisans ayrı satın alınır ve kendi başına çalışır. Tek ek unsur, ses tanıma için kendi Groq erişiminizdir. Normal kullanım için ücretsizdir, koşulları Groq belirler.</p>
-      <a class="cross" href="/tr/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Toplantılar ve sesli notlar, özetle.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Daha fazla bilgi</span></a>
-    </div>
-  </section>
-
-  <section class="voice" id="sprachnachrichten">
+  <section id="sprachnachrichten">
     <div class="wrap voice-grid">
-      <div class="voice-text">
-        <p class="eyebrow">Metin olarak sesli mesajlar</p>
+      <div class="voice-text rv">
         <h2>Uzun sesli mesajlardan bıktınız mı?</h2>
         <p class="lead">Sadece hızlıca okumak istiyor ve şu an dinleyemiyor musunuz? Ya da bazı kişilerin kaydettiği romanlara sabrınız yok ve onların konuşmasından daha hızlı mı okuyorsunuz? O zaman Pythia Voice tam size göre: mesajı paylaşın, metin olarak okuyun.</p>
         <ul class="voice-points">
@@ -179,12 +142,13 @@
           <li>Dakikaya göre ve paragraflara bölünmüş, göz yormaz</li>
           <li>15 mesaj veya 7 gün boyunca ücretsiz deneyin</li>
         </ul>
-        <div class="cta">
-          <a class="btn primary" id="buy-voice" href="#download">Sesli mesajları satın al · 19,99 € tek seferlik</a>
-          <span class="fine inline">Diktedan ayrı bir lisans. Abonelik yok.</span>
+        <div class="row">
+          <a class="btn ghost" href="/tr/pythia"><span>Daha fazla bilgi</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Sesli mesajları satın al · 19,99 € tek seferlik</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
+        <p class="dim" style="margin-top:14px;font-size:.92rem">Diktedan ayrı bir lisans. Abonelik yok.</p>
       </div>
-      <figure class="vm-demo" aria-label="Pythia Voice bunu dakikaya göre bölünmüş metne çevirir">
+      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice bunu dakikaya göre bölünmüş metne çevirir">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -199,54 +163,57 @@
           <div><b>3:00</b><p>Tamam, hepsi bu. Görüşürüz!</p></div>
         </div>
         <p class="vm-cap">Pythia Voice bunu dakikaya göre bölünmüş metne çevirir</p>
-      </figure>
+      </figure></div>
     </div>
   </section>
 
-  <section class="rc-teaser" id="recap">
+  <section id="ablauf">
     <div class="wrap">
-      <p class="eyebrow">Pythia Recap</p>
-      <h2>Pythia’dan ayrıca: Pythia Recap</h2>
-      <p class="lead">Bir toplantıyı kaydedin veya paylaşın; döküm, özet ve görev listesi alın. Kimin ne dediğini atayın. Tek seferlik 19,99 €, abonelik yok.</p>
-      <a class="btn primary" href="/tr/recap">Daha fazla bilgi</a>
+      <h2 class="sec-h rv">Nasıl dikte edilir</h2>
+      <ol class="steps rv">
+        <li><b>Dokunun</b><span>Bir metin alanına, ardından klavyenin üstündeki yuvarlak düğmeye dokunun.</span></li>
+        <li><b>Konuşun</b><span>Yazmak istediğinizi söyleyin. Duraklamalarla, düzeltmelerle.</span></li>
+        <li><b>Bittiğini söyleyin</b><span>Bir kez daha dokunun. Temiz metin alandadır.</span></li>
+      </ol>
+      <p class="hint">Basılı tutmayı mı seversiniz? Düğmeyi basılı tutun, konuşun, bırakın.</p>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
-      <h2>Android için</h2>
-      <ol class="steps">
+      <h2 class="rv">Android için</h2>
+      <ol class="steps rv" style="margin-top:32px">
         <li><b>1. Uygulamayı indirin</b><span>Aşağıdaki APK’yı indirin ve Android telefonunuza kurun.</span></li>
         <li><b>2. Deneyin</b><span>Her şeyi ücretsiz deneyin: dikte için 7 gün veya 3.000 kelime, sesli mesajlar için 7 gün veya 15 mesaj.</span></li>
         <li><b>3. Beğendiniz mi? Lisans satın alın</b><span>Dikte, Sesli mesajlar veya ikisini birden seçin. Anahtarı uygulamaya girin, hepsi bu.</span></li>
       </ol>
-      <p class="lead">Android 13 veya üzeri. Henüz iPhone sürümü yok.</p>
       <div class="get">
-        <div class="get-card">
-          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Dikte · Sesli mesajlar</p></div></div>
-          <p>Herhangi bir uygulamaya konuşun, temiz metin belirsin. Uzun sesli mesajları metin olarak okuyun.</p>
-          <div class="cta">
-            <a class="btn primary" id="apk" href="#download">Doğrudan indir</a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play yakında</span></span>
+        <div class="get-card rv">
+          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>Dikte · Sesli mesajlar</p></div></div>
+          <p>Siz konuşun, Pythia yazsın. Rahat ve temiz. Uzun sesli mesajları rahatça metin olarak okuyun.</p>
+          <div class="row">
+            <a class="btn" id="apk" href="#download"><span>Doğrudan indir</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play yakında</span></span>
           </div>
         </div>
-        <div class="get-card recap">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Toplantılar ve sesli notlar, özetle.</p></div></div>
+        <div class="get-card recap rv" style="--d:.08s">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>Toplantılar ve sesli notlar, özetle.</p></div></div>
           <p id="rc-soon-h">Pythia Recap neredeyse hazır. İndirme ve satın alma düğmesi yayınlandığı anda burada görünecek.</p>
-          <div class="cta">
-            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Doğrudan indir</a>
-            <a class="btn ghost" href="/tr/recap">Daha fazla bilgi</a>
+          <div class="row">
+            <a class="btn teal" id="rc-apk-h" href="#download" hidden><span>Doğrudan indir</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <a class="btn ghost" href="/tr/recap"><span>Daha fazla bilgi</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
           </div>
         </div>
       </div>
-      <p class="fine">İlk açılışta uygulama sizi altı kısa adımda kuruluma yönlendirir.</p>
+      <p class="dim">Android 13 veya üzeri. Henüz iPhone sürümü yok.</p>
+      <p class="dim" style="margin-top:8px">İlk açılışta uygulama sizi altı kısa adımda kuruluma yönlendirir.</p>
       <p class="setup">Tek seferlik kurulum yaklaşık 1 dakika sürer: ücretsiz bir Groq hesabı açın (Google ile giriş yeterli), anahtar oluşturun, yapıştırın. Sonrasında sadece dikte edersiniz.</p>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Sık sorulan sorular</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Sık sorulan sorular</h2>
       <details open><summary>Gerçekten tek seferlik ödeme mi?</summary><p>Evet. Tek ödeme, abonelik yok, yenileme yok. İşin içindeki tek başka hizmet, konuşma tanıma için Groq. Ücretsiz planı şu anda günde yaklaşık 8 saat konuşmayı kapsıyor, normal kullanım için fazlasıyla yeterli. Limitleri ve fiyatları Groq kendisi belirler.</p></details>
       <details><summary>Groq nedir, hesap gerekir mi?</summary><p>Groq, konuşmanızı metne çeviren hizmettir. Orada ücretsiz kişisel bir anahtar oluşturup uygulamaya yapıştırırsınız. Uygulamadaki kılavuz her dokunuşu gösterir.</p></details>
       <details><summary>Groq ne kadar tutar?</summary><p>Normal kullanım için hiçbir şey. Groq ücretsiz katmanda günde 8 saate kadar Whisper sesi belirtir. Limitleri Groq değiştirir, console.groq.com adresinden kontrol edin.</p></details>
@@ -258,25 +225,17 @@
       <details><summary>Bir sesli mesaj ne kadar uzun olabilir?</summary><p>25 MB’a kadar dosyalar çalışır, bu da saatler süren konuşma demektir. Üç dakikalık bir mesaj yalnızca saniyeler sürer. Groq kendi sınırlarını belirler ve değiştirebilir.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>7 gün ücretsiz deneyin.</h2>
+      <p class="lead">Hesap yok, abonelik yok. Beğenirseniz bir kez ödersiniz.</p>
+      <div class="row"><a class="btn" href="#download"><span>Pythia Voice’u deneyin</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/tr/pythia"><span>Tüm ürünler</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/tr/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
-      <p>Android için dikte ve sesli mesajlar.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/tr/recap">Pythia Recap</a>
-      <a href="/impressum">Künye</a>
-      <a href="/privacy">Gizlilik</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/tr/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Android için dikte ve sesli mesajlar.</p></div><nav class="foot-links" aria-label="Info"><a href="/tr/">Pythia Voice</a><a href="/tr/recap">Pythia Recap</a><a href="/tr/pythia">Tüm ürünler</a><a href="/impressum">Künye</a><a href="/privacy">Gizlilik</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/app.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

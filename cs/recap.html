@@ -36,72 +36,44 @@
 <meta property="og:description" content="Žádné předplatné. Žádné skryté poplatky. Zaplatíte jednou, používáte celý život.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
 <body class="recap-page" data-page="recap">
-
-<header class="top">
-  <a class="brand" href="/cs/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="34" height="34"><span>Pythia Recap</span></a>
-  <nav aria-label="Menu">
-    <a href="/cs/">Pythia Voice</a>
-    <a href="#ablauf">Jak to funguje</a>
-    <a href="#preis">Cena</a>
-    <a href="#fragen">Otázky</a>
-    <a class="nav-dl" href="#download">Stáhnout přímo</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs" selected>Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<header class="nav"><a class="brand" href="/cs/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="30" height="30"><span>Pythia Recap</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produkty<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/cs/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Diktování</a><a href="/cs/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Hlasové zprávy</a><a href="/cs/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/cs/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Všechny produkty</a></div></div><a class="l" href="/cs/#funktionen">Funkce</a><a class="l" href="#preis">Cena</a><a class="l" href="/cs/#fragen">Otázky</a><a class="btn sm" id="apk-nav" href="/cs/#download"><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs" selected>Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Schůzky stručně.</h1>
-      <p class="lead">Nahrajte schůzku nebo sdílejte nahrávku ze Zoomu, Teams či WhatsAppu. Pythia Recap napíše přepis, shrnutí, rozhodnutí a váš seznam úkolů. Vy určíte, kdo co řekl.</p>
-      <p class="promise">Žádné předplatné. Žádné skryté poplatky. Zaplatíte jednou, používáte celý život.</p>
-      <div class="cta">
-        <a class="btn primary" id="buy-recap" href="#download">Koupit Pythia Recap · 19,99 €</a>
-        <a class="btn ghost" href="#funktionen">Jak to funguje</a>
-      </div>
-      <p class="fine">Pro Android. Vyzkoušejte zdarma 7 dní nebo 3 schůzky. Potřebujete vlastní bezplatný klíč Groq.</p>
-    </div>
-
-    <figure class="rc-demo" aria-label="Od nahrávky ke shrnutí">
-      <h3>Od nahrávky ke shrnutí · Týdenní plánování</h3>
-      <div class="rc-wave" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        <b class="t"></b><b class="w"></b><b class="s"></b>
-      </div>
-      <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Dobré ráno všem, začneme plánováním příštího týdne.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Do pátku potřebuji čísla ze skladu, jinak nemohu objednávat.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:41</span><div><span class="rc-sp a">Anna</span><p>Zvládneme to, pošlu ti je zítra ráno.</p></div></div>
-      <div class="rc-sum"><p><b>★</b> Shrnutí: čísla ze skladu potřeba do pátku</p><p><b>☑</b> Poslat čísla ze skladu (Anna, zítra ráno)</p></div>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="/cs/#funktionen"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Diktování</span></h3><p>Mluvte do jakékoli aplikace a objeví se čistý text.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="/cs/#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Hlasové zprávy</span></h3><p>Čtěte dlouhé hlasové zprávy jako text.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/cs/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Schůzky a hlasové poznámky stručně.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Aplikace v akci</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/r_home.webp" alt="Pythia Recap: Nahrát nebo sdílet" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Nahrát nebo sdílet</b><span>Nahrávejte v místnosti nebo sdílejte audio a video ze Zoomu, Teams, Meet, WhatsAppu či diktafonu. Dlouhé schůzky nejsou problém.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap: Značky a posouvání" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Značky a posouvání</b><span>Při nahrávání nastavujte značky: důležité, úkol, změna mluvčího. Později na ně skočíte a palcem přesně posouváte.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_tasks.webp" alt="Pythia Recap: Shrnutí a úkoly" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Shrnutí a úkoly</b><span>Krátké shrnutí, rozhodnutí, otevřené otázky a seznam úkolů s údajem, kdo a kdy. Sdílejte jako text nebo PDF.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Co získáte</h2>
-      <dl class="rules">
+      <div class="rv">
+        <h1>Schůzky stručně.</h1>
+        <p class="lead">Nahrajte schůzku nebo sdílejte nahrávku ze Zoomu, Teams či WhatsAppu. Pythia Recap napíše přepis, shrnutí, rozhodnutí a váš seznam úkolů. Vy určíte, kdo co řekl.</p>
+        <div class="row">
+          <a class="btn" id="buy-recap" href="#preis"><span>Koupit Pythia Recap · 19,99 €</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#funktionen"><span>Jak to funguje</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Pro Android. Vyzkoušejte zdarma 7 dní nebo 3 schůzky. Potřebujete vlastní bezplatný klíč Groq.</span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core rc-demo" aria-label="Od nahrávky ke shrnutí">
+          <h3>Od nahrávky ke shrnutí · Týdenní plánování</h3>
+          <div class="rc-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="t"></b><b class="w"></b><b class="s"></b></div>
+          <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Dobré ráno všem, začneme plánováním příštího týdne.</p></div></div>
+          <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Do pátku potřebuji čísla ze skladu, jinak nemohu objednávat.</p></div></div>
+          <div class="rc-sum"><p><b>★</b> Shrnutí: čísla ze skladu potřeba do pátku</p><p><b>☑</b> Poslat čísla ze skladu (Anna, zítra ráno)</p></div>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul><li><a href="/cs/"><img src="/logo.svg" alt="" width="42" height="42"><div><h3>Pythia Voice <span>Diktování</span></h3><p>Mluvte, Pythia píše: pohodlně, čistě, hotovo.</p></div></a></li><li><a href="/cs/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Hlasové zprávy</span></h3><p>Čtěte dlouhé hlasové zprávy jako text, bez poslouchání.</p></div></a></li><li><a href="/cs/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="42" height="42"><div><h3>Pythia Recap</h3><p>Nahrajte schůzku a získejte hotové shrnutí s úkoly.</p></div></a></li></ul></div></section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Co získáte</h2>
+      <dl class="rules rv">
         <div><dt>Nahrát nebo sdílet</dt><dd>Nahrávejte v místnosti nebo sdílejte audio a video ze Zoomu, Teams, Meet, WhatsAppu či diktafonu. Dlouhé schůzky nejsou problém.</dd></div>
         <div><dt>Shrnutí a úkoly</dt><dd>Krátké shrnutí, rozhodnutí, otevřené otázky a seznam úkolů s údajem, kdo a kdy. Sdílejte jako text nebo PDF.</dd></div>
         <div><dt>Kdo co řekl</dt><dd>Přiřazujte mluvčí podle časové značky. Jedno klepnutí platí do další změny mluvčího a shrnutí pak používá skutečná jména.</dd></div>
@@ -112,10 +84,19 @@
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Aplikace v akci</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/r_home.webp" alt="Nahrát nebo sdílet" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Nahrát nebo sdílet</b><span>Nahrávejte v místnosti nebo sdílejte audio a video ze Zoomu, Teams, Meet, WhatsAppu či diktafonu. Dlouhé schůzky nejsou problém.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.08s"><div class="phone"><img src="/shots/r_meet.webp" alt="Značky a posouvání" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Značky a posouvání</b><span>Při nahrávání nastavujte značky: důležité, úkol, změna mluvčího. Později na ně skočíte a palcem přesně posouváte.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.16s"><div class="phone"><img src="/shots/r_tasks.webp" alt="Shrnutí a úkoly" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Shrnutí a úkoly</b><span>Krátké shrnutí, rozhodnutí, otevřené otázky a seznam úkolů s údajem, kdo a kdy. Sdílejte jako text nebo PDF.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ablauf">
     <div class="wrap">
-      <h2>Jak to funguje</h2>
-      <ol class="steps">
+      <h2 class="sec-h rv">Jak to funguje</h2>
+      <ol class="steps rv">
         <li><b>1. Nahrajte nebo sdílejte</b><span>Klepněte na Nahrát a položte telefon na stůl, nebo sdílejte nahrávku s aplikací.</span></li>
         <li><b>2. Počkejte pár minut</b><span>Pythia Recap přepisuje a shrnuje. Pracuje dál, i když aplikaci zavřete.</span></li>
         <li><b>3. Zkontrolujte a sdílejte</b><span>Přiřaďte mluvčí, skákejte na značky a pak pošlete shrnutí jako text nebo PDF.</span></li>
@@ -123,10 +104,10 @@
     </div>
   </section>
 
-  <section class="voice" id="marker">
-    <div class="wrap narrow">
+  <section id="marker">
+    <div class="narrow rv">
       <h2>Najděte správné místo palcem</h2>
-      <p class="lead">V dlouhé schůzce se špatně hledá. Pythia Recap ukazuje celou schůzku a dvouminutový detail s velkými značkami, do kterých opravdu trefíte.</p>
+      <p class="lead" style="margin:16px 0 22px">V dlouhé schůzce se špatně hledá. Pythia Recap ukazuje celou schůzku a dvouminutový detail s velkými značkami, do kterých opravdu trefíte.</p>
       <ul class="voice-points">
         <li>Značky mají dotykovou plochu 48 dp: klepnutí skočí o pět sekund dříve</li>
         <li>Taháním detailu přesně posouváte, lupa ukazuje čas a text</li>
@@ -135,10 +116,10 @@
     </div>
   </section>
 
-  <section class="light" id="ton">
-    <div class="wrap narrow">
+  <section id="ton">
+    <div class="narrow rv">
       <h2>Online schůzky: jak získat zvuk</h2>
-      <p class="dark-text">Android nedovoluje aplikacím přímo nahrávat Zoom, Teams ani Meet. Takto přesto získáte zvukovou stopu:</p>
+      <p class="lead" style="margin-top:16px">Android nedovoluje aplikacím přímo nahrávat Zoom, Teams ani Meet. Takto přesto získáte zvukovou stopu:</p>
       <ul class="audio-list">
         <li>Zoom: nahrajte lokálně a sdílejte soubor jen se zvukem (m4a).</li>
         <li>Microsoft Teams: sdílejte nahrávku z OneDrive nebo SharePointu.</li>
@@ -146,48 +127,35 @@
         <li>Windows nebo Mac: nahrajte systémový zvuk pomocí OBS, Audacity nebo BlackHole.</li>
         <li>Když nic jiného nejde: položte telefon vedle notebooku (režim notebooku).</li>
       </ul>
-      <p class="note">Vždy všem řekněte, že nahráváte, a nejdřív získejte souhlas. Nahrávání bez souhlasu může být trestné.</p>
+      <p class="dim">Vždy všem řekněte, že nahráváte, a nejdřív získejte souhlas. Nahrávání bez souhlasu může být trestné.</p>
     </div>
   </section>
 
-  <section class="light" id="preis">
+  <section id="preis">
     <div class="wrap">
-      <div class="price-head">
-        <h2>Jedna licence. Zaplatíte jednou.</h2>
-        <p class="lead dark-text">Žádné předplatné, žádné skryté náklady. Zaplatíte jednou a máte napořád.</p>
-      </div>
-      <div class="tablets one">
-        <div class="tablet">
-          <p class="plan">Pythia Recap</p>
-          <p class="plan-d">Schůzky a hlasové poznámky stručně.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Jednorázová platba v eurech.</p>
-          <ul>
-            <li>Vyzkoušejte zdarma 7 dní nebo 3 schůzky</li>
-            <li>Po nákupu bez omezení délky či počtu schůzek</li>
-            <li>Přepis, shrnutí, úkoly, mluvčí, značky, export do PDF</li>
-            <li>Jedna licence na jeden telefon, na požádání přenosná</li>
-          </ul>
-          <a class="btn primary" id="buy-recap-2" href="#download">Koupit Pythia Recap</a>
-        </div>
-      </div>
+      <div class="prod-head rv"><h2>Jedna licence. Zaplatíte jednou.</h2><p class="lead">Žádné předplatné, žádné skryté náklady. Zaplatíte jednou a máte napořád.</p></div>
+      <div class="bezel rc rv" style="max-width:560px;margin-inline:auto"><div class="core col r spot">
+        <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_tasks.webp" alt="" width="540" height="1080" loading="lazy"></div>
+        <h3>Pythia Recap<span>Schůzky a hlasové poznámky stručně.</span></h3>
+        <p class="price">19,99 €<small>Jednorázová platba v eurech.</small></p>
+        <ul><li class="key">Vyzkoušejte zdarma 7 dní nebo 3 schůzky</li><li>Po nákupu bez omezení délky či počtu schůzek</li><li>Přepis, shrnutí, úkoly, mluvčí, značky, export do PDF</li><li>Jedna licence na jeden telefon, na požádání přenosná</li><li class="key">Aktualizace v ceně</li></ul>
+        <div class="acts"><a class="btn teal block" id="buy-recap-2" href="#download"><span>Koupit Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      </div></div>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
       <h2>Stáhněte si aplikaci</h2>
-      <p class="lead" id="rc-soon">Pythia Recap je téměř hotová. Stažení a tlačítko nákupu se tu objeví, jakmile vyjde.</p>
-      <div class="cta">
-        <a class="btn primary" id="rc-apk" href="#download" hidden>Stáhnout přímo</a>
-      </div>
-      <a class="cross" href="/cs/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Mluvte do jakékoli aplikace a objeví se čistý text. Čtěte dlouhé hlasové zprávy jako text.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Zjistit více</span></a>
+      <p class="lead" id="rc-soon" style="margin-top:16px">Pythia Recap je téměř hotová. Stažení a tlačítko nákupu se tu objeví, jakmile vyjde.</p>
+      <div class="row" style="margin-top:22px"><a class="btn teal" id="rc-apk" href="#download" hidden><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <a class="cross rv" href="/cs/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Vy mluvíte, Pythia píše. Pohodlně a čistě. Dlouhé hlasové zprávy pohodlně čtěte jako text.</span><span class="cross-p">19,99 €</span><span class="btn ghost sm"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Časté otázky</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Časté otázky</h2>
       <details open><summary>Potřebuji účet?</summary><p>Ne. Potřebujete aplikaci a vlastní bezplatný klíč Groq. Pro vaše schůzky neprovozujeme účty ani servery.</p></details>
       <details><summary>Kolik stojí Groq?</summary><p>Groq nabízí bezplatný tarif, který na mnoho schůzek stačí. Jeho limity mohou velmi dlouhé úlohy na čas pozastavit. Nad to stojí používání pár haléřů za hodinu zvuku.</p></details>
       <details><summary>Umí nahrávat Zoom nebo Teams přímo?</summary><p>Android to aplikacím nedovoluje. Použijte nahrávku z programu pro schůzky, systémový zvuk v počítači nebo režim notebooku. Průvodci v aplikaci vysvětlují každou cestu.</p></details>
@@ -196,25 +164,17 @@
       <details><summary>Jaké jazyky fungují?</summary><p>Rozpoznávání řeči funguje ve více než 90 jazycích a jazyk pozná samo. Shrnutí lze napsat v jazyce, který si zvolíte.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Vyzkoušejte 7 dní zdarma.</h2>
+      <p class="lead">Bez účtu a bez předplatného. Když se vám zalíbí, zaplatíte jednou.</p>
+      <div class="row"><a class="btn teal" href="#preis"><span>Koupit Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/cs/pythia"><span>Všechny produkty</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/cs/recap"><img src="/recap-logo.svg" alt="" width="28" height="28"><span>Pythia Recap</span></a>
-      <p>Schůzky a hlasové poznámky stručně.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/cs/">Pythia Voice</a>
-      <a href="/impressum">Právní informace</a>
-      <a href="/privacy">Soukromí</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/cs/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Diktování a hlasové zprávy pro Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/cs/">Pythia Voice</a><a href="/cs/recap">Pythia Recap</a><a href="/cs/pythia">Všechny produkty</a><a href="/impressum">Právní informace</a><a href="/privacy">Soukromí</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/recap.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

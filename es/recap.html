@@ -36,72 +36,44 @@
 <meta property="og:description" content="Sin suscripción. Sin costes ocultos. Pagas una vez, lo usas de por vida.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
 <body class="recap-page" data-page="recap">
-
-<header class="top">
-  <a class="brand" href="/es/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="34" height="34"><span>Pythia Recap</span></a>
-  <nav aria-label="Menu">
-    <a href="/es/">Pythia Voice</a>
-    <a href="#ablauf">Cómo funciona</a>
-    <a href="#preis">Precio</a>
-    <a href="#fragen">Preguntas</a>
-    <a class="nav-dl" href="#download">Descargar directamente</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es" selected>Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<header class="nav"><a class="brand" href="/es/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="30" height="30"><span>Pythia Recap</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Productos<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/es/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dictado</a><a href="/es/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Mensajes de voz</a><a href="/es/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/es/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Todos los productos</a></div></div><a class="l" href="/es/#funktionen">Funciones</a><a class="l" href="#preis">Precio</a><a class="l" href="/es/#fragen">Preguntas</a><a class="btn sm" id="apk-nav" href="/es/#download"><span>Descargar directamente</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es" selected>Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Reuniones, al grano.</h1>
-      <p class="lead">Graba una reunión o comparte una grabación de Zoom, Teams o WhatsApp. Pythia Recap escribe la transcripción, el resumen, las decisiones y tu lista de tareas. Tú decides quién dijo qué.</p>
-      <p class="promise">Sin suscripción. Sin costes ocultos. Pagas una vez, lo usas de por vida.</p>
-      <div class="cta">
-        <a class="btn primary" id="buy-recap" href="#download">Comprar Pythia Recap · 19,99 €</a>
-        <a class="btn ghost" href="#funktionen">Ver cómo funciona</a>
-      </div>
-      <p class="fine">Para Android. Prueba gratis 7 días o 3 reuniones. Necesitas tu propia clave de Groq gratuita.</p>
-    </div>
-
-    <figure class="rc-demo" aria-label="De la grabación al resumen">
-      <h3>De la grabación al resumen · Planificación semanal</h3>
-      <div class="rc-wave" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        <b class="t"></b><b class="w"></b><b class="s"></b>
-      </div>
-      <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Buenos días a todos, empezamos con la planificación de la próxima semana.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Necesito las cifras del almacén para el viernes, si no, no puedo hacer el pedido.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:41</span><div><span class="rc-sp a">Anna</span><p>Lo conseguimos, te las envío mañana por la mañana.</p></div></div>
-      <div class="rc-sum"><p><b>★</b> Resumen: cifras del almacén necesarias para el viernes</p><p><b>☑</b> Enviar las cifras del almacén (Anna, mañana por la mañana)</p></div>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="/es/#funktionen"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dictado</span></h3><p>Habla en cualquier app y aparece texto limpio.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="/es/#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Mensajes de voz</span></h3><p>Lee mensajes de voz largos como texto.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/es/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Reuniones y notas de voz, al grano.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">La app en acción</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/r_home.webp" alt="Pythia Recap: Grabar o compartir" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Grabar o compartir</b><span>Graba en la sala o comparte audio y vídeo de Zoom, Teams, Meet, WhatsApp o tu grabadora de voz. Las reuniones largas no son un problema.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap: Marcadores y desplazamiento" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Marcadores y desplazamiento</b><span>Pon marcadores al grabar: importante, tarea, cambio de hablante. Después saltas a ellos y te desplazas con precisión con el pulgar.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_tasks.webp" alt="Pythia Recap: Resumen y tareas" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Resumen y tareas</b><span>Un resumen breve, decisiones, preguntas abiertas y una lista de tareas con quién y cuándo. Compártelo como texto o PDF.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Lo que obtienes</h2>
-      <dl class="rules">
+      <div class="rv">
+        <h1>Reuniones, al grano.</h1>
+        <p class="lead">Graba una reunión o comparte una grabación de Zoom, Teams o WhatsApp. Pythia Recap escribe la transcripción, el resumen, las decisiones y tu lista de tareas. Tú decides quién dijo qué.</p>
+        <div class="row">
+          <a class="btn" id="buy-recap" href="#preis"><span>Comprar Pythia Recap · 19,99 €</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#funktionen"><span>Ver cómo funciona</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Para Android. Prueba gratis 7 días o 3 reuniones. Necesitas tu propia clave de Groq gratuita.</span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core rc-demo" aria-label="De la grabación al resumen">
+          <h3>De la grabación al resumen · Planificación semanal</h3>
+          <div class="rc-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="t"></b><b class="w"></b><b class="s"></b></div>
+          <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Buenos días a todos, empezamos con la planificación de la próxima semana.</p></div></div>
+          <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Necesito las cifras del almacén para el viernes, si no, no puedo hacer el pedido.</p></div></div>
+          <div class="rc-sum"><p><b>★</b> Resumen: cifras del almacén necesarias para el viernes</p><p><b>☑</b> Enviar las cifras del almacén (Anna, mañana por la mañana)</p></div>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul><li><a href="/es/"><img src="/logo.svg" alt="" width="42" height="42"><div><h3>Pythia Voice <span>Dictado</span></h3><p>Habla y Pythia escribe: cómodo, limpio, listo.</p></div></a></li><li><a href="/es/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Mensajes de voz</span></h3><p>Lee los mensajes de voz largos como texto, sin escucharlos.</p></div></a></li><li><a href="/es/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="42" height="42"><div><h3>Pythia Recap</h3><p>Graba una reunión y recibe un resumen listo con tareas.</p></div></a></li></ul></div></section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Lo que obtienes</h2>
+      <dl class="rules rv">
         <div><dt>Grabar o compartir</dt><dd>Graba en la sala o comparte audio y vídeo de Zoom, Teams, Meet, WhatsApp o tu grabadora de voz. Las reuniones largas no son un problema.</dd></div>
         <div><dt>Resumen y tareas</dt><dd>Un resumen breve, decisiones, preguntas abiertas y una lista de tareas con quién y cuándo. Compártelo como texto o PDF.</dd></div>
         <div><dt>Quién dijo qué</dt><dd>Asigna a los hablantes según la marca de tiempo. Un toque vale hasta el siguiente cambio de hablante, y el resumen usa entonces los nombres reales.</dd></div>
@@ -112,10 +84,19 @@
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">La app en acción</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/r_home.webp" alt="Grabar o compartir" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Grabar o compartir</b><span>Graba en la sala o comparte audio y vídeo de Zoom, Teams, Meet, WhatsApp o tu grabadora de voz. Las reuniones largas no son un problema.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.08s"><div class="phone"><img src="/shots/r_meet.webp" alt="Marcadores y desplazamiento" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Marcadores y desplazamiento</b><span>Pon marcadores al grabar: importante, tarea, cambio de hablante. Después saltas a ellos y te desplazas con precisión con el pulgar.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.16s"><div class="phone"><img src="/shots/r_tasks.webp" alt="Resumen y tareas" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Resumen y tareas</b><span>Un resumen breve, decisiones, preguntas abiertas y una lista de tareas con quién y cuándo. Compártelo como texto o PDF.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ablauf">
     <div class="wrap">
-      <h2>Cómo funciona</h2>
-      <ol class="steps">
+      <h2 class="sec-h rv">Cómo funciona</h2>
+      <ol class="steps rv">
         <li><b>1. Grabar o compartir</b><span>Toca Grabar y deja el teléfono sobre la mesa, o comparte una grabación con la app.</span></li>
         <li><b>2. Espera unos minutos</b><span>Pythia Recap transcribe y resume. Sigue trabajando aunque cierres la app.</span></li>
         <li><b>3. Revisa y comparte</b><span>Asigna hablantes, salta a los marcadores y envía el resumen como texto o PDF.</span></li>
@@ -123,10 +104,10 @@
     </div>
   </section>
 
-  <section class="voice" id="marker">
-    <div class="wrap narrow">
+  <section id="marker">
+    <div class="narrow rv">
       <h2>Encuentra el punto justo con el pulgar</h2>
-      <p class="lead">En una reunión larga es difícil buscar. Pythia Recap muestra la reunión completa y un detalle de dos minutos, con marcadores grandes que de verdad se aciertan.</p>
+      <p class="lead" style="margin:16px 0 22px">En una reunión larga es difícil buscar. Pythia Recap muestra la reunión completa y un detalle de dos minutos, con marcadores grandes que de verdad se aciertan.</p>
       <ul class="voice-points">
         <li>Los marcadores son zonas táctiles de 48 dp: tocar salta cinco segundos antes</li>
         <li>Arrastra el detalle para desplazarte con precisión, con una lupa que muestra tiempo y texto</li>
@@ -135,10 +116,10 @@
     </div>
   </section>
 
-  <section class="light" id="ton">
-    <div class="wrap narrow">
+  <section id="ton">
+    <div class="narrow rv">
       <h2>Reuniones online: cómo conseguir el audio</h2>
-      <p class="dark-text">Android no permite que las apps graben Zoom, Teams o Meet directamente. Estas son las formas de conseguir una pista de audio:</p>
+      <p class="lead" style="margin-top:16px">Android no permite que las apps graben Zoom, Teams o Meet directamente. Estas son las formas de conseguir una pista de audio:</p>
       <ul class="audio-list">
         <li>Zoom: graba en local y comparte el archivo solo de audio (m4a).</li>
         <li>Microsoft Teams: comparte la grabación desde OneDrive o SharePoint.</li>
@@ -146,48 +127,35 @@
         <li>Windows o Mac: graba el sonido del sistema con OBS, Audacity o BlackHole.</li>
         <li>Si nada más funciona: pon el teléfono junto al portátil (modo portátil).</li>
       </ul>
-      <p class="note">Avisa siempre a todos de que grabas y consigue antes su consentimiento. Grabar sin consentimiento puede ser delito.</p>
+      <p class="dim">Avisa siempre a todos de que grabas y consigue antes su consentimiento. Grabar sin consentimiento puede ser delito.</p>
     </div>
   </section>
 
-  <section class="light" id="preis">
+  <section id="preis">
     <div class="wrap">
-      <div class="price-head">
-        <h2>Una licencia. Pagas una vez.</h2>
-        <p class="lead dark-text">Sin suscripción ni costes ocultos. Pagas una vez y es tuya para siempre.</p>
-      </div>
-      <div class="tablets one">
-        <div class="tablet">
-          <p class="plan">Pythia Recap</p>
-          <p class="plan-d">Reuniones y notas de voz, al grano.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Pago único en euros.</p>
-          <ul>
-            <li>Prueba gratis 7 días o 3 reuniones</li>
-            <li>Tras la compra, sin límite de duración ni de número de reuniones</li>
-            <li>Transcripción, resumen, tareas, hablantes, marcadores, exportación a PDF</li>
-            <li>Una licencia para un teléfono, transferible si lo pides</li>
-          </ul>
-          <a class="btn primary" id="buy-recap-2" href="#download">Comprar Pythia Recap</a>
-        </div>
-      </div>
+      <div class="prod-head rv"><h2>Una licencia. Pagas una vez.</h2><p class="lead">Sin suscripción ni costes ocultos. Pagas una vez y es tuya para siempre.</p></div>
+      <div class="bezel rc rv" style="max-width:560px;margin-inline:auto"><div class="core col r spot">
+        <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_tasks.webp" alt="" width="540" height="1080" loading="lazy"></div>
+        <h3>Pythia Recap<span>Reuniones y notas de voz, al grano.</span></h3>
+        <p class="price">19,99 €<small>Pago único en euros.</small></p>
+        <ul><li class="key">Prueba gratis 7 días o 3 reuniones</li><li>Tras la compra, sin límite de duración ni de número de reuniones</li><li>Transcripción, resumen, tareas, hablantes, marcadores, exportación a PDF</li><li>Una licencia para un teléfono, transferible si lo pides</li><li class="key">Actualizaciones incluidas</li></ul>
+        <div class="acts"><a class="btn teal block" id="buy-recap-2" href="#download"><span>Comprar Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      </div></div>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
       <h2>Consigue la app</h2>
-      <p class="lead" id="rc-soon">Pythia Recap está casi lista. La descarga y el botón de compra aparecerán aquí en cuanto se publique.</p>
-      <div class="cta">
-        <a class="btn primary" id="rc-apk" href="#download" hidden>Descargar directamente</a>
-      </div>
-      <a class="cross" href="/es/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Habla en cualquier app y aparece texto limpio. Lee mensajes de voz largos como texto.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Más información</span></a>
+      <p class="lead" id="rc-soon" style="margin-top:16px">Pythia Recap está casi lista. La descarga y el botón de compra aparecerán aquí en cuanto se publique.</p>
+      <div class="row" style="margin-top:22px"><a class="btn teal" id="rc-apk" href="#download" hidden><span>Descargar directamente</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <a class="cross rv" href="/es/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Tú hablas, Pythia escribe. Cómodo y limpio. Lee cómodamente los mensajes de voz largos como texto.</span><span class="cross-p">19,99 €</span><span class="btn ghost sm"><span>Más información</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Preguntas frecuentes</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Preguntas frecuentes</h2>
       <details open><summary>¿Necesito una cuenta?</summary><p>No. Necesitas la app y tu propia clave de Groq gratuita. No gestionamos cuentas ni servidores para tus reuniones.</p></details>
       <details><summary>¿Cuánto cuesta Groq?</summary><p>Groq ofrece un plan gratuito que alcanza para muchas reuniones. Sus límites pueden pausar un rato trabajos muy largos. Más allá, el uso cuesta unos céntimos por hora de audio.</p></details>
       <details><summary>¿Puede grabar Zoom o Teams directamente?</summary><p>Android no lo permite a las apps. Usa la grabación del software de la reunión, el sonido del sistema en el ordenador o el modo portátil. Las guías de la app explican cada camino.</p></details>
@@ -196,25 +164,17 @@
       <details><summary>¿Qué idiomas funcionan?</summary><p>El reconocimiento de voz funciona en más de 90 idiomas y detecta el idioma automáticamente. El resumen puede escribirse en el idioma que elijas.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Pruébalo 7 días gratis.</h2>
+      <p class="lead">Sin cuenta ni suscripción. Si te gusta, pagas una sola vez.</p>
+      <div class="row"><a class="btn teal" href="#preis"><span>Comprar Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/es/pythia"><span>Todos los productos</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/es/recap"><img src="/recap-logo.svg" alt="" width="28" height="28"><span>Pythia Recap</span></a>
-      <p>Reuniones y notas de voz, al grano.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/es/">Pythia Voice</a>
-      <a href="/impressum">Aviso legal</a>
-      <a href="/privacy">Privacidad</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/es/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Dictado y mensajes de voz para Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/es/">Pythia Voice</a><a href="/es/recap">Pythia Recap</a><a href="/es/pythia">Todos los productos</a><a href="/impressum">Aviso legal</a><a href="/privacy">Privacidad</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/recap.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

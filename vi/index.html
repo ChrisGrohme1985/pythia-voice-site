@@ -32,146 +32,109 @@
 <link rel="alternate" hreflang="he" href="https://www.pythiavoice.app/he/">
 <link rel="alternate" hreflang="x-default" href="https://www.pythiavoice.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hơn mọi lời sấm truyền: lời của bạn, được Pythia ghi lại đáng tin cậy.">
-<meta property="og:description" content="Không đăng ký. Không phí ẩn. Trả một lần, dùng trọn đời.">
+<meta property="og:title" content="Bạn nói. Pythia viết. Nhẹ nhàng.">
+<meta property="og:description" content="Pythia Voice bỏ các tiếng «ờ», thêm dấu câu và hiểu cả lời bạn nói chữa lại. Trả một lần, không đăng ký tháng.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
-<body>
-
-<header class="top">
-  <a class="brand" href="/vi/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
-  <nav aria-label="Menu">
-    <a href="#ablauf">Cách hoạt động</a>
-    <a href="#preis">Giá</a>
-    <a href="#fragen">Câu hỏi</a>
-    <a href="/vi/recap">Pythia Recap</a>
-    <a class="nav-dl" href="#download">Tải trực tiếp</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi" selected>Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<body data-page="home">
+<header class="nav"><a class="brand" href="/vi/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Sản phẩm<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/vi/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Đọc chính tả</a><a href="/vi/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Tin nhắn thoại</a><a href="/vi/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/vi/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Tất cả sản phẩm</a></div></div><a class="l" href="#funktionen">Tính năng</a><a class="l" href="#produkte">Giá</a><a class="l" href="#fragen">Câu hỏi</a><a class="btn sm" id="apk-nav" href="/vi/#download"><span>Tải trực tiếp</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi" selected>Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Hơn mọi lời sấm truyền: lời của bạn, được Pythia ghi lại đáng tin cậy.</h1>
-      <p class="lead">Nói trong bất kỳ ứng dụng nào. Pythia Voice viết lại, bỏ “ờ” và nhận lời sửa của bạn.</p>
-      <p class="promise">Không đăng ký. Không phí ẩn. Trả một lần, dùng trọn đời.</p>
-      <p class="promise">Hai giấy phép: Đọc chính tả và Tin nhắn thoại. Mỗi giấy phép được mua riêng, trả một lần và hoạt động độc lập.</p>
-      <div class="cta">
-        <a class="btn primary" href="#download">Dùng thử Pythia Voice</a>
-        <a class="btn ghost" href="#preis">Xem giá</a>
-      </div>
-      <p class="fine">Dùng thử miễn phí 7 ngày hoặc 3.000 từ.</p>
-    </div>
-
-    <figure class="oracle" id="oracle" data-fill="ờ" data-a="mình gặp nhau lúc" data-s="năm giờ à không thật ra lúc" data-b="sáu giờ trước nhà ga" data-out="Mình gặp nhau lúc sáu giờ trước nhà ga.">
-      <div class="wave" id="wave" aria-hidden="true"></div>
-      <div class="line">
-        <span class="label">Bạn nói</span>
-        <p id="said" class="said"></p>
-      </div>
-      <div class="line">
-        <span class="label">Pythia viết</span>
-        <p id="wrote" class="wrote" aria-live="polite"></p>
-      </div>
-      <button class="replay" id="replay" type="button">Phát lại</button>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Đọc chính tả</span></h3><p>Nói vào bất kỳ ứng dụng nào, văn bản sạch sẽ hiện ra.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Tin nhắn thoại</span></h3><p>Đọc tin nhắn thoại dài dưới dạng văn bản.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/vi/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Cuộc họp và ghi chú giọng nói, gọn gàng.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Ứng dụng khi hoạt động</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/v_home.webp" alt="Pythia Voice: Đọc chính tả" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Đọc chính tả</b><span>Nói vào bất kỳ ứng dụng nào, văn bản sạch sẽ hiện ra.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_msg.webp" alt="Pythia Voice: Tin nhắn thoại" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Tin nhắn thoại</b><span>Đọc tin nhắn thoại dài dưới dạng văn bản.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_words.webp" alt="Pythia Voice: Từ" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Từ</b><span>Tên và thuật ngữ cần viết đúng.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_style.webp" alt="Pythia Voice: Phong cách" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Phong cách</b><span>Phong cách viết của văn bản đã làm sạch</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_snip.webp" alt="Pythia Voice: Đoạn mẫu" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Đoạn mẫu</b><span>Nói phím tắt và toàn bộ văn bản sẽ được chèn.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Bạn nhận được gì</h2>
-      <dl class="rules">
-        <div><dt>Trả một lần, dùng trọn đời</dt><dd>Không đăng ký, không gia hạn và không giới hạn từ sau thời gian dùng thử. Số tiền bạn trả hôm nay là toàn bộ chi phí cho Pythia Voice.</dd></div>
-        <div><dt>Viết trong mọi ứng dụng</dt><dd>WhatsApp, thư, ghi chú, trình duyệt. Nút tròn hiện phía trên bàn phím ngay khi bạn chạm vào ô văn bản.</dd></div>
+      <div class="rv">
+        <h1>Bạn nói. Pythia viết. Nhẹ nhàng.</h1>
+        <p class="lead">Pythia Voice bỏ các tiếng «ờ», thêm dấu câu và hiểu cả lời bạn nói chữa lại. Trả một lần, không đăng ký tháng.</p>
+        <div class="row">
+          <a class="btn" href="#download"><span>Dùng thử Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#produkte"><span>Xem giá</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Dùng thử miễn phí 7 ngày hoặc 3.000 từ.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play sắp có</span></span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/v_home.webp" alt="Đọc chính tả" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="ờ" data-a="mình gặp nhau lúc" data-s="năm giờ à không thật ra lúc" data-b="sáu giờ trước nhà ga" data-out="Mình gặp nhau lúc sáu giờ trước nhà ga.">
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <div class="line"><span class="label">Bạn nói</span><p id="said" class="said"></p></div>
+          <div class="line"><span class="label">Pythia viết</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
+          <button class="replay" id="replay" type="button">Phát lại</button>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video" id="video" hidden>
+    <div class="wrap">
+      <h2>Pythia trong mười giây</h2><p class="lead" style="margin-top:14px">Nói, gửi, xong.</p>
+      <div class="vbox bezel"><div class="core"><video controls playsinline preload="none" aria-label="Pythia trong mười giây"></video></div></div>
+    </div>
+  </section>
+
+  <section id="produkte">
+    <div class="wrap">
+      <div class="prod-head rv"><h2>Ba công cụ gánh phần gõ phím thay bạn.</h2><p class="lead">Không đăng ký, không phí ẩn. Mỗi giấy phép chỉ mua một lần và dùng mãi mãi.</p></div>
+      <div class="cols">
+        <div class="bezel hl rv" id="diktat"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Đọc chính tả</span></h3>
+          <p class="tag">Cứ nói, Pythia viết: tiện, gọn, xong.</p>
+          <p class="price">19,99 €<small>Thanh toán một lần bằng euro.</small></p>
+          <ul><li class="key">Dùng thử miễn phí 7 ngày hoặc 3.000 từ</li><li>Tất cả hơn 90 ngôn ngữ, mọi tính năng</li><li>Không giới hạn từ sau khi mua</li><li class="key">Bao gồm cập nhật</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Tìm hiểu thêm</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Mua giấy phép</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Tin nhắn thoại</span></h3>
+          <p class="tag">Đọc tin nhắn thoại dài dưới dạng văn bản, không cần nghe.</p>
+          <p class="price">19,99 €<small>Thanh toán một lần bằng euro.</small></p>
+          <ul><li class="key">Dùng thử miễn phí với 15 tin nhắn hoặc 7 ngày</li><li>Chia theo từng phút và đoạn văn</li><li>Chia sẻ từ WhatsApp và các ứng dụng nhắn tin khác</li><li class="key">Đã gồm cập nhật</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Tìm hiểu thêm</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Mua tin nhắn thoại</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+          <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Recap<span>Cuộc họp và ghi chú giọng nói, gọn gàng.</span></h3>
+          <p class="tag">Ghi âm cuộc họp và nhận bản tóm tắt kèm công việc.</p>
+          <p class="price">19,99 €<small>Thanh toán một lần bằng euro.</small></p>
+          <ul><li class="key">Dùng thử miễn phí 7 ngày hoặc 3 cuộc họp</li><li>Bản chép lời, tóm tắt, công việc, người nói, dấu mốc, xuất PDF</li><li>Sau khi mua không giới hạn độ dài hay số cuộc họp</li><li class="key">Bao gồm cập nhật</li></ul>
+          <div class="acts"><a class="btn ghost block" href="/vi/recap"><span>Tìm hiểu thêm</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/vi/recap#preis"><span>Mua Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+      </div>
+      <p class="note">Mỗi giấy phép được mua riêng và hoạt động độc lập. Thành phần duy nhất còn lại là quyền truy cập Groq của chính bạn để nhận dạng giọng nói. Miễn phí cho việc dùng thông thường, điều khoản do Groq quyết định.</p>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Những việc Pythia làm giúp bạn</h2>
+      <dl class="rules rv">
+        <div><dt>Nói thay vì gõ</dt><dd>Chạm vào ô nhập văn bản, nhấn nút tròn phía trên bàn phím rồi nói. Pythia viết thẳng văn bản vào đó, ví dụ trong WhatsApp, email hay ghi chú.</dd></div>
         <div><dt>Dọn dẹp giúp bạn</dt><dd>Từ đệm biến mất, dấu câu xuất hiện. Bạn nói “lúc năm giờ, không, sáu giờ” thì nó viết “sáu giờ”.</dd></div>
         <div><dt>Hơn 90 ngôn ngữ</dt><dd>Kể cả trộn lẫn trong một câu. Bản thân ứng dụng có 24 ngôn ngữ.</dd></div>
+        <div><dt>Trả một lần, dùng trọn đời</dt><dd>Không đăng ký, không gia hạn và không giới hạn từ sau thời gian dùng thử. Số tiền bạn trả hôm nay là toàn bộ chi phí cho Pythia Voice.</dd></div>
         <div><dt>Nhận dạng qua quyền truy cập Groq của bạn</dt><dd>Nhận dạng chạy bằng khóa Groq của chính bạn. Theo tài liệu của Groq, gói miễn phí cho phép tới 8 giờ giọng nói mỗi ngày. Giới hạn do Groq quyết định và có thể thay đổi.</dd></div>
         <div><dt>Ở lại với bạn</dt><dd>Không cần tài khoản. Pythia Voice không lưu âm thanh. Trong ô mật khẩu, nút luôn bị ẩn.</dd></div>
       </dl>
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
-    <div class="wrap">
-      <h2>Cách đọc chính tả</h2>
-      <ol class="steps">
-        <li><b>Chạm</b><span>Chạm vào ô văn bản, rồi chạm nút tròn phía trên bàn phím.</span></li>
-        <li><b>Nói</b><span>Hãy nói điều bạn muốn viết. Có ngắt nghỉ, có sửa lời.</span></li>
-        <li><b>Nói là xong</b><span>Chạm thêm một lần. Văn bản gọn gàng nằm trong ô.</span></li>
-      </ol>
-      <p class="hint">Thích giữ hơn? Giữ nút, nói, rồi thả.</p>
-      <p class="setup">Thiết lập một lần mất khoảng 1 phút: tạo tài khoản Groq miễn phí (đăng nhập bằng Google là đủ), tạo khóa rồi dán vào. Sau đó bạn chỉ việc đọc chính tả.</p>
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Ứng dụng khi hoạt động</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Đọc chính tả" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Đọc chính tả</b><span>Bạn nói, Pythia viết. Tiện và gọn.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="Tin nhắn thoại" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Tin nhắn thoại</b><span>Đọc tin nhắn thoại dài dưới dạng văn bản thật thoải mái.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="Từ" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Từ</b><span>Tên và thuật ngữ cần viết đúng.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="Phong cách" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Phong cách</b><span>Phong cách viết của văn bản đã làm sạch</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="Đoạn mẫu" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Đoạn mẫu</b><span>Nói phím tắt và toàn bộ văn bản sẽ được chèn.</span></figcaption></figure>
     </div>
   </section>
 
-  <section class="light" id="preis">
-    <div class="wrap">
-      <div class="price-head">
-        <h2>Hai giấy phép. Mỗi loại chỉ trả một lần.</h2>
-        <p class="lead dark-text">Pythia Voice có hai giấy phép: Đọc chính tả và Tin nhắn thoại. Không thuê bao, không phí ẩn: bạn trả một lần cho mỗi giấy phép và dùng trọn đời.</p>
-      </div>
-      <div class="tablets">
-        <div class="tablet">
-          <p class="plan">Đọc chính tả</p>
-          <p class="plan-d">Nói vào bất kỳ ứng dụng nào, văn bản sạch sẽ hiện ra.</p>
-          <p class="amount"><span class="num" id="price">19,99 €</span></p>
-          <p class="sub">Thanh toán một lần bằng euro.</p>
-          <ul>
-            <li>Dùng thử miễn phí 7 ngày hoặc 3.000 từ</li>
-            <li>Tất cả hơn 90 ngôn ngữ, mọi tính năng</li>
-            <li>Không giới hạn từ sau khi mua</li>
-            <li>Bao gồm cập nhật</li>
-          </ul>
-          <a class="btn primary" id="buy" href="#download">Mua giấy phép</a>
-        </div>
-        <div class="tablet">
-          <p class="plan">Tin nhắn thoại</p>
-          <p class="plan-d">Đọc tin nhắn thoại dài dưới dạng văn bản.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Thanh toán một lần bằng euro.</p>
-          <ul>
-            <li>Dùng thử miễn phí với 15 tin nhắn hoặc 7 ngày</li>
-            <li>Chia theo từng phút và đoạn văn</li>
-            <li>Chia sẻ từ WhatsApp và các ứng dụng nhắn tin khác</li>
-            <li>Đã gồm cập nhật</li>
-          </ul>
-          <a class="btn primary" id="buy-voice-2" href="#download">Mua tin nhắn thoại</a>
-        </div>
-      </div>
-      <p class="note">Mỗi giấy phép được mua riêng và hoạt động độc lập. Thành phần duy nhất còn lại là quyền truy cập Groq của chính bạn để nhận dạng giọng nói. Miễn phí cho việc dùng thông thường, điều khoản do Groq quyết định.</p>
-      <a class="cross" href="/vi/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Cuộc họp và ghi chú giọng nói, gọn gàng.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Tìm hiểu thêm</span></a>
-    </div>
-  </section>
-
-  <section class="voice" id="sprachnachrichten">
+  <section id="sprachnachrichten">
     <div class="wrap voice-grid">
-      <div class="voice-text">
-        <p class="eyebrow">Tin nhắn thoại dưới dạng văn bản</p>
+      <div class="voice-text rv">
         <h2>Chán những tin nhắn thoại dài?</h2>
         <p class="lead">Bạn chỉ muốn đọc nhanh và lúc này không tiện nghe? Hay bạn không đủ kiên nhẫn với những “tiểu thuyết” mà một số người ghi âm, và bạn đọc nhanh hơn họ nói? Vậy Pythia Voice dành cho bạn: chia sẻ tin nhắn rồi đọc như văn bản.</p>
         <ul class="voice-points">
@@ -179,12 +142,13 @@
           <li>Chia theo từng phút và đoạn văn, dễ chịu cho mắt</li>
           <li>Dùng thử miễn phí với 15 tin nhắn hoặc 7 ngày</li>
         </ul>
-        <div class="cta">
-          <a class="btn primary" id="buy-voice" href="#download">Mua tin nhắn thoại · 19,99 € trả một lần</a>
-          <span class="fine inline">Giấy phép riêng, độc lập với đọc chính tả. Không thuê bao.</span>
+        <div class="row">
+          <a class="btn ghost" href="/vi/pythia"><span>Tìm hiểu thêm</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Mua tin nhắn thoại · 19,99 € trả một lần</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
+        <p class="dim" style="margin-top:14px;font-size:.92rem">Giấy phép riêng, độc lập với đọc chính tả. Không thuê bao.</p>
       </div>
-      <figure class="vm-demo" aria-label="Pythia Voice chuyển nó thành văn bản, chia theo từng phút">
+      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice chuyển nó thành văn bản, chia theo từng phút">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -199,54 +163,57 @@
           <div><b>3:00</b><p>Được rồi, hết rồi. Hẹn sớm gặp lại!</p></div>
         </div>
         <p class="vm-cap">Pythia Voice chuyển nó thành văn bản, chia theo từng phút</p>
-      </figure>
+      </figure></div>
     </div>
   </section>
 
-  <section class="rc-teaser" id="recap">
+  <section id="ablauf">
     <div class="wrap">
-      <p class="eyebrow">Pythia Recap</p>
-      <h2>Cũng từ Pythia: Pythia Recap</h2>
-      <p class="lead">Ghi âm hoặc chia sẻ cuộc họp và nhận bản chép lời, tóm tắt cùng danh sách việc cần làm. Gán ai nói gì. Chỉ 19,99 € một lần, không đăng ký.</p>
-      <a class="btn primary" href="/vi/recap">Tìm hiểu thêm</a>
+      <h2 class="sec-h rv">Cách đọc chính tả</h2>
+      <ol class="steps rv">
+        <li><b>Chạm</b><span>Chạm vào ô văn bản, rồi chạm nút tròn phía trên bàn phím.</span></li>
+        <li><b>Nói</b><span>Hãy nói điều bạn muốn viết. Có ngắt nghỉ, có sửa lời.</span></li>
+        <li><b>Nói là xong</b><span>Chạm thêm một lần. Văn bản gọn gàng nằm trong ô.</span></li>
+      </ol>
+      <p class="hint">Thích giữ hơn? Giữ nút, nói, rồi thả.</p>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
-      <h2>Cho Android</h2>
-      <ol class="steps">
+      <h2 class="rv">Cho Android</h2>
+      <ol class="steps rv" style="margin-top:32px">
         <li><b>1. Tải ứng dụng</b><span>Tải APK bên dưới và cài lên điện thoại Android của bạn.</span></li>
         <li><b>2. Dùng thử</b><span>Dùng thử miễn phí mọi thứ: đọc chính tả trong 7 ngày hoặc 3.000 từ, tin nhắn thoại trong 7 ngày hoặc 15 tin.</span></li>
         <li><b>3. Thích chứ? Mua giấy phép</b><span>Chọn Đọc chính tả, Tin nhắn thoại hoặc cả hai. Nhập khóa vào ứng dụng là xong.</span></li>
       </ol>
-      <p class="lead">Android 13 trở lên. Chưa có bản cho iPhone.</p>
       <div class="get">
-        <div class="get-card">
-          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Đọc chính tả · Tin nhắn thoại</p></div></div>
-          <p>Nói vào bất kỳ ứng dụng nào, văn bản sạch sẽ hiện ra. Đọc tin nhắn thoại dài dưới dạng văn bản.</p>
-          <div class="cta">
-            <a class="btn primary" id="apk" href="#download">Tải trực tiếp</a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play sắp có</span></span>
+        <div class="get-card rv">
+          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>Đọc chính tả · Tin nhắn thoại</p></div></div>
+          <p>Bạn nói, Pythia viết. Tiện và gọn. Đọc tin nhắn thoại dài dưới dạng văn bản thật thoải mái.</p>
+          <div class="row">
+            <a class="btn" id="apk" href="#download"><span>Tải trực tiếp</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play sắp có</span></span>
           </div>
         </div>
-        <div class="get-card recap">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Cuộc họp và ghi chú giọng nói, gọn gàng.</p></div></div>
+        <div class="get-card recap rv" style="--d:.08s">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>Cuộc họp và ghi chú giọng nói, gọn gàng.</p></div></div>
           <p id="rc-soon-h">Pythia Recap sắp hoàn thiện. Nút tải xuống và nút mua sẽ xuất hiện ở đây ngay khi phát hành.</p>
-          <div class="cta">
-            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Tải trực tiếp</a>
-            <a class="btn ghost" href="/vi/recap">Tìm hiểu thêm</a>
+          <div class="row">
+            <a class="btn teal" id="rc-apk-h" href="#download" hidden><span>Tải trực tiếp</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <a class="btn ghost" href="/vi/recap"><span>Tìm hiểu thêm</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
           </div>
         </div>
       </div>
-      <p class="fine">Lần chạy đầu tiên, ứng dụng hướng dẫn bạn thiết lập trong sáu bước ngắn.</p>
+      <p class="dim">Android 13 trở lên. Chưa có bản cho iPhone.</p>
+      <p class="dim" style="margin-top:8px">Lần chạy đầu tiên, ứng dụng hướng dẫn bạn thiết lập trong sáu bước ngắn.</p>
       <p class="setup">Thiết lập một lần mất khoảng 1 phút: tạo tài khoản Groq miễn phí (đăng nhập bằng Google là đủ), tạo khóa rồi dán vào. Sau đó bạn chỉ việc đọc chính tả.</p>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Câu hỏi thường gặp</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Câu hỏi thường gặp</h2>
       <details open><summary>Có thật là thanh toán một lần không?</summary><p>Có. Chỉ một lần thanh toán, không đăng ký, không gia hạn. Dịch vụ khác duy nhất tham gia là Groq để nhận dạng giọng nói. Gói miễn phí hiện bao phủ khoảng 8 giờ giọng nói mỗi ngày, đủ cho việc sử dụng bình thường. Groq tự quyết định giới hạn và giá.</p></details>
       <details><summary>Groq là gì và có cần tài khoản không?</summary><p>Groq là dịch vụ chuyển giọng nói của bạn thành văn bản. Bạn tạo khóa cá nhân miễn phí ở đó và dán vào ứng dụng. Hướng dẫn trong ứng dụng chỉ từng thao tác chạm.</p></details>
       <details><summary>Groq tốn bao nhiêu?</summary><p>Với việc dùng thông thường là không tốn gì. Groq nêu tới 8 giờ âm thanh Whisper mỗi ngày ở gói miễn phí. Groq thay đổi giới hạn, hãy kiểm tra tại console.groq.com.</p></details>
@@ -258,25 +225,17 @@
       <details><summary>Tin nhắn thoại có thể dài bao nhiêu?</summary><p>Tệp đến 25 MB đều dùng được, tương đương nhiều giờ lời nói. Tin nhắn ba phút chỉ mất vài giây. Groq tự đặt giới hạn riêng và có thể thay đổi.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Dùng thử miễn phí 7 ngày.</h2>
+      <p class="lead">Không cần tài khoản, không đăng ký. Thích thì trả một lần.</p>
+      <div class="row"><a class="btn" href="#download"><span>Dùng thử Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/vi/pythia"><span>Tất cả sản phẩm</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/vi/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
-      <p>Đọc chính tả và tin nhắn thoại cho Android.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/vi/recap">Pythia Recap</a>
-      <a href="/impressum">Thông tin pháp lý</a>
-      <a href="/privacy">Quyền riêng tư</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/vi/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Đọc chính tả và tin nhắn thoại cho Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/vi/">Pythia Voice</a><a href="/vi/recap">Pythia Recap</a><a href="/vi/pythia">Tất cả sản phẩm</a><a href="/impressum">Thông tin pháp lý</a><a href="/privacy">Quyền riêng tư</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/app.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

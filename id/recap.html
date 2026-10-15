@@ -36,72 +36,44 @@
 <meta property="og:description" content="Tanpa langganan. Tanpa biaya tersembunyi. Bayar sekali, pakai seumur hidup.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
 <body class="recap-page" data-page="recap">
-
-<header class="top">
-  <a class="brand" href="/id/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="34" height="34"><span>Pythia Recap</span></a>
-  <nav aria-label="Menu">
-    <a href="/id/">Pythia Voice</a>
-    <a href="#ablauf">Cara kerja</a>
-    <a href="#preis">Harga</a>
-    <a href="#fragen">Pertanyaan</a>
-    <a class="nav-dl" href="#download">Unduh langsung</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id" selected>Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<header class="nav"><a class="brand" href="/id/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="30" height="30"><span>Pythia Recap</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produk<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/id/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dikte</a><a href="/id/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Pesan suara</a><a href="/id/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/id/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Semua produk</a></div></div><a class="l" href="/id/#funktionen">Fitur</a><a class="l" href="#preis">Harga</a><a class="l" href="/id/#fragen">Pertanyaan</a><a class="btn sm" id="apk-nav" href="/id/#download"><span>Unduh langsung</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id" selected>Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Rapat, ringkas.</h1>
-      <p class="lead">Rekam rapat atau bagikan rekaman dari Zoom, Teams, atau WhatsApp. Pythia Recap menulis transkrip, ringkasan, keputusan, dan daftar tugas Anda. Anda yang menentukan siapa mengatakan apa.</p>
-      <p class="promise">Tanpa langganan. Tanpa biaya tersembunyi. Bayar sekali, pakai seumur hidup.</p>
-      <div class="cta">
-        <a class="btn primary" id="buy-recap" href="#download">Beli Pythia Recap · €19,99</a>
-        <a class="btn ghost" href="#funktionen">Lihat cara kerjanya</a>
-      </div>
-      <p class="fine">Untuk Android. Coba gratis 7 hari atau 3 rapat. Perlu kunci Groq gratis milik Anda sendiri.</p>
-    </div>
-
-    <figure class="rc-demo" aria-label="Dari rekaman ke rekap">
-      <h3>Dari rekaman ke rekap · Perencanaan mingguan</h3>
-      <div class="rc-wave" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        <b class="t"></b><b class="w"></b><b class="s"></b>
-      </div>
-      <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Selamat pagi semuanya, kita mulai dengan perencanaan minggu depan.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Saya butuh angka stok gudang sebelum Jumat, kalau tidak saya tidak bisa memesan.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:41</span><div><span class="rc-sp a">Anna</span><p>Bisa, saya kirim besok pagi.</p></div></div>
-      <div class="rc-sum"><p><b>★</b> Ringkasan: angka stok gudang dibutuhkan sebelum Jumat</p><p><b>☑</b> Kirim angka stok gudang (Anna, besok pagi)</p></div>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="/id/#funktionen"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dikte</span></h3><p>Bicara di aplikasi apa pun, teks yang rapi muncul.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="/id/#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Pesan suara</span></h3><p>Baca pesan suara panjang sebagai teks.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/id/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Rapat dan catatan suara, ringkas.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Aplikasi saat digunakan</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/r_home.webp" alt="Pythia Recap: Rekam atau bagikan" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Rekam atau bagikan</b><span>Rekam di ruangan atau bagikan audio dan video dari Zoom, Teams, Meet, WhatsApp, atau perekam suara Anda. Rapat panjang bukan masalah.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap: Penanda dan penggeseran" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Penanda dan penggeseran</b><span>Beri penanda saat merekam: penting, tugas, pergantian pembicara. Nanti lompat ke sana dan geser dengan tepat memakai jempol.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_tasks.webp" alt="Pythia Recap: Ringkasan dan tugas" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Ringkasan dan tugas</b><span>Ringkasan singkat, keputusan, pertanyaan terbuka, dan daftar tugas dengan siapa dan kapan. Bagikan sebagai teks atau PDF.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Yang Anda dapatkan</h2>
-      <dl class="rules">
+      <div class="rv">
+        <h1>Rapat, ringkas.</h1>
+        <p class="lead">Rekam rapat atau bagikan rekaman dari Zoom, Teams, atau WhatsApp. Pythia Recap menulis transkrip, ringkasan, keputusan, dan daftar tugas Anda. Anda yang menentukan siapa mengatakan apa.</p>
+        <div class="row">
+          <a class="btn" id="buy-recap" href="#preis"><span>Beli Pythia Recap · €19,99</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#funktionen"><span>Lihat cara kerjanya</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Untuk Android. Coba gratis 7 hari atau 3 rapat. Perlu kunci Groq gratis milik Anda sendiri.</span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core rc-demo" aria-label="Dari rekaman ke rekap">
+          <h3>Dari rekaman ke rekap · Perencanaan mingguan</h3>
+          <div class="rc-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="t"></b><b class="w"></b><b class="s"></b></div>
+          <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Selamat pagi semuanya, kita mulai dengan perencanaan minggu depan.</p></div></div>
+          <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Saya butuh angka stok gudang sebelum Jumat, kalau tidak saya tidak bisa memesan.</p></div></div>
+          <div class="rc-sum"><p><b>★</b> Ringkasan: angka stok gudang dibutuhkan sebelum Jumat</p><p><b>☑</b> Kirim angka stok gudang (Anna, besok pagi)</p></div>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul><li><a href="/id/"><img src="/logo.svg" alt="" width="42" height="42"><div><h3>Pythia Voice <span>Dikte</span></h3><p>Bicara saja, Pythia yang menulis: praktis, rapi, selesai.</p></div></a></li><li><a href="/id/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Pesan suara</span></h3><p>Baca pesan suara panjang sebagai teks, tanpa perlu mendengarkan.</p></div></a></li><li><a href="/id/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="42" height="42"><div><h3>Pythia Recap</h3><p>Rekam rapat dan terima ringkasan siap pakai beserta tugas.</p></div></a></li></ul></div></section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Yang Anda dapatkan</h2>
+      <dl class="rules rv">
         <div><dt>Rekam atau bagikan</dt><dd>Rekam di ruangan atau bagikan audio dan video dari Zoom, Teams, Meet, WhatsApp, atau perekam suara Anda. Rapat panjang bukan masalah.</dd></div>
         <div><dt>Ringkasan dan tugas</dt><dd>Ringkasan singkat, keputusan, pertanyaan terbuka, dan daftar tugas dengan siapa dan kapan. Bagikan sebagai teks atau PDF.</dd></div>
         <div><dt>Siapa mengatakan apa</dt><dd>Tentukan pembicara menurut stempel waktu. Satu ketukan berlaku sampai pergantian pembicara berikutnya, lalu ringkasan memakai nama asli.</dd></div>
@@ -112,10 +84,19 @@
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Aplikasi saat digunakan</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/r_home.webp" alt="Rekam atau bagikan" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Rekam atau bagikan</b><span>Rekam di ruangan atau bagikan audio dan video dari Zoom, Teams, Meet, WhatsApp, atau perekam suara Anda. Rapat panjang bukan masalah.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.08s"><div class="phone"><img src="/shots/r_meet.webp" alt="Penanda dan penggeseran" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Penanda dan penggeseran</b><span>Beri penanda saat merekam: penting, tugas, pergantian pembicara. Nanti lompat ke sana dan geser dengan tepat memakai jempol.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.16s"><div class="phone"><img src="/shots/r_tasks.webp" alt="Ringkasan dan tugas" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Ringkasan dan tugas</b><span>Ringkasan singkat, keputusan, pertanyaan terbuka, dan daftar tugas dengan siapa dan kapan. Bagikan sebagai teks atau PDF.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ablauf">
     <div class="wrap">
-      <h2>Cara kerja</h2>
-      <ol class="steps">
+      <h2 class="sec-h rv">Cara kerja</h2>
+      <ol class="steps rv">
         <li><b>1. Rekam atau bagikan</b><span>Ketuk Rekam dan taruh ponsel di meja, atau bagikan rekaman ke aplikasi.</span></li>
         <li><b>2. Tunggu beberapa menit</b><span>Pythia Recap mentranskripsi dan meringkas. Tetap bekerja walau aplikasi Anda tutup.</span></li>
         <li><b>3. Periksa dan bagikan</b><span>Tentukan pembicara, lompat ke penanda, lalu kirim ringkasan sebagai teks atau PDF.</span></li>
@@ -123,10 +104,10 @@
     </div>
   </section>
 
-  <section class="voice" id="marker">
-    <div class="wrap narrow">
+  <section id="marker">
+    <div class="narrow rv">
       <h2>Temukan titik yang tepat dengan jempol</h2>
-      <p class="lead">Di rapat panjang sulit mencari sesuatu. Pythia Recap menampilkan seluruh rapat dan tampilan dekat dua menit, dengan penanda besar yang benar-benar bisa Anda ketuk.</p>
+      <p class="lead" style="margin:16px 0 22px">Di rapat panjang sulit mencari sesuatu. Pythia Recap menampilkan seluruh rapat dan tampilan dekat dua menit, dengan penanda besar yang benar-benar bisa Anda ketuk.</p>
       <ul class="voice-points">
         <li>Penanda berukuran area sentuh 48 dp: ketuk untuk melompat lima detik sebelumnya</li>
         <li>Seret tampilan dekat untuk menggeser dengan tepat, dengan kaca pembesar yang menunjukkan waktu dan teks</li>
@@ -135,10 +116,10 @@
     </div>
   </section>
 
-  <section class="light" id="ton">
-    <div class="wrap narrow">
+  <section id="ton">
+    <div class="narrow rv">
       <h2>Rapat online: cara mendapatkan suaranya</h2>
-      <p class="dark-text">Android tidak mengizinkan aplikasi merekam Zoom, Teams, atau Meet secara langsung. Ini cara tetap mendapatkan trek audio:</p>
+      <p class="lead" style="margin-top:16px">Android tidak mengizinkan aplikasi merekam Zoom, Teams, atau Meet secara langsung. Ini cara tetap mendapatkan trek audio:</p>
       <ul class="audio-list">
         <li>Zoom: rekam secara lokal dan bagikan berkas khusus audio (m4a).</li>
         <li>Microsoft Teams: bagikan rekaman dari OneDrive atau SharePoint.</li>
@@ -146,48 +127,35 @@
         <li>Windows atau Mac: rekam suara sistem dengan OBS, Audacity, atau BlackHole.</li>
         <li>Jika tidak ada cara lain: taruh ponsel di samping laptop (mode laptop).</li>
       </ul>
-      <p class="note">Selalu beri tahu semua orang bahwa Anda merekam dan dapatkan persetujuan mereka terlebih dahulu. Merekam tanpa persetujuan bisa menjadi tindak pidana.</p>
+      <p class="dim">Selalu beri tahu semua orang bahwa Anda merekam dan dapatkan persetujuan mereka terlebih dahulu. Merekam tanpa persetujuan bisa menjadi tindak pidana.</p>
     </div>
   </section>
 
-  <section class="light" id="preis">
+  <section id="preis">
     <div class="wrap">
-      <div class="price-head">
-        <h2>Satu lisensi. Bayar sekali.</h2>
-        <p class="lead dark-text">Tanpa langganan, tanpa biaya tersembunyi. Anda membayar sekali dan memilikinya seumur hidup.</p>
-      </div>
-      <div class="tablets one">
-        <div class="tablet">
-          <p class="plan">Pythia Recap</p>
-          <p class="plan-d">Rapat dan catatan suara, ringkas.</p>
-          <p class="amount"><span class="num">€19,99</span></p>
-          <p class="sub">Pembayaran sekali dalam euro.</p>
-          <ul>
-            <li>Coba gratis 7 hari atau 3 rapat</li>
-            <li>Setelah pembelian tanpa batas panjang atau jumlah rapat</li>
-            <li>Transkrip, ringkasan, tugas, pembicara, penanda, ekspor PDF</li>
-            <li>Satu lisensi untuk satu ponsel, dapat dipindahkan atas permintaan</li>
-          </ul>
-          <a class="btn primary" id="buy-recap-2" href="#download">Beli Pythia Recap</a>
-        </div>
-      </div>
+      <div class="prod-head rv"><h2>Satu lisensi. Bayar sekali.</h2><p class="lead">Tanpa langganan, tanpa biaya tersembunyi. Anda membayar sekali dan memilikinya seumur hidup.</p></div>
+      <div class="bezel rc rv" style="max-width:560px;margin-inline:auto"><div class="core col r spot">
+        <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_tasks.webp" alt="" width="540" height="1080" loading="lazy"></div>
+        <h3>Pythia Recap<span>Rapat dan catatan suara, ringkas.</span></h3>
+        <p class="price">€19,99<small>Pembayaran sekali dalam euro.</small></p>
+        <ul><li class="key">Coba gratis 7 hari atau 3 rapat</li><li>Setelah pembelian tanpa batas panjang atau jumlah rapat</li><li>Transkrip, ringkasan, tugas, pembicara, penanda, ekspor PDF</li><li>Satu lisensi untuk satu ponsel, dapat dipindahkan atas permintaan</li><li class="key">Pembaruan termasuk</li></ul>
+        <div class="acts"><a class="btn teal block" id="buy-recap-2" href="#download"><span>Beli Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      </div></div>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
       <h2>Dapatkan aplikasinya</h2>
-      <p class="lead" id="rc-soon">Pythia Recap hampir siap. Unduhan dan tombol beli akan muncul di sini begitu dirilis.</p>
-      <div class="cta">
-        <a class="btn primary" id="rc-apk" href="#download" hidden>Unduh langsung</a>
-      </div>
-      <a class="cross" href="/id/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Bicara di aplikasi apa pun, teks yang rapi muncul. Baca pesan suara panjang sebagai teks.</span><span class="cross-p">€19,99</span><span class="btn ghost">Pelajari lebih lanjut</span></a>
+      <p class="lead" id="rc-soon" style="margin-top:16px">Pythia Recap hampir siap. Unduhan dan tombol beli akan muncul di sini begitu dirilis.</p>
+      <div class="row" style="margin-top:22px"><a class="btn teal" id="rc-apk" href="#download" hidden><span>Unduh langsung</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <a class="cross rv" href="/id/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Kamu bicara, Pythia menulis. Praktis dan rapi. Baca pesan suara panjang dengan nyaman sebagai teks.</span><span class="cross-p">€19,99</span><span class="btn ghost sm"><span>Pelajari lebih lanjut</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Pertanyaan umum</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Pertanyaan umum</h2>
       <details open><summary>Apakah saya perlu akun?</summary><p>Tidak. Anda perlu aplikasi dan kunci Groq gratis milik Anda. Kami tidak menjalankan akun maupun server untuk rapat Anda.</p></details>
       <details><summary>Berapa biaya Groq?</summary><p>Groq menawarkan paket gratis yang cukup untuk banyak rapat. Batasnya dapat menjeda pekerjaan yang sangat panjang untuk sementara. Di luar itu, pemakaian berbiaya beberapa sen per jam audio.</p></details>
       <details><summary>Bisakah merekam Zoom atau Teams secara langsung?</summary><p>Android tidak mengizinkannya untuk aplikasi. Gunakan rekaman dari perangkat lunak rapat, suara sistem di komputer, atau mode laptop. Panduan di aplikasi menjelaskan tiap caranya.</p></details>
@@ -196,25 +164,17 @@
       <details><summary>Bahasa apa yang didukung?</summary><p>Pengenalan suara bekerja di lebih dari 90 bahasa dan mendeteksi bahasanya secara otomatis. Ringkasan dapat ditulis dalam bahasa pilihan Anda.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Coba gratis 7 hari.</h2>
+      <p class="lead">Tanpa akun, tanpa langganan. Kalau suka, bayar sekali saja.</p>
+      <div class="row"><a class="btn teal" href="#preis"><span>Beli Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/id/pythia"><span>Semua produk</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/id/recap"><img src="/recap-logo.svg" alt="" width="28" height="28"><span>Pythia Recap</span></a>
-      <p>Rapat dan catatan suara, ringkas.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/id/">Pythia Voice</a>
-      <a href="/impressum">Informasi hukum</a>
-      <a href="/privacy">Privasi</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/id/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Dikte dan pesan suara untuk Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/id/">Pythia Voice</a><a href="/id/recap">Pythia Recap</a><a href="/id/pythia">Semua produk</a><a href="/impressum">Informasi hukum</a><a href="/privacy">Privasi</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/recap.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

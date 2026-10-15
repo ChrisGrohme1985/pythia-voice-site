@@ -36,72 +36,44 @@
 <meta property="og:description" content="Abonelik yok. Gizli ücret yok. Bir kez ödeyin, ömür boyu kullanın.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
 <body class="recap-page" data-page="recap">
-
-<header class="top">
-  <a class="brand" href="/tr/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="34" height="34"><span>Pythia Recap</span></a>
-  <nav aria-label="Menu">
-    <a href="/tr/">Pythia Voice</a>
-    <a href="#ablauf">Nasıl çalışır</a>
-    <a href="#preis">Fiyat</a>
-    <a href="#fragen">Sorular</a>
-    <a class="nav-dl" href="#download">Doğrudan indir</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr" selected>Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<header class="nav"><a class="brand" href="/tr/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="30" height="30"><span>Pythia Recap</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Ürünler<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/tr/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dikte</a><a href="/tr/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Sesli mesajlar</a><a href="/tr/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/tr/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Tüm ürünler</a></div></div><a class="l" href="/tr/#funktionen">Özellikler</a><a class="l" href="#preis">Fiyat</a><a class="l" href="/tr/#fragen">Sorular</a><a class="btn sm" id="apk-nav" href="/tr/#download"><span>Doğrudan indir</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr" selected>Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Toplantılar, özetle.</h1>
-      <p class="lead">Bir toplantıyı kaydedin veya Zoom, Teams ya da WhatsApp’tan bir kayıt paylaşın. Pythia Recap dökümü, özeti, kararları ve görev listenizi yazar. Kimin ne dediğine siz karar verirsiniz.</p>
-      <p class="promise">Abonelik yok. Gizli ücret yok. Bir kez ödeyin, ömür boyu kullanın.</p>
-      <div class="cta">
-        <a class="btn primary" id="buy-recap" href="#download">Pythia Recap satın al · 19,99 €</a>
-        <a class="btn ghost" href="#funktionen">Nasıl çalıştığını gör</a>
-      </div>
-      <p class="fine">Android için. 7 gün veya 3 toplantı ücretsiz deneyin. Kendi ücretsiz Groq anahtarınız gerekir.</p>
-    </div>
-
-    <figure class="rc-demo" aria-label="Kayıttan özete">
-      <h3>Kayıttan özete · Haftalık planlama</h3>
-      <div class="rc-wave" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        <b class="t"></b><b class="w"></b><b class="s"></b>
-      </div>
-      <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Herkese günaydın, gelecek haftanın planlamasıyla başlıyoruz.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Cumaya kadar depo rakamlarına ihtiyacım var, yoksa sipariş veremem.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:41</span><div><span class="rc-sp a">Anna</span><p>Yetiştiririz, yarın sabah sana göndereceğim.</p></div></div>
-      <div class="rc-sum"><p><b>★</b> Özet: depo rakamları cumaya kadar gerekli</p><p><b>☑</b> Depo rakamlarını gönder (Anna, yarın sabah)</p></div>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="/tr/#funktionen"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dikte</span></h3><p>Herhangi bir uygulamaya konuşun, temiz metin belirsin.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="/tr/#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Sesli mesajlar</span></h3><p>Uzun sesli mesajları metin olarak okuyun.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/tr/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Toplantılar ve sesli notlar, özetle.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Uygulama iş başında</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/r_home.webp" alt="Pythia Recap: Kaydet veya paylaş" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Kaydet veya paylaş</b><span>Odada kaydedin ya da Zoom, Teams, Meet, WhatsApp veya ses kaydedicinizden ses ve video paylaşın. Uzun toplantılar sorun değil.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap: İşaretler ve gezinme" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>İşaretler ve gezinme</b><span>Kayıt sırasında işaret koyun: önemli, görev, konuşmacı değişimi. Sonra onlara atlayın ve başparmağınızla tam olarak gezinin.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_tasks.webp" alt="Pythia Recap: Özet ve görevler" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Özet ve görevler</b><span>Kısa bir özet, kararlar, açık sorular ve kim ile ne zaman bilgisi içeren görev listesi. Metin veya PDF olarak paylaşın.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Neler elde edersiniz</h2>
-      <dl class="rules">
+      <div class="rv">
+        <h1>Toplantılar, özetle.</h1>
+        <p class="lead">Bir toplantıyı kaydedin veya Zoom, Teams ya da WhatsApp’tan bir kayıt paylaşın. Pythia Recap dökümü, özeti, kararları ve görev listenizi yazar. Kimin ne dediğine siz karar verirsiniz.</p>
+        <div class="row">
+          <a class="btn" id="buy-recap" href="#preis"><span>Pythia Recap satın al · 19,99 €</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#funktionen"><span>Nasıl çalıştığını gör</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Android için. 7 gün veya 3 toplantı ücretsiz deneyin. Kendi ücretsiz Groq anahtarınız gerekir.</span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core rc-demo" aria-label="Kayıttan özete">
+          <h3>Kayıttan özete · Haftalık planlama</h3>
+          <div class="rc-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="t"></b><b class="w"></b><b class="s"></b></div>
+          <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Herkese günaydın, gelecek haftanın planlamasıyla başlıyoruz.</p></div></div>
+          <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>Cumaya kadar depo rakamlarına ihtiyacım var, yoksa sipariş veremem.</p></div></div>
+          <div class="rc-sum"><p><b>★</b> Özet: depo rakamları cumaya kadar gerekli</p><p><b>☑</b> Depo rakamlarını gönder (Anna, yarın sabah)</p></div>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul><li><a href="/tr/"><img src="/logo.svg" alt="" width="42" height="42"><div><h3>Pythia Voice <span>Dikte</span></h3><p>Konuşun, Pythia yazsın: rahat, temiz, tamam.</p></div></a></li><li><a href="/tr/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Sesli mesajlar</span></h3><p>Uzun sesli mesajları dinlemeden metin olarak okuyun.</p></div></a></li><li><a href="/tr/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="42" height="42"><div><h3>Pythia Recap</h3><p>Toplantıyı kaydedin, görevleriyle hazır bir özet alın.</p></div></a></li></ul></div></section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Neler elde edersiniz</h2>
+      <dl class="rules rv">
         <div><dt>Kaydet veya paylaş</dt><dd>Odada kaydedin ya da Zoom, Teams, Meet, WhatsApp veya ses kaydedicinizden ses ve video paylaşın. Uzun toplantılar sorun değil.</dd></div>
         <div><dt>Özet ve görevler</dt><dd>Kısa bir özet, kararlar, açık sorular ve kim ile ne zaman bilgisi içeren görev listesi. Metin veya PDF olarak paylaşın.</dd></div>
         <div><dt>Kim ne dedi</dt><dd>Konuşmacıları zaman damgasına göre atayın. Tek dokunuş bir sonraki konuşmacı değişimine kadar geçerlidir, özet de gerçek adları kullanır.</dd></div>
@@ -112,10 +84,19 @@
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Uygulama iş başında</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/r_home.webp" alt="Kaydet veya paylaş" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Kaydet veya paylaş</b><span>Odada kaydedin ya da Zoom, Teams, Meet, WhatsApp veya ses kaydedicinizden ses ve video paylaşın. Uzun toplantılar sorun değil.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.08s"><div class="phone"><img src="/shots/r_meet.webp" alt="İşaretler ve gezinme" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>İşaretler ve gezinme</b><span>Kayıt sırasında işaret koyun: önemli, görev, konuşmacı değişimi. Sonra onlara atlayın ve başparmağınızla tam olarak gezinin.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.16s"><div class="phone"><img src="/shots/r_tasks.webp" alt="Özet ve görevler" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Özet ve görevler</b><span>Kısa bir özet, kararlar, açık sorular ve kim ile ne zaman bilgisi içeren görev listesi. Metin veya PDF olarak paylaşın.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ablauf">
     <div class="wrap">
-      <h2>Nasıl çalışır</h2>
-      <ol class="steps">
+      <h2 class="sec-h rv">Nasıl çalışır</h2>
+      <ol class="steps rv">
         <li><b>1. Kaydet veya paylaş</b><span>Kaydet’e dokunup telefonu masaya koyun ya da bir kaydı uygulamayla paylaşın.</span></li>
         <li><b>2. Birkaç dakika bekleyin</b><span>Pythia Recap yazıya döker ve özetler. Uygulamayı kapatsanız da çalışmaya devam eder.</span></li>
         <li><b>3. Kontrol et ve paylaş</b><span>Konuşmacıları atayın, işaretlere atlayın, sonra özeti metin veya PDF olarak gönderin.</span></li>
@@ -123,10 +104,10 @@
     </div>
   </section>
 
-  <section class="voice" id="marker">
-    <div class="wrap narrow">
+  <section id="marker">
+    <div class="narrow rv">
       <h2>Doğru yeri başparmağınızla bulun</h2>
-      <p class="lead">Uzun bir toplantıda bir şey bulmak zordur. Pythia Recap tüm toplantıyı ve iki dakikalık bir yakın görünümü, gerçekten isabet ettirebileceğiniz büyük işaretlerle gösterir.</p>
+      <p class="lead" style="margin:16px 0 22px">Uzun bir toplantıda bir şey bulmak zordur. Pythia Recap tüm toplantıyı ve iki dakikalık bir yakın görünümü, gerçekten isabet ettirebileceğiniz büyük işaretlerle gösterir.</p>
       <ul class="voice-points">
         <li>İşaretler 48 dp dokunma alanıdır: dokununca beş saniye öncesine atlar</li>
         <li>Yakın görünümü sürükleyerek tam gezinin, zaman ve metni gösteren büyüteçle</li>
@@ -135,10 +116,10 @@
     </div>
   </section>
 
-  <section class="light" id="ton">
-    <div class="wrap narrow">
+  <section id="ton">
+    <div class="narrow rv">
       <h2>Çevrim içi toplantılar: sesi nasıl alırsınız</h2>
-      <p class="dark-text">Android, uygulamaların Zoom, Teams veya Meet’i doğrudan kaydetmesine izin vermez. Yine de ses kaydı almanın yolları şunlar:</p>
+      <p class="lead" style="margin-top:16px">Android, uygulamaların Zoom, Teams veya Meet’i doğrudan kaydetmesine izin vermez. Yine de ses kaydı almanın yolları şunlar:</p>
       <ul class="audio-list">
         <li>Zoom: yerel olarak kaydedin ve yalnızca ses dosyasını (m4a) paylaşın.</li>
         <li>Microsoft Teams: kaydı OneDrive veya SharePoint’ten paylaşın.</li>
@@ -146,48 +127,35 @@
         <li>Windows veya Mac: sistem sesini OBS, Audacity veya BlackHole ile kaydedin.</li>
         <li>Başka çare yoksa: telefonu dizüstü bilgisayarın yanına koyun (dizüstü modu).</li>
       </ul>
-      <p class="note">Kayıt yaptığınızı her zaman herkese söyleyin ve önce onayını alın. İzinsiz kayıt suç olabilir.</p>
+      <p class="dim">Kayıt yaptığınızı her zaman herkese söyleyin ve önce onayını alın. İzinsiz kayıt suç olabilir.</p>
     </div>
   </section>
 
-  <section class="light" id="preis">
+  <section id="preis">
     <div class="wrap">
-      <div class="price-head">
-        <h2>Tek lisans. Bir kez ödeyin.</h2>
-        <p class="lead dark-text">Abonelik yok, gizli maliyet yok. Bir kez ödersiniz ve ömür boyu sizde kalır.</p>
-      </div>
-      <div class="tablets one">
-        <div class="tablet">
-          <p class="plan">Pythia Recap</p>
-          <p class="plan-d">Toplantılar ve sesli notlar, özetle.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Euro olarak tek seferlik ödeme.</p>
-          <ul>
-            <li>7 gün veya 3 toplantı ücretsiz deneyin</li>
-            <li>Satın aldıktan sonra uzunluk veya toplantı sayısında sınır yok</li>
-            <li>Döküm, özet, görevler, konuşmacılar, işaretler, PDF dışa aktarma</li>
-            <li>Bir telefon için bir lisans, istek üzerine taşınabilir</li>
-          </ul>
-          <a class="btn primary" id="buy-recap-2" href="#download">Pythia Recap satın al</a>
-        </div>
-      </div>
+      <div class="prod-head rv"><h2>Tek lisans. Bir kez ödeyin.</h2><p class="lead">Abonelik yok, gizli maliyet yok. Bir kez ödersiniz ve ömür boyu sizde kalır.</p></div>
+      <div class="bezel rc rv" style="max-width:560px;margin-inline:auto"><div class="core col r spot">
+        <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_tasks.webp" alt="" width="540" height="1080" loading="lazy"></div>
+        <h3>Pythia Recap<span>Toplantılar ve sesli notlar, özetle.</span></h3>
+        <p class="price">19,99 €<small>Euro olarak tek seferlik ödeme.</small></p>
+        <ul><li class="key">7 gün veya 3 toplantı ücretsiz deneyin</li><li>Satın aldıktan sonra uzunluk veya toplantı sayısında sınır yok</li><li>Döküm, özet, görevler, konuşmacılar, işaretler, PDF dışa aktarma</li><li>Bir telefon için bir lisans, istek üzerine taşınabilir</li><li class="key">Güncellemeler dahil</li></ul>
+        <div class="acts"><a class="btn teal block" id="buy-recap-2" href="#download"><span>Pythia Recap satın al</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      </div></div>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
       <h2>Uygulamayı edinin</h2>
-      <p class="lead" id="rc-soon">Pythia Recap neredeyse hazır. İndirme ve satın alma düğmesi yayınlandığı anda burada görünecek.</p>
-      <div class="cta">
-        <a class="btn primary" id="rc-apk" href="#download" hidden>Doğrudan indir</a>
-      </div>
-      <a class="cross" href="/tr/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Herhangi bir uygulamaya konuşun, temiz metin belirsin. Uzun sesli mesajları metin olarak okuyun.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Daha fazla bilgi</span></a>
+      <p class="lead" id="rc-soon" style="margin-top:16px">Pythia Recap neredeyse hazır. İndirme ve satın alma düğmesi yayınlandığı anda burada görünecek.</p>
+      <div class="row" style="margin-top:22px"><a class="btn teal" id="rc-apk" href="#download" hidden><span>Doğrudan indir</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <a class="cross rv" href="/tr/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Siz konuşun, Pythia yazsın. Rahat ve temiz. Uzun sesli mesajları rahatça metin olarak okuyun.</span><span class="cross-p">19,99 €</span><span class="btn ghost sm"><span>Daha fazla bilgi</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Sık sorulan sorular</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Sık sorulan sorular</h2>
       <details open><summary>Hesap gerekir mi?</summary><p>Hayır. Uygulama ve kendi ücretsiz Groq anahtarınız yeterli. Toplantılarınız için hesap veya sunucu işletmiyoruz.</p></details>
       <details><summary>Groq ne kadar tutar?</summary><p>Groq, birçok toplantıya yetecek ücretsiz bir plan sunar. Sınırları çok uzun işleri bir süre duraklatabilir. Bunun ötesinde kullanım saat başına birkaç kuruş tutar.</p></details>
       <details><summary>Zoom veya Teams’i doğrudan kaydedebilir mi?</summary><p>Android bunu uygulamalara izin vermez. Toplantı yazılımının kaydını, bilgisayardaki sistem sesini veya dizüstü modunu kullanın. Uygulamadaki kılavuzlar her yolu anlatır.</p></details>
@@ -196,25 +164,17 @@
       <details><summary>Hangi diller çalışır?</summary><p>Konuşma tanıma 90’dan fazla dilde çalışır ve dili otomatik algılar. Özet seçtiğiniz dilde yazılabilir.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>7 gün ücretsiz deneyin.</h2>
+      <p class="lead">Hesap yok, abonelik yok. Beğenirseniz bir kez ödersiniz.</p>
+      <div class="row"><a class="btn teal" href="#preis"><span>Pythia Recap satın al</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/tr/pythia"><span>Tüm ürünler</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/tr/recap"><img src="/recap-logo.svg" alt="" width="28" height="28"><span>Pythia Recap</span></a>
-      <p>Toplantılar ve sesli notlar, özetle.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/tr/">Pythia Voice</a>
-      <a href="/impressum">Künye</a>
-      <a href="/privacy">Gizlilik</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/tr/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Android için dikte ve sesli mesajlar.</p></div><nav class="foot-links" aria-label="Info"><a href="/tr/">Pythia Voice</a><a href="/tr/recap">Pythia Recap</a><a href="/tr/pythia">Tüm ürünler</a><a href="/impressum">Künye</a><a href="/privacy">Gizlilik</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/recap.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

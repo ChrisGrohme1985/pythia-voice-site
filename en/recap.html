@@ -36,72 +36,44 @@
 <meta property="og:description" content="No subscription. No hidden costs. Pay once, use it for life.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
 <body class="recap-page" data-page="recap">
-
-<header class="top">
-  <a class="brand" href="/en/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="34" height="34"><span>Pythia Recap</span></a>
-  <nav aria-label="Menu">
-    <a href="/en/">Pythia Voice</a>
-    <a href="#ablauf">How it works</a>
-    <a href="#preis">Price</a>
-    <a href="#fragen">FAQ</a>
-    <a class="nav-dl" href="#download">Download directly</a>
-    <select id="lang" aria-label="Language"><option value="en" selected>English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<header class="nav"><a class="brand" href="/en/recap" aria-label="Pythia Recap"><img src="/recap-logo.svg" alt="" width="30" height="30"><span>Pythia Recap</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Products<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/en/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dictation</a><a href="/en/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Voice messages</a><a href="/en/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/en/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>All products</a></div></div><a class="l" href="/en/#funktionen">Features</a><a class="l" href="#preis">Price</a><a class="l" href="/en/#fragen">FAQ</a><a class="btn sm" id="apk-nav" href="/en/#download"><span>Download directly</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en" selected>English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Meetings, recapped.</h1>
-      <p class="lead">Record a meeting or share a recording from Zoom, Teams or WhatsApp. Pythia Recap writes the transcript, the summary, the decisions and your task list. You decide who said what.</p>
-      <p class="promise">No subscription. No hidden costs. Pay once, use it for life.</p>
-      <div class="cta">
-        <a class="btn primary" id="buy-recap" href="#download">Buy Pythia Recap · €19.99</a>
-        <a class="btn ghost" href="#funktionen">See how it works</a>
-      </div>
-      <p class="fine">For Android. Try free for 7 days or 3 meetings. Needs your own free Groq key.</p>
-    </div>
-
-    <figure class="rc-demo" aria-label="From recording to recap">
-      <h3>From recording to recap · Weekly planning</h3>
-      <div class="rc-wave" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        <b class="t"></b><b class="w"></b><b class="s"></b>
-      </div>
-      <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Good morning everyone, let’s start with next week’s planning.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>I need the stock numbers by Friday, otherwise I can’t order.</p></div></div>
-      <div class="rc-row"><span class="rc-ts">00:41</span><div><span class="rc-sp a">Anna</span><p>We can do that, I’ll send them tomorrow morning.</p></div></div>
-      <div class="rc-sum"><p><b>★</b> Summary: stock numbers needed by Friday</p><p><b>☑</b> Send stock numbers (Anna, tomorrow morning)</p></div>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="/en/#funktionen"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Dictation</span></h3><p>Speak into any app, clean text appears.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="/en/#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Voice messages</span></h3><p>Read long voice messages as text.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/en/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Meetings and voice notes, recapped.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">The app in action</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/r_home.webp" alt="Pythia Recap: Record or share" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Record or share</b><span>Record in the room, or share audio and video from Zoom, Teams, Meet, WhatsApp or your voice recorder. Long meetings are no problem.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap: Markers and scrubbing" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Markers and scrubbing</b><span>Set markers while recording: important, task, speaker change. Later jump to them and scrub precisely with your thumb.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/r_tasks.webp" alt="Pythia Recap: Summary and tasks" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Summary and tasks</b><span>A short summary, decisions, open questions and a task list with who and when. Share it as text or PDF.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>What you get</h2>
-      <dl class="rules">
+      <div class="rv">
+        <h1>Meetings, recapped.</h1>
+        <p class="lead">Record a meeting or share a recording from Zoom, Teams or WhatsApp. Pythia Recap writes the transcript, the summary, the decisions and your task list. You decide who said what.</p>
+        <div class="row">
+          <a class="btn" id="buy-recap" href="#preis"><span>Buy Pythia Recap · €19.99</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#funktionen"><span>See how it works</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>For Android. Try free for 7 days or 3 meetings. Needs your own free Groq key.</span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/r_meet.webp" alt="Pythia Recap" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core rc-demo" aria-label="From recording to recap">
+          <h3>From recording to recap · Weekly planning</h3>
+          <div class="rc-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="t"></b><b class="w"></b><b class="s"></b></div>
+          <div class="rc-row"><span class="rc-ts">00:00</span><div><span class="rc-sp a">Anna</span><p>Good morning everyone, let’s start with next week’s planning.</p></div></div>
+          <div class="rc-row"><span class="rc-ts">00:18</span><div><span class="rc-sp b">Ben</span><p>I need the stock numbers by Friday, otherwise I can’t order.</p></div></div>
+          <div class="rc-sum"><p><b>★</b> Summary: stock numbers needed by Friday</p><p><b>☑</b> Send stock numbers (Anna, tomorrow morning)</p></div>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="suite" aria-label="Pythia"><div class="wrap"><ul><li><a href="/en/"><img src="/logo.svg" alt="" width="42" height="42"><div><h3>Pythia Voice <span>Dictation</span></h3><p>Just talk and Pythia writes it down: effortless, clean, done.</p></div></a></li><li><a href="/en/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Voice messages</span></h3><p>Read long voice messages as text, without listening.</p></div></a></li><li><a href="/en/recap" aria-current="page"><img src="/recap-logo.svg" alt="" width="42" height="42"><div><h3>Pythia Recap</h3><p>Record a meeting and get a finished summary with tasks.</p></div></a></li></ul></div></section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">What you get</h2>
+      <dl class="rules rv">
         <div><dt>Record or share</dt><dd>Record in the room, or share audio and video from Zoom, Teams, Meet, WhatsApp or your voice recorder. Long meetings are no problem.</dd></div>
         <div><dt>Summary and tasks</dt><dd>A short summary, decisions, open questions and a task list with who and when. Share it as text or PDF.</dd></div>
         <div><dt>Who said what</dt><dd>Assign speakers by timestamp. One tap covers everything until the next speaker change, and the summary then uses the real names.</dd></div>
@@ -112,10 +84,19 @@
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">The app in action</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/r_home.webp" alt="Record or share" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Record or share</b><span>Record in the room, or share audio and video from Zoom, Teams, Meet, WhatsApp or your voice recorder. Long meetings are no problem.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.08s"><div class="phone"><img src="/shots/r_meet.webp" alt="Markers and scrubbing" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Markers and scrubbing</b><span>Set markers while recording: important, task, speaker change. Later jump to them and scrub precisely with your thumb.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.16s"><div class="phone"><img src="/shots/r_tasks.webp" alt="Summary and tasks" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Summary and tasks</b><span>A short summary, decisions, open questions and a task list with who and when. Share it as text or PDF.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ablauf">
     <div class="wrap">
-      <h2>How it works</h2>
-      <ol class="steps">
+      <h2 class="sec-h rv">How it works</h2>
+      <ol class="steps rv">
         <li><b>1. Record or share</b><span>Tap record and put the phone on the table, or share a recording with the app.</span></li>
         <li><b>2. Wait a few minutes</b><span>Pythia Recap transcribes and summarizes. It keeps working when you close the app.</span></li>
         <li><b>3. Check and share</b><span>Assign speakers, jump to markers, then send the summary as text or PDF.</span></li>
@@ -123,10 +104,10 @@
     </div>
   </section>
 
-  <section class="voice" id="marker">
-    <div class="wrap narrow">
+  <section id="marker">
+    <div class="narrow rv">
       <h2>Find the right spot with your thumb</h2>
-      <p class="lead">A long meeting is hard to search. Pythia Recap shows the whole meeting and a close-up of two minutes, with large markers you can actually hit.</p>
+      <p class="lead" style="margin:16px 0 22px">A long meeting is hard to search. Pythia Recap shows the whole meeting and a close-up of two minutes, with large markers you can actually hit.</p>
       <ul class="voice-points">
         <li>Markers are 48 dp touch targets: tap to jump to five seconds before</li>
         <li>Drag the close-up to scrub precisely, with a magnifier that shows time and text</li>
@@ -135,10 +116,10 @@
     </div>
   </section>
 
-  <section class="light" id="ton">
-    <div class="wrap narrow">
+  <section id="ton">
+    <div class="narrow rv">
       <h2>Online meetings: how to get the sound</h2>
-      <p class="dark-text">Android does not let apps record Zoom, Teams or Meet directly. These are the ways to get an audio track:</p>
+      <p class="lead" style="margin-top:16px">Android does not let apps record Zoom, Teams or Meet directly. These are the ways to get an audio track:</p>
       <ul class="audio-list">
         <li>Zoom: record locally and share the audio-only file (m4a).</li>
         <li>Microsoft Teams: share the recording from OneDrive or SharePoint.</li>
@@ -146,48 +127,35 @@
         <li>Windows or Mac: record the system sound with OBS, Audacity or BlackHole.</li>
         <li>Nothing else works: put the phone next to the laptop (laptop mode).</li>
       </ul>
-      <p class="note">Always tell everyone that you record and get their consent first. Recording without consent can be a criminal offence.</p>
+      <p class="dim">Always tell everyone that you record and get their consent first. Recording without consent can be a criminal offence.</p>
     </div>
   </section>
 
-  <section class="light" id="preis">
+  <section id="preis">
     <div class="wrap">
-      <div class="price-head">
-        <h2>One license. Pay once.</h2>
-        <p class="lead dark-text">No subscription, no hidden costs. You pay once and keep it for life.</p>
-      </div>
-      <div class="tablets one">
-        <div class="tablet">
-          <p class="plan">Pythia Recap</p>
-          <p class="plan-d">Meetings and voice notes, recapped.</p>
-          <p class="amount"><span class="num">€19.99</span></p>
-          <p class="sub">One-time payment in euros.</p>
-          <ul>
-            <li>Try free for 7 days or 3 meetings</li>
-            <li>No limit on length or number of meetings after purchase</li>
-            <li>Transcript, summary, tasks, speakers, markers, PDF export</li>
-            <li>One license for one phone, can be moved on request</li>
-          </ul>
-          <a class="btn primary" id="buy-recap-2" href="#download">Buy Pythia Recap</a>
-        </div>
-      </div>
+      <div class="prod-head rv"><h2>One license. Pay once.</h2><p class="lead">No subscription, no hidden costs. You pay once and keep it for life.</p></div>
+      <div class="bezel rc rv" style="max-width:560px;margin-inline:auto"><div class="core col r spot">
+        <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_tasks.webp" alt="" width="540" height="1080" loading="lazy"></div>
+        <h3>Pythia Recap<span>Meetings and voice notes, recapped.</span></h3>
+        <p class="price">€19.99<small>One-time payment in euros.</small></p>
+        <ul><li class="key">Try free for 7 days or 3 meetings</li><li>No limit on length or number of meetings after purchase</li><li>Transcript, summary, tasks, speakers, markers, PDF export</li><li>One license for one phone, can be moved on request</li><li class="key">Updates included</li></ul>
+        <div class="acts"><a class="btn teal block" id="buy-recap-2" href="#download"><span>Buy Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      </div></div>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
       <h2>Get the app</h2>
-      <p class="lead" id="rc-soon">Pythia Recap is almost ready. The download and the buy button will appear here as soon as it is released.</p>
-      <div class="cta">
-        <a class="btn primary" id="rc-apk" href="#download" hidden>Download directly</a>
-      </div>
-      <a class="cross" href="/en/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> Speak into any app, clean text appears. Read long voice messages as text.</span><span class="cross-p">€19.99</span><span class="btn ghost">Learn more</span></a>
+      <p class="lead" id="rc-soon" style="margin-top:16px">Pythia Recap is almost ready. The download and the buy button will appear here as soon as it is released.</p>
+      <div class="row" style="margin-top:22px"><a class="btn teal" id="rc-apk" href="#download" hidden><span>Download directly</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <a class="cross rv" href="/en/"><img src="/logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Voice</b> You speak, Pythia writes. Effortless and clean. Read long voice messages comfortably as text.</span><span class="cross-p">€19.99</span><span class="btn ghost sm"><span>Learn more</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Frequently asked questions</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Frequently asked questions</h2>
       <details open><summary>Do I need an account?</summary><p>No. You need the app and your own free Groq key. We run no accounts and no servers for your meetings.</p></details>
       <details><summary>What does Groq cost?</summary><p>Groq offers a free tier that is enough for many meetings. Its limits can pause very long jobs for a while. Beyond that, usage costs a few cents per hour of audio.</p></details>
       <details><summary>Can it record Zoom or Teams directly?</summary><p>Android does not allow that for apps. Use the recording of the meeting software, the system sound on your computer, or laptop mode. The guides in the app explain each way.</p></details>
@@ -196,25 +164,17 @@
       <details><summary>Which languages work?</summary><p>Speech recognition works in more than 90 languages and detects the language automatically. The summary can be written in the language you choose.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Try it free for 7 days.</h2>
+      <p class="lead">No account, no subscription. If you like it, you pay once.</p>
+      <div class="row"><a class="btn teal" href="#preis"><span>Buy Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/en/pythia"><span>All products</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/en/recap"><img src="/recap-logo.svg" alt="" width="28" height="28"><span>Pythia Recap</span></a>
-      <p>Meetings and voice notes, recapped.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/en/">Pythia Voice</a>
-      <a href="/impressum">Legal notice</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/en/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Dictation and voice messages for Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/en/">Pythia Voice</a><a href="/en/recap">Pythia Recap</a><a href="/en/pythia">All products</a><a href="/impressum">Legal notice</a><a href="/privacy">Privacy</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/recap.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>

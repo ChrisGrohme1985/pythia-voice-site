@@ -32,146 +32,109 @@
 <link rel="alternate" hreflang="he" href="https://www.pythiavoice.app/he/">
 <link rel="alternate" hreflang="x-default" href="https://www.pythiavoice.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Καλύτερα από κάθε μαντείο: οι λέξεις σου, αξιόπιστα από την Πυθία.">
-<meta property="og:description" content="Χωρίς συνδρομή. Χωρίς κρυφά κόστη. Πληρώνεις μία φορά, το χρησιμοποιείς για πάντα.">
+<meta property="og:title" content="Εσείς μιλάτε. Το Pythia γράφει. Χωρίς κόπο.">
+<meta property="og:description" content="Το Pythia Voice αφαιρεί τα «εεε», βάζει στίξη και ακολουθεί τις διορθώσεις σου. Πληρώνεις μία φορά, χωρίς συνδρομή.">
 <meta property="og:image" content="https://www.pythiavoice.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101A33">
+<meta name="theme-color" content="#070b16">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/style-v2.css">
+<link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/pv.css">
 </head>
-<body>
-
-<header class="top">
-  <a class="brand" href="/el/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="34" height="34"><span>Pythia Voice</span></a>
-  <nav aria-label="Menu">
-    <a href="#ablauf">Πώς λειτουργεί</a>
-    <a href="#preis">Τιμή</a>
-    <a href="#fragen">Ερωτήσεις</a>
-    <a href="/el/recap">Pythia Recap</a>
-    <a class="nav-dl" href="#download">Άμεση λήψη</a>
-    <select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el" selected>Ελληνικά</option><option value="he">עברית</option></select>
-  </nav>
-</header>
-
-<main id="top">
+<body data-page="home">
+<header class="nav"><a class="brand" href="/el/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Προϊόντα<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/el/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Υπαγόρευση</a><a href="/el/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg>Pythia Voice · Φωνητικά μηνύματα</a><a href="/el/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/el/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Όλα τα προϊόντα</a></div></div><a class="l" href="#funktionen">Λειτουργίες</a><a class="l" href="#produkte">Τιμή</a><a class="l" href="#fragen">Ερωτήσεις</a><a class="btn sm" id="apk-nav" href="/el/#download"><span>Άμεση λήψη</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el" selected>Ελληνικά</option><option value="he">עברית</option></select></header>
+<main>
   <section class="hero">
-    <div class="hero-text">
-      <h1>Καλύτερα από κάθε μαντείο: οι λέξεις σου, αξιόπιστα από την Πυθία.</h1>
-      <p class="lead">Μίλα σε οποιαδήποτε εφαρμογή. Το Pythia Voice γράφει, αφαιρεί τα «εε» και κρατά τη διόρθωσή σου.</p>
-      <p class="promise">Χωρίς συνδρομή. Χωρίς κρυφά κόστη. Πληρώνεις μία φορά, το χρησιμοποιείς για πάντα.</p>
-      <p class="promise">Δύο άδειες χρήσης: Υπαγόρευση και Φωνητικά μηνύματα. Η κάθε μία αγοράζεται χωριστά, μία φορά, και λειτουργεί αυτόνομα.</p>
-      <div class="cta">
-        <a class="btn primary" href="#download">Δοκίμασε το Pythia Voice</a>
-        <a class="btn ghost" href="#preis">Δες την τιμή</a>
-      </div>
-      <p class="fine">Δοκίμασε δωρεάν για 7 ημέρες ή 3.000 λέξεις.</p>
-    </div>
-
-    <figure class="oracle" id="oracle" data-fill="εε" data-a="βρισκόμαστε στις" data-s="πέντε όχι τελικά στις" data-b="έξι μπροστά στο σταθμό" data-out="Βρισκόμαστε στις έξι μπροστά στο σταθμό.">
-      <div class="wave" id="wave" aria-hidden="true"></div>
-      <div class="line">
-        <span class="label">Εσύ λες</span>
-        <p id="said" class="said"></p>
-      </div>
-      <div class="line">
-        <span class="label">Η Pythia γράφει</span>
-        <p id="wrote" class="wrote" aria-live="polite"></p>
-      </div>
-      <button class="replay" id="replay" type="button">Ξανά</button>
-    </figure>
-  </section>
-
-  <div class="pulse" aria-hidden="true"></div>
-
-  <section class="suite" aria-label="Pythia"><div class="wrap"><ul>
-    <li class="s-voice"><a href="#funktionen" aria-current="page"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice <span>Υπαγόρευση</span></h3><p>Μιλήστε σε οποιαδήποτε εφαρμογή και εμφανίζεται καθαρό κείμενο.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-msg"><a href="#sprachnachrichten"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2a2466"/><path d="M11 13h22a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H21l-7 5v-5h-3a3 3 0 0 1-3-3V16a3 3 0 0 1 3-3Z" fill="none" stroke="#b9b0ff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19.5 18.5v7l6-3.5Z" fill="#f2c14e"/></svg><div><h3>Pythia Voice <span>Φωνητικά μηνύματα</span></h3><p>Διαβάστε μεγάλα φωνητικά μηνύματα ως κείμενο.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-    <li class="s-recap"><a href="/el/recap"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Συναντήσεις και φωνητικές σημειώσεις, συνοπτικά.</p></div><i class="arr" aria-hidden="true"></i></a></li>
-  </ul></div></section>
-
-  <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h">Η εφαρμογή σε δράση</h2></div>
-    <div class="shot-row">
-      <figure class="shot"><div class="phone"><img src="/shots/v_home.webp" alt="Pythia Voice: Υπαγόρευση" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Υπαγόρευση</b><span>Μιλήστε σε οποιαδήποτε εφαρμογή και εμφανίζεται καθαρό κείμενο.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_msg.webp" alt="Pythia Voice: Φωνητικά μηνύματα" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Φωνητικά μηνύματα</b><span>Διαβάστε μεγάλα φωνητικά μηνύματα ως κείμενο.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_words.webp" alt="Pythia Voice: Λέξεις" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Λέξεις</b><span>Ονόματα και όροι που πρέπει να γράφονται σωστά.</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_style.webp" alt="Pythia Voice: Στυλ" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Στυλ</b><span>Ύφος γραφής των καθαρισμένων κειμένων</span></figcaption></figure>
-      <figure class="shot"><div class="phone"><img src="/shots/v_snip.webp" alt="Pythia Voice: Αποσπάσματα" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Αποσπάσματα</b><span>Πες τη συντόμευση και εισάγεται ολόκληρο το κείμενο.</span></figcaption></figure>
-    </div>
-  </section>
-
-  <section class="light" id="funktionen">
     <div class="wrap">
-      <h2>Τι παίρνεις</h2>
-      <dl class="rules">
-        <div><dt>Πληρώνεις μία φορά, το χρησιμοποιείς για πάντα</dt><dd>Χωρίς συνδρομή, χωρίς ανανέωση και χωρίς όριο λέξεων μετά τη δοκιμή. Ό,τι πληρώνεις σήμερα είναι το σύνολο που πληρώνεις για το Pythia Voice.</dd></div>
-        <div><dt>Γράφει σε κάθε εφαρμογή</dt><dd>WhatsApp, email, σημειώσεις, πρόγραμμα περιήγησης. Το στρογγυλό κουμπί εμφανίζεται πάνω από το πληκτρολόγιο μόλις αγγίξεις ένα πεδίο κειμένου.</dd></div>
+      <div class="rv">
+        <h1>Εσείς μιλάτε. Το Pythia γράφει. Χωρίς κόπο.</h1>
+        <p class="lead">Το Pythia Voice αφαιρεί τα «εεε», βάζει στίξη και ακολουθεί τις διορθώσεις σου. Πληρώνεις μία φορά, χωρίς συνδρομή.</p>
+        <div class="row">
+          <a class="btn" href="#download"><span>Δοκίμασε το Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn ghost" href="#produkte"><span>Δες την τιμή</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        </div>
+        <p class="fine"><span>Δοκίμασε δωρεάν για 7 ημέρες ή 3.000 λέξεις.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Το Google Play έρχεται σύντομα</span></span></p>
+      </div>
+      <div class="stage rv" style="--d:.15s">
+        <div class="phone"><img src="/shots/v_home.webp" alt="Υπαγόρευση" width="540" height="1080" fetchpriority="high"></div>
+        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="εε" data-a="βρισκόμαστε στις" data-s="πέντε όχι τελικά στις" data-b="έξι μπροστά στο σταθμό" data-out="Βρισκόμαστε στις έξι μπροστά στο σταθμό.">
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <div class="line"><span class="label">Εσύ λες</span><p id="said" class="said"></p></div>
+          <div class="line"><span class="label">Η Pythia γράφει</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
+          <button class="replay" id="replay" type="button">Ξανά</button>
+        </figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video" id="video" hidden>
+    <div class="wrap">
+      <h2>Το Pythia σε δέκα δευτερόλεπτα</h2><p class="lead" style="margin-top:14px">Μιλάτε, στέλνετε, έτοιμο.</p>
+      <div class="vbox bezel"><div class="core"><video controls playsinline preload="none" aria-label="Το Pythia σε δέκα δευτερόλεπτα"></video></div></div>
+    </div>
+  </section>
+
+  <section id="produkte">
+    <div class="wrap">
+      <div class="prod-head rv"><h2>Τρία εργαλεία που σας γλιτώνουν από την πληκτρολόγηση.</h2><p class="lead">Χωρίς συνδρομή, χωρίς κρυφές χρεώσεις. Κάθε άδεια την αγοράζετε μία φορά και την κρατάτε για πάντα.</p></div>
+      <div class="cols">
+        <div class="bezel hl rv" id="diktat"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Υπαγόρευση</span></h3>
+          <p class="tag">Μιλήστε, το Pythia γράφει: εύκολα, καθαρά, έτοιμο.</p>
+          <p class="price">19,99 €<small>Εφάπαξ πληρωμή σε ευρώ.</small></p>
+          <ul><li class="key">Δοκίμασε δωρεάν 7 ημέρες ή 3.000 λέξεις</li><li>Όλες οι 90+ γλώσσες, όλες οι λειτουργίες</li><li>Χωρίς όριο λέξεων μετά την αγορά</li><li class="key">Περιλαμβάνονται οι ενημερώσεις</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Μάθετε περισσότερα</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Αγορά άδειας</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+          <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Voice<span>Φωνητικά μηνύματα</span></h3>
+          <p class="tag">Διαβάστε μεγάλα φωνητικά μηνύματα ως κείμενο, χωρίς να τα ακούτε.</p>
+          <p class="price">19,99 €<small>Εφάπαξ πληρωμή σε ευρώ.</small></p>
+          <ul><li class="key">Δοκιμάστε δωρεάν με 15 μηνύματα ή 7 ημέρες</li><li>Χωρισμένο ανά λεπτό και σε παραγράφους</li><li>Κοινοποίηση από WhatsApp και άλλες εφαρμογές μηνυμάτων</li><li class="key">Οι ενημερώσεις περιλαμβάνονται</li></ul>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Μάθετε περισσότερα</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Αγορά φωνητικών μηνυμάτων</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+          <div class="phone" style="--glow:rgba(95,208,192,.5)"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
+          <h3>Pythia Recap<span>Συναντήσεις και φωνητικές σημειώσεις, συνοπτικά.</span></h3>
+          <p class="tag">Ηχογραφήστε μια σύσκεψη και λάβετε έτοιμη περίληψη με εργασίες.</p>
+          <p class="price">19,99 €<small>Εφάπαξ πληρωμή σε ευρώ.</small></p>
+          <ul><li class="key">Δοκιμάστε δωρεάν για 7 ημέρες ή 3 συναντήσεις</li><li>Απομαγνητοφώνηση, περίληψη, εργασίες, ομιλητές, σημάνσεις, εξαγωγή PDF</li><li>Μετά την αγορά χωρίς όριο στη διάρκεια ή στον αριθμό συναντήσεων</li><li class="key">Περιλαμβάνονται οι ενημερώσεις</li></ul>
+          <div class="acts"><a class="btn ghost block" href="/el/recap"><span>Μάθετε περισσότερα</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/el/recap#preis"><span>Αγορά Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+        </div></div>
+      </div>
+      <p class="note">Κάθε άδεια αγοράζεται χωριστά και λειτουργεί αυτόνομα. Το μόνο άλλο συστατικό είναι η δική σου πρόσβαση στο Groq για αναγνώριση ομιλίας. Είναι δωρεάν για κανονική χρήση, οι όροι ορίζονται από το Groq.</p>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <h2 class="sec-h rv">Τι κάνει το Pythia για εσάς</h2>
+      <dl class="rules rv">
+        <div><dt>Μιλήστε αντί να πληκτρολογείτε</dt><dd>Πατήστε σε ένα πεδίο κειμένου, πατήστε το στρογγυλό κουμπί πάνω από το πληκτρολόγιο και μιλήστε. Το Pythia γράφει το κείμενο ακριβώς εκεί, για παράδειγμα στο WhatsApp, στο email ή στις σημειώσεις.</dd></div>
         <div><dt>Τακτοποιεί πίσω σου</dt><dd>Οι άχρηστες λέξεις φεύγουν, η στίξη μπαίνει. Αν πεις «στις πέντε, όχι, στις έξι», γράφει «στις έξι».</dd></div>
         <div><dt>Πάνω από 90 γλώσσες</dt><dd>Ακόμη και ανάμεικτες στην ίδια πρόταση. Η ίδια η εφαρμογή υπάρχει σε 24 γλώσσες.</dd></div>
+        <div><dt>Πληρώνεις μία φορά, το χρησιμοποιείς για πάντα</dt><dd>Χωρίς συνδρομή, χωρίς ανανέωση και χωρίς όριο λέξεων μετά τη δοκιμή. Ό,τι πληρώνεις σήμερα είναι το σύνολο που πληρώνεις για το Pythia Voice.</dd></div>
         <div><dt>Αναγνώριση μέσω της δικής σου πρόσβασης Groq</dt><dd>Η αναγνώριση τρέχει με το δικό σου κλειδί Groq. Σύμφωνα με την τεκμηρίωση του Groq, το δωρεάν επίπεδο επιτρέπει έως 8 ώρες ομιλίας την ημέρα. Τα όρια τα ορίζει το Groq και μπορεί να τα αλλάξει.</dd></div>
         <div><dt>Μένει σε σένα</dt><dd>Χωρίς λογαριασμό. Το Pythia Voice δεν αποθηκεύει ήχο. Στα πεδία κωδικού το κουμπί μένει κρυφό.</dd></div>
       </dl>
     </div>
   </section>
 
-  <section class="dark" id="ablauf">
-    <div class="wrap">
-      <h2>Πώς υπαγορεύεις</h2>
-      <ol class="steps">
-        <li><b>Άγγιξε</b><span>Άγγιξε ένα πεδίο κειμένου και μετά το στρογγυλό κουμπί πάνω από το πληκτρολόγιο.</span></li>
-        <li><b>Μίλα</b><span>Πες τι θέλεις να γράψεις. Με παύσεις, με διορθώσεις.</span></li>
-        <li><b>Πες ότι τελείωσες</b><span>Άγγιξε άλλη μία φορά. Το καθαρό κείμενο είναι στο πεδίο.</span></li>
-      </ol>
-      <p class="hint">Προτιμάς να κρατάς πατημένο; Κράτα το κουμπί, μίλα, άφησε.</p>
-      <p class="setup">Η εφάπαξ ρύθμιση διαρκεί περίπου 1 λεπτό: δημιούργησε δωρεάν λογαριασμό Groq (αρκεί η σύνδεση με Google), δημιούργησε ένα κλειδί και επικόλλησέ το. Μετά απλώς υπαγορεύεις.</p>
+  <section class="shots" id="app" aria-labelledby="shots-h">
+    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Η εφαρμογή σε δράση</h2></div>
+    <div class="shot-row">
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Υπαγόρευση" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Υπαγόρευση</b><span>Εσείς μιλάτε, το Pythia γράφει. Εύκολα και καθαρά.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="Φωνητικά μηνύματα" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Φωνητικά μηνύματα</b><span>Διαβάστε άνετα μεγάλα φωνητικά μηνύματα ως κείμενο.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="Λέξεις" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Λέξεις</b><span>Ονόματα και όροι που πρέπει να γράφονται σωστά.</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="Στυλ" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Στυλ</b><span>Ύφος γραφής των καθαρισμένων κειμένων</span></figcaption></figure>
+      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="Αποσπάσματα" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Αποσπάσματα</b><span>Πες τη συντόμευση και εισάγεται ολόκληρο το κείμενο.</span></figcaption></figure>
     </div>
   </section>
 
-  <section class="light" id="preis">
-    <div class="wrap">
-      <div class="price-head">
-        <h2>Δύο άδειες. Πληρώνετε μία φορά για την καθεμία.</h2>
-        <p class="lead dark-text">Το Pythia Voice διατίθεται με δύο άδειες: Υπαγόρευση και Φωνητικά μηνύματα. Χωρίς συνδρομή, χωρίς κρυφά κόστη: πληρώνετε μία φορά ανά άδεια και την έχετε εφ’ όρου ζωής.</p>
-      </div>
-      <div class="tablets">
-        <div class="tablet">
-          <p class="plan">Υπαγόρευση</p>
-          <p class="plan-d">Μιλήστε σε οποιαδήποτε εφαρμογή και εμφανίζεται καθαρό κείμενο.</p>
-          <p class="amount"><span class="num" id="price">19,99 €</span></p>
-          <p class="sub">Εφάπαξ πληρωμή σε ευρώ.</p>
-          <ul>
-            <li>Δοκίμασε δωρεάν 7 ημέρες ή 3.000 λέξεις</li>
-            <li>Όλες οι 90+ γλώσσες, όλες οι λειτουργίες</li>
-            <li>Χωρίς όριο λέξεων μετά την αγορά</li>
-            <li>Περιλαμβάνονται οι ενημερώσεις</li>
-          </ul>
-          <a class="btn primary" id="buy" href="#download">Αγορά άδειας</a>
-        </div>
-        <div class="tablet">
-          <p class="plan">Φωνητικά μηνύματα</p>
-          <p class="plan-d">Διαβάστε μεγάλα φωνητικά μηνύματα ως κείμενο.</p>
-          <p class="amount"><span class="num">19,99 €</span></p>
-          <p class="sub">Εφάπαξ πληρωμή σε ευρώ.</p>
-          <ul>
-            <li>Δοκιμάστε δωρεάν με 15 μηνύματα ή 7 ημέρες</li>
-            <li>Χωρισμένο ανά λεπτό και σε παραγράφους</li>
-            <li>Κοινοποίηση από WhatsApp και άλλες εφαρμογές μηνυμάτων</li>
-            <li>Οι ενημερώσεις περιλαμβάνονται</li>
-          </ul>
-          <a class="btn primary" id="buy-voice-2" href="#download">Αγορά φωνητικών μηνυμάτων</a>
-        </div>
-      </div>
-      <p class="note">Κάθε άδεια αγοράζεται χωριστά και λειτουργεί αυτόνομα. Το μόνο άλλο συστατικό είναι η δική σου πρόσβαση στο Groq για αναγνώριση ομιλίας. Είναι δωρεάν για κανονική χρήση, οι όροι ορίζονται από το Groq.</p>
-      <a class="cross" href="/el/recap"><img src="/recap-logo.svg" alt="" width="40" height="40"><span class="cross-t"><b>Pythia Recap</b> Συναντήσεις και φωνητικές σημειώσεις, συνοπτικά.</span><span class="cross-p">19,99 €</span><span class="btn ghost">Μάθετε περισσότερα</span></a>
-    </div>
-  </section>
-
-  <section class="voice" id="sprachnachrichten">
+  <section id="sprachnachrichten">
     <div class="wrap voice-grid">
-      <div class="voice-text">
-        <p class="eyebrow">Φωνητικά μηνύματα ως κείμενο</p>
+      <div class="voice-text rv">
         <h2>Κουραστήκατε από τα μεγάλα φωνητικά μηνύματα;</h2>
         <p class="lead">Θέλετε απλώς να διαβάσετε γρήγορα και δεν μπορείτε να ακούσετε τώρα; Ή δεν έχετε υπομονή για τα «μυθιστορήματα» που ηχογραφούν μερικοί, και διαβάζετε πιο γρήγορα απ’ όσο μιλούν; Τότε το Pythia Voice είναι για εσάς: μοιραστείτε το μήνυμα και διαβάστε το ως κείμενο.</p>
         <ul class="voice-points">
@@ -179,12 +142,13 @@
           <li>Χωρισμένο ανά λεπτό και σε παραγράφους, ξεκούραστο για τα μάτια</li>
           <li>Δοκιμάστε δωρεάν με 15 μηνύματα ή 7 ημέρες</li>
         </ul>
-        <div class="cta">
-          <a class="btn primary" id="buy-voice" href="#download">Αγορά φωνητικών μηνυμάτων · 19,99 € εφάπαξ</a>
-          <span class="fine inline">Ξεχωριστή άδεια, ανεξάρτητη από την υπαγόρευση. Χωρίς συνδρομή.</span>
+        <div class="row">
+          <a class="btn ghost" href="/el/pythia"><span>Μάθετε περισσότερα</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Αγορά φωνητικών μηνυμάτων · 19,99 € εφάπαξ</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
+        <p class="dim" style="margin-top:14px;font-size:.92rem">Ξεχωριστή άδεια, ανεξάρτητη από την υπαγόρευση. Χωρίς συνδρομή.</p>
       </div>
-      <figure class="vm-demo" aria-label="Το Pythia Voice το μετατρέπει σε κείμενο, χωρισμένο ανά λεπτό">
+      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Το Pythia Voice το μετατρέπει σε κείμενο, χωρισμένο ανά λεπτό">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -199,54 +163,57 @@
           <div><b>3:00</b><p>Εντάξει, αυτά. Τα λέμε σύντομα!</p></div>
         </div>
         <p class="vm-cap">Το Pythia Voice το μετατρέπει σε κείμενο, χωρισμένο ανά λεπτό</p>
-      </figure>
+      </figure></div>
     </div>
   </section>
 
-  <section class="rc-teaser" id="recap">
+  <section id="ablauf">
     <div class="wrap">
-      <p class="eyebrow">Pythia Recap</p>
-      <h2>Επίσης από την Pythia: Pythia Recap</h2>
-      <p class="lead">Ηχογραφήστε ή μοιραστείτε μια συνάντηση και λάβετε απομαγνητοφώνηση, περίληψη και λίστα εργασιών. Αντιστοιχίστε ποιος είπε τι. Εφάπαξ 19,99 €, χωρίς συνδρομή.</p>
-      <a class="btn primary" href="/el/recap">Μάθετε περισσότερα</a>
+      <h2 class="sec-h rv">Πώς υπαγορεύεις</h2>
+      <ol class="steps rv">
+        <li><b>Άγγιξε</b><span>Άγγιξε ένα πεδίο κειμένου και μετά το στρογγυλό κουμπί πάνω από το πληκτρολόγιο.</span></li>
+        <li><b>Μίλα</b><span>Πες τι θέλεις να γράψεις. Με παύσεις, με διορθώσεις.</span></li>
+        <li><b>Πες ότι τελείωσες</b><span>Άγγιξε άλλη μία φορά. Το καθαρό κείμενο είναι στο πεδίο.</span></li>
+      </ol>
+      <p class="hint">Προτιμάς να κρατάς πατημένο; Κράτα το κουμπί, μίλα, άφησε.</p>
     </div>
   </section>
 
-  <section class="dark" id="download">
+  <section id="download">
     <div class="wrap">
-      <h2>Για Android</h2>
-      <ol class="steps">
+      <h2 class="rv">Για Android</h2>
+      <ol class="steps rv" style="margin-top:32px">
         <li><b>1. Κατεβάστε την εφαρμογή</b><span>Κατεβάστε παρακάτω το APK και εγκαταστήστε το στο κινητό σας Android.</span></li>
         <li><b>2. Δοκιμάστε</b><span>Δοκιμάστε τα πάντα δωρεάν: υπαγόρευση για 7 ημέρες ή 3.000 λέξεις, φωνητικά μηνύματα για 7 ημέρες ή 15 μηνύματα.</span></li>
         <li><b>3. Σας αρέσει; Αγοράστε άδεια</b><span>Επιλέξτε Υπαγόρευση, Φωνητικά μηνύματα ή και τα δύο. Εισαγάγετε το κλειδί στην εφαρμογή και τελειώσατε.</span></li>
       </ol>
-      <p class="lead">Android 13 ή νεότερο. Δεν υπάρχει ακόμη έκδοση για iPhone.</p>
       <div class="get">
-        <div class="get-card">
-          <div class="get-h"><img src="/logo.svg" alt="" width="44" height="44"><div><h3>Pythia Voice</h3><p>Υπαγόρευση · Φωνητικά μηνύματα</p></div></div>
-          <p>Μιλήστε σε οποιαδήποτε εφαρμογή και εμφανίζεται καθαρό κείμενο. Διαβάστε μεγάλα φωνητικά μηνύματα ως κείμενο.</p>
-          <div class="cta">
-            <a class="btn primary" id="apk" href="#download">Άμεση λήψη</a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Το Google Play έρχεται σύντομα</span></span>
+        <div class="get-card rv">
+          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>Υπαγόρευση · Φωνητικά μηνύματα</p></div></div>
+          <p>Εσείς μιλάτε, το Pythia γράφει. Εύκολα και καθαρά. Διαβάστε άνετα μεγάλα φωνητικά μηνύματα ως κείμενο.</p>
+          <div class="row">
+            <a class="btn" id="apk" href="#download"><span>Άμεση λήψη</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Το Google Play έρχεται σύντομα</span></span>
           </div>
         </div>
-        <div class="get-card recap">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="44" height="44"><div><h3>Pythia Recap</h3><p>Συναντήσεις και φωνητικές σημειώσεις, συνοπτικά.</p></div></div>
+        <div class="get-card recap rv" style="--d:.08s">
+          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>Συναντήσεις και φωνητικές σημειώσεις, συνοπτικά.</p></div></div>
           <p id="rc-soon-h">Το Pythia Recap είναι σχεδόν έτοιμο. Η λήψη και το κουμπί αγοράς θα εμφανιστούν εδώ μόλις κυκλοφορήσει.</p>
-          <div class="cta">
-            <a class="btn primary" id="rc-apk-h" href="#download" hidden>Άμεση λήψη</a>
-            <a class="btn ghost" href="/el/recap">Μάθετε περισσότερα</a>
+          <div class="row">
+            <a class="btn teal" id="rc-apk-h" href="#download" hidden><span>Άμεση λήψη</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+            <a class="btn ghost" href="/el/recap"><span>Μάθετε περισσότερα</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
           </div>
         </div>
       </div>
-      <p class="fine">Στην πρώτη εκκίνηση η εφαρμογή σε καθοδηγεί στη ρύθμιση σε έξι σύντομα βήματα.</p>
+      <p class="dim">Android 13 ή νεότερο. Δεν υπάρχει ακόμη έκδοση για iPhone.</p>
+      <p class="dim" style="margin-top:8px">Στην πρώτη εκκίνηση η εφαρμογή σε καθοδηγεί στη ρύθμιση σε έξι σύντομα βήματα.</p>
       <p class="setup">Η εφάπαξ ρύθμιση διαρκεί περίπου 1 λεπτό: δημιούργησε δωρεάν λογαριασμό Groq (αρκεί η σύνδεση με Google), δημιούργησε ένα κλειδί και επικόλλησέ το. Μετά απλώς υπαγορεύεις.</p>
     </div>
   </section>
 
-  <section class="light" id="fragen">
-    <div class="wrap narrow">
-      <h2>Συχνές ερωτήσεις</h2>
+  <section id="fragen">
+    <div class="narrow">
+      <h2 class="sec-h">Συχνές ερωτήσεις</h2>
       <details open><summary>Είναι πραγματικά εφάπαξ πληρωμή;</summary><p>Ναι. Μία πληρωμή, χωρίς συνδρομή, χωρίς ανανέωση. Η μόνη άλλη υπηρεσία είναι το Groq για την αναγνώριση ομιλίας. Το δωρεάν πλάνο του καλύπτει αυτή τη στιγμή περίπου 8 ώρες ομιλίας την ημέρα, υπεραρκετό για κανονική χρήση. Το Groq ορίζει μόνο του τα όρια και τις τιμές του.</p></details>
       <details><summary>Τι είναι το Groq και χρειάζομαι λογαριασμό;</summary><p>Το Groq είναι η υπηρεσία που μετατρέπει την ομιλία σου σε κείμενο. Δημιουργείς εκεί δωρεάν ένα προσωπικό κλειδί και το επικολλάς στην εφαρμογή. Ο οδηγός στην εφαρμογή δείχνει κάθε άγγιγμα.</p></details>
       <details><summary>Πόσο κοστίζει το Groq;</summary><p>Για κανονική χρήση, τίποτα. Το Groq αναφέρει έως 8 ώρες ήχου Whisper την ημέρα στο δωρεάν επίπεδο. Τα όρια τα αλλάζει το Groq, έλεγξέ τα στο console.groq.com.</p></details>
@@ -258,25 +225,17 @@
       <details><summary>Πόσο μεγάλο μπορεί να είναι ένα φωνητικό μήνυμα;</summary><p>Λειτουργούν αρχεία έως 25 MB, δηλαδή πολλές ώρες ομιλίας. Ένα μήνυμα τριών λεπτών παίρνει μόνο δευτερόλεπτα. Το Groq ορίζει δικά του όρια και μπορεί να τα αλλάξει.</p></details>
     </div>
   </section>
+
+  <section class="cta-band">
+    <div class="wrap"><div class="bezel rv"><div class="core">
+      <h2>Δοκιμάστε δωρεάν για 7 ημέρες.</h2>
+      <p class="lead">Χωρίς λογαριασμό και συνδρομή. Αν σας αρέσει, πληρώνετε μία φορά.</p>
+      <div class="row"><a class="btn" href="#download"><span>Δοκίμασε το Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/el/pythia"><span>Όλα τα προϊόντα</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+    </div></div></div>
+  </section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="foot-brand">
-      <a class="brand" href="/el/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia Voice</span></a>
-      <p>Υπαγόρευση και φωνητικά μηνύματα για Android.</p>
-    </div>
-    <nav class="foot-links" aria-label="Info">
-      <a href="/el/recap">Pythia Recap</a>
-      <a href="/impressum">Νομικές πληροφορίες</a>
-      <a href="/privacy">Απόρρητο</a>
-      <a href="/agb">AGB / Terms</a>
-    </nav>
-    <p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p>
-  </div>
-</footer>
-
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/el/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Υπαγόρευση και φωνητικά μηνύματα για Android.</p></div><nav class="foot-links" aria-label="Info"><a href="/el/">Pythia Voice</a><a href="/el/recap">Pythia Recap</a><a href="/el/pythia">Όλα τα προϊόντα</a><a href="/impressum">Νομικές πληροφορίες</a><a href="/privacy">Απόρρητο</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy"><a href="/intern" tabindex="-1">©</a> Pythia Voice</p></div></footer>
 <script src="/config.js"></script>
-<script src="/app.js"></script>
+<script src="/pv.js"></script>
 </body>
 </html>
