@@ -140,3 +140,22 @@ html { scrollbar-color: color-mix(in srgb, var(--gold) 45%, #1a2240) var(--bg); 
 .oracle, .rc-demo { box-shadow: 0 50px 100px -40px color-mix(in srgb, var(--gold) 28%, #000), 0 0 0 1px rgba(255, 255, 255, .06) inset; }
 @media (prefers-reduced-motion: reduce) { .pulse i { animation: none; transform: scaleY(.7); } .btn.primary::after { display: none; } }
 h1 { letter-spacing: -.035em; }
+
+/* Screenshots aus dem Livebetrieb: echte Bildschirme in einem gezeichneten Gerät, leicht versetzt wie auf einem Tisch */
+.shots { padding: 96px 0 72px; overflow: hidden; }
+.shots h2 { margin-bottom: 48px; }
+.shot-row { display: flex; justify-content: center; gap: clamp(18px, 2.4vw, 34px); padding: 12px max(24px, calc((100vw - 1180px) / 2)) 40px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.shot-row::-webkit-scrollbar { display: none; }
+.shot { flex: 0 0 clamp(200px, 19vw, 240px); margin: 0; scroll-snap-align: center; }
+.shot:nth-child(even) { transform: translateY(36px); }
+.phone { position: relative; padding: 9px; border-radius: 40px; background: linear-gradient(160deg, #2a3150, #0c1124 60%); box-shadow: 0 0 0 1px rgba(255, 255, 255, .09) inset, 0 40px 70px -30px #000, 0 30px 80px -50px color-mix(in srgb, var(--gold) 45%, transparent); transition: transform .4s cubic-bezier(.2, .8, .2, 1), box-shadow .4s ease; }
+.phone img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 2; object-fit: cover; object-position: top; border-radius: 32px; background: #0f1830; }
+.shot:hover .phone { transform: translateY(-8px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .14) inset, 0 50px 80px -30px #000, 0 30px 90px -40px color-mix(in srgb, var(--gold) 65%, transparent); }
+.shot figcaption { margin-top: 18px; padding-inline: 6px; }
+.shot figcaption b { display: block; font-size: 1rem; letter-spacing: -.01em; }
+.shot figcaption span { display: block; margin-top: 3px; color: var(--muted); font-size: .9rem; line-height: 1.45; }
+@media (max-width: 1100px) { .shot-row { justify-content: flex-start; } .shot:nth-child(even) { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .phone, .shot:hover .phone { transition: none; transform: none; } }
+.shot { flex-basis: clamp(170px, 15vw, 218px); }
+@media (max-width: 520px) { .top .brand span { display: none; } .top { gap: 8px; } }
+.recap-page .shot { flex-basis: clamp(210px, 21vw, 280px); }
