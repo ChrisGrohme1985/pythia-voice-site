@@ -20,6 +20,30 @@
   if (P.buyUrl) document.getElementById("buy").href = P.buyUrl;
   if (P.voiceBuyUrl) for (const id of ["buy-voice", "buy-voice-2"]) document.getElementById(id).href = P.voiceBuyUrl;
 
+
+  // --- Klangband: Balken wie im Logo, jeder mit eigenem Takt ----------------------------------------------
+  const pulse = document.querySelector(".pulse");
+  if (pulse) {
+    const n = Math.min(110, Math.floor(innerWidth / 13));
+    for (let i = 0; i < n; i++) {
+      const b = document.createElement("i"), x = i / (n - 1);
+      const shape = Math.pow(Math.sin(x * Math.PI), 0.8);
+      b.style.setProperty("--h", (10 + 78 * shape * (0.55 + 0.45 * Math.abs(Math.sin(i * 1.7)))).toFixed(0) + "px");
+      b.style.setProperty("--d", (1.6 + (i * 37 % 17) / 10).toFixed(2) + "s");
+      b.style.setProperty("--o", (-(i * 53 % 23) / 10).toFixed(2) + "s");
+      b.style.setProperty("--x", (x * 100).toFixed(0) + "%");
+      pulse.appendChild(b);
+    }
+  }
+  // --- Licht folgt der Maus auf Karten ----------------------------------------------------------------------
+  document.addEventListener("pointermove", (e) => {
+    const c = e.target.closest && e.target.closest(".rules div, .suite a, .get-card, .tablet, .steps li");
+    if (!c) return;
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", e.clientX - r.left + "px");
+    c.style.setProperty("--my", e.clientY - r.top + "px");
+  });
+
   // --- Sprachnachricht-Demo: Abschnitte erscheinen nacheinander, sobald sie im Bild ist ----------------------
   html.classList.add("js");
   const demo = document.querySelector(".vm-demo");
