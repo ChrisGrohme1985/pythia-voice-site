@@ -1,4 +1,4 @@
-// Monatsbericht: legt am 1. jeden Monats den Bericht des Vormonats an (im internen Bereich abrufbar) und mailt ihn an dich selbst.
+// Monatsbericht: legt am 1. jeden Monats den Bericht des Vormonats an (im internen Bereich von grohme.dev abrufbar) und mailt ihn an dich selbst.
 // Aufruf durch den Vercel-Cron (siehe vercel.json) oder manuell mit ?month=JJJJ-MM. Zugriff nur mit CRON_SECRET.
 const books = require("./_books");
 

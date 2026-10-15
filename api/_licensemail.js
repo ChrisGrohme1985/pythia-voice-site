@@ -1,4 +1,4 @@
-// Lizenzmail mit Branding: wird vom Stripe-Webhook und von der Schlüsselvergabe im internen Bereich genutzt.
+// Lizenzmail mit Branding: wird vom Stripe-Webhook und von der Schlüsselvergabe im internen Bereich von grohme.dev genutzt.
 /** Gemeinsamer Rahmen aller Markenmails: Kopf mit Logo, Inhalt (Tabellenzeilen), Fußzeile. */
 function shell(rows) {
   const T = "font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0f1830;font-size:16px;line-height:1.6";

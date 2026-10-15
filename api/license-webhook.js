@@ -29,7 +29,7 @@ function validSignature(body, header, secrets) {
 async function sendMail(to, key, session, product) {
   // Der Kauf wird zuerst als Posten mit fortlaufender Rechnungsnummer gebucht, dann geht der Beleg als PDF mit.
   // Scheitert das (Speicher oder PDF), geht der Schlüssel trotzdem raus, aber OHNE Beleg: eine Ersatznummer wäre steuerlich falsch.
-  // Der Posten entsteht dann beim nächsten Stripe-Abgleich (Knopf im internen Bereich oder Monatsbericht).
+  // Der Posten entsteht dann beim nächsten Stripe-Abgleich (Knopf im internen Bereich von grohme.dev oder Monatsbericht).
   let attachments;
   try {
     const entry = await books.invoiceFor(session);

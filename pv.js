@@ -41,12 +41,20 @@
     for (const id of ["rc-apk-h", "rc-apk"]) { const a = $(id); if (a) { a.href = P.recapApkUrl; a.hidden = false; } }
     for (const id of ["rc-soon-h", "rc-soon"]) { const a = $(id); if (a) a.hidden = true; }
   }
-  // Video: erscheint, sobald in config.js demoVideoUrl steht (Datei unter /media/)
-  const vid = $("video");
-  if (vid && P.demoVideoUrl) {
-    const v = vid.querySelector("video");
-    v.src = P.demoVideoUrl; if (P.demoPosterUrl) v.poster = P.demoPosterUrl;
-    vid.hidden = false;
+  // Demo-Video: Hochformat auf schmalen Bildschirmen, läuft stumm, solange es im Bild ist (nicht bei reduzierter Bewegung)
+  const vid = $("demo"), vbtn = $("vtoggle");
+  if (vid) {
+    const tall = matchMedia("(max-width: 700px)").matches;
+    const base = tall ? vid.dataset.tall : vid.dataset.wide;
+    vid.poster = base + ".jpg"; vid.src = base + ".mp4";
+    const sync = () => vbtn.classList.toggle("paused", vid.paused);
+    let userPaused = reduce;
+    const toggle = () => { if (vid.paused) { userPaused = false; vid.play().catch(() => {}); } else { userPaused = true; vid.pause(); } };
+    vbtn.addEventListener("click", toggle); vid.addEventListener("click", toggle);
+    vid.addEventListener("play", sync); vid.addEventListener("pause", sync); sync();
+    if ("IntersectionObserver" in window) new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting && !userPaused) { vid.preload = "auto"; vid.play().catch(() => {}); } else if (!e.isIntersecting) vid.pause();
+    }), { threshold: 0.5 }).observe(vid);
   }
 
   // --- Einblenden beim Scrollen, Licht unter der Maus -------------------------------------------------------
