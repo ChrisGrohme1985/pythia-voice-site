@@ -1,5 +1,6 @@
 /* Pythia Voice, Sprachnachrichten und Recap: öffentliche Seiten. Schrift Geist (OFL, selbst gehostet), Marine, Gold, Violett; Recap setzt Türkis. */
 @font-face { font-family: "Geist"; src: url("/fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+html:lang(el), html:lang(vi) { --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; }
 :root {
   --bg: #0a1226; --surface: rgba(255, 255, 255, .045); --line: rgba(255, 255, 255, .09);
   --gold: #e9b949; --gold2: #f4cf6a; --violet: #2c4380; --teal: #5fd0c0; --ink: #101a33; --ivory: #f4ecd8; --muted: #a9b2c8; --navy: #101a33; --card: #16223f; --card2: #1d2c52; --accent: var(--gold);
@@ -88,23 +89,7 @@ section { position: relative; padding: clamp(56px, 7vw, 96px) 0; }
 .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
 .hero .lead { margin: 22px 0 30px; }
 .hero .fine { margin-top: 18px; color: var(--muted); font-size: .92rem; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
-.stage { position: relative; display: grid; place-items: center; min-height: 520px; }
-.stage::before { content: ""; position: absolute; width: min(560px, 90%); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--violet) 55%, transparent), color-mix(in srgb, var(--gold) 14%, transparent) 62%, transparent); filter: blur(30px); }
-.stage .phone { --w: min(290px, 62vw); z-index: 1; }
-.stage { justify-items: end; padding-inline-end: 4%; }
-.stage .float { position: absolute; z-index: 2; inset-inline-start: 0; bottom: 6%; width: min(300px, 56%); box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 40px 80px -30px #000; }
-@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } .stage { min-height: 0; justify-items: center; padding: 0 0 150px; } .stage .float { inset-inline-start: 50%; translate: -50% 0; bottom: 0; width: min(330px, 92%); } }
-
-/* Demo im Kopfbereich (Diktat) */
-.oracle { margin: 0; padding: 18px 18px 14px; display: grid; gap: 8px; }
-.oracle .wave { display: flex; align-items: center; justify-content: center; gap: 4px; height: 46px; margin-bottom: 4px; }
-.oracle .wave i { display: block; width: 4px; min-height: 6px; border-radius: 3px; background: linear-gradient(180deg, var(--gold2), var(--gold)); transition: height .12s ease; }
-.oracle .label { display: block; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold2); margin-bottom: 2px; }
-.oracle .said, .oracle .wrote { font-size: .92rem; line-height: 1.45; min-height: 2.9em; }
-.oracle .said { color: var(--muted); } .oracle .said s { text-decoration-color: var(--gold); opacity: .75; } .oracle .wrote { color: #fff; font-weight: 520; }
-.oracle .line + .line { padding-top: 8px; border-top: 1px solid var(--line); }
-.replay { justify-self: end; background: none; border: 0; color: var(--muted); font: inherit; font-size: .8rem; cursor: pointer; padding: 2px 6px; border-radius: 8px; }
-.replay:hover { color: #fff; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } }
 
 /* Produktleiste (Familie) */
 .suite { padding: 0 0 clamp(40px, 6vw, 72px); }
@@ -311,3 +296,20 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
 
 .rc-demo .rc-title { font-size: 1rem; font-weight: 600; margin: 0 0 14px; color: var(--gold2); }
 .p h2 { font-size: 1.7rem; letter-spacing: -.03em; } .p h2 span { display: block; font-size: 1rem; color: var(--gold2); font-weight: 560; letter-spacing: -.01em; margin-top: 2px; }
+
+/* Video ganz oben, darunter Überschrift, Kernsatz und Knöpfe */
+.top-video { padding: 96px 0 0; }
+.top-video .vbox { width: min(1120px, 100%); margin: 0 auto; }
+.intro { padding: clamp(40px, 6vw, 72px) 0 clamp(48px, 7vw, 88px); }
+.intro .lead { margin: 18px auto 28px; }
+.intro .row { justify-content: center; }
+.intro .fine { margin-top: 18px; color: var(--muted); font-size: .92rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 16px; }
+.intro .flow { margin-top: clamp(40px, 6vw, 64px); }
+@media (max-width: 700px) { .top-video { padding-top: 84px; } }
+
+/* Hilfsklassen statt style="…" (die Sicherheitsrichtlinie erlaubt keine Inline-Stile) */
+.d1 { --d: .08s; } .d2 { --d: .16s; } .d3 { --d: .22s; } .d4 { --d: .3s; }
+.mt1 { margin-top: 8px; } .mt2 { margin-top: 14px; } .mt3 { margin-top: 16px; } .mt4 { margin-top: 22px; } .mt5 { margin-top: 32px; }
+.my3 { margin: 16px 0 22px; } .pt-s { padding-top: 24px; } .solo { max-width: 560px; margin-inline: auto; } .small { font-size: .92rem; }
+.h3 { font-size: 1.35rem; line-height: 1.3; letter-spacing: -.02em; font-weight: 600; }
+.get + .steps { margin-top: 28px; }

@@ -5,7 +5,7 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const SUPPORTED = ["en", "de", "it", "es", "fr", "pt", "ru", "tr", "nl", "pl", "ja", "zh", "ko", "ar", "hi", "id", "vi", "uk", "th", "sv", "cs", "ro", "el", "he"];
   const page = document.body.dataset.page || "home"; // home | recap | family
-  const tail = { home: "", recap: "recap", family: "pythia" }[page];
+  const tail = { home: "", recap: "recap", family: "pythia", download: "download" }[page];
   const $ = (id) => document.getElementById(id);
   doc.classList.add("js");
 
@@ -36,7 +36,7 @@
   href(["buy"], P.buyUrl);
   href(["buy-voice", "buy-voice-2"], P.voiceBuyUrl);
   href(["buy-recap", "buy-recap-2", "buy-recap-h"], P.recapBuyUrl);
-  href(["apk", "apk-nav"], P.apkUrl);
+  href(["apk"], P.apkUrl);
   if (P.recapApkUrl) {
     for (const id of ["rc-apk-h", "rc-apk"]) { const a = $(id); if (a) { a.href = P.recapApkUrl; a.hidden = false; } }
     for (const id of ["rc-soon-h", "rc-soon"]) { const a = $(id); if (a) a.hidden = true; }
@@ -77,50 +77,4 @@
     else new IntersectionObserver((es, io) => es.forEach((e) => { if (e.isIntersecting) { demo.classList.add("in-view"); io.disconnect(); } }), { threshold: 0.35 }).observe(demo);
   }
 
-  // --- Diktat-Demo im Kopfbereich: Balken steigen, der gesprochene Satz erscheint, dann der bereinigte ----------
-  const oracle = $("oracle");
-  if (!oracle) return;
-  const o = oracle.dataset;
-  const said = $("said"), wrote = $("wrote"), wave = $("wave");
-  for (let i = 0; i < 17; i++) wave.appendChild(document.createElement("i"));
-  const bars = [...wave.children];
-  // gesprochener Satz = Füllwort + Anfang + verworfene Fassung + Rest; gestrichen werden Füllwort und verworfene Fassung
-  const parts = [[o.fill, true], [o.a, false], [o.s, true], [o.b, false]];
-  const sep = /[　-鿿฀-๿]/.test(o.out) ? "" : " "; // Japanisch, Chinesisch, Thai ohne Leerzeichen
-  let token = 0;
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-  const level = (on) => bars.forEach((b, i) => {
-    const shape = Math.sin((i + 1) / 18 * Math.PI);
-    b.style.height = (on ? 8 + Math.random() * 38 * shape : 6 + 22 * shape * shape) + "px";
-  });
-  const piece = (t, strike) => Object.assign(document.createElement(strike ? "s" : "span"), { textContent: t });
-
-  async function play() {
-    const my = ++token;
-    said.textContent = ""; wrote.textContent = ""; level(false);
-    if (reduce) { parts.forEach(([t, s]) => { said.append(piece(t, s), sep); }); wrote.textContent = o.out; return; }
-    await sleep(500);
-    const ticker = setInterval(() => level(true), 110);
-    const spans = [];
-    for (const [t, s] of parts) {
-      for (const w of t.split(" ")) {
-        if (my !== token) return clearInterval(ticker);
-        const sp = piece(w, false); sp.dataset.s = s ? "1" : "";
-        said.append(sp, sep); spans.push(sp);
-        await sleep(230);
-      }
-    }
-    clearInterval(ticker); level(false);
-    await sleep(500);
-    spans.forEach((sp) => { if (sp.dataset.s) sp.replaceWith(piece(sp.textContent, true)); });
-    await sleep(700);
-    const words = sep ? o.out.split(" ") : [...o.out];
-    for (const w of words) {
-      if (my !== token) return;
-      wrote.textContent += (wrote.textContent && sep ? " " : "") + w;
-      await sleep(sep ? 120 : 70);
-    }
-  }
-  $("replay").addEventListener("click", play);
-  play();
 })();

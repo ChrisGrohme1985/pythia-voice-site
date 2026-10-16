@@ -42,36 +42,26 @@
 <link rel="stylesheet" href="/pv.css">
 </head>
 <body data-page="home">
-<header class="nav"><a class="brand" href="/ru/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Продукты<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/ru/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Диктовка</a><a href="/ru/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#1d2c52"/><g transform="translate(10 10)" fill="none" stroke="#e9b949" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0zM5 11a7 7 0 0 0 14 0M12 18v3"/></g></svg>Pythia Voice · Голосовые сообщения</a><a href="/ru/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/ru/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Все продукты</a></div></div><a class="l" href="#funktionen">Возможности</a><a class="l" href="#produkte">Цена</a><a class="l" href="#fragen">Вопросы</a><a class="btn sm" id="apk-nav" href="/ru/#download"><span>Скачать напрямую</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru" selected>Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<header class="nav"><a class="brand" href="/ru/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Продукты<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/ru/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Standard</a><a href="/ru/#sprachnachrichten"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Record</a><a href="/ru/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/ru/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Все продукты</a></div></div><a class="l" href="#funktionen">Возможности</a><a class="l" href="#produkte">Цена</a><a class="l" href="#fragen">Вопросы</a><a class="btn sm" href="/ru/download"><span>Скачать напрямую</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru" selected>Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
 <main>
-  <section class="hero">
+  <section class="top-video" id="video">
     <div class="wrap">
-      <div class="rv">
-        <h1>Вы говорите. Pythia пишет. Без усилий.</h1>
-        <p class="lead">Pythia Voice убирает «э-э», расставляет знаки препинания и учитывает ваши поправки. Платите один раз, без подписки.</p>
-        <div class="row">
-          <a class="btn" href="#download"><span>Попробовать Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn ghost" href="#produkte"><span>Посмотреть цену</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        </div>
-        <p class="fine"><span>Бесплатно: 7 дней или 3000 слов.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play скоро</span></span></p>
-      </div>
-      <div class="stage rv" style="--d:.15s">
-        <div class="phone"><img src="/shots/v_home.webp" alt="Диктовка" width="540" height="1080" fetchpriority="high"></div>
-        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="эээ" data-a="встречаемся в" data-s="пять часов нет, лучше в" data-b="шесть у вокзала" data-out="Встречаемся в шесть у вокзала.">
-          <div class="wave" id="wave" aria-hidden="true"></div>
-          <div class="line"><span class="label">Вы говорите</span><p id="said" class="said"></p></div>
-          <div class="line"><span class="label">Pythia пишет</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
-          <button class="replay" id="replay" type="button">Ещё раз</button>
-        </figure></div>
-      </div>
+      <div class="vbox bezel rv"><div class="core"><video id="demo" data-wide="/media/pythia-demo-ru" data-tall="/media/pythia-demo-ru-tall" poster="/media/pythia-demo-ru.jpg" muted loop playsinline preload="none" aria-label="Pythia в деле"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
     </div>
   </section>
 
-  <section class="video" id="video">
+  <section class="intro" id="ablauf">
+    <div class="wrap center rv d1">
+      <h1>Вы говорите. Pythia пишет. Без усилий.</h1>
+      <p class="lead">Pythia Voice убирает «э-э», расставляет знаки препинания и учитывает ваши поправки. Платите один раз, без подписки.</p>
+      <div class="row">
+        <a class="btn" href="/ru/download"><span>Попробовать Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        <a class="btn ghost" href="#produkte"><span>Посмотреть цену</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+      </div>
+      <p class="fine"><span>Бесплатно: 7 дней или 3000 слов.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play скоро</span></span></p>
+    </div>
     <div class="wrap">
-      <div class="center rv"><h2>Pythia в деле</h2><p class="lead" style="margin-top:14px">Сказать, отправить, готово.</p></div>
-      <div class="vbox bezel rv" style="--d:.1s"><div class="core"><video id="demo" data-wide="/media/pythia-demo-en" data-tall="/media/pythia-demo-en-tall" poster="/media/pythia-demo-en.jpg" muted loop playsinline preload="none" aria-label="Pythia в деле"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
-      <ol class="flow rv" id="ablauf" aria-label="Как диктовать">
+      <ol class="flow rv d2" aria-label="Как диктовать">
         <li><b>Нажмите</b><span>Нажмите на текстовое поле, затем на круглую кнопку над клавиатурой.</span></li>
         <li><b>Говорите</b><span>Скажите, что хотите написать. С паузами, с поправками.</span></li>
         <li><b>Скажите, что закончили</b><span>Нажмите ещё раз. Чистый текст окажется в поле.</span></li>
@@ -86,21 +76,21 @@
       <div class="cols">
         <div class="bezel hl rv" id="diktat"><div class="core col spot">
           <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
-          <h3>Pythia Voice<span>Диктовка</span></h3>
+          <h3>Pythia Voice<span>Standard</span></h3>
           <p class="tag">Говорите, Pythia пишет: удобно, чисто, готово.</p>
           <p class="price">19,99 €<small>Разовый платёж в евро.</small></p>
           <ul><li class="key">Бесплатно 7 дней или 3000 слов</li><li>Все 90+ языков, все функции</li><li>Без лимита слов после покупки</li><li class="key">Обновления включены</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Подробнее</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Купить лицензию</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Подробнее</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Купить Pythia Voice Standard</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
         </div></div>
-        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+        <div class="d1 bezel rv"><div class="core col spot">
           <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
-          <h3>Pythia Voice<span>Голосовые сообщения</span></h3>
+          <h3>Pythia Voice<span>Record</span></h3>
           <p class="tag">Читайте длинные голосовые сообщения как текст, не слушая их.</p>
           <p class="price">19,99 €<small>Единоразовый платёж в евро.</small></p>
           <ul><li class="key">Бесплатный тест: 15 сообщений или 7 дней</li><li>Разбивка по минутам и абзацам</li><li>Отправка из WhatsApp и других мессенджеров</li><li class="key">Обновления включены</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Подробнее</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Купить голосовые сообщения</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Подробнее</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Купить Pythia Voice Record</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
         </div></div>
-        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+        <div class="d2 bezel rc rv"><div class="core col r spot">
           <div class="phone"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
           <h3>Pythia Recap</h3>
           <p class="tag">Запишите встречу и получите готовое резюме с задачами.</p>
@@ -130,11 +120,11 @@
   <section class="shots" id="app" aria-labelledby="shots-h">
     <div class="wrap"><h2 id="shots-h" class="sec-h rv">Приложение в работе</h2></div>
     <div class="shot-row">
-      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Диктовка" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Диктовка</b><span>Вы говорите, Pythia пишет. Удобно и чисто.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="Голосовые сообщения" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Голосовые сообщения</b><span>Длинные голосовые сообщения удобно читать как текст.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="Слова" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Слова</b><span>Имена и термины, которые нужно писать правильно.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="Стиль" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Стиль</b><span>Стиль письма очищенных текстов</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="Сниппеты" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Сниппеты</b><span>Скажите сокращение — вставится весь текст.</span></figcaption></figure>
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Standard" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Standard</b><span>Вы говорите, Pythia пишет. Удобно и чисто.</span></figcaption></figure>
+      <figure class="d1 shot rv"><div class="phone"><img src="/shots/v_msg.webp" alt="Record" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Record</b><span>Длинные голосовые сообщения удобно читать как текст.</span></figcaption></figure>
+      <figure class="d2 shot rv"><div class="phone"><img src="/shots/v_words.webp" alt="Слова" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Слова</b><span>Имена и термины, которые нужно писать правильно.</span></figcaption></figure>
+      <figure class="d3 shot rv"><div class="phone"><img src="/shots/v_style.webp" alt="Стиль" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Стиль</b><span>Стиль письма очищенных текстов</span></figcaption></figure>
+      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="Сниппеты" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Сниппеты</b><span>Скажите сокращение — вставится весь текст.</span></figcaption></figure>
     </div>
   </section>
 
@@ -150,11 +140,11 @@
         </ul>
         <div class="row">
           <a class="btn ghost" href="/ru/pythia"><span>Подробнее</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn" id="buy-voice" href="#download"><span>Купить голосовые сообщения</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Купить Pythia Voice Record</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
-        <p class="dim" style="margin-top:14px;font-size:.92rem">Отдельная лицензия, не зависит от диктовки. Без подписки.</p>
+        <p class="mt2 small dim">Отдельная лицензия, не зависит от Pythia Voice Standard. Без подписки.</p>
       </div>
-      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice превращает его в текст с разбивкой по минутам">
+      <div class="d1 bezel rv"><figure class="core vm-demo" aria-label="Pythia Voice превращает его в текст с разбивкой по минутам">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -176,31 +166,13 @@
   <section id="download">
     <div class="wrap">
       <h2 class="rv">Для Android</h2>
-      <ol class="steps rv" style="margin-top:32px">
+      <ol class="mt5 steps rv">
         <li><b>Скачайте приложение</b><span>Скачайте APK ниже и установите его на свой телефон с Android.</span></li>
-        <li><b>Попробуйте</b><span>Всё можно бесплатно протестировать: диктовку — 7 дней или 3 000 слов, голосовые сообщения — 7 дней или 15 сообщений.</span></li>
-        <li><b>Понравилось? Купите лицензию</b><span>Выберите «Диктовку», «Голосовые сообщения» или обе. Введите ключ в приложении — и готово.</span></li>
+        <li><b>Попробуйте</b><span>Всё можно бесплатно протестировать: Pythia Voice Standard — 7 дней или 3 000 слов, Pythia Voice Record — 7 дней или 15 сообщений.</span></li>
+        <li><b>Понравилось? Купите лицензию</b><span>Выберите Pythia Voice Standard, Pythia Voice Record или обе лицензии. Введите ключ в приложении — и готово.</span></li>
       </ol>
-      <div class="get">
-        <div class="get-card rv">
-          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>Диктовка · Голосовые сообщения</p></div></div>
-          <p>Вы говорите, Pythia пишет. Удобно и чисто. Длинные голосовые сообщения удобно читать как текст.</p>
-          <div class="row">
-            <a class="btn" id="apk" href="#download"><span>Скачать напрямую</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play скоро</span></span>
-          </div>
-        </div>
-        <div class="get-card recap rv" style="--d:.08s">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>Встречи и голосовые заметки — коротко.</p></div></div>
-          <p id="rc-soon-h">Pythia Recap почти готово. Загрузка и кнопка покупки появятся здесь сразу после выхода.</p>
-          <div class="row">
-            <a class="btn" id="rc-apk-h" href="#download" hidden><span>Скачать напрямую</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-            <a class="btn ghost" href="/ru/recap"><span>Подробнее</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          </div>
-        </div>
-      </div>
-      <p class="dim">Android 13 или новее. Версии для iPhone пока нет.</p>
-      <p class="dim" style="margin-top:8px">При первом запуске приложение проведёт вас по настройке за шесть коротких шагов.</p>
+      <div class="row mt5"><a class="btn" href="/ru/download"><span>Скачать напрямую</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play скоро</span></span></div>
+      <p class="dim mt4">Android 13 или новее. Версии для iPhone пока нет.</p>
       <p class="setup">Разовая настройка занимает около 1 минуты: создайте бесплатный аккаунт Groq (достаточно входа через Google), сгенерируйте ключ и вставьте его. Дальше просто диктуйте.</p>
     </div>
   </section>
@@ -224,7 +196,7 @@
     <div class="wrap"><div class="bezel rv"><div class="core">
       <h2>Попробуйте 7 дней бесплатно.</h2>
       <p class="lead">Без аккаунта и подписки. Понравится: заплатите один раз.</p>
-      <div class="row"><a class="btn" href="#download"><span>Попробовать Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/ru/pythia"><span>Все продукты</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <div class="row"><a class="btn" href="/ru/download"><span>Попробовать Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/ru/pythia"><span>Все продукты</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
     </div></div></div>
   </section>
 </main>

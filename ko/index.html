@@ -42,36 +42,26 @@
 <link rel="stylesheet" href="/pv.css">
 </head>
 <body data-page="home">
-<header class="nav"><a class="brand" href="/ko/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">제품<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/ko/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · 받아쓰기</a><a href="/ko/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#1d2c52"/><g transform="translate(10 10)" fill="none" stroke="#e9b949" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0zM5 11a7 7 0 0 0 14 0M12 18v3"/></g></svg>Pythia Voice · 음성 메시지</a><a href="/ko/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/ko/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>모든 제품</a></div></div><a class="l" href="#funktionen">기능</a><a class="l" href="#produkte">가격</a><a class="l" href="#fragen">자주 묻는 질문</a><a class="btn sm" id="apk-nav" href="/ko/#download"><span>바로 다운로드</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko" selected>한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<header class="nav"><a class="brand" href="/ko/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">제품<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/ko/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Standard</a><a href="/ko/#sprachnachrichten"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Record</a><a href="/ko/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/ko/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>모든 제품</a></div></div><a class="l" href="#funktionen">기능</a><a class="l" href="#produkte">가격</a><a class="l" href="#fragen">자주 묻는 질문</a><a class="btn sm" href="/ko/download"><span>바로 다운로드</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko" selected>한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
 <main>
-  <section class="hero">
+  <section class="top-video" id="video">
     <div class="wrap">
-      <div class="rv">
-        <h1>말은 당신이, 글은 Pythia가. 편하게.</h1>
-        <p class="lead">Pythia Voice는 &#x27;음&#x27;을 지우고, 문장부호를 넣고, 말을 고친 것까지 반영합니다. 한 번만 결제하면 구독은 없습니다.</p>
-        <div class="row">
-          <a class="btn" href="#download"><span>Pythia Voice 체험하기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn ghost" href="#produkte"><span>가격 보기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        </div>
-        <p class="fine"><span>7일 또는 3,000단어까지 무료로 체험하세요.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play 출시 예정</span></span></p>
-      </div>
-      <div class="stage rv" style="--d:.15s">
-        <div class="phone"><img src="/shots/v_home.webp" alt="받아쓰기" width="540" height="1080" fetchpriority="high"></div>
-        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="음" data-a="우리 만나는 시간은" data-s="다섯 시 아니 사실" data-b="여섯 시에 역 앞에서" data-out="우리 만나는 시간은 여섯 시에 역 앞에서.">
-          <div class="wave" id="wave" aria-hidden="true"></div>
-          <div class="line"><span class="label">당신이 말하면</span><p id="said" class="said"></p></div>
-          <div class="line"><span class="label">Pythia가 씁니다</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
-          <button class="replay" id="replay" type="button">다시 보기</button>
-        </figure></div>
-      </div>
+      <div class="vbox bezel rv"><div class="core"><video id="demo" data-wide="/media/pythia-demo-ko" data-tall="/media/pythia-demo-ko-tall" poster="/media/pythia-demo-ko.jpg" muted loop playsinline preload="none" aria-label="Pythia 사용 모습"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
     </div>
   </section>
 
-  <section class="video" id="video">
+  <section class="intro" id="ablauf">
+    <div class="wrap center rv d1">
+      <h1>말은 당신이, 글은 Pythia가. 편하게.</h1>
+      <p class="lead">Pythia Voice는 &#x27;음&#x27;을 지우고, 문장부호를 넣고, 말을 고친 것까지 반영합니다. 한 번만 결제하면 구독은 없습니다.</p>
+      <div class="row">
+        <a class="btn" href="/ko/download"><span>Pythia Voice 체험하기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        <a class="btn ghost" href="#produkte"><span>가격 보기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+      </div>
+      <p class="fine"><span>7일 또는 3,000단어까지 무료로 체험하세요.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play 출시 예정</span></span></p>
+    </div>
     <div class="wrap">
-      <div class="center rv"><h2>Pythia 사용 모습</h2><p class="lead" style="margin-top:14px">말하고, 보내고, 끝.</p></div>
-      <div class="vbox bezel rv" style="--d:.1s"><div class="core"><video id="demo" data-wide="/media/pythia-demo-en" data-tall="/media/pythia-demo-en-tall" poster="/media/pythia-demo-en.jpg" muted loop playsinline preload="none" aria-label="Pythia 사용 모습"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
-      <ol class="flow rv" id="ablauf" aria-label="받아쓰는 방법">
+      <ol class="flow rv d2" aria-label="받아쓰는 방법">
         <li><b>누르기</b><span>입력란을 누른 다음 키보드 위의 둥근 버튼을 누르세요.</span></li>
         <li><b>말하기</b><span>쓰고 싶은 내용을 말하세요. 쉬어도, 정정해도 됩니다.</span></li>
         <li><b>끝났다고 알리기</b><span>한 번 더 누르세요. 정돈된 텍스트가 입력란에 들어갑니다.</span></li>
@@ -86,21 +76,21 @@
       <div class="cols">
         <div class="bezel hl rv" id="diktat"><div class="core col spot">
           <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
-          <h3>Pythia Voice<span>받아쓰기</span></h3>
+          <h3>Pythia Voice<span>Standard</span></h3>
           <p class="tag">말하면 Pythia가 씁니다. 편하고 깔끔하게, 끝.</p>
           <p class="price">19,99 €<small>유로 일시불 결제입니다.</small></p>
           <ul><li class="key">7일 또는 3,000단어 무료 체험</li><li>90개 이상의 모든 언어, 모든 기능</li><li>구매 후 단어 수 제한 없음</li><li class="key">업데이트 포함</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>자세히 보기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>라이선스 구매</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>자세히 보기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Pythia Voice Standard 구매</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
         </div></div>
-        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+        <div class="d1 bezel rv"><div class="core col spot">
           <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
-          <h3>Pythia Voice<span>음성 메시지</span></h3>
+          <h3>Pythia Voice<span>Record</span></h3>
           <p class="tag">긴 음성 메시지를 듣지 않고 텍스트로 읽어 보세요.</p>
           <p class="price">19.99유로<small>유로로 일시불 결제.</small></p>
           <ul><li class="key">15개 또는 7일 무료 체험</li><li>분 단위와 문단으로 구분</li><li>WhatsApp 등 메신저에서 공유</li><li class="key">업데이트 포함</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>자세히 보기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>음성 메시지 구매</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>자세히 보기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Pythia Voice Record 구매</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
         </div></div>
-        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+        <div class="d2 bezel rc rv"><div class="core col r spot">
           <div class="phone"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
           <h3>Pythia Recap</h3>
           <p class="tag">회의를 녹음하면 할 일이 담긴 요약본이 완성됩니다.</p>
@@ -130,11 +120,11 @@
   <section class="shots" id="app" aria-labelledby="shots-h">
     <div class="wrap"><h2 id="shots-h" class="sec-h rv">실제 앱 화면</h2></div>
     <div class="shot-row">
-      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="받아쓰기" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>받아쓰기</b><span>말은 당신이, 글은 Pythia가. 편하고 깔끔하게.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="음성 메시지" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>음성 메시지</b><span>긴 음성 메시지를 편하게 텍스트로 읽어 보세요.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="단어" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>단어</b><span>정확히 표기해야 하는 이름과 전문 용어.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="스타일" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>스타일</b><span>정리된 텍스트의 문체</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="스니펫" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>스니펫</b><span>단축어를 말하면 전체 텍스트가 삽입됩니다.</span></figcaption></figure>
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Standard" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Standard</b><span>말은 당신이, 글은 Pythia가. 편하고 깔끔하게.</span></figcaption></figure>
+      <figure class="d1 shot rv"><div class="phone"><img src="/shots/v_msg.webp" alt="Record" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Record</b><span>긴 음성 메시지를 편하게 텍스트로 읽어 보세요.</span></figcaption></figure>
+      <figure class="d2 shot rv"><div class="phone"><img src="/shots/v_words.webp" alt="단어" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>단어</b><span>정확히 표기해야 하는 이름과 전문 용어.</span></figcaption></figure>
+      <figure class="d3 shot rv"><div class="phone"><img src="/shots/v_style.webp" alt="스타일" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>스타일</b><span>정리된 텍스트의 문체</span></figcaption></figure>
+      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="스니펫" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>스니펫</b><span>단축어를 말하면 전체 텍스트가 삽입됩니다.</span></figcaption></figure>
     </div>
   </section>
 
@@ -150,11 +140,11 @@
         </ul>
         <div class="row">
           <a class="btn ghost" href="/ko/pythia"><span>자세히 보기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn" id="buy-voice" href="#download"><span>음성 메시지 구매</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Pythia Voice Record 구매</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
-        <p class="dim" style="margin-top:14px;font-size:.92rem">받아쓰기와 별도의 라이선스입니다. 구독 없음.</p>
+        <p class="mt2 small dim">Pythia Voice Standard와 별도의 라이선스입니다. 구독 없음.</p>
       </div>
-      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice가 분 단위로 나눈 텍스트로 바꿔 줍니다">
+      <div class="d1 bezel rv"><figure class="core vm-demo" aria-label="Pythia Voice가 분 단위로 나눈 텍스트로 바꿔 줍니다">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -176,31 +166,13 @@
   <section id="download">
     <div class="wrap">
       <h2 class="rv">Android용</h2>
-      <ol class="steps rv" style="margin-top:32px">
+      <ol class="mt5 steps rv">
         <li><b>앱 받기</b><span>아래에서 APK를 내려받아 Android 휴대폰에 설치하세요.</span></li>
-        <li><b>체험하기</b><span>모두 무료로 체험할 수 있습니다: 받아쓰기는 7일 또는 3,000단어, 음성 메시지는 7일 또는 15개.</span></li>
-        <li><b>마음에 드셨나요? 라이선스 구매</b><span>받아쓰기, 음성 메시지 또는 둘 다 선택하세요. 앱에 키를 입력하면 끝입니다.</span></li>
+        <li><b>체험하기</b><span>모두 무료로 체험할 수 있습니다: Pythia Voice Standard는 7일 또는 3,000단어, Pythia Voice Record는 7일 또는 15개.</span></li>
+        <li><b>마음에 드셨나요? 라이선스 구매</b><span>Pythia Voice Standard, Pythia Voice Record 또는 둘 다 선택하세요. 앱에 키를 입력하면 끝입니다.</span></li>
       </ol>
-      <div class="get">
-        <div class="get-card rv">
-          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>받아쓰기 · 음성 메시지</p></div></div>
-          <p>말은 당신이, 글은 Pythia가. 편하고 깔끔하게. 긴 음성 메시지를 편하게 텍스트로 읽어 보세요.</p>
-          <div class="row">
-            <a class="btn" id="apk" href="#download"><span>바로 다운로드</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play 출시 예정</span></span>
-          </div>
-        </div>
-        <div class="get-card recap rv" style="--d:.08s">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>회의와 음성 메모를 간단히.</p></div></div>
-          <p id="rc-soon-h">Pythia Recap이 거의 준비되었습니다. 출시되는 즉시 다운로드와 구매 버튼이 여기에 나타납니다.</p>
-          <div class="row">
-            <a class="btn" id="rc-apk-h" href="#download" hidden><span>바로 다운로드</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-            <a class="btn ghost" href="/ko/recap"><span>자세히 보기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          </div>
-        </div>
-      </div>
-      <p class="dim">Android 13 이상. 아직 iPhone 버전은 없습니다.</p>
-      <p class="dim" style="margin-top:8px">처음 실행하면 앱이 여섯 단계로 짧게 설정을 안내합니다.</p>
+      <div class="row mt5"><a class="btn" href="/ko/download"><span>바로 다운로드</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play 출시 예정</span></span></div>
+      <p class="dim mt4">Android 13 이상. 아직 iPhone 버전은 없습니다.</p>
       <p class="setup">최초 설정은 약 1분 걸립니다. 무료 Groq 계정을 만들고(Google 로그인이면 충분합니다), 키를 만들어 붙여 넣으세요. 그다음부터는 말하기만 하면 됩니다.</p>
     </div>
   </section>
@@ -224,7 +196,7 @@
     <div class="wrap"><div class="bezel rv"><div class="core">
       <h2>7일 동안 무료로 써 보세요.</h2>
       <p class="lead">계정도 구독도 필요 없습니다. 마음에 들면 한 번만 결제하세요.</p>
-      <div class="row"><a class="btn" href="#download"><span>Pythia Voice 체험하기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/ko/pythia"><span>모든 제품</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <div class="row"><a class="btn" href="/ko/download"><span>Pythia Voice 체험하기</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/ko/pythia"><span>모든 제품</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
     </div></div></div>
   </section>
 </main>

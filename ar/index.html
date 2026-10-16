@@ -42,36 +42,26 @@
 <link rel="stylesheet" href="/pv.css">
 </head>
 <body data-page="home">
-<header class="nav"><a class="brand" href="/ar/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">المنتجات<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/ar/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · الإملاء</a><a href="/ar/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#1d2c52"/><g transform="translate(10 10)" fill="none" stroke="#e9b949" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0zM5 11a7 7 0 0 0 14 0M12 18v3"/></g></svg>Pythia Voice · الرسائل الصوتية</a><a href="/ar/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/ar/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>كل المنتجات</a></div></div><a class="l" href="#funktionen">المزايا</a><a class="l" href="#produkte">السعر</a><a class="l" href="#fragen">الأسئلة</a><a class="btn sm" id="apk-nav" href="/ar/#download"><span>تنزيل مباشر</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar" selected>العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<header class="nav"><a class="brand" href="/ar/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">المنتجات<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/ar/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Standard</a><a href="/ar/#sprachnachrichten"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Record</a><a href="/ar/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/ar/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>كل المنتجات</a></div></div><a class="l" href="#funktionen">المزايا</a><a class="l" href="#produkte">السعر</a><a class="l" href="#fragen">الأسئلة</a><a class="btn sm" href="/ar/download"><span>تنزيل مباشر</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar" selected>العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
 <main>
-  <section class="hero">
+  <section class="top-video" id="video">
     <div class="wrap">
-      <div class="rv">
-        <h1>أنت تتحدث. وPythia تكتب. بكل سهولة.</h1>
-        <p class="lead">يحذف Pythia Voice كلمات التردد، ويضع علامات الترقيم، ويتابع تصحيحاتك. تدفع مرة واحدة دون اشتراك.</p>
-        <div class="row">
-          <a class="btn" href="#download"><span>جرّب Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn ghost" href="#produkte"><span>اطّلع على السعر</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        </div>
-        <p class="fine"><span>جرّبه مجانًا لمدة 7 أيام أو 3000 كلمة.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play قريبًا</span></span></p>
-      </div>
-      <div class="stage rv" style="--d:.15s">
-        <div class="phone"><img src="/shots/v_home.webp" alt="الإملاء" width="540" height="1080" fetchpriority="high"></div>
-        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="ممم" data-a="نلتقي الساعة" data-s="الخامسة لا في الحقيقة الساعة" data-b="السادسة أمام المحطة" data-out="نلتقي الساعة السادسة أمام المحطة.">
-          <div class="wave" id="wave" aria-hidden="true"></div>
-          <div class="line"><span class="label">أنت تقول</span><p id="said" class="said"></p></div>
-          <div class="line"><span class="label">Pythia تكتب</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
-          <button class="replay" id="replay" type="button">إعادة</button>
-        </figure></div>
-      </div>
+      <div class="vbox bezel rv"><div class="core"><video id="demo" data-wide="/media/pythia-demo-ar" data-tall="/media/pythia-demo-ar-tall" poster="/media/pythia-demo-ar.jpg" muted loop playsinline preload="none" aria-label="Pythia أثناء العمل"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
     </div>
   </section>
 
-  <section class="video" id="video">
+  <section class="intro" id="ablauf">
+    <div class="wrap center rv d1">
+      <h1>أنت تتحدث. وPythia تكتب. بكل سهولة.</h1>
+      <p class="lead">يحذف Pythia Voice كلمات التردد، ويضع علامات الترقيم، ويتابع تصحيحاتك. تدفع مرة واحدة دون اشتراك.</p>
+      <div class="row">
+        <a class="btn" href="/ar/download"><span>جرّب Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        <a class="btn ghost" href="#produkte"><span>اطّلع على السعر</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+      </div>
+      <p class="fine"><span>جرّبه مجانًا لمدة 7 أيام أو 3000 كلمة.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play قريبًا</span></span></p>
+    </div>
     <div class="wrap">
-      <div class="center rv"><h2>Pythia أثناء العمل</h2><p class="lead" style="margin-top:14px">تحدّث، أرسل، انتهى.</p></div>
-      <div class="vbox bezel rv" style="--d:.1s"><div class="core"><video id="demo" data-wide="/media/pythia-demo-en" data-tall="/media/pythia-demo-en-tall" poster="/media/pythia-demo-en.jpg" muted loop playsinline preload="none" aria-label="Pythia أثناء العمل"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
-      <ol class="flow rv" id="ablauf" aria-label="كيف تُملي">
+      <ol class="flow rv d2" aria-label="كيف تُملي">
         <li><b>المس</b><span>المس حقل نص ثم الزر الدائري فوق لوحة المفاتيح.</span></li>
         <li><b>تحدّث</b><span>قل ما تريد كتابته. مع التوقفات ومع التصحيحات.</span></li>
         <li><b>قل إنك انتهيت</b><span>المس مرة أخرى. يظهر النص النظيف في الحقل.</span></li>
@@ -86,21 +76,21 @@
       <div class="cols">
         <div class="bezel hl rv" id="diktat"><div class="core col spot">
           <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
-          <h3>Pythia Voice<span>الإملاء</span></h3>
+          <h3>Pythia Voice<span>Standard</span></h3>
           <p class="tag">تحدّث وPythia تكتب: براحة ونظافة وبسرعة.</p>
           <p class="price">19,99 €<small>دفعة واحدة باليورو.</small></p>
           <ul><li class="key">جرّبه مجانًا 7 أيام أو 3000 كلمة</li><li>كل اللغات (90+) وكل الميزات</li><li>بلا حدّ للكلمات بعد الشراء</li><li class="key">التحديثات مشمولة</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>اعرف المزيد</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>اشترِ الترخيص</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>اعرف المزيد</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>اشترِ Pythia Voice Standard</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
         </div></div>
-        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+        <div class="d1 bezel rv"><div class="core col spot">
           <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
-          <h3>Pythia Voice<span>الرسائل الصوتية</span></h3>
+          <h3>Pythia Voice<span>Record</span></h3>
           <p class="tag">اقرأ الرسائل الصوتية الطويلة كنص دون أن تستمع إليها.</p>
           <p class="price">19.99 €<small>دفعة واحدة باليورو.</small></p>
           <ul><li class="key">جرّب مجانًا مع 15 رسالة أو 7 أيام</li><li>مقسّمة بحسب الدقيقة وإلى فقرات</li><li>شارك من واتساب وتطبيقات المراسلة الأخرى</li><li class="key">التحديثات مشمولة</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>اعرف المزيد</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>اشترِ الرسائل الصوتية</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>اعرف المزيد</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>اشترِ Pythia Voice Record</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
         </div></div>
-        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+        <div class="d2 bezel rc rv"><div class="core col r spot">
           <div class="phone"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
           <h3>Pythia Recap</h3>
           <p class="tag">سجّل اجتماعًا واحصل على ملخص جاهز مع المهام.</p>
@@ -130,11 +120,11 @@
   <section class="shots" id="app" aria-labelledby="shots-h">
     <div class="wrap"><h2 id="shots-h" class="sec-h rv">التطبيق أثناء العمل</h2></div>
     <div class="shot-row">
-      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="الإملاء" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>الإملاء</b><span>أنت تتحدث وPythia تكتب. براحة ونظافة.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="الرسائل الصوتية" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>الرسائل الصوتية</b><span>اقرأ الرسائل الصوتية الطويلة كنص بكل راحة.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="الكلمات" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>الكلمات</b><span>الأسماء والمصطلحات التي يجب كتابتها بشكل صحيح.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="الأسلوب" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>الأسلوب</b><span>أسلوب كتابة النصوص المنقّحة</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="الاختصارات" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>الاختصارات</b><span>انطق الاختصار فيُدرج النص الكامل.</span></figcaption></figure>
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Standard" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Standard</b><span>أنت تتحدث وPythia تكتب. براحة ونظافة.</span></figcaption></figure>
+      <figure class="d1 shot rv"><div class="phone"><img src="/shots/v_msg.webp" alt="Record" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Record</b><span>اقرأ الرسائل الصوتية الطويلة كنص بكل راحة.</span></figcaption></figure>
+      <figure class="d2 shot rv"><div class="phone"><img src="/shots/v_words.webp" alt="الكلمات" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>الكلمات</b><span>الأسماء والمصطلحات التي يجب كتابتها بشكل صحيح.</span></figcaption></figure>
+      <figure class="d3 shot rv"><div class="phone"><img src="/shots/v_style.webp" alt="الأسلوب" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>الأسلوب</b><span>أسلوب كتابة النصوص المنقّحة</span></figcaption></figure>
+      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="الاختصارات" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>الاختصارات</b><span>انطق الاختصار فيُدرج النص الكامل.</span></figcaption></figure>
     </div>
   </section>
 
@@ -150,11 +140,11 @@
         </ul>
         <div class="row">
           <a class="btn ghost" href="/ar/pythia"><span>اعرف المزيد</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn" id="buy-voice" href="#download"><span>اشترِ الرسائل الصوتية</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>اشترِ Pythia Voice Record</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
-        <p class="dim" style="margin-top:14px;font-size:.92rem">ترخيص منفصل عن الإملاء. بلا اشتراك.</p>
+        <p class="mt2 small dim">ترخيص منفصل عن Pythia Voice Standard. بلا اشتراك.</p>
       </div>
-      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="يحوّلها Pythia Voice إلى نص مقسّم بحسب الدقيقة">
+      <div class="d1 bezel rv"><figure class="core vm-demo" aria-label="يحوّلها Pythia Voice إلى نص مقسّم بحسب الدقيقة">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -176,31 +166,13 @@
   <section id="download">
     <div class="wrap">
       <h2 class="rv">لأندرويد</h2>
-      <ol class="steps rv" style="margin-top:32px">
+      <ol class="mt5 steps rv">
         <li><b>حمّل التطبيق</b><span>نزّل ملف APK أدناه وثبّته على هاتفك الذي يعمل بنظام Android.</span></li>
-        <li><b>جرّب</b><span>جرّب كل شيء مجانًا: الإملاء لمدة 7 أيام أو 3000 كلمة، والرسائل الصوتية لمدة 7 أيام أو 15 رسالة.</span></li>
-        <li><b>أعجبك؟ اشترِ ترخيصًا</b><span>اختر الإملاء أو الرسائل الصوتية أو كليهما. أدخل المفتاح في التطبيق وانتهى الأمر.</span></li>
+        <li><b>جرّب</b><span>جرّب كل شيء مجانًا: Pythia Voice Standard لمدة 7 أيام أو 3000 كلمة، وPythia Voice Record لمدة 7 أيام أو 15 رسالة.</span></li>
+        <li><b>أعجبك؟ اشترِ ترخيصًا</b><span>اختر Pythia Voice Standard أو Pythia Voice Record أو كليهما. أدخل المفتاح في التطبيق وانتهى الأمر.</span></li>
       </ol>
-      <div class="get">
-        <div class="get-card rv">
-          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>الإملاء · الرسائل الصوتية</p></div></div>
-          <p>أنت تتحدث وPythia تكتب. براحة ونظافة. اقرأ الرسائل الصوتية الطويلة كنص بكل راحة.</p>
-          <div class="row">
-            <a class="btn" id="apk" href="#download"><span>تنزيل مباشر</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play قريبًا</span></span>
-          </div>
-        </div>
-        <div class="get-card recap rv" style="--d:.08s">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>الاجتماعات والملاحظات الصوتية باختصار.</p></div></div>
-          <p id="rc-soon-h">Pythia Recap جاهز تقريبًا. سيظهر التنزيل وزر الشراء هنا فور إصداره.</p>
-          <div class="row">
-            <a class="btn" id="rc-apk-h" href="#download" hidden><span>تنزيل مباشر</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-            <a class="btn ghost" href="/ar/recap"><span>اعرف المزيد</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          </div>
-        </div>
-      </div>
-      <p class="dim">أندرويد 13 أو أحدث. لا يوجد إصدار لآيفون بعد.</p>
-      <p class="dim" style="margin-top:8px">عند أول تشغيل يرشدك التطبيق عبر الإعداد في ست خطوات قصيرة.</p>
+      <div class="row mt5"><a class="btn" href="/ar/download"><span>تنزيل مباشر</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play قريبًا</span></span></div>
+      <p class="dim mt4">أندرويد 13 أو أحدث. لا يوجد إصدار لآيفون بعد.</p>
       <p class="setup">الإعداد لمرة واحدة يستغرق نحو دقيقة واحدة: أنشئ حساب Groq مجانيًا (يكفي تسجيل الدخول عبر Google)، ولّد مفتاحًا والصقه. بعد ذلك تُملي فقط.</p>
     </div>
   </section>
@@ -224,7 +196,7 @@
     <div class="wrap"><div class="bezel rv"><div class="core">
       <h2>جرّبها مجانًا لمدة 7 أيام.</h2>
       <p class="lead">بلا حساب وبلا اشتراك. إن أعجبتك تدفع مرة واحدة.</p>
-      <div class="row"><a class="btn" href="#download"><span>جرّب Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/ar/pythia"><span>كل المنتجات</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <div class="row"><a class="btn" href="/ar/download"><span>جرّب Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/ar/pythia"><span>كل المنتجات</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
     </div></div></div>
   </section>
 </main>

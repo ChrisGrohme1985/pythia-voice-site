@@ -42,36 +42,26 @@
 <link rel="stylesheet" href="/pv.css">
 </head>
 <body data-page="home">
-<header class="nav"><a class="brand" href="/cs/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produkty<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/cs/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Diktování</a><a href="/cs/#sprachnachrichten"><svg class="mi" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#1d2c52"/><g transform="translate(10 10)" fill="none" stroke="#e9b949" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0zM5 11a7 7 0 0 0 14 0M12 18v3"/></g></svg>Pythia Voice · Hlasové zprávy</a><a href="/cs/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/cs/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Všechny produkty</a></div></div><a class="l" href="#funktionen">Funkce</a><a class="l" href="#produkte">Cena</a><a class="l" href="#fragen">Otázky</a><a class="btn sm" id="apk-nav" href="/cs/#download"><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs" selected>Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<header class="nav"><a class="brand" href="/cs/" aria-label="Pythia Voice"><img src="/logo.svg" alt="" width="30" height="30"><span>Pythia Voice</span></a><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produkty<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/cs/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Standard</a><a href="/cs/#sprachnachrichten"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Record</a><a href="/cs/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/cs/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Všechny produkty</a></div></div><a class="l" href="#funktionen">Funkce</a><a class="l" href="#produkte">Cena</a><a class="l" href="#fragen">Otázky</a><a class="btn sm" href="/cs/download"><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs" selected>Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
 <main>
-  <section class="hero">
+  <section class="top-video" id="video">
     <div class="wrap">
-      <div class="rv">
-        <h1>Vy mluvíte. Pythia píše. Bez námahy.</h1>
-        <p class="lead">Pythia Voice vyřadí „ehm“, doplní interpunkci a respektuje vaše opravy. Platíte jednou, bez předplatného.</p>
-        <div class="row">
-          <a class="btn" href="#download"><span>Vyzkoušet Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn ghost" href="#produkte"><span>Zobrazit cenu</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        </div>
-        <p class="fine"><span>Zdarma vyzkoušejte 7 dní nebo 3 000 slov.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play brzy</span></span></p>
-      </div>
-      <div class="stage rv" style="--d:.15s">
-        <div class="phone"><img src="/shots/v_home.webp" alt="Diktování" width="540" height="1080" fetchpriority="high"></div>
-        <div class="float bezel"><figure class="core oracle" id="oracle" data-fill="ehm" data-a="sejdeme se v" data-s="pět ne vlastně v" data-b="šest před nádražím" data-out="Sejdeme se v šest před nádražím.">
-          <div class="wave" id="wave" aria-hidden="true"></div>
-          <div class="line"><span class="label">Říkáte</span><p id="said" class="said"></p></div>
-          <div class="line"><span class="label">Pythia píše</span><p id="wrote" class="wrote" aria-live="polite"></p></div>
-          <button class="replay" id="replay" type="button">Znovu</button>
-        </figure></div>
-      </div>
+      <div class="vbox bezel rv"><div class="core"><video id="demo" data-wide="/media/pythia-demo-cs" data-tall="/media/pythia-demo-cs-tall" poster="/media/pythia-demo-cs.jpg" muted loop playsinline preload="none" aria-label="Pythia v akci"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
     </div>
   </section>
 
-  <section class="video" id="video">
+  <section class="intro" id="ablauf">
+    <div class="wrap center rv d1">
+      <h1>Vy mluvíte. Pythia píše. Bez námahy.</h1>
+      <p class="lead">Pythia Voice vyřadí „ehm“, doplní interpunkci a respektuje vaše opravy. Platíte jednou, bez předplatného.</p>
+      <div class="row">
+        <a class="btn" href="/cs/download"><span>Vyzkoušet Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+        <a class="btn ghost" href="#produkte"><span>Zobrazit cenu</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+      </div>
+      <p class="fine"><span>Zdarma vyzkoušejte 7 dní nebo 3 000 slov.</span><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play brzy</span></span></p>
+    </div>
     <div class="wrap">
-      <div class="center rv"><h2>Pythia v akci</h2><p class="lead" style="margin-top:14px">Říct, odeslat, hotovo.</p></div>
-      <div class="vbox bezel rv" style="--d:.1s"><div class="core"><video id="demo" data-wide="/media/pythia-demo-en" data-tall="/media/pythia-demo-en-tall" poster="/media/pythia-demo-en.jpg" muted loop playsinline preload="none" aria-label="Pythia v akci"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
-      <ol class="flow rv" id="ablauf" aria-label="Jak diktovat">
+      <ol class="flow rv d2" aria-label="Jak diktovat">
         <li><b>Klepněte</b><span>Klepněte do textového pole a potom na kulaté tlačítko nad klávesnicí.</span></li>
         <li><b>Mluvte</b><span>Řekněte, co chcete napsat. S pauzami, s opravami.</span></li>
         <li><b>Řekněte, že jste hotovi</b><span>Klepněte ještě jednou. Čistý text je v poli.</span></li>
@@ -86,21 +76,21 @@
       <div class="cols">
         <div class="bezel hl rv" id="diktat"><div class="core col spot">
           <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1080" loading="lazy"></div>
-          <h3>Pythia Voice<span>Diktování</span></h3>
+          <h3>Pythia Voice<span>Standard</span></h3>
           <p class="tag">Mluvte, Pythia píše: pohodlně, čistě, hotovo.</p>
           <p class="price">19,99 €<small>Jednorázová platba v eurech.</small></p>
           <ul><li class="key">Zdarma 7 dní nebo 3 000 slov</li><li>Všech 90+ jazyků, všechny funkce</li><li>Po koupi žádný limit slov</li><li class="key">Aktualizace v ceně</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Koupit licenci</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy" href="#download"><span>Koupit Pythia Voice Standard</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
         </div></div>
-        <div class="bezel rv" style="--d:.08s"><div class="core col spot">
+        <div class="d1 bezel rv"><div class="core col spot">
           <div class="phone"><img src="/shots/v_msg.webp" alt="" width="540" height="1080" loading="lazy"></div>
-          <h3>Pythia Voice<span>Hlasové zprávy</span></h3>
+          <h3>Pythia Voice<span>Record</span></h3>
           <p class="tag">Čtěte dlouhé hlasové zprávy jako text, bez poslouchání.</p>
           <p class="price">19,99 €<small>Jednorázová platba v eurech.</small></p>
           <ul><li class="key">Vyzkoušejte zdarma s 15 zprávami nebo 7 dny</li><li>Rozdělené po minutách a do odstavců</li><li>Sdílení z WhatsAppu a dalších messengerů</li><li class="key">Aktualizace v ceně</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Koupit hlasové zprávy</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+          <div class="acts"><a class="btn ghost block" href="#sprachnachrichten"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-voice-2" href="#download"><span>Koupit Pythia Voice Record</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
         </div></div>
-        <div class="bezel rc rv" style="--d:.16s"><div class="core col r spot">
+        <div class="d2 bezel rc rv"><div class="core col r spot">
           <div class="phone"><img src="/shots/r_meet.webp" alt="" width="540" height="1080" loading="lazy"></div>
           <h3>Pythia Recap</h3>
           <p class="tag">Nahrajte schůzku a získejte hotové shrnutí s úkoly.</p>
@@ -130,11 +120,11 @@
   <section class="shots" id="app" aria-labelledby="shots-h">
     <div class="wrap"><h2 id="shots-h" class="sec-h rv">Aplikace v akci</h2></div>
     <div class="shot-row">
-      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Diktování" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Diktování</b><span>Vy mluvíte, Pythia píše. Pohodlně a čistě.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.06s"><div class="phone"><img src="/shots/v_msg.webp" alt="Hlasové zprávy" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Hlasové zprávy</b><span>Dlouhé hlasové zprávy pohodlně čtěte jako text.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.12s"><div class="phone"><img src="/shots/v_words.webp" alt="Slova" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Slova</b><span>Jména a odborné výrazy, které se mají psát správně.</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.18s"><div class="phone"><img src="/shots/v_style.webp" alt="Styl" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Styl</b><span>Styl psaní vyčištěných textů</span></figcaption></figure>
-      <figure class="shot rv" style="--d:.24s"><div class="phone"><img src="/shots/v_snip.webp" alt="Úryvky" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Úryvky</b><span>Řekněte zkratku a vloží se celý text.</span></figcaption></figure>
+      <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Standard" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Standard</b><span>Vy mluvíte, Pythia píše. Pohodlně a čistě.</span></figcaption></figure>
+      <figure class="d1 shot rv"><div class="phone"><img src="/shots/v_msg.webp" alt="Record" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Record</b><span>Dlouhé hlasové zprávy pohodlně čtěte jako text.</span></figcaption></figure>
+      <figure class="d2 shot rv"><div class="phone"><img src="/shots/v_words.webp" alt="Slova" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Slova</b><span>Jména a odborné výrazy, které se mají psát správně.</span></figcaption></figure>
+      <figure class="d3 shot rv"><div class="phone"><img src="/shots/v_style.webp" alt="Styl" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Styl</b><span>Styl psaní vyčištěných textů</span></figcaption></figure>
+      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="Úryvky" width="540" height="1080" loading="lazy" decoding="async"></div><figcaption><b>Úryvky</b><span>Řekněte zkratku a vloží se celý text.</span></figcaption></figure>
     </div>
   </section>
 
@@ -150,11 +140,11 @@
         </ul>
         <div class="row">
           <a class="btn ghost" href="/cs/pythia"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn" id="buy-voice" href="#download"><span>Koupit hlasové zprávy</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="btn" id="buy-voice" href="#download"><span>Koupit Pythia Voice Record</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
         </div>
-        <p class="dim" style="margin-top:14px;font-size:.92rem">Samostatná licence nezávislá na diktování. Bez předplatného.</p>
+        <p class="mt2 small dim">Samostatná licence nezávislá na Pythia Voice Standard. Bez předplatného.</p>
       </div>
-      <div class="bezel rv" style="--d:.1s"><figure class="core vm-demo" aria-label="Pythia Voice z ní udělá text rozdělený po minutách">
+      <div class="d1 bezel rv"><figure class="core vm-demo" aria-label="Pythia Voice z ní udělá text rozdělený po minutách">
         <div class="vm-in">
           <span class="vm-play" aria-hidden="true"></span>
           <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -176,31 +166,13 @@
   <section id="download">
     <div class="wrap">
       <h2 class="rv">Pro Android</h2>
-      <ol class="steps rv" style="margin-top:32px">
+      <ol class="mt5 steps rv">
         <li><b>Stáhněte aplikaci</b><span>Stáhněte níže soubor APK a nainstalujte ho do telefonu s Androidem.</span></li>
-        <li><b>Vyzkoušejte</b><span>Vše si můžete vyzkoušet zdarma: diktování 7 dní nebo 3 000 slov, hlasové zprávy 7 dní nebo 15 zpráv.</span></li>
-        <li><b>Líbí se vám? Kupte licenci</b><span>Vyberte Diktování, Hlasové zprávy, nebo obojí. Zadejte klíč v aplikaci a máte hotovo.</span></li>
+        <li><b>Vyzkoušejte</b><span>Vše si můžete vyzkoušet zdarma: Pythia Voice Standard 7 dní nebo 3 000 slov, Pythia Voice Record 7 dní nebo 15 zpráv.</span></li>
+        <li><b>Líbí se vám? Kupte licenci</b><span>Vyberte Pythia Voice Standard, Pythia Voice Record, nebo obojí. Zadejte klíč v aplikaci a máte hotovo.</span></li>
       </ol>
-      <div class="get">
-        <div class="get-card rv">
-          <div class="get-h"><img src="/logo.svg" alt="" width="46" height="46"><div><h3>Pythia Voice</h3><p>Diktování · Hlasové zprávy</p></div></div>
-          <p>Vy mluvíte, Pythia píše. Pohodlně a čistě. Dlouhé hlasové zprávy pohodlně čtěte jako text.</p>
-          <div class="row">
-            <a class="btn" id="apk" href="#download"><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-            <span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play brzy</span></span>
-          </div>
-        </div>
-        <div class="get-card recap rv" style="--d:.08s">
-          <div class="get-h"><img src="/recap-logo.svg" alt="" width="46" height="46"><div><h3>Pythia Recap</h3><p>Schůzky a hlasové poznámky stručně.</p></div></div>
-          <p id="rc-soon-h">Pythia Recap je téměř hotová. Stažení a tlačítko nákupu se tu objeví, jakmile vyjde.</p>
-          <div class="row">
-            <a class="btn" id="rc-apk-h" href="#download" hidden><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-            <a class="btn ghost" href="/cs/recap"><span>Zjistit více</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          </div>
-        </div>
-      </div>
-      <p class="dim">Android 13 nebo novější. Verze pro iPhone zatím neexistuje.</p>
-      <p class="dim" style="margin-top:8px">Při prvním spuštění vás aplikace provede nastavením v šesti krátkých krocích.</p>
+      <div class="row mt5"><a class="btn" href="/cs/download"><span>Stáhnout přímo</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><span class="soon"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play brzy</span></span></div>
+      <p class="dim mt4">Android 13 nebo novější. Verze pro iPhone zatím neexistuje.</p>
       <p class="setup">Jednorázové nastavení trvá asi 1 minutu: vytvořte si bezplatný účet Groq (stačí přihlášení přes Google), vygenerujte klíč a vložte ho. Potom už jen diktujete.</p>
     </div>
   </section>
@@ -224,7 +196,7 @@
     <div class="wrap"><div class="bezel rv"><div class="core">
       <h2>Vyzkoušejte 7 dní zdarma.</h2>
       <p class="lead">Bez účtu a bez předplatného. Když se vám zalíbí, zaplatíte jednou.</p>
-      <div class="row"><a class="btn" href="#download"><span>Vyzkoušet Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/cs/pythia"><span>Všechny produkty</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <div class="row"><a class="btn" href="/cs/download"><span>Vyzkoušet Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/cs/pythia"><span>Všechny produkty</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
     </div></div></div>
   </section>
 </main>

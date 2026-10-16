@@ -129,9 +129,9 @@ async function voidEntry(id) {
 
 const ids = (v) => String(v || "").split(",").map((s) => s.trim()).filter(Boolean);
 const PRODUCTS = [
-  { env: "PYTHIA_PAYMENT_LINKS", version: 1, de: "Pythia Voice (Diktat)", en: "Pythia Voice (dictation)", item: "Lebenslange Lizenz für die Android-App Pythia Voice (digital)" },
+  { env: "PYTHIA_PAYMENT_LINKS", version: 1, de: "Pythia Voice Standard", en: "Pythia Voice Standard", item: "Lebenslange Lizenz Pythia Voice Standard für Android (digital)" },
   { env: "PYTHIA_RECAP_LINKS", version: 3, project: "Pythia Recap", de: "Pythia Recap", en: "Pythia Recap", item: "Lebenslange Lizenz für die Android-App Pythia Recap (digital)" },
-  { env: "PYTHIA_VOICE_LINKS", version: 2, de: "Pythia Voice Sprachnachrichten", en: "Pythia Voice voice messages", item: "Lebenslange Lizenz Pythia Voice Sprachnachrichten (digital)" },
+  { env: "PYTHIA_VOICE_LINKS", version: 2, de: "Pythia Voice Record", en: "Pythia Voice Record", item: "Lebenslange Lizenz Pythia Voice Record für Android (digital)" },
 ];
 /** Produkt zu einem Zahlungslink; null, wenn der Kauf nicht zu uns gehört (z. B. FlowUnion im selben Stripe-Konto). */
 const productOf = (link) => PRODUCTS.find((p) => ids(process.env[p.env]).includes(link)) || null;
