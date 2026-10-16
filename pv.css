@@ -330,3 +330,31 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
 .nav { padding-inline-start: 6px; }
 @media (max-width: 1080px) { .nav .l { display: none; } }
 @media (max-width: 640px) { .switch a span { display: none; } .switch a { padding: 5px; } }
+
+/* Handy: Touch-Ziele mindestens 44 px, Hauptknöpfe in voller Daumenbreite, Fragen als große Tippflächen */
+@media (max-width: 640px) {
+  .nav { height: 60px; gap: 6px; padding: 0 6px; }
+  .switch { padding: 2px; }
+  .switch a { min-width: 44px; min-height: 44px; justify-content: center; }
+  .switch a img { width: 30px; height: 30px; }
+  .nav .btn.sm { min-height: 44px; padding: 8px 14px; font-size: .88rem; margin-inline-start: auto; }
+  #lang { min-height: 44px; }
+  .btn { min-height: 48px; white-space: normal; text-align: start; }
+  .btn.sm { min-height: 44px; }
+  .btn > span { flex: 1; }
+  .intro .row, .cta-band .row, .hero .row, .voice-text .row, .get-card .row, .p .row { flex-direction: column; align-items: stretch; }
+  .intro .row .btn, .cta-band .row .btn, .hero .row .btn, .voice-text .row .btn, .get-card .row .btn, .p .row .btn { width: 100%; justify-content: space-between; }
+  .get-card .soon, .intro .fine .soon { align-self: center; }
+  details { padding: 0; }
+  summary { min-height: 56px; align-items: center; padding: 16px 18px; }
+  details p { margin: 0; padding: 0 18px 18px; }
+  .foot-links { gap: 0 18px; }
+  .foot-links a { display: inline-flex; align-items: center; min-height: 44px; }
+  .suite a { min-height: 72px; }
+  .ddm a { min-height: 48px; }
+  .vtoggle { width: 48px; height: 48px; }
+  .vm-out b, .rc-ts { font-size: .8rem; }
+  .rc-sp { font-size: .78rem; }
+}
+@media (max-width: 640px) { .nav .btn.sm { white-space: nowrap; } .nav .btn > span { flex: none; } }
+@media (max-width: 400px) { #lang { max-width: 5.4rem; padding-inline: 10px 24px; background-position: right 8px center; } .nav .btn.sm { padding: 8px 12px; font-size: .84rem; } }
