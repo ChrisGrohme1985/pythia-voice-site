@@ -358,3 +358,4 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
 }
 @media (max-width: 640px) { .nav .btn.sm { white-space: nowrap; } .nav .btn > span { flex: none; } }
 @media (max-width: 400px) { #lang { max-width: 5.4rem; padding-inline: 10px 24px; background-position: right 8px center; } .nav .btn.sm { padding: 8px 12px; font-size: .84rem; } }
+#diktat{scroll-margin-top:16px}
