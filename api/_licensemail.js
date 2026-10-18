@@ -38,11 +38,11 @@ function mailHtml(key, product) {
     <p style="margin:10px 0 0;color:#4a5470;font-size:14px">${outro}</p>`;
   return shell(`
     <tr><td style="padding:28px 28px 8px">
-      ${block("Danke für deinen Kauf!", `Hier ist dein Lizenzschlüssel für ${product.de}:`, "In der App freischalten", "Am Handy genügt ein Tippen auf den Knopf. Sonst: Schlüssel kopieren, die App öffnen, sie erkennt ihn selbst oder du fügst ihn bei der Testphase-Karte ein.", "Gültig ohne Ablauf. Bewahre diese Mail gut auf.")}
+      ${block("Danke für deinen Kauf!", `Hier ist dein Lizenzschlüssel für ${product.de}:`, "In der App freischalten", product.version === 3 ? "Am Handy genügt ein Tippen auf den Knopf. Sonst: Schlüssel kopieren, Pythia Recap öffnen und ihn in den Einstellungen unter „Lizenz“ einfügen." : "Am Handy genügt ein Tippen auf den Knopf. Sonst: Schlüssel kopieren, die App öffnen, sie erkennt ihn selbst oder du fügst ihn bei der Testphase-Karte ein.", "Gültig ohne Ablauf. Bewahre diese Mail gut auf.")}
     </td></tr>
     <tr><td style="padding:8px 28px"><hr style="border:0;border-top:1px solid #e6e1d2"></td></tr>
     <tr><td style="padding:8px 28px 28px">
-      ${block("Thank you for your purchase!", `Here is your license key for ${product.en}:`, "Activate in the app", "On your phone, just tap the button. Otherwise copy the key and open the app: it recognizes the key, or paste it into the trial card.", "It never expires. Please keep this e-mail.")}
+      ${block("Thank you for your purchase!", `Here is your license key for ${product.en}:`, "Activate in the app", product.version === 3 ? "On your phone, just tap the button. Otherwise copy the key, open Pythia Recap and paste it under “License” in the settings." : "On your phone, just tap the button. Otherwise copy the key and open the app: it recognizes the key, or paste it into the trial card.", "It never expires. Please keep this e-mail.")}
     </td></tr>
   `);
 }
@@ -90,7 +90,7 @@ ${key}
 
 ` +
         `Am Handy: ${openLink(key)}
-Oder Schlüssel kopieren und die App öffnen, sie erkennt ihn selbst.
+${product.version === 3 ? "Oder Schlüssel kopieren und in Pythia Recap unter Einstellungen, Lizenz einfügen." : "Oder Schlüssel kopieren und die App öffnen, sie erkennt ihn selbst."}
 
 ` +
         `Thank you for your purchase!
@@ -101,7 +101,7 @@ ${key}
 
 ` +
         `On your phone: ${openLink(key)}
-Or copy the key and open the app, it recognizes it.
+${product.version === 3 ? "Or copy the key and paste it in Pythia Recap under Settings, License." : "Or copy the key and open the app, it recognizes it."}
 `,
     }),
   });
