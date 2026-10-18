@@ -13,6 +13,16 @@
     sel.value = l;
   };
   sel.addEventListener("change", () => { try { localStorage.setItem("pv-lang", sel.value); } catch (_) {} show(sel.value); });
-  if (P.apkUrl) document.querySelectorAll("a.apk").forEach((a) => (a.href = P.apkUrl));
+  // danke?app=recap (Erfolgsadresse des Recap-Zahlungslinks): App-Name, Schritt 3 und Download auf Pythia Recap umstellen
+  const recap = new URLSearchParams(location.search).get("app") === "recap";
+  if (recap) {
+    document.querySelectorAll(".for-voice").forEach((e) => (e.hidden = true));
+    document.querySelectorAll(".for-recap").forEach((e) => (e.hidden = false));
+    secs.forEach((s) => { s.dataset.title = s.dataset.title.replace("Pythia Voice", "Pythia Recap"); });
+    const w = document.createTreeWalker(document.querySelector("main") || document.body, NodeFilter.SHOW_TEXT);
+    for (let n; (n = w.nextNode()); ) if (n.nodeValue.includes("Pythia Voice")) n.nodeValue = n.nodeValue.replaceAll("Pythia Voice", "Pythia Recap");
+  }
+  const apk = recap ? P.recapApkUrl : P.apkUrl;
+  if (apk) document.querySelectorAll("a.apk").forEach((a) => (a.href = apk));
   show(first);
 })();
