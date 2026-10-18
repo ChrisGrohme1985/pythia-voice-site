@@ -1,5 +1,5 @@
 // Webhook von Stripe: nach bezahlter Checkout-Sitzung Lizenzschlüssel erzeugen und per E-Mail senden.
-// Umgebungsvariablen: PYTHIA_PAYMENT_LINKS (Diktat) und PYTHIA_VOICE_LINKS (Sprachnachrichten), je plink_…, Komma-getrennt; STRIPE_WEBHOOK_SECRET (ggf. "whsec_test,whsec_live"), PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
+// Umgebungsvariablen: PYTHIA_PAYMENT_LINKS (Standard), PYTHIA_VOICE_LINKS (Record) und PYTHIA_RECAP_LINKS (Recap), je plink_…, Komma-getrennt; STRIPE_WEBHOOK_SECRET (ggf. "whsec_test,whsec_live"), PYTHIA_LICENSE_PRIVATE, PYTHIA_ID_SECRET, RESEND_API_KEY, RESEND_FROM
 const crypto = require("crypto");
 const { issue } = require("./_license");
 const { invoicePdf } = require("./_invoice");
@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
   if (!paid || !s?.id || !email) return res.status(200).json({ ignored: true });
   // Das Stripe-Konto wird auch für andere Produkte genutzt: nur Käufe über unseren Zahlungslink bekommen einen Schlüssel
   const product = books.productOf(s.payment_link);
-  if (!product) return res.status(200).json({ ignored: true });
+  if (!product) { console.warn("Zahlungslink ohne Produkt, kein Schlüssel: " + s.payment_link); return res.status(200).json({ ignored: true }); } // fehlt z. B. PYTHIA_RECAP_LINKS, steht es so im Vercel-Log
   try {
     await sendMail(email, issue(s.id, product.version), s, product);
     return res.status(200).json({ ok: true });
