@@ -17,7 +17,7 @@
     try { saved = localStorage.getItem("pv-lang"); } catch (_) {}
     const b = (navigator.language || "en").toLowerCase();
     const want = saved || [b, b.split("-")[0]].find((c) => SUPPORTED.includes(c)) || "en";
-    if (want !== "en") { location.replace("/" + want + "/" + tail); return; }
+    if (want !== "en") { location.replace("/" + want + "/" + tail + location.hash); return; } // Sprungmarke behalten (Kauf-Knopf der App zeigt auf #diktat)
   }
 
   // --- Produktmenü -------------------------------------------------------------------------------------------

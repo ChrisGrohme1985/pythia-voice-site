@@ -67,6 +67,18 @@ async function list(c, { orderBy = "date", limit = 5000 } = {}) {
   return s.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
 
+/** Löscht Dokumente mit abgelaufenem Feld expires. Ersatz für Firestore-TTL, das den Blaze-Tarif braucht. @returns Anzahl */
+async function purgeExpired(c) {
+  const now = new Date();
+  let n = 0;
+  if (memory) { for (const [id, v] of col(c)) if (v.expires && new Date(v.expires) < now) { col(c).delete(id); n++; } return n; }
+  for (;;) {
+    const s = await fs().collection(c).where("expires", "<", now).limit(400).get();
+    if (s.empty) return n;
+    const b = fs().batch(); s.docs.forEach((d) => b.delete(d.ref)); await b.commit(); n += s.size;
+  }
+}
+
 /** Legt ein Dokument mit der nächsten fortlaufenden Nummer an, genau einmal je id (atomar, auch bei gleichzeitigen Aufrufen). */
 async function numbered(c, id, prefix, year, build) {
   if (memory) {
@@ -137,4 +149,4 @@ async function delBlob(c, id) {
   await base.delete();
 }
 
-module.exports = { useMemory, get, set, create, del, list, numbered, nextNumber, putBlob, getBlob, delBlob, CHUNK };
+module.exports = { useMemory, get, set, create, del, list, purgeExpired, numbered, nextNumber, putBlob, getBlob, delBlob, CHUNK };
