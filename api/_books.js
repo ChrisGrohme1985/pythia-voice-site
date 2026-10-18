@@ -284,7 +284,7 @@ async function revokeIfFullyRefunded(sale, total) {
 /** Stripe meldet insgesamt `total` erstattet; was noch nicht als Gutschrift gebucht ist, wird nachgebucht (z. B. im Dashboard ausgelöst). */
 async function bookMissingRefunds(sale, total) {
   const booked = await bookedRefunds(sale.id);
-  if (total <= booked) return null;
+  if (total <= booked) { await revokeIfFullyRefunded(sale, total); return null; } // schon gebucht: Sperre trotzdem nachholen (idempotent, auch für Altfälle)
   const doc = await createRefundDoc(sale, { amount: total - booked, total, reason: "in Stripe ausgelöst" });
   await revokeIfFullyRefunded(sale, total);
   return doc;
