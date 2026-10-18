@@ -12,11 +12,11 @@ module.exports = async (req, res) => {
   const mo = m ? +m[2] - 1 : (now.getUTCMonth() + 11) % 12;
   const pad = (n) => String(n).padStart(2, "0");
   const last = new Date(Date.UTC(y, mo + 1, 0)).getUTCDate();
-  // Abgelaufene Ratenbegrenzungs- und Testphasen-Einträge löschen (Löschfristen laut Datenschutzerklärung); darf den Bericht nicht verhindern
-  for (const c of ["authRate", "trials"]) await db.purgeExpired(c).catch((e) => console.error(`Aufräumen ${c}: ${e.message}`));
   try {
     const rep = await books.createReport(`${y}-${pad(mo + 1)}-01`, `${y}-${pad(mo + 1)}-${pad(last)}`);
     await books.mailReport(rep);
+    // Danach abgelaufene Ratenbegrenzungs- und Testphasen-Einträge löschen (Löschfristen laut Datenschutzerklärung); erst nach dem Bericht, damit ein langes Aufräumen ihn nicht verhindert
+    for (const c of ["authRate", "trials"]) await db.purgeExpired(c).catch((e) => console.error(`Aufräumen ${c}: ${e.message}`));
     return res.status(200).json({ ok: true, report: rep.number, sales: rep.totals.sales });
   } catch (e) {
     console.error(e.message);
