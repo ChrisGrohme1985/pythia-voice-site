@@ -24,11 +24,11 @@ module.exports = async (req, res) => {
     const rk = `trial-${new Date().toISOString().slice(0, 13)}-${who}`;
     const rate = (await db.get("authRate", rk)) || { n: 0 };
     if (rate.n >= 120) return res.status(429).json({ error: "too_many" });
-    await db.set("authRate", rk, { n: rate.n + 1, expires: new Date(Date.now() + 2 * 864e5) }); // Firestore-TTL löscht nach 2 Tagen (firebase/firestore.indexes.json)
+    await db.set("authRate", rk, { n: rate.n + 1, expires: new Date(Date.now() + 2 * 864e5) }); // nach 2 Tagen gelöscht (Monats-Cron, mit Blaze-Tarif Firestore-TTL)
 
     const id = `${product}-${crypto.createHash("sha256").update(device).digest("hex").slice(0, 32)}`;
     const now = Date.now();
-    const expires = new Date(now + 3 * 365 * 864e5); // Firestore-TTL: 3 Jahre nach dem letzten Abgleich gelöscht (Datenschutzerklärung)
+    const expires = new Date(now + 3 * 365 * 864e5); // 3 Jahre nach dem letzten Abgleich gelöscht (Monats-Cron bzw. Firestore-TTL; Datenschutzerklärung)
     if (await db.create(COL, id, { start: now, used, seen: now, expires })) return res.status(200).json({ start: now, used, now });
     const t = await db.get(COL, id);
     const merged = Math.max(t.used || 0, used);

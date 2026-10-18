@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     const rk = `act-${new Date().toISOString().slice(0, 13)}-${who}`;
     const rate = (await db.get("authRate", rk)) || { n: 0 };
     if (rate.n >= 30) return res.status(429).json({ error: "too_many" });
-    await db.set("authRate", rk, { n: rate.n + 1, expires: new Date(Date.now() + 2 * 864e5) }); // Firestore-TTL löscht nach 2 Tagen (firebase/firestore.indexes.json)
+    await db.set("authRate", rk, { n: rate.n + 1, expires: new Date(Date.now() + 2 * 864e5) }); // nach 2 Tagen gelöscht (Monats-Cron, mit Blaze-Tarif Firestore-TTL)
 
     const lic = parse(key);
     if (!lic) return res.status(400).json({ error: "invalid" });
