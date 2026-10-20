@@ -24,7 +24,7 @@
   <h2>The Pythia Voice app</h2>
   <p><strong>What the app processes.</strong> When you dictate, your voice is recorded briefly on your device and sent to the Groq service (Groq, Inc., USA) with your personal API key. There it is converted to text and cleaned up. The recognized text is then inserted into the text field you are writing in. Pythia Voice does not store the recording. The history text and your dictionary stay on your device only; you can delete them in the settings.</p>
   <p><strong>Accessibility service.</strong> The service is used only to show the dictation button above the keyboard and to insert the dictated text into the active text field. Only the text field you are writing in is read. Other screen content is neither read nor stored. In password fields the button is hidden.</p>
-  <p><strong>Your API key</strong> stays on your device only. We do not receive it.</p>
+  <p><strong>Your API key</strong> stays on your device and, to restore it after a reinstall, is backed up through Google Block Store with your Google account (if device backup is on). We do not receive it.</p>
   <p><strong>License and trial.</strong> The trial status (start time, number of dictated words) and an activated license key are stored locally and, to restore them after a reinstall, backed up through Google Block Store with your Google account (if device backup is on). In addition, the app syncs the trial and the license with our server (see “License activation and trial”). When buying through Google Play, Google processes the payment.</p>
   <p><strong>Disclosure.</strong> Audio and text go only to Groq, and only when you dictate. Groq’s privacy terms (groq.com) apply. Legal basis: Art. 6(1)(b) GDPR (you trigger dictation yourself).</p>
 
@@ -33,14 +33,14 @@
   <h2>The Pythia Recap app</h2>
   <p><strong>What the app processes.</strong> Pythia Recap records meetings and voice notes or takes audio files that you pick or share from another app. Recordings, transcripts, summaries, tasks and markers stay on your device only. You can delete any meeting in the app. For transcription and summaries, audio and text are sent to the Groq service (Groq, Inc., USA) with your personal API key. According to Groq it does not keep them by default, but may log requests for up to 30 days. Groq’s privacy terms (groq.com) apply. Your meetings never reach us. Legal basis: Art. 6(1)(b) GDPR (you start the processing yourself).</p>
   <p><strong>Other people in the recording.</strong> A meeting contains the voices and statements of other participants. You are responsible for this data: inform the participants before recording and obtain their consent where required.</p>
-  <p><strong>Your API key</strong> stays on your device only. We do not receive it.</p>
-  <p><strong>License and trial.</strong> As with Pythia Voice: stored locally, backed up through Google Block Store and synced with our server (see next section).</p>
+  <p><strong>Your API key</strong> stays on your device and, to restore it after a reinstall, is backed up through Google Block Store with your Google account (if device backup is on). We do not receive it.</p>
+  <p><strong>License and trial.</strong> As with Pythia Voice: stored locally, backed up through Google Block Store and synced with our server (see next section). If you buy Pythia Recap on Google Play, Google processes the payment (see “Buying through Google Play”); there is no license key in that case.</p>
 
   <h2>License activation and trial</h2>
   <p>Both apps connect to our server at pythiavoice.app in only two cases:</p>
   <ul>
     <li><strong>Trial.</strong> The app sends the product (Pythia Voice Standard, Pythia Voice Record or Pythia Recap), a device identifier and the trial counter (dictated words, messages or meetings). We store the time of the first and last sync and the counter, so the trial does not restart after “clear data” or a reinstall. Legal basis: Art. 6(1)(f) GDPR (our legitimate interest in protecting the free trial against abuse). We delete these entries three years after the last sync.</li>
-    <li><strong>License activation.</strong> On activation and from time to time afterwards, the app sends the license key and the device identifier. We store which device the key is bound to, so that it works on one device only and a refunded key can be blocked. Legal basis: Art. 6(1)(b) GDPR (performance of the contract). The binding is kept as long as the license exists. On request we release the device.</li>
+    <li><strong>License activation</strong> (only for purchases on this website)<strong>.</strong> On activation and from time to time afterwards, the app sends the license key and the device identifier. We store which device the key is bound to, so that it works on one device only and a refunded key can be blocked. Legal basis: Art. 6(1)(b) GDPR (performance of the contract). The binding is kept as long as the license exists. On request we release the device.</li>
   </ul>
   <p>The device identifier is a hash the app computes from the Android ID. The Android ID itself never leaves the device. No recordings, no text, no name and no Groq key are sent. To limit abuse, the server counts requests per sender. For this it stores a shortened hash of the IP address and deletes it after 40 days at the latest. The data is kept in Google Firebase as described in the next section.</p>
 
@@ -49,6 +49,9 @@
 
   <h2>Buying a license</h2>
   <p>Payment is handled by Stripe (Stripe Payments Europe, Ltd., Ireland, and where applicable Stripe, Inc., USA). Stripe processes the payment details you enter and your e-mail address; we do not receive full card data. Legal basis: Art. 6(1)(b) GDPR (performance of the contract). After successful payment the license key is sent automatically to your e-mail address through the e-mail service Resend (Resend, Inc., USA), which receives your address for this purpose. Transfers to the USA rely on standard contractual clauses or the EU-US Data Privacy Framework. Statutory retention periods for accounting records remain unaffected.</p>
+
+  <h2>Buying through Google Play</h2>
+  <p>If you buy an app on Google Play or unlock it there through an in-app purchase, Google (Google Ireland Ltd., Ireland, and Google LLC, USA) handles payment, invoice and refunds under Google’s privacy policy. We do not receive any payment data. The app only asks Google Play whether the purchase exists and stores the result locally. In our Google Play Console we see order details such as order number, product, time, country and amount; we use them for refunds and bookkeeping. Legal basis: Art. 6(1)(b) and (c) GDPR (performance of the contract and statutory retention duties).</p>
 
   <h2>Your rights</h2>
   <p>You have the right of access, rectification, erasure, restriction of processing, data portability and objection, and the right to lodge a complaint with a supervisory authority. Contact: support@pythiavoice.app.</p>
