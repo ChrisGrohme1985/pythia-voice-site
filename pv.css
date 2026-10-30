@@ -188,6 +188,7 @@ section { position: relative; padding: clamp(56px, 7vw, 96px) 0; }
 .voice-text .lead { margin: 16px 0 22px; }
 .voice-points { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 10px; }
 .voice-points li { position: relative; padding-inline-start: 30px; }
+.voice-points li.key { color: var(--ivory); font-weight: 600; }
 .voice-points li::before { content: ""; position: absolute; inset-inline-start: 0; top: .35em; width: 18px; height: 18px; border-radius: 50%; background: color-mix(in srgb, var(--gold) 18%, transparent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4.5 8.3 2.3 2.3 4.7-4.9' fill='none' stroke='%23e9b949' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; }
 .vm-demo { margin: 0; padding: 20px; display: grid; gap: 8px; }
 .vm-in { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: color-mix(in srgb, var(--violet) 26%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--violet) 40%, transparent); }
