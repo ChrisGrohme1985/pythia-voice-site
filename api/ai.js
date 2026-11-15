@@ -2,7 +2,7 @@
 // "pythia_voice_sub" hat oder in der Testphase ist; Tageskontingente und ein Gesamtdeckel der Testphasen begrenzen die Kosten.
 // POST /api/ai?p=audio/transcriptions|chat/completions, Header x-pv-device (32 hex), x-pv-product (dictation|voice), optional x-pv-sub (Play-Kauf-Token)
 // → Groq-Antwort unverändert | 400 ungültig | 402 Test/Abo vorbei | 413 zu groß | 429 Tageskontingent | 502/503 Groq/Google gestört
-// Umgebungsvariablen: GROQ_API_KEY, PLAY_SERVICE_ACCOUNT_JSON (sonst FIREBASE_SERVICE_ACCOUNT_JSON; JSON oder Base64), AI_TRIAL_DAILY_BYTES
+// Umgebungsvariablen: AI_PROVIDER (groq|cloudflare), GROQ_API_KEY bzw. CF_ACCOUNT_ID + CF_API_TOKEN (siehe _aiprovider.js), PLAY_SERVICE_ACCOUNT_JSON (sonst FIREBASE_SERVICE_ACCOUNT_JSON; JSON oder Base64), AI_TRIAL_DAILY_BYTES
 // shortcut: Testphase hängt an der Geräte-ID; neue IDs sind nur per IP-Grenze und Gesamtdeckel gebremst. Bei Missbrauch Play Integrity ergänzen.
 const crypto = require("crypto");
 const db = require("./_db");
@@ -251,40 +251,25 @@ async function handler(req, res) {
       }
     }
 
-    const GROQ_API_KEY = process.env.GROQ_API_KEY;
-    if (!GROQ_API_KEY) {
-      console.error("KI: GROQ_API_KEY fehlt");
-      return res.status(500).json({ error: "server" });
-    }
-
     let r;
     try {
-      r = await fetch(`https://api.groq.com/openai/v1/${p}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${GROQ_API_KEY}`,
-        "Content-Type": contentType,
-        "User-Agent": "PythiaVoice-Server/1.0"
-      },
-      body
-    });
+      r = await require("./_aiprovider").run(p, body, contentType);
     } catch (e) {
-      console.error("KI: Groq nicht erreichbar: " + e.message);
-      return res.status(502).json({ error: "upstream" });
+      console.error("KI: Anbieter nicht nutzbar: " + e.message);
+      return res.status(e.code === "config" ? 500 : 502).json({ error: e.code === "config" ? "server" : "upstream" });
     }
 
-    if (!r.ok) {
+    if (r.status < 200 || r.status > 299) {
       if (r.status === 401 || r.status === 403) {
-        console.error("KI: Groq Auth Fehler");
+        console.error("KI: Anbieter lehnt den Schlüssel ab (" + r.status + ")");
         return res.status(502).json({ error: "upstream" });
       }
       if (r.status === 429) return res.status(503).json({ error: "busy" });
-      const text = await r.text();
       res.setHeader("Content-Type", "application/json");
-      return res.status(r.status).send(text);
+      return res.status(r.status).send(r.text);
     }
 
-    const text = await r.text();
+    const text = r.text;
     res.setHeader("Content-Type", "application/json");
     res.status(r.status).send(text);
 
