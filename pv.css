@@ -259,7 +259,7 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
 @media (max-width: 760px) { .foot { grid-template-columns: 1fr; } .foot-links { justify-content: flex-start; } }
 
 /* Familienseite */
-.fam { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px; }
+.fam { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
 .fam > .bezel { display: grid; grid-row: span 4; grid-template-rows: subgrid; margin-bottom: 16px; }
 .fam > .bezel > .core { grid-row: 1 / -1; display: grid; grid-template-rows: subgrid; justify-items: center; }
 .p { position: relative; overflow: hidden; min-height: 640px; padding: 34px 28px 0; text-align: center; }
@@ -366,3 +366,112 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
 .vid-link { display: inline-block; margin-top: 6px; color: var(--gold2); text-decoration: underline; text-underline-offset: 3px; }
 .vid-link::before { content: "▶"; display: inline-block; margin-inline-end: .4em; font-size: .8em; } /* inline-block: Pfeil ohne Unterstrich */
 .vid-link:hover { color: var(--gold); }
+
+/* ── Neugestaltung 16.11.2026: schlanke Startseite (Hero mit Video, Schritte, Kachelraster, ein Abo) ─────────────────────── */
+.x-hero { padding: clamp(118px, 13vw, 156px) 0 clamp(40px, 6vw, 72px); overflow-x: clip; } /* Lichthof und Etiketten ragen sonst seitlich hinaus */
+.x-hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.x-hero h1 { font-size: clamp(2.7rem, 6vw, 5.2rem); line-height: .98; letter-spacing: -.045em; margin: 22px 0 22px; }
+.x-hero .lead { max-width: 30em; }
+.x-hero .row { margin-top: 32px; gap: 18px; }
+.x-pill { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 10px; border-radius: 999px; font-size: .88rem; color: var(--ivory);
+  background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px var(--line); }
+.x-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px color-mix(in srgb, var(--teal) 22%, transparent); animation: x-pulse 2.4s var(--ease) infinite; }
+@keyframes x-pulse { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--teal) 0%, transparent); } }
+.x-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 4px; color: var(--ivory); font-weight: 560; border-bottom: 1px solid transparent; transition: border-color .3s var(--ease), gap .3s var(--ease); }
+.x-link:hover { border-color: var(--gold); gap: 12px; }
+.x-small { margin-top: 18px; font-size: .9rem; color: var(--muted); }
+.center { text-align: center; }
+
+/* Bühne: Handy mit Video, Lichthof und zwei schwebende Etiketten */
+.x-stage { position: relative; justify-self: center; width: min(340px, 78vw); }
+.x-glow { position: absolute; inset: 8% -30% 0; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--gold) 30%, transparent), transparent 72%); filter: blur(30px); animation: x-breathe 7s ease-in-out infinite; }
+@keyframes x-breathe { 50% { transform: scale(1.08); opacity: .75; } }
+.x-phone { position: relative; aspect-ratio: 9 / 16; padding: 10px; border-radius: 46px; background: linear-gradient(160deg, #26324f, #0d1430 60%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), inset 0 1px 0 rgba(255, 255, 255, .18), 0 50px 100px -40px rgba(2, 6, 20, .95); }
+.x-phone video { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 37px; background: #0a1124; }
+.x-sound { position: absolute; right: 22px; bottom: 22px; width: 46px; height: 46px; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  color: var(--ivory); background: rgba(10, 17, 36, .62); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); transition: transform .3s var(--ease), background .3s; }
+.x-sound:hover { transform: scale(1.06); background: rgba(10, 17, 36, .8); }
+.x-sound svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.x-sound .on, .x-sound[aria-pressed="true"] .off { display: none; }
+.x-sound[aria-pressed="true"] .on { display: block; }
+.x-chip { position: absolute; padding: 10px 16px; border-radius: 16px; font-size: .9rem; font-weight: 560; white-space: nowrap; color: var(--ivory);
+  background: rgba(16, 26, 51, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14), 0 20px 40px -20px rgba(0, 0, 0, .8);
+  animation: x-float 6s ease-in-out infinite; }
+.x-chip::before { content: "\2713"; color: var(--gold); margin-inline-end: 8px; }
+.x-chip.c1 { top: 18%; inset-inline-start: -26%; }
+.x-chip.c2 { bottom: 20%; inset-inline-end: -22%; animation-delay: -3s; }
+@keyframes x-float { 50% { transform: translateY(-10px); } }
+
+/* Drei Schritte als schmale Leiste */
+.x-steps { padding-top: 0; }
+.x-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 26px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); background: var(--surface); }
+.x-flow li { display: flex; gap: 16px; padding: 24px 26px; }
+.x-flow li + li { border-inline-start: 1px solid var(--line); }
+.x-flow i { flex: none; width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; font-style: normal; font-weight: 650; color: #1a1405; background: linear-gradient(180deg, var(--gold2), #e4ac37); }
+.x-flow b { display: block; font-weight: 600; }
+.x-flow span { color: var(--muted); font-size: .95rem; }
+
+/* Kachelraster: die Sprachnachrichten groß, der Rest asymmetrisch daneben */
+.x-h { font-size: clamp(2rem, 4.4vw, 3.4rem); max-width: 16em; margin-bottom: clamp(28px, 4vw, 48px); }
+.x-bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.x-tile { position: relative; isolation: isolate; grid-column: span 2; padding: 28px; border-radius: 28px; background: linear-gradient(160deg, var(--card), #111b35);
+  box-shadow: 0 0 0 1px var(--line), inset 0 1px 0 rgba(255, 255, 255, .07); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.x-tile:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 30%, transparent), inset 0 1px 0 rgba(255, 255, 255, .09); }
+.x-tile h3 { font-size: 1.25rem; margin: 18px 0 8px; }
+.x-tile p { color: var(--muted); font-size: .98rem; line-height: 1.55; }
+.x-tile.big { grid-column: span 4; grid-row: span 2; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 24px; align-items: end; overflow: hidden; padding-bottom: 0; }
+.x-tile.big h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.12; letter-spacing: -.03em; margin: 0 0 14px; }
+.x-tile-text { align-self: center; padding-bottom: 28px; }
+.x-tile-shot img { display: block; width: 100%; height: auto; border-radius: 26px 26px 0 0; box-shadow: 0 0 0 8px rgba(255, 255, 255, .05); transform: translateY(14px); transition: transform .8s var(--ease); }
+.x-tile.big:hover .x-tile-shot img { transform: translateY(0); }
+.x-ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: color-mix(in srgb, var(--gold) 14%, transparent); color: var(--gold); }
+.x-ico svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.x-tile p.x-num { font-size: 3.4rem; font-weight: 700; letter-spacing: -.05em; line-height: 1; color: var(--gold); }
+.x-checks { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
+.x-checks li { position: relative; padding-inline-start: 28px; color: var(--ivory); }
+.x-checks li::before { content: ""; position: absolute; inset-inline-start: 0; top: .45em; width: 14px; height: 8px; border-left: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: rotate(-45deg); }
+
+/* Preis: ein Abo, Recap als Nebenkarte */
+.x-price { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: 20px; align-items: stretch; }
+.x-pro { padding: clamp(28px, 4vw, 48px); }
+.x-pro h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 10px 0; }
+.x-pro h2 span { color: var(--gold); }
+.x-eyebrow { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.x-amount { margin: 26px 0 6px; font-size: clamp(3rem, 6vw, 4.4rem); font-weight: 700; letter-spacing: -.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+.x-amount small { display: block; margin-top: 10px; font-size: 1rem; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+.x-pro .x-checks { margin: 24px 0 32px; }
+.x-side { display: flex; flex-direction: column; gap: 16px; }
+.x-recap { position: relative; isolation: isolate; flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 28px; border-radius: 28px; background: rgba(255, 255, 255, .035); box-shadow: 0 0 0 1px var(--line); transition: background .4s var(--ease); }
+.x-recap:hover { background: rgba(95, 208, 192, .07); }
+.x-recap img { width: 44px; height: 44px; border-radius: 12px; margin-bottom: 8px; }
+.x-recap b { font-size: 1.2rem; }
+.x-recap span { color: var(--muted); }
+.x-recap em { margin-top: auto; padding-top: 14px; font-style: normal; color: var(--teal); font-weight: 560; }
+
+/* Fragen: Überschrift links, Liste rechts */
+.x-faq { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr); gap: clamp(24px, 5vw, 72px); align-items: start; }
+.x-faq .x-h { position: sticky; top: 110px; }
+
+@media (max-width: 960px) {
+  .x-hero-grid, .x-price, .x-faq { grid-template-columns: 1fr; }
+  .x-hero-text { text-align: center; }
+  .x-hero .lead { margin-inline: auto; }
+  .x-hero .row { justify-content: center; }
+  .x-chip.c1 { inset-inline-start: -14%; }
+  .x-chip.c2 { inset-inline-end: -12%; }
+  .x-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .x-tile { grid-column: span 1; }
+  .x-tile.big { grid-column: span 2; grid-row: auto; }
+  .x-faq .x-h { position: static; }
+}
+@media (max-width: 640px) {
+  .x-flow { grid-template-columns: 1fr; }
+  .x-flow li + li { border-inline-start: 0; border-top: 1px solid var(--line); }
+  .x-bento { grid-template-columns: 1fr; }
+  .x-tile, .x-tile.big { grid-column: auto; }
+  .x-tile.big { grid-template-columns: 1fr; }
+  .x-tile-shot { max-width: 260px; margin-inline: auto; }
+  .x-chip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .x-glow, .x-chip, .x-dot { animation: none; } }

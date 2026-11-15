@@ -42,158 +42,122 @@
 <link rel="stylesheet" href="/pv.css">
 </head>
 <body data-page="home">
-<header class="nav"><nav class="switch" aria-label="Pythia"><a href="/ro/" aria-current="page"><img src="/logo.svg" alt="" width="26" height="26"><span>Pythia Voice</span></a><a href="/ro/recap"><img src="/recap-logo.svg" alt="" width="26" height="26"><span>Pythia Recap</span></a></nav><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produse<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/ro/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dictare</a><a href="/ro/#sprachnachrichten"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Mesaje vocale</a><a href="/ro/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/ro/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Toate produsele</a></div></div><a class="l" href="#funktionen">Funcții</a><a class="l" href="#produkte">Preț</a><a class="l" href="#fragen">Întrebări</a><a class="btn sm" href="/ro/download"><span>Descarcă</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro" selected>Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<header class="nav"><nav class="switch" aria-label="Pythia"><a href="/ro/" aria-current="page"><img src="/logo.svg" alt="" width="26" height="26"><span>Pythia Voice</span></a><a href="/ro/recap"><img src="/recap-logo.svg" alt="" width="26" height="26"><span>Pythia Recap</span></a></nav><a class="l" href="#funktionen">Funcții</a><a class="l" href="#produkte">Preț</a><a class="l" href="#fragen">Întrebări</a><a class="btn sm" href="/ro/download"><span>Descarcă</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro" selected>Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
 <main>
-  <section class="top-video" id="video">
-    <div class="wrap">
-      <div class="vbox bezel rv"><div class="core"><video id="demo" data-wide="/media/pythia-demo-ro" data-tall="/media/pythia-demo-ro-tall" poster="/media/pythia-demo-ro.jpg" muted loop playsinline preload="none" aria-label="Pythia în acțiune"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
+  <section class="x-hero">
+    <div class="wrap x-hero-grid">
+      <div class="x-hero-text">
+        <p class="x-pill rv"><span class="x-dot"></span>Încearcă gratuit 7 zile sau 3.000 de cuvinte.</p>
+        <h1 class="rv d1">Tu vorbești. Pythia scrie. Fără efort.</h1>
+        <p class="lead rv d2">Pythia Voice elimină umm-urile, adaugă punctuația și urmează corectările tale. Fără cont, fără configurare.</p>
+        <div class="row rv d3">
+          <a class="btn" id="sub-play" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Încearcă pe Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="x-link" href="#produkte">Vezi prețul <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="x-small rv d3">Android 13 sau mai nou. Nu există încă o versiune pentru iPhone.</p>
+      </div>
+      <div class="x-stage rv d2">
+        <div class="x-glow" aria-hidden="true"></div>
+        <div class="x-phone"><video id="demo" src="/media/pythia-voice-en.mp4" poster="/media/pythia-voice-en.jpg" muted loop playsinline preload="metadata" aria-label="Pythia în acțiune"></video>
+          <button class="x-sound" id="vsound" type="button" aria-label="Pythia în acțiune: Ton / Sound" aria-pressed="false"><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l4 6M21 9l-4 6"/></svg><svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+        </div>
+        <span class="x-chip c1" aria-hidden="true">Face ordine după tine</span>
+        <span class="x-chip c2" aria-hidden="true">Peste 90 de limbi</span>
+      </div>
     </div>
   </section>
 
-  <section class="intro" id="ablauf">
-    <div class="wrap center rv d1">
-      <h1>Tu vorbești. Pythia scrie. Fără efort.</h1>
-      <p class="lead">Pythia Voice elimină umm-urile, adaugă punctuația și urmează corectările tale. Fără cont, fără configurare.</p>
-      <div class="row">
-        <a class="btn" href="/ro/download"><span>Încearcă Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        <a class="btn ghost" href="#produkte"><span>Vezi prețul</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-      </div>
-      <p class="fine"><span>Încearcă gratuit 7 zile sau 3.000 de cuvinte.</span><a class="soon" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span></a></p>
-    </div>
+  <section class="x-steps" id="ablauf" aria-label="Cum dictezi">
     <div class="wrap">
-      <ol class="flow rv d2" aria-label="Cum dictezi">
-        <li><b>Atinge</b><span>Atinge un câmp de text, apoi butonul rotund de deasupra tastaturii.</span></li>
-        <li><b>Vorbește</b><span>Spune ce vrei să scrii. Cu pauze, cu corecturi.</span></li>
-        <li><b>Spune că ai terminat</b><span>Atinge încă o dată. Textul curat este în câmp.</span></li>
+      <ol class="x-flow rv">
+        <li><i>1</i><div><b>Atinge</b><span>Atinge un câmp de text, apoi butonul rotund de deasupra tastaturii.</span></div></li>
+        <li><i>2</i><div><b>Vorbește</b><span>Spune ce vrei să scrii. Cu pauze, cu corecturi.</span></div></li>
+        <li><i>3</i><div><b>Spune că ai terminat</b><span>Atinge încă o dată. Textul curat este în câmp.</span></div></li>
       </ol>
-      <p class="hint center">Preferi să ții apăsat? Ține apăsat butonul, vorbește, eliberează.</p>
-    </div>
-  </section>
-
-  <section id="produkte">
-    <div class="wrap">
-      <div class="prod-head rv"><h2>Trei instrumente care preiau scrisul de la tine.</h2><p class="lead">Pythia Voice Pro combină dictarea și mesajele vocale într-o abonament pe care îl poți anula oricând. Pythia Recap îl cumperi o dată și îl păstrezi.</p></div>
-      <div class="cols two">
-        <div class="bezel hl rv"><div class="core col spot">
-          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1200" loading="lazy"></div>
-          <h3 id="diktat">Pythia Voice<span>Pro</span></h3>
-          <p class="tag">Dictează în orice aplicație și transcrie mesajele vocale, într-un abonament.</p>
-          <p class="price">4,99 €<small>pe lună · sau 39,99 €/an</small></p>
-          <ul><li class="key">Încearcă gratis 7 zile sau 3.000 cuvinte</li><li>Dictare și mesaje vocale într-un abonament</li><li>Recunoașterea vocală inclusă, fără cheie API</li><li class="key">Anulează oricând în Google Play</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Află mai multe</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="sub-play" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><span>Încearcă pe Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
-        </div></div>
-        <div class="d1 bezel rc rv"><div class="core col r spot">
-          <div class="phone"><img src="/shots/r_meet.webp" alt="" width="540" height="1200" loading="lazy"></div>
-          <h3>Pythia Recap</h3>
-          <p class="tag">Înregistrează o ședință și primești un rezumat gata făcut, cu sarcini.</p>
-          <p class="price">19,99 €<small>Plată unică în euro.</small></p>
-          <ul><li class="key">Încearcă gratuit 7 zile sau 3 ședințe</li><li>Transcriere, rezumat, sarcini, vorbitori, marcaje, export PDF</li><li>După cumpărare, fără limită de durată sau număr de ședințe</li><li class="key">Actualizări incluse</li></ul>
-          <div class="acts"><a class="btn ghost block" href="/ro/recap"><span>Află mai multe</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/ro/recap#preis"><span>Cumpără Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
-        </div></div>
-      </div>
-      <p class="note">Pythia Recap este încă un achizițion unic. Dacă ai deja cumpărat Pythia Voice, păstrezi licența.</p>
+      <p class="x-small center">Preferi să ții apăsat? Ține apăsat butonul, vorbește, eliberează.</p>
     </div>
   </section>
 
   <section id="funktionen">
     <div class="wrap">
-      <h2 class="sec-h rv">Ce face Pythia pentru tine</h2>
-      <dl class="rules rv">
-        <div><dt>Vorbește în loc să scrii</dt><dd>Atinge un câmp de text, apasă butonul rotund de deasupra tastaturii și vorbește. Pythia scrie textul chiar acolo, de exemplu în WhatsApp, în e-mail sau în notițe.</dd></div>
-        <div><dt>Face ordine după tine</dt><dd>Cuvintele de umplutură dispar, punctuația apare. Dacă spui „la cinci, nu, la șase”, scrie „la șase”.</dd></div>
-        <div><dt>Peste 90 de limbi</dt><dd>Chiar amestecate în aceeași propoziție. Aplicația însăși există în 24 de limbi.</dd></div>
-        <div><dt>Anulează oricând</dt><dd>4,99 €/lună sau 39,99 €/an. Anulează cu două apăsări în Google Play, fără perioadă de răspuns, fără întrebări.</dd></div>
-        <div><dt>Recunoașterea vocală inclusă</dt><dd>Recunoașterea rulează pe serverul nostru, nu trebuie să configurezi nimic. Limita zilnică acoperă mai multe ore de vorbire.</dd></div>
-        <div><dt>Rămâne la tine</dt><dd>Fără cont. Pythia Voice nu stochează audio. În câmpurile de parolă, butonul rămâne ascuns.</dd></div>
-      </dl>
+      <h2 class="x-h rv">Ce face Pythia pentru tine</h2>
+      <div class="x-bento">
+        <article class="x-tile big spot rv" id="sprachnachrichten">
+          <div class="x-tile-text">
+            <h3>Ți-au ajuns mesajele vocale lungi?</h3>
+            <p>Distribuie din WhatsApp și din alte aplicații de mesagerie, un mesaj de trei minute durează secunde.</p>
+            <ul class="x-checks"><li>Împărțit pe minute și în paragrafe, odihnitor pentru ochi</li><li>Citește mesajele vocale WhatsApp fără bifele albastre: expeditorul nu vede că le-ai deschis</li></ul>
+          </div>
+          <div class="x-tile-shot"><img src="/shots/v_msg.webp" alt="Mesaje vocale" width="540" height="1200" loading="lazy" decoding="async"></div>
+        </article>
+        <article class="x-tile spot rv d1" id="diktat"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span><h3>Vorbește în loc să scrii</h3><p>Atinge un câmp de text, apasă butonul rotund de deasupra tastaturii și vorbește. Pythia scrie textul chiar acolo, de exemplu în WhatsApp, în e-mail sau în notițe.</p></article>
+        <article class="x-tile spot rv d2"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7M17 15l2 2 3-4"/></svg></span><h3>Face ordine după tine</h3><p>Cuvintele de umplutură dispar, punctuația apare. Dacă spui „la cinci, nu, la șase”, scrie „la șase”.</p></article>
+        <article class="x-tile spot rv"><p class="x-num" aria-hidden="true">90+</p><h3>Peste 90 de limbi</h3><p>Chiar amestecate în aceeași propoziție. Aplicația însăși există în 24 de limbi.</p></article>
+        <article class="x-tile spot rv d1"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h3l2-6 4 12 2-6h5"/></svg></span><h3>Recunoașterea vocală inclusă</h3><p>Recunoașterea rulează pe serverul nostru, nu trebuie să configurezi nimic. Limita zilnică acoperă mai multe ore de vorbire.</p></article>
+        <article class="x-tile spot rv d2"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg></span><h3>Rămâne la tine</h3><p>Fără cont. Pythia Voice nu stochează audio. În câmpurile de parolă, butonul rămâne ascuns.</p></article>
+      </div>
     </div>
   </section>
 
   <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Aplicația în acțiune</h2></div>
+    <div class="wrap"><h2 id="shots-h" class="x-h rv">Aplicația în acțiune</h2></div>
     <div class="shot-row">
       <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Dictare" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Dictare</b><span>Tu vorbești, Pythia scrie. Comod și curat.</span></figcaption></figure>
       <figure class="d1 shot rv"><div class="phone"><img src="/shots/v_msg.webp" alt="Mesaje vocale" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Mesaje vocale</b><span>Citește comod mesajele vocale lungi ca text.</span></figcaption></figure>
       <figure class="d2 shot rv"><div class="phone"><img src="/shots/v_words.webp" alt="Cuvinte" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Cuvinte</b><span>Nume și termeni tehnici care trebuie scriși corect.</span></figcaption></figure>
       <figure class="d3 shot rv"><div class="phone"><img src="/shots/v_style.webp" alt="Stil" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Stil</b><span>Stilul de scriere al textelor curățate</span></figcaption></figure>
-      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="Fragmente" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Fragmente</b><span>Spune comanda rapidă și se inserează tot textul.</span></figcaption></figure>
+      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="Scurtături" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Scurtături</b><span>Spune comanda rapidă și se inserează tot textul.</span></figcaption></figure>
     </div>
   </section>
 
-  <section id="sprachnachrichten">
-    <div class="wrap voice-grid">
-      <div class="voice-text rv">
-        <h2>Ți-au ajuns mesajele vocale lungi?</h2>
-        <p class="lead">Vrei doar să citești repede și acum nu poți asculta? Sau nu ai răbdare pentru „romanele” pe care le înregistrează unii oameni, iar tu citești mai repede decât vorbesc ei? Atunci Pythia Voice e pentru tine: trimite mesajul mai departe și citește-l ca text.</p>
-        <ul class="voice-points">
-          <li>Distribuie din WhatsApp și din alte aplicații de mesagerie, un mesaj de trei minute durează secunde</li>
-          <li>Împărțit pe minute și în paragrafe, odihnitor pentru ochi</li>
-          <li class="key">Citește mesajele vocale WhatsApp fără bifele albastre: expeditorul nu vede că le-ai deschis</li>
-          <li>Încearcă gratuit cu 15 mesaje sau 7 zile</li>
-        </ul>
-        <div class="row">
-          <a class="btn ghost" href="/ro/pythia"><span>Află mai multe</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn" id="sub-play-2" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><span>Încearcă pe Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        </div>
-        <p class="mt2 small dim">Inclus în Pythia Voice Pro, împreună cu dictarea.</p>
-      </div>
-      <div class="d1 bezel rv"><figure class="core vm-demo" aria-label="Pythia Voice îl transformă în text, împărțit pe minute">
-        <div class="vm-in">
-          <span class="vm-play" aria-hidden="true"></span>
-          <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <span class="vm-len">3:19</span>
-        </div>
-        <p class="vm-cap">Mesaj vocal din WhatsApp, 3 minute și 19 secunde</p>
-        <div class="vm-arrow" aria-hidden="true">↓</div>
-        <div class="vm-out">
-          <div><b>0:00</b><p>Salut Anna, despre sâmbătă: ne-am gândit să începem la cinci la noi. Grătarul e gata, Tom aduce băuturile.</p></div>
-          <div><b>1:00</b><p>Încă ceva: mama nu ajunge înainte de șapte, așa că nu o așteptați cu tortul.</p></div>
-          <div><b>2:00</b><p>Dacă plouă, intrăm pur și simplu înăuntru. Spune-mi dacă vii cu cineva, ca să plănuiesc locurile.</p></div>
-          <div><b>3:00</b><p>Gata, asta e tot. Pe curând!</p></div>
-        </div>
-        <p class="vm-cap">Pythia Voice îl transformă în text, împărțit pe minute</p>
-      </figure></div>
-    </div>
-  </section>
-
-  <section id="download">
-    <div class="wrap">
-      <h2 class="rv">Pentru Android</h2>
-      <ol class="mt5 steps rv">
-        <li><b>Descarcă aplicația</b><span>Descarcă Pythia Voice de pe Google Play și instalează-l pe telefonul tău Android.</span></li>
-        <li><b>Testează</b><span>Încearcă totul gratis: dictare 7 zile sau 3.000 cuvinte, mesaje vocale 7 zile sau 15 mesaje.</span></li>
-        <li><b>Îți place? Abonează-te</b><span>Abonează-te la Pythia Voice Pro direct în aplicație, lunar sau anual. Poți anula oricând în Google Play.</span></li>
-      </ol>
-      <div class="row mt5"><a class="btn" href="/ro/download"><span>Descarcă</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span></a></div>
-      <p class="dim mt4">Android 13 sau mai nou. Nu există încă o versiune pentru iPhone.</p>
-      <p class="setup">Nu este nimic de configurat pentru recunoașterea vocală. Aplicația te conduce doar prin microfon, accesibilitate și excepția bateriei.</p>
+  <section id="produkte">
+    <div class="wrap x-price">
+      <div class="bezel hl rv"><div class="core x-pro spot">
+        <p class="x-eyebrow">Preț</p>
+        <h2>Pythia Voice <span>Pro</span></h2>
+        <p class="dim">Dictează în orice aplicație și transcrie mesajele vocale, într-un abonament.</p>
+        <p class="x-amount">4,99 €<small>pe lună · sau 39,99 €/an</small></p>
+        <ul class="x-checks"><li>Încearcă gratis 7 zile sau 3.000 cuvinte</li><li>Dictare și mesaje vocale într-un abonament</li><li>Recunoașterea vocală inclusă, fără cheie API</li><li>Anulează oricând în Google Play</li></ul>
+        <a class="btn block" id="sub-play-2" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Încearcă pe Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+      </div></div>
+      <aside class="x-side rv d1">
+        <a class="x-recap spot" href="/ro/recap">
+          <img src="/recap-logo.svg" alt="" width="44" height="44">
+          <b>Pythia Recap</b>
+          <span>Înregistrează o ședință și primești un rezumat gata făcut, cu sarcini.</span>
+          <em>Află mai multe <span aria-hidden="true">→</span></em>
+        </a>
+        <p class="x-small">Pythia Recap este încă un achizițion unic. Dacă ai deja cumpărat Pythia Voice, păstrezi licența.</p>
+      </aside>
     </div>
   </section>
 
   <section id="fragen">
-    <div class="narrow">
-      <h2 class="sec-h">Întrebări frecvente</h2>
-      <details open><summary>Cât costă Pythia Voice?</summary><p>După 7 zile gratuite (sau 3.000 cuvinte), 4,99 €/lună sau 39,99 €/an prin Google Play. Acesta acoperă dictarea, mesajele vocale și recunoașterea vocală. Poți anula oricând în Google Play; abonamentul continuă până la sfârșitul perioadei plătite.</p></details>
-      <details><summary>Am nevoie de un cont sau o cheie API?</summary><p>Nu. Recunoașterea rulează pe serverul nostru. Dacă ai deja o cheie Groq proprie, o poți introduce în setări.</p></details>
-      <details><summary>Am cumpărat deja Pythia Voice o dată. Ce se schimbă?</summary><p>Nimic. Licența ta rămâne validă și funcționează ca înainte cu cheia Groq proprie. Nu ai nevoie de un abonament.</p></details>
-      <details><summary>Unde ajung înregistrările mele?</summary><p>Audio și text trec prin serverul nostru către furnizorul nostru de IA pentru transcriere și curățare. Nici serverul nostru, nici aplicația nu le stochează, și nu le transmitem altcuiva.</p></details>
-      <details><summary>De ce are nevoie aplicația de accesibilitate?</summary><p>Doar așa poate apărea butonul deasupra tastaturii și poate ajunge textul în câmpul în care scrii. Se citește doar acel câmp de text.<br><a class="vid-link" href="https://www.youtube.com/watch?v=2iXTAiaI05w" target="_blank" rel="noopener">Video: serviciul de accesibilitate – la ce folosește și cum îl activezi (1 min, în engleză)</a></p></details>
-      <details><summary>Funcționează offline?</summary><p>Nu. Recunoașterea necesită conexiune la internet.</p></details>
-      <details><summary>Există versiune pentru iPhone sau Windows?</summary><p>Încă nu. Deocamdată Pythia Voice există doar pentru Android.</p></details>
-      <details><summary>Cum funcționează mesajele vocale?</summary><p>În WhatsApp sau într-o altă aplicație de mesagerie, deschide meniul mesajului vocal, alege Distribuie și selectează Pythia Voice. Aplicația îl transcrie și arată textul împărțit pe minute, gata de copiat sau de trimis mai departe.</p></details>
-      <details><summary>Cât de lung poate fi un mesaj vocal?</summary><p>Funcționează fișiere de până la 4 MB, ceea ce este mai mult decât suficient pentru mesaje vocale lungi (mesajele WhatsApp sunt foarte mici). Un mesaj de trei minute durează doar câteva secunde.</p></details>
+    <div class="wrap x-faq">
+      <h2 class="x-h">Întrebări frecvente</h2>
+      <div>
+        <details open><summary>Cât costă Pythia Voice?</summary><p>După 7 zile gratuite (sau 3.000 cuvinte), 4,99 €/lună sau 39,99 €/an prin Google Play. Acesta acoperă dictarea, mesajele vocale și recunoașterea vocală. Poți anula oricând în Google Play; abonamentul continuă până la sfârșitul perioadei plătite.</p></details>
+        <details><summary>Am nevoie de un cont sau o cheie API?</summary><p>Nu. Recunoașterea rulează pe serverul nostru. Dacă ai deja o cheie Groq proprie, o poți introduce în setări.</p></details>
+        <details><summary>Cum funcționează mesajele vocale?</summary><p>În WhatsApp sau într-o altă aplicație de mesagerie, deschide meniul mesajului vocal, alege Distribuie și selectează Pythia Voice. Aplicația îl transcrie și arată textul împărțit pe minute, gata de copiat sau de trimis mai departe.</p></details>
+        <details><summary>Unde ajung înregistrările mele?</summary><p>Audio și text trec prin serverul nostru către furnizorul nostru de IA pentru transcriere și curățare. Nici serverul nostru, nici aplicația nu le stochează, și nu le transmitem altcuiva.</p></details>
+        <details><summary>De ce are nevoie aplicația de accesibilitate?</summary><p>Doar așa poate apărea butonul deasupra tastaturii și poate ajunge textul în câmpul în care scrii. Se citește doar acel câmp de text.<br><a class="vid-link" href="https://www.youtube.com/watch?v=2iXTAiaI05w" target="_blank" rel="noopener">Video: serviciul de accesibilitate – la ce folosește și cum îl activezi (1 min, în engleză)</a></p></details>
+        <details><summary>Am cumpărat deja Pythia Voice o dată. Ce se schimbă?</summary><p>Nimic. Licența ta rămâne validă și funcționează ca înainte cu cheia Groq proprie. Nu ai nevoie de un abonament.</p></details>
+        <details><summary>Funcționează offline?</summary><p>Nu. Recunoașterea necesită conexiune la internet.</p></details>
+        <details><summary>Există versiune pentru iPhone sau Windows?</summary><p>Încă nu. Deocamdată Pythia Voice există doar pentru Android.</p></details>
+        <details><summary>Cât de lung poate fi un mesaj vocal?</summary><p>Funcționează fișiere de până la 4 MB, ceea ce este mai mult decât suficient pentru mesaje vocale lungi (mesajele WhatsApp sunt foarte mici). Un mesaj de trei minute durează doar câteva secunde.</p></details>
+      </div>
     </div>
   </section>
 
-  <section class="cta-band">
+  <section class="cta-band" id="download">
     <div class="wrap"><div class="bezel rv"><div class="core">
       <h2>Încearcă 7 zile gratuit.</h2>
       <p class="lead">Fără cont, fără cheie API. Dacă vă place, continuați cu Pythia Voice Pro.</p>
-      <div class="row"><a class="btn" href="/ro/download"><span>Încearcă Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/ro/pythia"><span>Toate produsele</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <div class="row"><a class="btn" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="x-link" href="/ro/download">Descarcă APK <span aria-hidden="true">→</span></a></div>
     </div></div></div>
   </section>
 </main>
-<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/ro/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Trei instrumente care preiau scrisul de la tine.</p></div><nav class="foot-links" aria-label="Info"><a href="/ro/">Pythia Voice</a><a href="/ro/recap">Pythia Recap</a><a href="/ro/pythia">Toate produsele</a><a href="/impressum">Informații legale</a><a href="/privacy">Confidențialitate</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy">© Christoph Grohme · Pythia Voice, Pythia Recap</p></div></footer>
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/ro/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Tu vorbești. Pythia scrie. Fără efort.</p></div><nav class="foot-links" aria-label="Info"><a href="/ro/">Pythia Voice</a><a href="/ro/recap">Pythia Recap</a><a href="/ro/pythia">Toate produsele</a><a href="/impressum">Informații legale</a><a href="/privacy">Confidențialitate</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy">© Christoph Grohme · Pythia Voice, Pythia Recap</p></div></footer>
 <script src="/config.js"></script>
 <script src="/pv.js"></script>
 </body>

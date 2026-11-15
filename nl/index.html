@@ -42,158 +42,122 @@
 <link rel="stylesheet" href="/pv.css">
 </head>
 <body data-page="home">
-<header class="nav"><nav class="switch" aria-label="Pythia"><a href="/nl/" aria-current="page"><img src="/logo.svg" alt="" width="26" height="26"><span>Pythia Voice</span></a><a href="/nl/recap"><img src="/recap-logo.svg" alt="" width="26" height="26"><span>Pythia Recap</span></a></nav><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Producten<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/nl/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Dicteren</a><a href="/nl/#sprachnachrichten"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Spraakberichten</a><a href="/nl/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/nl/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Alle producten</a></div></div><a class="l" href="#funktionen">Functies</a><a class="l" href="#produkte">Prijs</a><a class="l" href="#fragen">Vragen</a><a class="btn sm" href="/nl/download"><span>Download</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl" selected>Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<header class="nav"><nav class="switch" aria-label="Pythia"><a href="/nl/" aria-current="page"><img src="/logo.svg" alt="" width="26" height="26"><span>Pythia Voice</span></a><a href="/nl/recap"><img src="/recap-logo.svg" alt="" width="26" height="26"><span>Pythia Recap</span></a></nav><a class="l" href="#funktionen">Functies</a><a class="l" href="#produkte">Prijs</a><a class="l" href="#fragen">Vragen</a><a class="btn sm" href="/nl/download"><span>Download</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl" selected>Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
 <main>
-  <section class="top-video" id="video">
-    <div class="wrap">
-      <div class="vbox bezel rv"><div class="core"><video id="demo" data-wide="/media/pythia-demo-nl" data-tall="/media/pythia-demo-nl-tall" poster="/media/pythia-demo-nl.jpg" muted loop playsinline preload="none" aria-label="Pythia in actie"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
+  <section class="x-hero">
+    <div class="wrap x-hero-grid">
+      <div class="x-hero-text">
+        <p class="x-pill rv"><span class="x-dot"></span>7 dagen of 3.000 woorden gratis proberen.</p>
+        <h1 class="rv d1">Jij praat. Pythia typt. Moeiteloos.</h1>
+        <p class="lead rv d2">Pythia Voice verwijdert de ums, voegt interpunctie toe en volgt je correcties. Geen account, geen instelling.</p>
+        <div class="row rv d3">
+          <a class="btn" id="sub-play" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Probeer op Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="x-link" href="#produkte">Bekijk de prijs <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="x-small rv d3">Android 13 of nieuwer. Er is nog geen iPhone-versie.</p>
+      </div>
+      <div class="x-stage rv d2">
+        <div class="x-glow" aria-hidden="true"></div>
+        <div class="x-phone"><video id="demo" src="/media/pythia-voice-en.mp4" poster="/media/pythia-voice-en.jpg" muted loop playsinline preload="metadata" aria-label="Pythia in actie"></video>
+          <button class="x-sound" id="vsound" type="button" aria-label="Pythia in actie: Ton / Sound" aria-pressed="false"><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l4 6M21 9l-4 6"/></svg><svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+        </div>
+        <span class="x-chip c1" aria-hidden="true">Ruimt achter je op</span>
+        <span class="x-chip c2" aria-hidden="true">90+ talen</span>
+      </div>
     </div>
   </section>
 
-  <section class="intro" id="ablauf">
-    <div class="wrap center rv d1">
-      <h1>Jij praat. Pythia typt. Moeiteloos.</h1>
-      <p class="lead">Pythia Voice verwijdert de ums, voegt interpunctie toe en volgt je correcties. Geen account, geen instelling.</p>
-      <div class="row">
-        <a class="btn" href="/nl/download"><span>Probeer Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        <a class="btn ghost" href="#produkte"><span>Bekijk de prijs</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-      </div>
-      <p class="fine"><span>7 dagen of 3.000 woorden gratis proberen.</span><a class="soon" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span></a></p>
-    </div>
+  <section class="x-steps" id="ablauf" aria-label="Zo dicteer je">
     <div class="wrap">
-      <ol class="flow rv d2" aria-label="Zo dicteer je">
-        <li><b>Tikken</b><span>Tik op een tekstveld en dan op de ronde knop boven het toetsenbord.</span></li>
-        <li><b>Spreken</b><span>Zeg wat je wilt schrijven. Met pauzes, met correcties.</span></li>
-        <li><b>Zeg dat je klaar bent</b><span>Tik nog een keer. De schone tekst staat in het veld.</span></li>
+      <ol class="x-flow rv">
+        <li><i>1</i><div><b>Tikken</b><span>Tik op een tekstveld en dan op de ronde knop boven het toetsenbord.</span></div></li>
+        <li><i>2</i><div><b>Spreken</b><span>Zeg wat je wilt schrijven. Met pauzes, met correcties.</span></div></li>
+        <li><i>3</i><div><b>Zeg dat je klaar bent</b><span>Tik nog een keer. De schone tekst staat in het veld.</span></div></li>
       </ol>
-      <p class="hint center">Liever ingedrukt houden? Houd de knop ingedrukt, spreek, laat los.</p>
-    </div>
-  </section>
-
-  <section id="produkte">
-    <div class="wrap">
-      <div class="prod-head rv"><h2>Drie tools die het typen van je overnemen.</h2><p class="lead">Pythia Voice Pro combineert dictatie en spraakberichten in één abonnement dat je op elk moment kunt annuleren. Pythia Recap koop je een keer en bewaar je.</p></div>
-      <div class="cols two">
-        <div class="bezel hl rv"><div class="core col spot">
-          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1200" loading="lazy"></div>
-          <h3 id="diktat">Pythia Voice<span>Pro</span></h3>
-          <p class="tag">Dicteer in elke app en transcribeer spraakberichten, in één abonnement.</p>
-          <p class="price">4,99 €<small>per maand · of 39,99 € per jaar</small></p>
-          <ul><li class="key">Probeer gratis voor 7 dagen of 3.000 woorden</li><li>Dicteren en spraakberichten in één abonnement</li><li>Spraakherkenning inbegrepen, geen API-sleutel</li><li class="key">Annuleer op elk moment in Google Play</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Meer informatie</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="sub-play" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><span>Probeer op Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
-        </div></div>
-        <div class="d1 bezel rc rv"><div class="core col r spot">
-          <div class="phone"><img src="/shots/r_meet.webp" alt="" width="540" height="1200" loading="lazy"></div>
-          <h3>Pythia Recap</h3>
-          <p class="tag">Neem een vergadering op en krijg een kant-en-klare samenvatting met taken.</p>
-          <p class="price">€ 19,99<small>Eenmalige betaling in euro.</small></p>
-          <ul><li class="key">7 dagen of 3 vergaderingen gratis proberen</li><li>Transcriptie, samenvatting, taken, sprekers, markeringen, pdf-export</li><li>Na aankoop geen limiet op lengte of aantal vergaderingen</li><li class="key">Updates inbegrepen</li></ul>
-          <div class="acts"><a class="btn ghost block" href="/nl/recap"><span>Meer informatie</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/nl/recap#preis"><span>Pythia Recap kopen</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
-        </div></div>
-      </div>
-      <p class="note">Pythia Recap is nog steeds een eenmalige aankoop. Wie Pythia Voice al heeft gekocht, behoudt zijn licentie.</p>
+      <p class="x-small center">Liever ingedrukt houden? Houd de knop ingedrukt, spreek, laat los.</p>
     </div>
   </section>
 
   <section id="funktionen">
     <div class="wrap">
-      <h2 class="sec-h rv">Dit neemt Pythia van je over</h2>
-      <dl class="rules rv">
-        <div><dt>Praten in plaats van typen</dt><dd>Tik op een tekstveld, druk op de ronde knop boven het toetsenbord en praat. Pythia zet de tekst er meteen neer, bijvoorbeeld in WhatsApp, e-mail of notities.</dd></div>
-        <div><dt>Ruimt achter je op</dt><dd>Stopwoorden verdwijnen, leestekens komen erbij. Zeg je “om vijf, nee, om zes”, dan staat er “om zes”.</dd></div>
-        <div><dt>90+ talen</dt><dd>Ook door elkaar in één zin. De app zelf is er in 24 talen.</dd></div>
-        <div><dt>Annuleer op elk moment</dt><dd>4,99 € per maand of 39,99 € per jaar. Annuleer met twee tikken in Google Play, geen termijn, geen vragen.</dd></div>
-        <div><dt>Spraakherkenning inbegrepen</dt><dd>Herkenning werkt op onze server, er is niets in te stellen. Het dagelijkse limiet dekt meerdere uren spraak af.</dd></div>
-        <div><dt>Blijft bij jou</dt><dd>Geen account. Pythia Voice slaat geen audio op. In wachtwoordvelden blijft de knop verborgen.</dd></div>
-      </dl>
+      <h2 class="x-h rv">Dit neemt Pythia van je over</h2>
+      <div class="x-bento">
+        <article class="x-tile big spot rv" id="sprachnachrichten">
+          <div class="x-tile-text">
+            <h3>Moe van lange spraakberichten?</h3>
+            <p>Delen vanuit WhatsApp en andere berichtenapps, een bericht van drie minuten kost seconden.</p>
+            <ul class="x-checks"><li>Per minuut en in alinea’s verdeeld, prettig voor de ogen</li><li>Lees WhatsApp-spraakberichten zonder blauwe vinkjes: de afzender ziet niet dat je het hebt geopend</li></ul>
+          </div>
+          <div class="x-tile-shot"><img src="/shots/v_msg.webp" alt="Spraakberichten" width="540" height="1200" loading="lazy" decoding="async"></div>
+        </article>
+        <article class="x-tile spot rv d1" id="diktat"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span><h3>Praten in plaats van typen</h3><p>Tik op een tekstveld, druk op de ronde knop boven het toetsenbord en praat. Pythia zet de tekst er meteen neer, bijvoorbeeld in WhatsApp, e-mail of notities.</p></article>
+        <article class="x-tile spot rv d2"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7M17 15l2 2 3-4"/></svg></span><h3>Ruimt achter je op</h3><p>Stopwoorden verdwijnen, leestekens komen erbij. Zeg je “om vijf, nee, om zes”, dan staat er “om zes”.</p></article>
+        <article class="x-tile spot rv"><p class="x-num" aria-hidden="true">90+</p><h3>90+ talen</h3><p>Ook door elkaar in één zin. De app zelf is er in 24 talen.</p></article>
+        <article class="x-tile spot rv d1"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h3l2-6 4 12 2-6h5"/></svg></span><h3>Spraakherkenning inbegrepen</h3><p>Herkenning werkt op onze server, er is niets in te stellen. Het dagelijkse limiet dekt meerdere uren spraak af.</p></article>
+        <article class="x-tile spot rv d2"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg></span><h3>Blijft bij jou</h3><p>Geen account. Pythia Voice slaat geen audio op. In wachtwoordvelden blijft de knop verborgen.</p></article>
+      </div>
     </div>
   </section>
 
   <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h" class="sec-h rv">De app in actie</h2></div>
+    <div class="wrap"><h2 id="shots-h" class="x-h rv">De app in actie</h2></div>
     <div class="shot-row">
       <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Dicteren" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Dicteren</b><span>Jij praat, Pythia schrijft. Gemakkelijk en schoon.</span></figcaption></figure>
       <figure class="d1 shot rv"><div class="phone"><img src="/shots/v_msg.webp" alt="Spraakberichten" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Spraakberichten</b><span>Lees lange spraakberichten gemakkelijk als tekst.</span></figcaption></figure>
       <figure class="d2 shot rv"><div class="phone"><img src="/shots/v_words.webp" alt="Woorden" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Woorden</b><span>Namen en vaktermen die juist gespeld moeten worden.</span></figcaption></figure>
       <figure class="d3 shot rv"><div class="phone"><img src="/shots/v_style.webp" alt="Stijl" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Stijl</b><span>Schrijfstijl van de opgeschoonde teksten</span></figcaption></figure>
-      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="Snippets" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Snippets</b><span>Zeg de snelkoppeling en de volledige tekst wordt ingevoegd.</span></figcaption></figure>
+      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="Snelkoppelingen" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Snelkoppelingen</b><span>Zeg de snelkoppeling en de volledige tekst wordt ingevoegd.</span></figcaption></figure>
     </div>
   </section>
 
-  <section id="sprachnachrichten">
-    <div class="wrap voice-grid">
-      <div class="voice-text rv">
-        <h2>Moe van lange spraakberichten?</h2>
-        <p class="lead">Wil je gewoon snel lezen en kun je nu niet luisteren? Of heb je geen geduld voor de romans die sommige mensen inspreken, en lees je sneller dan ze praten? Dan is Pythia Voice iets voor jou: deel het bericht en lees het als tekst.</p>
-        <ul class="voice-points">
-          <li>Delen vanuit WhatsApp en andere berichtenapps, een bericht van drie minuten kost seconden</li>
-          <li>Per minuut en in alinea’s verdeeld, prettig voor de ogen</li>
-          <li class="key">Lees WhatsApp-spraakberichten zonder blauwe vinkjes: de afzender ziet niet dat je het hebt geopend</li>
-          <li>Probeer gratis met 15 berichten of 7 dagen</li>
-        </ul>
-        <div class="row">
-          <a class="btn ghost" href="/nl/pythia"><span>Meer informatie</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn" id="sub-play-2" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><span>Probeer op Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        </div>
-        <p class="mt2 small dim">Inbegrepen in Pythia Voice Pro, samen met dicteren.</p>
-      </div>
-      <div class="d1 bezel rv"><figure class="core vm-demo" aria-label="Pythia Voice maakt er tekst van, per minuut verdeeld">
-        <div class="vm-in">
-          <span class="vm-play" aria-hidden="true"></span>
-          <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <span class="vm-len">3:19</span>
-        </div>
-        <p class="vm-cap">Spraakbericht uit WhatsApp, 3 minuten 19</p>
-        <div class="vm-arrow" aria-hidden="true">↓</div>
-        <div class="vm-out">
-          <div><b>0:00</b><p>Hoi Anna, over zaterdag: we dachten om vijf uur bij ons te beginnen. De barbecue staat klaar, Tom neemt de drankjes mee.</p></div>
-          <div><b>1:00</b><p>Nog één ding: mama kan niet voor zeven uur, wacht dus niet met de taart op haar.</p></div>
-          <div><b>2:00</b><p>Als het regent, gaan we gewoon naar binnen. Laat me weten of je iemand meeneemt, dan plan ik de plaatsen.</p></div>
-          <div><b>3:00</b><p>Oké, dat was het. Tot snel!</p></div>
-        </div>
-        <p class="vm-cap">Pythia Voice maakt er tekst van, per minuut verdeeld</p>
-      </figure></div>
-    </div>
-  </section>
-
-  <section id="download">
-    <div class="wrap">
-      <h2 class="rv">Voor Android</h2>
-      <ol class="mt5 steps rv">
-        <li><b>App downloaden</b><span>Krijg Pythia Voice bij Google Play en installeer het op uw Android-telefoon.</span></li>
-        <li><b>Uitproberen</b><span>Alles gratis uitproberen: dictatie 7 dagen of 3.000 woorden, spraakberichten 7 dagen of 15 berichten.</span></li>
-        <li><b>Vind je leuk? Abonneer</b><span>Abonneer u direct in de app op Pythia Voice Pro, maandelijks of jaarlijks. U kunt op elk moment annuleren in Google Play.</span></li>
-      </ol>
-      <div class="row mt5"><a class="btn" href="/nl/download"><span>Download</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span></a></div>
-      <p class="dim mt4">Android 13 of nieuwer. Er is nog geen iPhone-versie.</p>
-      <p class="setup">Er is niets in te stellen voor spraakherkenning. De app leidt u alleen door het microfoon-, toegankelijkheids- en batterijuitzonderingsproces.</p>
+  <section id="produkte">
+    <div class="wrap x-price">
+      <div class="bezel hl rv"><div class="core x-pro spot">
+        <p class="x-eyebrow">Prijs</p>
+        <h2>Pythia Voice <span>Pro</span></h2>
+        <p class="dim">Dicteer in elke app en transcribeer spraakberichten, in één abonnement.</p>
+        <p class="x-amount">4,99 €<small>per maand · of 39,99 € per jaar</small></p>
+        <ul class="x-checks"><li>Probeer gratis voor 7 dagen of 3.000 woorden</li><li>Dicteren en spraakberichten in één abonnement</li><li>Spraakherkenning inbegrepen, geen API-sleutel</li><li>Annuleer op elk moment in Google Play</li></ul>
+        <a class="btn block" id="sub-play-2" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Probeer op Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+      </div></div>
+      <aside class="x-side rv d1">
+        <a class="x-recap spot" href="/nl/recap">
+          <img src="/recap-logo.svg" alt="" width="44" height="44">
+          <b>Pythia Recap</b>
+          <span>Neem een vergadering op en krijg een kant-en-klare samenvatting met taken.</span>
+          <em>Meer informatie <span aria-hidden="true">→</span></em>
+        </a>
+        <p class="x-small">Pythia Recap is nog steeds een eenmalige aankoop. Wie Pythia Voice al heeft gekocht, behoudt zijn licentie.</p>
+      </aside>
     </div>
   </section>
 
   <section id="fragen">
-    <div class="narrow">
-      <h2 class="sec-h">Veelgestelde vragen</h2>
-      <details open><summary>Hoeveel kost Pythia Voice?</summary><p>Na 7 gratis dagen (of 3.000 woorden), 4,99 € per maand of 39,99 € per jaar via Google Play. Dat omvat dicteren, spraakberichten en spraakherkenning. U kunt op elk moment annuleren in Google Play; de abonnement loopt tot het einde van de betaalde periode.</p></details>
-      <details><summary>Heb ik een account of API-sleutel nodig?</summary><p>Nee. Herkenning werkt op onze server. Als u al uw eigen Groq-sleutel heeft, kunt u deze invoeren in de instellingen.</p></details>
-      <details><summary>Ik heb Pythia Voice al een keer gekocht. Wat verandert er?</summary><p>Niets. Uw licentie blijft geldig en werkt zoals voorheen met uw eigen Groq-sleutel. U heeft geen abonnement nodig.</p></details>
-      <details><summary>Waar gaan mijn opnames naar toe?</summary><p>Audio en tekst gaan via onze server naar onze AI-leverancier om getranscribeerd en opgeschoond te worden. Zowel onze server als de app slaan ze niet op, en geven ze niet door aan anderen.</p></details>
-      <details><summary>Waarom heeft de app Toegankelijkheid nodig?</summary><p>Alleen zo kan de knop boven het toetsenbord verschijnen en de tekst in het veld terechtkomen waarin je typt. Alleen dat tekstveld wordt gelezen.<br><a class="vid-link" href="https://www.youtube.com/watch?v=2iXTAiaI05w" target="_blank" rel="noopener">Video: de toegankelijkheidsservice – waarvoor en hoe je hem inschakelt (1 min, Engels)</a></p></details>
-      <details><summary>Werkt het offline?</summary><p>Nee. Herkenning heeft een internetverbinding nodig.</p></details>
-      <details><summary>Is er een versie voor iPhone of Windows?</summary><p>Nog niet. Pythia Voice is voorlopig alleen voor Android.</p></details>
-      <details><summary>Hoe werken spraakberichten?</summary><p>Open in WhatsApp of een andere berichtenapp het menu van een spraakbericht, kies Delen en selecteer Pythia Voice. De app zet het om in tekst en toont die per minuut verdeeld, klaar om te kopiëren of te delen.</p></details>
-      <details><summary>Hoe lang mag een spraakbericht zijn?</summary><p>Bestanden tot 4 MB werken, wat meer dan voldoende is voor lange spraakberichten (WhatsApp-berichten zijn erg klein). Een bericht van drie minuten kost slechts een paar seconden.</p></details>
+    <div class="wrap x-faq">
+      <h2 class="x-h">Veelgestelde vragen</h2>
+      <div>
+        <details open><summary>Hoeveel kost Pythia Voice?</summary><p>Na 7 gratis dagen (of 3.000 woorden), 4,99 € per maand of 39,99 € per jaar via Google Play. Dat omvat dicteren, spraakberichten en spraakherkenning. U kunt op elk moment annuleren in Google Play; de abonnement loopt tot het einde van de betaalde periode.</p></details>
+        <details><summary>Heb ik een account of API-sleutel nodig?</summary><p>Nee. Herkenning werkt op onze server. Als u al uw eigen Groq-sleutel heeft, kunt u deze invoeren in de instellingen.</p></details>
+        <details><summary>Hoe werken spraakberichten?</summary><p>Open in WhatsApp of een andere berichtenapp het menu van een spraakbericht, kies Delen en selecteer Pythia Voice. De app zet het om in tekst en toont die per minuut verdeeld, klaar om te kopiëren of te delen.</p></details>
+        <details><summary>Waar gaan mijn opnames naar toe?</summary><p>Audio en tekst gaan via onze server naar onze AI-leverancier om getranscribeerd en opgeschoond te worden. Zowel onze server als de app slaan ze niet op, en geven ze niet door aan anderen.</p></details>
+        <details><summary>Waarom heeft de app Toegankelijkheid nodig?</summary><p>Alleen zo kan de knop boven het toetsenbord verschijnen en de tekst in het veld terechtkomen waarin je typt. Alleen dat tekstveld wordt gelezen.<br><a class="vid-link" href="https://www.youtube.com/watch?v=2iXTAiaI05w" target="_blank" rel="noopener">Video: de toegankelijkheidsservice – waarvoor en hoe je hem inschakelt (1 min, Engels)</a></p></details>
+        <details><summary>Ik heb Pythia Voice al een keer gekocht. Wat verandert er?</summary><p>Niets. Uw licentie blijft geldig en werkt zoals voorheen met uw eigen Groq-sleutel. U heeft geen abonnement nodig.</p></details>
+        <details><summary>Werkt het offline?</summary><p>Nee. Herkenning heeft een internetverbinding nodig.</p></details>
+        <details><summary>Is er een versie voor iPhone of Windows?</summary><p>Nog niet. Pythia Voice is voorlopig alleen voor Android.</p></details>
+        <details><summary>Hoe lang mag een spraakbericht zijn?</summary><p>Bestanden tot 4 MB werken, wat meer dan voldoende is voor lange spraakberichten (WhatsApp-berichten zijn erg klein). Een bericht van drie minuten kost slechts een paar seconden.</p></details>
+      </div>
     </div>
   </section>
 
-  <section class="cta-band">
+  <section class="cta-band" id="download">
     <div class="wrap"><div class="bezel rv"><div class="core">
       <h2>Probeer het 7 dagen gratis.</h2>
       <p class="lead">Geen account, geen API-sleutel. Als je het leuk vindt, ga dan verder met Pythia Voice Pro.</p>
-      <div class="row"><a class="btn" href="/nl/download"><span>Probeer Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/nl/pythia"><span>Alle producten</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <div class="row"><a class="btn" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="x-link" href="/nl/download">Download APK <span aria-hidden="true">→</span></a></div>
     </div></div></div>
   </section>
 </main>
-<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/nl/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Drie tools die het typen van je overnemen.</p></div><nav class="foot-links" aria-label="Info"><a href="/nl/">Pythia Voice</a><a href="/nl/recap">Pythia Recap</a><a href="/nl/pythia">Alle producten</a><a href="/impressum">Colofon</a><a href="/privacy">Privacy</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy">© Christoph Grohme · Pythia Voice, Pythia Recap</p></div></footer>
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/nl/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Jij praat. Pythia typt. Moeiteloos.</p></div><nav class="foot-links" aria-label="Info"><a href="/nl/">Pythia Voice</a><a href="/nl/recap">Pythia Recap</a><a href="/nl/pythia">Alle producten</a><a href="/impressum">Colofon</a><a href="/privacy">Privacy</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy">© Christoph Grohme · Pythia Voice, Pythia Recap</p></div></footer>
 <script src="/config.js"></script>
 <script src="/pv.js"></script>
 </body>

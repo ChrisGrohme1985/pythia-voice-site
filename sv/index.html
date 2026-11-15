@@ -42,158 +42,122 @@
 <link rel="stylesheet" href="/pv.css">
 </head>
 <body data-page="home">
-<header class="nav"><nav class="switch" aria-label="Pythia"><a href="/sv/" aria-current="page"><img src="/logo.svg" alt="" width="26" height="26"><span>Pythia Voice</span></a><a href="/sv/recap"><img src="/recap-logo.svg" alt="" width="26" height="26"><span>Pythia Recap</span></a></nav><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">Produkter<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/sv/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Diktera</a><a href="/sv/#sprachnachrichten"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · Röstmeddelanden</a><a href="/sv/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/sv/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Alla produkter</a></div></div><a class="l" href="#funktionen">Funktioner</a><a class="l" href="#produkte">Pris</a><a class="l" href="#fragen">Frågor</a><a class="btn sm" href="/sv/download"><span>Ladda ner</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv" selected>Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<header class="nav"><nav class="switch" aria-label="Pythia"><a href="/sv/" aria-current="page"><img src="/logo.svg" alt="" width="26" height="26"><span>Pythia Voice</span></a><a href="/sv/recap"><img src="/recap-logo.svg" alt="" width="26" height="26"><span>Pythia Recap</span></a></nav><a class="l" href="#funktionen">Funktioner</a><a class="l" href="#produkte">Pris</a><a class="l" href="#fragen">Frågor</a><a class="btn sm" href="/sv/download"><span>Ladda ner</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh">中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv" selected>Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
 <main>
-  <section class="top-video" id="video">
-    <div class="wrap">
-      <div class="vbox bezel rv"><div class="core"><video id="demo" data-wide="/media/pythia-demo-sv" data-tall="/media/pythia-demo-sv-tall" poster="/media/pythia-demo-sv.jpg" muted loop playsinline preload="none" aria-label="Pythia i farten"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
+  <section class="x-hero">
+    <div class="wrap x-hero-grid">
+      <div class="x-hero-text">
+        <p class="x-pill rv"><span class="x-dot"></span>Testa gratis i 7 dagar eller 3 000 ord.</p>
+        <h1 class="rv d1">Du pratar. Pythia skriver. Utan ansträngning.</h1>
+        <p class="lead rv d2">Pythia Voice tar bort umm, lägger till interpunktion och följer dina korrigeringar. Inget konto, ingen installation.</p>
+        <div class="row rv d3">
+          <a class="btn" id="sub-play" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Prova på Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="x-link" href="#produkte">Se priset <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="x-small rv d3">Android 13 eller senare. Det finns ännu ingen iPhone-version.</p>
+      </div>
+      <div class="x-stage rv d2">
+        <div class="x-glow" aria-hidden="true"></div>
+        <div class="x-phone"><video id="demo" src="/media/pythia-voice-en.mp4" poster="/media/pythia-voice-en.jpg" muted loop playsinline preload="metadata" aria-label="Pythia i farten"></video>
+          <button class="x-sound" id="vsound" type="button" aria-label="Pythia i farten: Ton / Sound" aria-pressed="false"><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l4 6M21 9l-4 6"/></svg><svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+        </div>
+        <span class="x-chip c1" aria-hidden="true">Städar efter dig</span>
+        <span class="x-chip c2" aria-hidden="true">Över 90 språk</span>
+      </div>
     </div>
   </section>
 
-  <section class="intro" id="ablauf">
-    <div class="wrap center rv d1">
-      <h1>Du pratar. Pythia skriver. Utan ansträngning.</h1>
-      <p class="lead">Pythia Voice tar bort umm, lägger till interpunktion och följer dina korrigeringar. Inget konto, ingen installation.</p>
-      <div class="row">
-        <a class="btn" href="/sv/download"><span>Testa Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        <a class="btn ghost" href="#produkte"><span>Se priset</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-      </div>
-      <p class="fine"><span>Testa gratis i 7 dagar eller 3 000 ord.</span><a class="soon" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span></a></p>
-    </div>
+  <section class="x-steps" id="ablauf" aria-label="Så dikterar du">
     <div class="wrap">
-      <ol class="flow rv d2" aria-label="Så dikterar du">
-        <li><b>Tryck</b><span>Tryck på ett textfält och sedan på den runda knappen ovanför tangentbordet.</span></li>
-        <li><b>Prata</b><span>Säg vad du vill skriva. Med pauser, med rättelser.</span></li>
-        <li><b>Säg att du är klar</b><span>Tryck en gång till. Den rena texten finns i fältet.</span></li>
+      <ol class="x-flow rv">
+        <li><i>1</i><div><b>Tryck</b><span>Tryck på ett textfält och sedan på den runda knappen ovanför tangentbordet.</span></div></li>
+        <li><i>2</i><div><b>Prata</b><span>Säg vad du vill skriva. Med pauser, med rättelser.</span></div></li>
+        <li><i>3</i><div><b>Säg att du är klar</b><span>Tryck en gång till. Den rena texten finns i fältet.</span></div></li>
       </ol>
-      <p class="hint center">Föredrar du att hålla in? Håll in knappen, prata, släpp.</p>
-    </div>
-  </section>
-
-  <section id="produkte">
-    <div class="wrap">
-      <div class="prod-head rv"><h2>Tre verktyg som tar över skrivandet åt dig.</h2><p class="lead">Pythia Voice Pro kombinerar diktering och röstmeddelanden i en prenumeration som du kan avsluta när som helst. Pythia Recap köper du en gång och behåller det.</p></div>
-      <div class="cols two">
-        <div class="bezel hl rv"><div class="core col spot">
-          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1200" loading="lazy"></div>
-          <h3 id="diktat">Pythia Voice<span>Pro</span></h3>
-          <p class="tag">Diktera till vilken app som helst och transkribera röstmeddelanden, i en prenumeration.</p>
-          <p class="price">4,99 €<small>per månad · eller 39,99 € per år</small></p>
-          <ul><li class="key">Prova gratis i 7 dagar eller 3 000 ord</li><li>Diktering och röstmeddelanden i en prenumeration</li><li>Taligenkänning ingår, ingen API-nyckel</li><li class="key">Avsluta när som helst i Google Play</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>Läs mer</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="sub-play" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><span>Prova på Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
-        </div></div>
-        <div class="d1 bezel rc rv"><div class="core col r spot">
-          <div class="phone"><img src="/shots/r_meet.webp" alt="" width="540" height="1200" loading="lazy"></div>
-          <h3>Pythia Recap</h3>
-          <p class="tag">Spela in ett möte och få en färdig sammanfattning med uppgifter.</p>
-          <p class="price">19,99 €<small>Engångsbetalning i euro.</small></p>
-          <ul><li class="key">Testa gratis i 7 dagar eller 3 möten</li><li>Utskrift, sammanfattning, uppgifter, talare, markörer, PDF-export</li><li>Efter köpet ingen gräns för längd eller antal möten</li><li class="key">Uppdateringar ingår</li></ul>
-          <div class="acts"><a class="btn ghost block" href="/sv/recap"><span>Läs mer</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/sv/recap#preis"><span>Köp Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
-        </div></div>
-      </div>
-      <p class="note">Pythia Recap är fortfarande ett engångsköp. Om du redan har köpt Pythia Voice behåller du din licens.</p>
+      <p class="x-small center">Föredrar du att hålla in? Håll in knappen, prata, släpp.</p>
     </div>
   </section>
 
   <section id="funktionen">
     <div class="wrap">
-      <h2 class="sec-h rv">Det här tar Pythia över</h2>
-      <dl class="rules rv">
-        <div><dt>Prata i stället för att skriva</dt><dd>Tryck i ett textfält, tryck på den runda knappen ovanför tangentbordet och prata. Pythia skriver texten precis där, till exempel i WhatsApp, e-post eller anteckningar.</dd></div>
-        <div><dt>Städar efter dig</dt><dd>Utfyllnadsord försvinner, skiljetecken kommer in. Säger du ”klockan fem, nej, klockan sex” skriver den ”klockan sex”.</dd></div>
-        <div><dt>Över 90 språk</dt><dd>Även blandade i samma mening. Själva appen finns på 24 språk.</dd></div>
-        <div><dt>Avsluta när som helst</dt><dd>4,99 € per månad eller 39,99 € per år. Avsluta med två tryck i Google Play, ingen avstämningsperiod, inga frågor.</dd></div>
-        <div><dt>Taligenkänning ingår</dt><dd>Igenkänningen körs på vår server, inget att installera. Dagligt tillstånd täcker flera timmars tal.</dd></div>
-        <div><dt>Stannar hos dig</dt><dd>Inget konto. Pythia Voice sparar inget ljud. I lösenordsfält förblir knappen dold.</dd></div>
-      </dl>
+      <h2 class="x-h rv">Det här tar Pythia över</h2>
+      <div class="x-bento">
+        <article class="x-tile big spot rv" id="sprachnachrichten">
+          <div class="x-tile-text">
+            <h3>Trött på långa röstmeddelanden?</h3>
+            <p>Dela från WhatsApp och andra meddelandeappar, ett tre minuter långt meddelande tar sekunder.</p>
+            <ul class="x-checks"><li>Uppdelat per minut och i stycken, skonsamt för ögonen</li><li>Läs WhatsApp-röstmeddelanden utan blå bockar: avsändaren ser inte att du öppnat det</li></ul>
+          </div>
+          <div class="x-tile-shot"><img src="/shots/v_msg.webp" alt="Röstmeddelanden" width="540" height="1200" loading="lazy" decoding="async"></div>
+        </article>
+        <article class="x-tile spot rv d1" id="diktat"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span><h3>Prata i stället för att skriva</h3><p>Tryck i ett textfält, tryck på den runda knappen ovanför tangentbordet och prata. Pythia skriver texten precis där, till exempel i WhatsApp, e-post eller anteckningar.</p></article>
+        <article class="x-tile spot rv d2"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7M17 15l2 2 3-4"/></svg></span><h3>Städar efter dig</h3><p>Utfyllnadsord försvinner, skiljetecken kommer in. Säger du ”klockan fem, nej, klockan sex” skriver den ”klockan sex”.</p></article>
+        <article class="x-tile spot rv"><p class="x-num" aria-hidden="true">90+</p><h3>Över 90 språk</h3><p>Även blandade i samma mening. Själva appen finns på 24 språk.</p></article>
+        <article class="x-tile spot rv d1"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h3l2-6 4 12 2-6h5"/></svg></span><h3>Taligenkänning ingår</h3><p>Igenkänningen körs på vår server, inget att installera. Dagligt tillstånd täcker flera timmars tal.</p></article>
+        <article class="x-tile spot rv d2"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg></span><h3>Stannar hos dig</h3><p>Inget konto. Pythia Voice sparar inget ljud. I lösenordsfält förblir knappen dold.</p></article>
+      </div>
     </div>
   </section>
 
   <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h" class="sec-h rv">Appen i användning</h2></div>
+    <div class="wrap"><h2 id="shots-h" class="x-h rv">Appen i användning</h2></div>
     <div class="shot-row">
       <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="Diktera" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Diktera</b><span>Du pratar, Pythia skriver. Smidigt och rent.</span></figcaption></figure>
       <figure class="d1 shot rv"><div class="phone"><img src="/shots/v_msg.webp" alt="Röstmeddelanden" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Röstmeddelanden</b><span>Läs långa röstmeddelanden bekvämt som text.</span></figcaption></figure>
       <figure class="d2 shot rv"><div class="phone"><img src="/shots/v_words.webp" alt="Ord" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Ord</b><span>Namn och facktermer som ska stavas rätt.</span></figcaption></figure>
       <figure class="d3 shot rv"><div class="phone"><img src="/shots/v_style.webp" alt="Stil" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Stil</b><span>Skrivstil för de rensade texterna</span></figcaption></figure>
-      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="Textsnuttar" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Textsnuttar</b><span>Säg genvägen så infogas hela texten.</span></figcaption></figure>
+      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="Genvägar" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>Genvägar</b><span>Säg genvägen så infogas hela texten.</span></figcaption></figure>
     </div>
   </section>
 
-  <section id="sprachnachrichten">
-    <div class="wrap voice-grid">
-      <div class="voice-text rv">
-        <h2>Trött på långa röstmeddelanden?</h2>
-        <p class="lead">Vill du bara läsa snabbt och kan inte lyssna just nu? Eller har du inte tålamod med de romaner som vissa pratar in, och läser snabbare än de pratar? Då är Pythia Voice något för dig: dela meddelandet och läs det som text.</p>
-        <ul class="voice-points">
-          <li>Dela från WhatsApp och andra meddelandeappar, ett tre minuter långt meddelande tar sekunder</li>
-          <li>Uppdelat per minut och i stycken, skonsamt för ögonen</li>
-          <li class="key">Läs WhatsApp-röstmeddelanden utan blå bockar: avsändaren ser inte att du öppnat det</li>
-          <li>Testa gratis med 15 meddelanden eller 7 dagar</li>
-        </ul>
-        <div class="row">
-          <a class="btn ghost" href="/sv/pythia"><span>Läs mer</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn" id="sub-play-2" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><span>Prova på Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        </div>
-        <p class="mt2 small dim">Inkluderat i Pythia Voice Pro tillsammans med diktering.</p>
-      </div>
-      <div class="d1 bezel rv"><figure class="core vm-demo" aria-label="Pythia Voice gör om det till text, uppdelad per minut">
-        <div class="vm-in">
-          <span class="vm-play" aria-hidden="true"></span>
-          <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <span class="vm-len">3:19</span>
-        </div>
-        <p class="vm-cap">Röstmeddelande från WhatsApp, 3 minuter 19 sekunder</p>
-        <div class="vm-arrow" aria-hidden="true">↓</div>
-        <div class="vm-out">
-          <div><b>0:00</b><p>Hej Anna, angående lördag: vi tänkte börja klockan fem hos oss. Grillen är redo, Tom tar med drickat.</p></div>
-          <div><b>1:00</b><p>En sak till: mamma hinner inte före sju, så vänta inte på henne med tårtan.</p></div>
-          <div><b>2:00</b><p>Om det regnar går vi bara in. Säg till om du tar med någon, så planerar jag platserna.</p></div>
-          <div><b>3:00</b><p>Okej, det var allt. Hörs snart!</p></div>
-        </div>
-        <p class="vm-cap">Pythia Voice gör om det till text, uppdelad per minut</p>
-      </figure></div>
-    </div>
-  </section>
-
-  <section id="download">
-    <div class="wrap">
-      <h2 class="rv">För Android</h2>
-      <ol class="mt5 steps rv">
-        <li><b>Hämta appen</b><span>Hämta Pythia Voice på Google Play och installera det på din Android-telefon.</span></li>
-        <li><b>Testa</b><span>Prova allt gratis: diktering i 7 dagar eller 3.000 ord, röstmeddelanden i 7 dagar eller 15 meddelanden.</span></li>
-        <li><b>Gilla? Prenumerera</b><span>Prenumerera på Pythia Voice Pro direkt i appen, månatligt eller årligt. Du kan avsluta när som helst i Google Play.</span></li>
-      </ol>
-      <div class="row mt5"><a class="btn" href="/sv/download"><span>Ladda ner</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span></a></div>
-      <p class="dim mt4">Android 13 eller senare. Det finns ännu ingen iPhone-version.</p>
-      <p class="setup">Det finns inget att installera för taligenkänning. Appen leder dig bara genom mikrofon, tillgänglighet och batteriundantaget.</p>
+  <section id="produkte">
+    <div class="wrap x-price">
+      <div class="bezel hl rv"><div class="core x-pro spot">
+        <p class="x-eyebrow">Pris</p>
+        <h2>Pythia Voice <span>Pro</span></h2>
+        <p class="dim">Diktera till vilken app som helst och transkribera röstmeddelanden, i en prenumeration.</p>
+        <p class="x-amount">4,99 €<small>per månad · eller 39,99 € per år</small></p>
+        <ul class="x-checks"><li>Prova gratis i 7 dagar eller 3 000 ord</li><li>Diktering och röstmeddelanden i en prenumeration</li><li>Taligenkänning ingår, ingen API-nyckel</li><li>Avsluta när som helst i Google Play</li></ul>
+        <a class="btn block" id="sub-play-2" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Prova på Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+      </div></div>
+      <aside class="x-side rv d1">
+        <a class="x-recap spot" href="/sv/recap">
+          <img src="/recap-logo.svg" alt="" width="44" height="44">
+          <b>Pythia Recap</b>
+          <span>Spela in ett möte och få en färdig sammanfattning med uppgifter.</span>
+          <em>Läs mer <span aria-hidden="true">→</span></em>
+        </a>
+        <p class="x-small">Pythia Recap är fortfarande ett engångsköp. Om du redan har köpt Pythia Voice behåller du din licens.</p>
+      </aside>
     </div>
   </section>
 
   <section id="fragen">
-    <div class="narrow">
-      <h2 class="sec-h">Vanliga frågor</h2>
-      <details open><summary>Hur mycket kostar Pythia Voice?</summary><p>Efter 7 gratis dagar (eller 3 000 ord), 4,99 € per månad eller 39,99 € per år via Google Play. Detta täcker diktering, röstmeddelanden och taligenkänning. Du kan avsluta när som helst i Google Play; prenumerationen körs till slutet av den betalda perioden.</p></details>
-      <details><summary>Behöver jag ett konto eller en API-nyckel?</summary><p>Nej. Igenkänningen körs på vår server. Om du redan har din egen Groq-nyckel kan du ange den i inställningarna.</p></details>
-      <details><summary>Jag har redan köpt Pythia Voice en gång. Vad förändras?</summary><p>Ingenting. Din licens förblir giltig och fungerar som förr med din egen Groq-nyckel. Du behöver ingen prenumeration.</p></details>
-      <details><summary>Vart går mina inspelningar?</summary><p>Ljud och text går genom vår server till vår AI-leverantör för att transkriberas och rensas upp. Varken vår server eller appbutiken lagrar dem, och vi skickar dem inte vidare till någon annan.</p></details>
-      <details><summary>Varför behöver appen hjälpmedel?</summary><p>Bara så kan knappen visas ovanför tangentbordet och texten hamna i fältet du skriver i. Endast det textfältet läses.<br><a class="vid-link" href="https://www.youtube.com/watch?v=2iXTAiaI05w" target="_blank" rel="noopener">Video: tillgänglighetstjänsten – varför och hur du slår på den (1 min, engelska)</a></p></details>
-      <details><summary>Fungerar det offline?</summary><p>Nej. Igenkänningen kräver en internetanslutning.</p></details>
-      <details><summary>Finns det en version för iPhone eller Windows?</summary><p>Inte ännu. Pythia Voice finns tills vidare bara för Android.</p></details>
-      <details><summary>Hur fungerar röstmeddelanden?</summary><p>Öppna menyn för ett röstmeddelande i WhatsApp eller en annan meddelandeapp, välj Dela och välj Pythia Voice. Appen skriver ut det och visar texten uppdelad per minut, redo att kopiera eller dela.</p></details>
-      <details><summary>Hur långt får ett röstmeddelande vara?</summary><p>Filer upp till 4 MB fungerar, vilket är mer än tillräckligt för långa röstmeddelanden (WhatsApp-meddelanden är mycket små). Ett tre minuter långt meddelande tar bara några sekunder.</p></details>
+    <div class="wrap x-faq">
+      <h2 class="x-h">Vanliga frågor</h2>
+      <div>
+        <details open><summary>Hur mycket kostar Pythia Voice?</summary><p>Efter 7 gratis dagar (eller 3 000 ord), 4,99 € per månad eller 39,99 € per år via Google Play. Detta täcker diktering, röstmeddelanden och taligenkänning. Du kan avsluta när som helst i Google Play; prenumerationen körs till slutet av den betalda perioden.</p></details>
+        <details><summary>Behöver jag ett konto eller en API-nyckel?</summary><p>Nej. Igenkänningen körs på vår server. Om du redan har din egen Groq-nyckel kan du ange den i inställningarna.</p></details>
+        <details><summary>Hur fungerar röstmeddelanden?</summary><p>Öppna menyn för ett röstmeddelande i WhatsApp eller en annan meddelandeapp, välj Dela och välj Pythia Voice. Appen skriver ut det och visar texten uppdelad per minut, redo att kopiera eller dela.</p></details>
+        <details><summary>Vart går mina inspelningar?</summary><p>Ljud och text går genom vår server till vår AI-leverantör för att transkriberas och rensas upp. Varken vår server eller appbutiken lagrar dem, och vi skickar dem inte vidare till någon annan.</p></details>
+        <details><summary>Varför behöver appen hjälpmedel?</summary><p>Bara så kan knappen visas ovanför tangentbordet och texten hamna i fältet du skriver i. Endast det textfältet läses.<br><a class="vid-link" href="https://www.youtube.com/watch?v=2iXTAiaI05w" target="_blank" rel="noopener">Video: tillgänglighetstjänsten – varför och hur du slår på den (1 min, engelska)</a></p></details>
+        <details><summary>Jag har redan köpt Pythia Voice en gång. Vad förändras?</summary><p>Ingenting. Din licens förblir giltig och fungerar som förr med din egen Groq-nyckel. Du behöver ingen prenumeration.</p></details>
+        <details><summary>Fungerar det offline?</summary><p>Nej. Igenkänningen kräver en internetanslutning.</p></details>
+        <details><summary>Finns det en version för iPhone eller Windows?</summary><p>Inte ännu. Pythia Voice finns tills vidare bara för Android.</p></details>
+        <details><summary>Hur långt får ett röstmeddelande vara?</summary><p>Filer upp till 4 MB fungerar, vilket är mer än tillräckligt för långa röstmeddelanden (WhatsApp-meddelanden är mycket små). Ett tre minuter långt meddelande tar bara några sekunder.</p></details>
+      </div>
     </div>
   </section>
 
-  <section class="cta-band">
+  <section class="cta-band" id="download">
     <div class="wrap"><div class="bezel rv"><div class="core">
       <h2>Testa gratis i 7 dagar.</h2>
       <p class="lead">Inget konto, ingen API-nyckel. Om du gillar det, fortsätt med Pythia Voice Pro.</p>
-      <div class="row"><a class="btn" href="/sv/download"><span>Testa Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/sv/pythia"><span>Alla produkter</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <div class="row"><a class="btn" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="x-link" href="/sv/download">Ladda ner APK <span aria-hidden="true">→</span></a></div>
     </div></div></div>
   </section>
 </main>
-<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/sv/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Tre verktyg som tar över skrivandet åt dig.</p></div><nav class="foot-links" aria-label="Info"><a href="/sv/">Pythia Voice</a><a href="/sv/recap">Pythia Recap</a><a href="/sv/pythia">Alla produkter</a><a href="/impressum">Juridisk information</a><a href="/privacy">Integritet</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy">© Christoph Grohme · Pythia Voice, Pythia Recap</p></div></footer>
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/sv/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>Du pratar. Pythia skriver. Utan ansträngning.</p></div><nav class="foot-links" aria-label="Info"><a href="/sv/">Pythia Voice</a><a href="/sv/recap">Pythia Recap</a><a href="/sv/pythia">Alla produkter</a><a href="/impressum">Juridisk information</a><a href="/privacy">Integritet</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy">© Christoph Grohme · Pythia Voice, Pythia Recap</p></div></footer>
 <script src="/config.js"></script>
 <script src="/pv.js"></script>
 </body>

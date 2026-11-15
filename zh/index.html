@@ -42,158 +42,122 @@
 <link rel="stylesheet" href="/pv.css">
 </head>
 <body data-page="home">
-<header class="nav"><nav class="switch" aria-label="Pythia"><a href="/zh/" aria-current="page"><img src="/logo.svg" alt="" width="26" height="26"><span>Pythia Voice</span></a><a href="/zh/recap"><img src="/recap-logo.svg" alt="" width="26" height="26"><span>Pythia Recap</span></a></nav><div class="dd"><button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ddm">产品<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"/></svg></button><div class="ddm" id="ddm" hidden><a href="/zh/#diktat"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · 听写</a><a href="/zh/#sprachnachrichten"><img src="/logo.svg" alt="" width="28" height="28">Pythia Voice · 语音消息</a><a href="/zh/recap"><img src="/recap-logo.svg" alt="" width="28" height="28">Pythia Recap</a><div class="sep"></div><a href="/zh/pythia"><svg class="mi" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#a9b2c8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>全部产品</a></div></div><a class="l" href="#funktionen">功能</a><a class="l" href="#produkte">价格</a><a class="l" href="#fragen">常见问题</a><a class="btn sm" href="/zh/download"><span>下载</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh" selected>中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
+<header class="nav"><nav class="switch" aria-label="Pythia"><a href="/zh/" aria-current="page"><img src="/logo.svg" alt="" width="26" height="26"><span>Pythia Voice</span></a><a href="/zh/recap"><img src="/recap-logo.svg" alt="" width="26" height="26"><span>Pythia Recap</span></a></nav><a class="l" href="#funktionen">功能</a><a class="l" href="#produkte">价格</a><a class="l" href="#fragen">常见问题</a><a class="btn sm" href="/zh/download"><span>下载</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><select id="lang" aria-label="Language"><option value="en">English</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="ja">日本語</option><option value="zh" selected>中文</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="uk">Українська</option><option value="th">ไทย</option><option value="sv">Svenska</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="el">Ελληνικά</option><option value="he">עברית</option></select></header>
 <main>
-  <section class="top-video" id="video">
-    <div class="wrap">
-      <div class="vbox bezel rv"><div class="core"><video id="demo" data-wide="/media/pythia-demo-zh" data-tall="/media/pythia-demo-zh-tall" poster="/media/pythia-demo-zh.jpg" muted loop playsinline preload="none" aria-label="看 Pythia 如何工作"></video><button class="vtoggle" id="vtoggle" type="button" aria-label="Pause / Play"><svg class="pa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button></div></div>
+  <section class="x-hero">
+    <div class="wrap x-hero-grid">
+      <div class="x-hero-text">
+        <p class="x-pill rv"><span class="x-dot"></span>可免费试用 7 天或 3,000 个词。</p>
+        <h1 class="rv d1">你来说，Pythia来写。轻松省力。</h1>
+        <p class="lead rv d2">Pythia Voice 去除语气词，添加标点并跟随你的修改。无需账户，无需设置。</p>
+        <div class="row rv d3">
+          <a class="btn" id="sub-play" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>在Google Play上试用</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+          <a class="x-link" href="#produkte">查看价格 <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="x-small rv d3">需要 Android 13 或更高版本。目前还没有 iPhone 版本。</p>
+      </div>
+      <div class="x-stage rv d2">
+        <div class="x-glow" aria-hidden="true"></div>
+        <div class="x-phone"><video id="demo" src="/media/pythia-voice-en.mp4" poster="/media/pythia-voice-en.jpg" muted loop playsinline preload="metadata" aria-label="看 Pythia 如何工作"></video>
+          <button class="x-sound" id="vsound" type="button" aria-label="看 Pythia 如何工作: Ton / Sound" aria-pressed="false"><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l4 6M21 9l-4 6"/></svg><svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+        </div>
+        <span class="x-chip c1" aria-hidden="true">替你整理</span>
+        <span class="x-chip c2" aria-hidden="true">90 多种语言</span>
+      </div>
     </div>
   </section>
 
-  <section class="intro" id="ablauf">
-    <div class="wrap center rv d1">
-      <h1>你来说，Pythia来写。轻松省力。</h1>
-      <p class="lead">Pythia Voice 去除语气词，添加标点并跟随你的修改。无需账户，无需设置。</p>
-      <div class="row">
-        <a class="btn" href="/zh/download"><span>试用 Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        <a class="btn ghost" href="#produkte"><span>查看价格</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-      </div>
-      <p class="fine"><span>可免费试用 7 天或 3,000 个词。</span><a class="soon" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span></a></p>
-    </div>
+  <section class="x-steps" id="ablauf" aria-label="如何听写">
     <div class="wrap">
-      <ol class="flow rv d2" aria-label="如何听写">
-        <li><b>点按</b><span>点按一个文本框，再点按键盘上方的圆形按钮。</span></li>
-        <li><b>说话</b><span>说出你想写的内容。可以停顿，也可以更正。</span></li>
-        <li><b>说完</b><span>再点按一次。整理好的文字就在文本框里。</span></li>
+      <ol class="x-flow rv">
+        <li><i>1</i><div><b>点按</b><span>点按一个文本框，再点按键盘上方的圆形按钮。</span></div></li>
+        <li><i>2</i><div><b>说话</b><span>说出你想写的内容。可以停顿，也可以更正。</span></div></li>
+        <li><i>3</i><div><b>说完</b><span>再点按一次。整理好的文字就在文本框里。</span></div></li>
       </ol>
-      <p class="hint center">更喜欢按住？按住按钮，说话，松开。</p>
-    </div>
-  </section>
-
-  <section id="produkte">
-    <div class="wrap">
-      <div class="prod-head rv"><h2>三款工具，替你省下打字的功夫。</h2><p class="lead">Pythia Voice Pro 将听写和语音消息整合到一个可随时取消的订阅中。Pythia Recap 你只需购买一次即可保留使用。</p></div>
-      <div class="cols two">
-        <div class="bezel hl rv"><div class="core col spot">
-          <div class="phone"><img src="/shots/v_home.webp" alt="" width="540" height="1200" loading="lazy"></div>
-          <h3 id="diktat">Pythia Voice<span>Pro</span></h3>
-          <p class="tag">在任何应用中听写并转录语音消息，在一个订阅中。</p>
-          <p class="price">4,99 €<small>每月 · 或每年39,99 €</small></p>
-          <ul><li class="key">免费试用7天或3,000词</li><li>在一个订阅中包含听写和语音消息</li><li>包含语音识别，无需API密钥</li><li class="key">可在Google Play随时取消</li></ul>
-          <div class="acts"><a class="btn ghost block" href="#funktionen"><span>了解更多</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="sub-play" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><span>在Google Play上试用</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
-        </div></div>
-        <div class="d1 bezel rc rv"><div class="core col r spot">
-          <div class="phone"><img src="/shots/r_meet.webp" alt="" width="540" height="1200" loading="lazy"></div>
-          <h3>Pythia Recap</h3>
-          <p class="tag">录下会议，就能得到带任务清单的完整摘要。</p>
-          <p class="price">19,99 €<small>以欧元一次性支付。</small></p>
-          <ul><li class="key">免费试用 7 天或 3 场会议</li><li>文字稿、摘要、任务、发言人、标记、PDF 导出</li><li>购买后会议时长和数量不限</li><li class="key">含更新</li></ul>
-          <div class="acts"><a class="btn ghost block" href="/zh/recap"><span>了解更多</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn block" id="buy-recap-h" href="/zh/recap#preis"><span>购买 Pythia Recap</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
-        </div></div>
-      </div>
-      <p class="note">Pythia Recap仍然是单次购买。如果您已经购买了Pythia Voice，您将保留许可证。</p>
+      <p class="x-small center">更喜欢按住？按住按钮，说话，松开。</p>
     </div>
   </section>
 
   <section id="funktionen">
     <div class="wrap">
-      <h2 class="sec-h rv">Pythia替你做的事</h2>
-      <dl class="rules rv">
-        <div><dt>说话代替打字</dt><dd>点一下文本框，按键盘上方的圆形按钮，然后开口说。Pythia会把文字直接写到那里，比如 WhatsApp、邮件或备忘录。</dd></div>
-        <div><dt>替你整理</dt><dd>去掉口头禅，补上标点。你说“五点，不，六点”，它就写“六点”。</dd></div>
-        <div><dt>90 多种语言</dt><dd>同一句话里混用也没问题。应用本身提供 24 种语言。</dd></div>
-        <div><dt>随时可取消</dt><dd>每月4.99欧元或每年39.99欧元。在Google Play中只需两次点击即可取消，无宽限期，无需询问。</dd></div>
-        <div><dt>包含语音识别</dt><dd>识别在我们的服务器上运行，无需设置。每日配额可覆盖数小时的语音。</dd></div>
-        <div><dt>留在你手里</dt><dd>无需账号。Pythia Voice 不保存音频。在密码框中按钮保持隐藏。</dd></div>
-      </dl>
+      <h2 class="x-h rv">Pythia替你做的事</h2>
+      <div class="x-bento">
+        <article class="x-tile big spot rv" id="sprachnachrichten">
+          <div class="x-tile-text">
+            <h3>厌倦了冗长的语音消息？</h3>
+            <p>从 WhatsApp 等聊天应用分享，三分钟的消息只需几秒.</p>
+            <ul class="x-checks"><li>按分钟分段并分成段落，阅读不累眼</li><li>阅读 WhatsApp 语音消息而不出现蓝色对勾：发送者看不到你已打开</li></ul>
+          </div>
+          <div class="x-tile-shot"><img src="/shots/v_msg.webp" alt="语音消息" width="540" height="1200" loading="lazy" decoding="async"></div>
+        </article>
+        <article class="x-tile spot rv d1" id="diktat"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span><h3>说话代替打字</h3><p>点一下文本框，按键盘上方的圆形按钮，然后开口说。Pythia会把文字直接写到那里，比如 WhatsApp、邮件或备忘录。</p></article>
+        <article class="x-tile spot rv d2"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7M17 15l2 2 3-4"/></svg></span><h3>替你整理</h3><p>去掉口头禅，补上标点。你说“五点，不，六点”，它就写“六点”。</p></article>
+        <article class="x-tile spot rv"><p class="x-num" aria-hidden="true">90+</p><h3>90 多种语言</h3><p>同一句话里混用也没问题。应用本身提供 24 种语言。</p></article>
+        <article class="x-tile spot rv d1"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h3l2-6 4 12 2-6h5"/></svg></span><h3>包含语音识别</h3><p>识别在我们的服务器上运行，无需设置。每日配额可覆盖数小时的语音。</p></article>
+        <article class="x-tile spot rv d2"><span class="x-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg></span><h3>留在你手里</h3><p>无需账号。Pythia Voice 不保存音频。在密码框中按钮保持隐藏。</p></article>
+      </div>
     </div>
   </section>
 
   <section class="shots" id="app" aria-labelledby="shots-h">
-    <div class="wrap"><h2 id="shots-h" class="sec-h rv">应用实拍</h2></div>
+    <div class="wrap"><h2 id="shots-h" class="x-h rv">应用实拍</h2></div>
     <div class="shot-row">
       <figure class="shot rv"><div class="phone"><img src="/shots/v_home.webp" alt="听写" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>听写</b><span>你来说，Pythia来写。轻松又干净。</span></figcaption></figure>
       <figure class="d1 shot rv"><div class="phone"><img src="/shots/v_msg.webp" alt="语音消息" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>语音消息</b><span>长语音消息，轻松读成文字。</span></figcaption></figure>
       <figure class="d2 shot rv"><div class="phone"><img src="/shots/v_words.webp" alt="词库" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>词库</b><span>需要正确拼写的名称和专业术语。</span></figcaption></figure>
       <figure class="d3 shot rv"><div class="phone"><img src="/shots/v_style.webp" alt="风格" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>风格</b><span>清理后文字的书写风格</span></figcaption></figure>
-      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="快捷短语" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>快捷短语</b><span>说出快捷短语，即可插入完整文字。</span></figcaption></figure>
+      <figure class="d4 shot rv"><div class="phone"><img src="/shots/v_snip.webp" alt="快捷方式" width="540" height="1200" loading="lazy" decoding="async"></div><figcaption><b>快捷方式</b><span>说出快捷短语，即可插入完整文字。</span></figcaption></figure>
     </div>
   </section>
 
-  <section id="sprachnachrichten">
-    <div class="wrap voice-grid">
-      <div class="voice-text rv">
-        <h2>厌倦了冗长的语音消息？</h2>
-        <p class="lead">只想快速阅读，却不方便听？或者没有耐心听完有些人说的“长篇小说”，而且你阅读的速度比他们说话快？那就用 Pythia Voice：分享消息，以文字阅读。</p>
-        <ul class="voice-points">
-          <li>从 WhatsApp 等聊天应用分享，三分钟的消息只需几秒</li>
-          <li>按分钟分段并分成段落，阅读不累眼</li>
-          <li class="key">阅读 WhatsApp 语音消息而不出现蓝色对勾：发送者看不到你已打开</li>
-          <li>免费试用：15 条消息或 7 天</li>
-        </ul>
-        <div class="row">
-          <a class="btn ghost" href="/zh/pythia"><span>了解更多</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-          <a class="btn" id="sub-play-2" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><span>在Google Play上试用</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
-        </div>
-        <p class="mt2 small dim">包含在Pythia Voice Pro中，与听写一起。</p>
-      </div>
-      <div class="d1 bezel rv"><figure class="core vm-demo" aria-label="Pythia Voice 将其转成文字，并按分钟分段">
-        <div class="vm-in">
-          <span class="vm-play" aria-hidden="true"></span>
-          <span class="vm-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <span class="vm-len">3:19</span>
-        </div>
-        <p class="vm-cap">来自 WhatsApp 的语音消息，3 分 19 秒</p>
-        <div class="vm-arrow" aria-hidden="true">↓</div>
-        <div class="vm-out">
-          <div><b>0:00</b><p>嗨，安娜，关于周六：我们想五点在我们家开始。烧烤已经准备好了，汤姆带饮料。</p></div>
-          <div><b>1:00</b><p>还有一件事：妈妈七点前到不了，所以别等她再上蛋糕。</p></div>
-          <div><b>2:00</b><p>如果下雨，我们就直接进屋。告诉我你会不会带人来，我好安排座位。</p></div>
-          <div><b>3:00</b><p>好了，就这些。回头见！</p></div>
-        </div>
-        <p class="vm-cap">Pythia Voice 将其转成文字，并按分钟分段</p>
-      </figure></div>
-    </div>
-  </section>
-
-  <section id="download">
-    <div class="wrap">
-      <h2 class="rv">适用于 Android</h2>
-      <ol class="mt5 steps rv">
-        <li><b>下载应用</b><span>在Google Play获取Pythia Voice并在您的Android手机上安装它。</span></li>
-        <li><b>试用</b><span>免费试用所有功能：听写7天或3,000字，语音消息7天或15条。</span></li>
-        <li><b>喜欢吗？订阅</b><span>在应用中直接订阅Pythia Voice Pro，按月或按年。您可以在Google Play中随时取消。</span></li>
-      </ol>
-      <div class="row mt5"><a class="btn" href="/zh/download"><span>下载</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span></a></div>
-      <p class="dim mt4">需要 Android 13 或更高版本。目前还没有 iPhone 版本。</p>
-      <p class="setup">语音识别无需设置。应用程序只会引导您完成麦克风、辅助功能和电池例外设置。</p>
+  <section id="produkte">
+    <div class="wrap x-price">
+      <div class="bezel hl rv"><div class="core x-pro spot">
+        <p class="x-eyebrow">价格</p>
+        <h2>Pythia Voice <span>Pro</span></h2>
+        <p class="dim">在任何应用中听写并转录语音消息，在一个订阅中。</p>
+        <p class="x-amount">4,99 €<small>每月 · 或每年39,99 €</small></p>
+        <ul class="x-checks"><li>免费试用7天或3,000词</li><li>在一个订阅中包含听写和语音消息</li><li>包含语音识别，无需API密钥</li><li>可在Google Play随时取消</li></ul>
+        <a class="btn block" id="sub-play-2" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>在Google Play上试用</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+      </div></div>
+      <aside class="x-side rv d1">
+        <a class="x-recap spot" href="/zh/recap">
+          <img src="/recap-logo.svg" alt="" width="44" height="44">
+          <b>Pythia Recap</b>
+          <span>录下会议，就能得到带任务清单的完整摘要。</span>
+          <em>了解更多 <span aria-hidden="true">→</span></em>
+        </a>
+        <p class="x-small">Pythia Recap仍然是单次购买。如果您已经购买了Pythia Voice，您将保留许可证。</p>
+      </aside>
     </div>
   </section>
 
   <section id="fragen">
-    <div class="narrow">
-      <h2 class="sec-h">常见问题</h2>
-      <details open><summary>Pythia Voice的费用是多少？</summary><p>7天免费试用（或3,000词）后，通过Google Play每月4.99欧元或每年39.99欧元。这包括听写、语音消息和语音识别。您可以在Google Play中随时取消订阅；订阅将在付费期结束时终止。</p></details>
-      <details><summary>我需要账户或API密钥吗？</summary><p>不需要。识别在我们的服务器上运行。如果您已有自己的Groq密钥，可以在设置中输入。</p></details>
-      <details><summary>我已经购买过Pythia Voice一次。有什么变化吗？</summary><p>没有。您的许可证仍然有效，并且继续使用您自己的Groq密钥工作。您不需要订阅。</p></details>
-      <details><summary>我的录音去哪了？</summary><p>音频和文本通过我们的服务器发送到我们的AI服务提供商进行转录和清理。我们的服务器和应用程序都不会存储它们，也不会将其传递给任何人。</p></details>
-      <details><summary>为什么应用需要无障碍权限？</summary><p>只有这样，按钮才能显示在键盘上方，文字才能进入你正在输入的文本框。只会读取该文本框。<br><a class="vid-link" href="https://www.youtube.com/watch?v=2iXTAiaI05w" target="_blank" rel="noopener">视频：无障碍服务的用途及开启方法（1 分钟，英文）</a></p></details>
-      <details><summary>可以离线使用吗？</summary><p>不可以。识别需要网络连接。</p></details>
-      <details><summary>有 iPhone 或 Windows 版本吗？</summary><p>暂时没有。Pythia Voice 目前只有 Android 版。</p></details>
-      <details><summary>语音消息如何使用？</summary><p>在 WhatsApp 或其他聊天应用中打开语音消息的菜单，选择“分享”，再选 Pythia Voice。应用会转写，并按分钟分段显示文字，可直接复制或分享。</p></details>
-      <details><summary>语音消息最长可以多长？</summary><p>支持最大 4 MB 的文件，这足以满足长语音消息的需求（WhatsApp 消息非常小）。三分钟的消息只需几秒。</p></details>
+    <div class="wrap x-faq">
+      <h2 class="x-h">常见问题</h2>
+      <div>
+        <details open><summary>Pythia Voice的费用是多少？</summary><p>7天免费试用（或3,000词）后，通过Google Play每月4.99欧元或每年39.99欧元。这包括听写、语音消息和语音识别。您可以在Google Play中随时取消订阅；订阅将在付费期结束时终止。</p></details>
+        <details><summary>我需要账户或API密钥吗？</summary><p>不需要。识别在我们的服务器上运行。如果您已有自己的Groq密钥，可以在设置中输入。</p></details>
+        <details><summary>语音消息如何使用？</summary><p>在 WhatsApp 或其他聊天应用中打开语音消息的菜单，选择“分享”，再选 Pythia Voice。应用会转写，并按分钟分段显示文字，可直接复制或分享。</p></details>
+        <details><summary>我的录音去哪了？</summary><p>音频和文本通过我们的服务器发送到我们的AI服务提供商进行转录和清理。我们的服务器和应用程序都不会存储它们，也不会将其传递给任何人。</p></details>
+        <details><summary>为什么应用需要无障碍权限？</summary><p>只有这样，按钮才能显示在键盘上方，文字才能进入你正在输入的文本框。只会读取该文本框。<br><a class="vid-link" href="https://www.youtube.com/watch?v=2iXTAiaI05w" target="_blank" rel="noopener">视频：无障碍服务的用途及开启方法（1 分钟，英文）</a></p></details>
+        <details><summary>我已经购买过Pythia Voice一次。有什么变化吗？</summary><p>没有。您的许可证仍然有效，并且继续使用您自己的Groq密钥工作。您不需要订阅。</p></details>
+        <details><summary>可以离线使用吗？</summary><p>不可以。识别需要网络连接。</p></details>
+        <details><summary>有 iPhone 或 Windows 版本吗？</summary><p>暂时没有。Pythia Voice 目前只有 Android 版。</p></details>
+        <details><summary>语音消息最长可以多长？</summary><p>支持最大 4 MB 的文件，这足以满足长语音消息的需求（WhatsApp 消息非常小）。三分钟的消息只需几秒。</p></details>
+      </div>
     </div>
   </section>
 
-  <section class="cta-band">
+  <section class="cta-band" id="download">
     <div class="wrap"><div class="bezel rv"><div class="core">
       <h2>免费试用 7 天。</h2>
       <p class="lead">无需账户，无需API密钥。如果您喜欢，请继续使用Pythia Voice Pro。</p>
-      <div class="row"><a class="btn" href="/zh/download"><span>试用 Pythia Voice</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="btn ghost" href="/zh/pythia"><span>全部产品</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a></div>
+      <div class="row"><a class="btn" href="https://play.google.com/store/apps/details?id=app.pythiavoice" rel="noopener"><svg class="gp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#00a0ff" d="M3.6 2 13.4 12 3.6 22Q3 21.5 3 21V3Q3 2.5 3.6 2Z"/><path fill="#00e676" d="M3.6 2Q4.2 1.7 4.9 2.1L16.3 8.6 13.4 12Z"/><path fill="#ffc107" d="M16.3 8.6 20.3 10.9Q21.4 11.5 21.4 12 21.4 12.5 20.3 13.1L16.3 15.4 13.4 12Z"/><path fill="#f44336" d="M13.4 12 16.3 15.4 4.9 21.9Q4.2 22.3 3.6 22Z"/></svg><span>Google Play</span><i class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a><a class="x-link" href="/zh/download">下载 APK <span aria-hidden="true">→</span></a></div>
     </div></div></div>
   </section>
 </main>
-<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/zh/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>三款工具，替你省下打字的功夫。</p></div><nav class="foot-links" aria-label="Info"><a href="/zh/">Pythia Voice</a><a href="/zh/recap">Pythia Recap</a><a href="/zh/pythia">全部产品</a><a href="/impressum">法律声明</a><a href="/privacy">隐私</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy">© Christoph Grohme · Pythia Voice, Pythia Recap</p></div></footer>
+<footer><div class="wrap foot"><div class="foot-brand"><a class="brand" href="/zh/"><img src="/logo.svg" alt="" width="28" height="28"><span>Pythia</span></a><p>你来说，Pythia来写。轻松省力。</p></div><nav class="foot-links" aria-label="Info"><a href="/zh/">Pythia Voice</a><a href="/zh/recap">Pythia Recap</a><a href="/zh/pythia">全部产品</a><a href="/impressum">法律声明</a><a href="/privacy">隐私</a><a href="/agb">AGB / Terms</a></nav><p class="foot-copy">© Christoph Grohme · Pythia Voice, Pythia Recap</p></div></footer>
 <script src="/config.js"></script>
 <script src="/pv.js"></script>
 </body>
