@@ -46,7 +46,7 @@ async function subActive(token) {
   const now = Date.now();
   let cached = await db.get("subs", subHash);
   if (cached && now - cached.checked < 6 * 3600e3 && cached.expiry > now) return true;
-  if (cached && cached.expiry <= now && now - cached.checked < 10 * 60e3) return false;
+  if (cached && cached.expiry <= now && now - cached.checked < 30e3) return false;
 
   // Google gestört oder nicht erreichbar: letzter bekannter Stand gilt, ohne ihn 503
   // why: fester Kurzcode (kein Fehlertext, der Schlüsselteile enthalten könnte); geht als Kopfzeile X-PV-Why an den Aufrufer, damit sich die Ursache ohne Logs finden lässt
