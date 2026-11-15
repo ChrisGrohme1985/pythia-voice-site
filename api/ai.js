@@ -49,7 +49,7 @@ async function subActive(token) {
   if (cached && cached.expiry <= now && now - cached.checked < 10 * 60e3) return false;
 
   // Google gestört oder nicht erreichbar: letzter bekannter Stand gilt, ohne ihn 503
-  const outage = () => { if (cached) return cached.expiry > now; throw fail(503); };
+  const outage = (why) => { console.error("KI: Google-Abfrage nicht möglich: " + why); if (cached) return cached.expiry > now; throw fail(503); };
   try {
   let accessToken = cachedToken;
   if (!accessToken || now >= accessToken.until) {
@@ -75,9 +75,9 @@ async function subActive(token) {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${encodeURIComponent(jwt)}`
     });
-    if (!res.ok) return outage();
+    if (!res.ok) return outage("Anmeldung bei Google HTTP " + res.status);
     const json = await res.json();
-    if (!json.access_token) return outage();
+    if (!json.access_token) return outage("Anmeldung ohne Zugriffstoken");
     accessToken = { token: json.access_token, until: now + (json.expires_in - 60) * 1000 };
     cachedToken = accessToken;
   }
@@ -89,7 +89,7 @@ async function subActive(token) {
   if (res.status === 400 || res.status === 404 || res.status === 410) {
     cached = { expiry: 0, checked: now };
   } else if (!res.ok) {
-    return outage();
+    return outage("Play-Abfrage HTTP " + res.status);
   } else {
     const json = await res.json();
     let expiry = 0;
@@ -105,7 +105,7 @@ async function subActive(token) {
   }
   } catch (e) {
     if (e.code === 503) throw e;
-    return outage(); // Netzwerkfehler oder kaputte Antwort
+    return outage(e.message); // Netzwerkfehler, kaputtes Dienstkonto oder kaputte Antwort
   }
 
   await db.set("subs", subHash, { ...cached, expires: new Date(Math.max(cached.expiry, now) + 30 * 864e5) });
