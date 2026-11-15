@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     const rep = await books.createReport(`${y}-${pad(mo + 1)}-01`, `${y}-${pad(mo + 1)}-${pad(last)}`);
     await books.mailReport(rep);
     // Danach abgelaufene Ratenbegrenzungs- und Testphasen-Einträge löschen (Löschfristen laut Datenschutzerklärung); erst nach dem Bericht, damit ein langes Aufräumen ihn nicht verhindert
-    for (const c of ["authRate", "trials"]) await db.purgeExpired(c).catch((e) => console.error(`Aufräumen ${c}: ${e.message}`));
+    for (const c of ["authRate", "trials", "aiQuota", "subs"]) await db.purgeExpired(c).catch((e) => console.error(`Aufräumen ${c}: ${e.message}`));
     return res.status(200).json({ ok: true, report: rep.number, sales: rep.totals.sales });
   } catch (e) {
     console.error(e.message);
