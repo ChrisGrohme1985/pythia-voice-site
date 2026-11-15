@@ -49,11 +49,13 @@ async function subActive(token) {
   if (cached && cached.expiry <= now && now - cached.checked < 10 * 60e3) return false;
 
   // Google gestört oder nicht erreichbar: letzter bekannter Stand gilt, ohne ihn 503
-  const outage = (why) => { console.error("KI: Google-Abfrage nicht möglich: " + why); if (cached) return cached.expiry > now; throw fail(503); };
+  // why: fester Kurzcode (kein Fehlertext, der Schlüsselteile enthalten könnte); geht als Kopfzeile X-PV-Why an den Aufrufer, damit sich die Ursache ohne Logs finden lässt
+  const outage = (why) => { console.error("KI: Google-Abfrage nicht möglich: " + why); if (cached) return cached.expiry > now; throw Object.assign(fail(503), { why }); };
   try {
   let accessToken = cachedToken;
   if (!accessToken || now >= accessToken.until) {
-    const sa = serviceAccount();
+    let sa;
+    try { sa = serviceAccount(); } catch { return outage("dienstkonto_nicht_lesbar"); }
     const iat = Math.floor(now / 1000);
     const exp = iat + 3600;
     const header = { alg: "RS256", typ: "JWT" };
@@ -75,9 +77,9 @@ async function subActive(token) {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${encodeURIComponent(jwt)}`
     });
-    if (!res.ok) return outage("Anmeldung bei Google HTTP " + res.status);
+    if (!res.ok) return outage("token_http_" + res.status);
     const json = await res.json();
-    if (!json.access_token) return outage("Anmeldung ohne Zugriffstoken");
+    if (!json.access_token) return outage("token_ohne_zugriff");
     accessToken = { token: json.access_token, until: now + (json.expires_in - 60) * 1000 };
     cachedToken = accessToken;
   }
@@ -89,7 +91,7 @@ async function subActive(token) {
   if (res.status === 400 || res.status === 404 || res.status === 410) {
     cached = { expiry: 0, checked: now };
   } else if (!res.ok) {
-    return outage("Play-Abfrage HTTP " + res.status);
+    return outage("play_http_" + res.status);
   } else {
     const json = await res.json();
     let expiry = 0;
@@ -105,7 +107,7 @@ async function subActive(token) {
   }
   } catch (e) {
     if (e.code === 503) throw e;
-    return outage(e.message); // Netzwerkfehler, kaputtes Dienstkonto oder kaputte Antwort
+    return outage("netzwerk_oder_antwort"); // Netzwerkfehler oder kaputte Antwort
   }
 
   await db.set("subs", subHash, { ...cached, expires: new Date(Math.max(cached.expiry, now) + 30 * 864e5) });
@@ -204,7 +206,7 @@ async function handler(req, res) {
           art = "sub";
         } // sonst weiter mit Testphase
       } catch (e) {
-        if (e.code === 503) return res.status(503).json({ error: "busy" });
+        if (e.code === 503) { if (e.why) res.setHeader("X-PV-Why", e.why); return res.status(503).json({ error: "busy" }); }
         throw e;
       }
     }
