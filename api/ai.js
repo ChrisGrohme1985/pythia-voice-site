@@ -140,8 +140,10 @@ async function handler(req, res) {
 
     const sub = req.headers["x-pv-sub"];
     if (sub && (!/^[A-Za-z0-9._:-]{1,600}$/.test(sub))) return res.status(400).json({ error: "invalid" });
-    const buy = req.headers["x-pv-buy"]; // Einmalkauf-Token von Bestandskunden ohne eigenen Schlüssel
-    if (buy && (!/^[A-Za-z0-9._:-]{1,600}$/.test(buy))) return res.status(400).json({ error: "invalid" });
+    // Alter Einmalkauf von Bestandskunden ohne eigenen Schlüssel als "Produkt:Token"; beide alten Produkte gelten wie Pro für alles
+    const buy = req.headers["x-pv-buy"];
+    const buyM = buy ? /^(pythia_voice_pro|pythia_voice_messages):([A-Za-z0-9._-]{1,600})$/.exec(buy) : null;
+    if (buy && !buyM) return res.status(400).json({ error: "invalid" });
 
     // Erst Größe und Inhalt prüfen: Ungültiges darf weder Testphasen anlegen noch Kontingent kosten
     let body;
@@ -220,11 +222,11 @@ async function handler(req, res) {
       }
     }
 
-    if (!who && buy) {
+    if (!who && buyM) {
       try {
-        // Diktat = „Pythia Voice Standard“, Sprachnachrichten = „Pythia Voice Record“ (alte Einmalkäufe); gleiche Kontingente wie das Abo
-        if (await subActive(buy, product === "voice" ? "pythia_voice_messages" : "pythia_voice_pro")) {
-          who = "b-" + crypto.createHash("sha256").update(buy).digest("hex").slice(0, 40);
+        // „Pythia Voice Standard“ oder „Record“ (alte Einmalkäufe): gleiche Rechte und Kontingente wie das Abo
+        if (await subActive(buyM[2], buyM[1])) {
+          who = "b-" + crypto.createHash("sha256").update(buyM[2]).digest("hex").slice(0, 40);
           art = "sub";
         }
       } catch (e) {
