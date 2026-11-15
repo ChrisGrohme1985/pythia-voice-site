@@ -90,6 +90,7 @@ async function subActive(token) {
   );
   if (res.status === 400 || res.status === 404 || res.status === 410) {
     cached = { expiry: 0, checked: now };
+    console.error("KI: Abo-Abfrage Google " + res.status);
   } else if (!res.ok) {
     return outage("play_http_" + res.status);
   } else {
@@ -104,6 +105,7 @@ async function subActive(token) {
       }
     }
     cached = { expiry, checked: now };
+    console.error("KI: Abo-Status " + json.subscriptionState + ", Produkte " + (json.lineItems || []).map(i => i.productId + "/" + i.expiryTime).join(",") + ", Ablauf " + expiry);
   }
   } catch (e) {
     if (e.code === 503) throw e;
