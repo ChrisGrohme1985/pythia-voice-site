@@ -9,6 +9,8 @@ async function run(p, body, contentType) {
 
   if (provider === "cloudflare") {
     return await cf_run(p, body, contentType)
+  } else if (provider === "openai") {
+    return await oa_run(p, body, contentType)
   } else {
     return await groq_run(p, body, contentType)
   }
@@ -30,6 +32,29 @@ async function groq_run(p, body, contentType) {
       },
       body
     })
+    return { status: r.status, text: await r.text() }
+  } catch (e) {
+    throw Object.assign(new Error(e.message), { code: "network" })
+  }
+}
+
+// Beliebiger OpenAI-kompatibler Anbieter (Fireworks, DeepInfra, OpenAI ...): AI_BASE (z. B. https://api.fireworks.ai/inference/v1), AI_KEY,
+// AI_STT_MODEL, AI_LLM_MODEL; optional AI_STT_BASE, falls die Spracherkennung unter anderer Adresse läuft.
+async function oa_run(p, body, contentType) {
+  const key = process.env.AI_KEY, base = process.env.AI_BASE
+  const stt = process.env.AI_STT_MODEL, llm = process.env.AI_LLM_MODEL
+  if (!key || !base || !stt || !llm) throw Object.assign(new Error("AI_BASE, AI_KEY, AI_STT_MODEL oder AI_LLM_MODEL fehlt"), { code: "config" })
+  let url, out
+  if (p === "audio/transcriptions") {
+    url = (process.env.AI_STT_BASE || base) + "/audio/transcriptions"
+    const old = Buffer.from("\r\n\r\nwhisper-large-v3-turbo\r\n"), i = body.indexOf(old)
+    out = i < 0 ? body : Buffer.concat([body.subarray(0, i), Buffer.from("\r\n\r\n" + stt + "\r\n"), body.subarray(i + old.length)])
+  } else {
+    url = base + "/chat/completions"
+    out = JSON.stringify({ ...JSON.parse(body.toString()), model: llm })
+  }
+  try {
+    const r = await fetch(url, { method: "POST", headers: { Authorization: "Bearer " + key, "Content-Type": contentType, "User-Agent": "PythiaVoice-Server/1.0" }, body: out })
     return { status: r.status, text: await r.text() }
   } catch (e) {
     throw Object.assign(new Error(e.message), { code: "network" })
