@@ -41,8 +41,9 @@ async function rawBody(req, max) {
   return Buffer.concat(chunks);
 }
 
-async function subActive(token) {
-  const subHash = crypto.createHash("sha256").update(token).digest("hex").slice(0, 40);
+// productId gesetzt: Einmalkauf (Bestandskunde) statt Abo prüfen; ein gültiger Kauf gilt 30 Tage, danach wird erneut gefragt (Erstattung sperrt dann)
+async function subActive(token, productId) {
+  const subHash = crypto.createHash("sha256").update((productId ? productId + ":" : "") + token).digest("hex").slice(0, 40);
   const now = Date.now();
   let cached = await db.get("subs", subHash);
   if (cached && now - cached.checked < 6 * 3600e3 && cached.expiry > now) return true;
@@ -85,7 +86,9 @@ async function subActive(token) {
   }
 
   const res = await fetch(
-    `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/app.pythiavoice/purchases/subscriptionsv2/tokens/${encodeURIComponent(token)}`,
+    productId
+      ? `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/app.pythiavoice/purchases/products/${productId}/tokens/${encodeURIComponent(token)}`
+      : `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/app.pythiavoice/purchases/subscriptionsv2/tokens/${encodeURIComponent(token)}`,
     { headers: { Authorization: `Bearer ${accessToken.token}` } }
   );
   if (res.status === 400 || res.status === 404 || res.status === 410) {
@@ -96,7 +99,11 @@ async function subActive(token) {
   } else {
     const json = await res.json();
     let expiry = 0;
-    if (json.subscriptionState && ["SUBSCRIPTION_STATE_ACTIVE", "SUBSCRIPTION_STATE_IN_GRACE_PERIOD", "SUBSCRIPTION_STATE_CANCELED"].includes(json.subscriptionState)) {
+    if (productId) {
+      // purchaseState 0 = gekauft (1 = storniert/erstattet, 2 = ausstehend)
+      if (json.purchaseState === 0) expiry = now + 30 * 864e5;
+      console.error("KI: Einmalkauf " + productId + " Status " + json.purchaseState);
+    } else if (json.subscriptionState && ["SUBSCRIPTION_STATE_ACTIVE", "SUBSCRIPTION_STATE_IN_GRACE_PERIOD", "SUBSCRIPTION_STATE_CANCELED"].includes(json.subscriptionState)) {
       for (const item of json.lineItems || []) {
         if (item.productId === "pythia_voice_sub") {
           const e = Date.parse(item.expiryTime);
@@ -105,7 +112,7 @@ async function subActive(token) {
       }
     }
     cached = { expiry, checked: now };
-    console.error("KI: Abo-Status " + json.subscriptionState + ", Produkte " + (json.lineItems || []).map(i => i.productId + "/" + i.expiryTime).join(",") + ", Ablauf " + expiry);
+    if (!productId) console.error("KI: Abo-Status " + json.subscriptionState + ", Produkte " + (json.lineItems || []).map(i => i.productId + "/" + i.expiryTime).join(",") + ", Ablauf " + expiry);
   }
   } catch (e) {
     if (e.code === 503) throw e;
@@ -133,6 +140,8 @@ async function handler(req, res) {
 
     const sub = req.headers["x-pv-sub"];
     if (sub && (!/^[A-Za-z0-9._:-]{1,600}$/.test(sub))) return res.status(400).json({ error: "invalid" });
+    const buy = req.headers["x-pv-buy"]; // Einmalkauf-Token von Bestandskunden ohne eigenen Schlüssel
+    if (buy && (!/^[A-Za-z0-9._:-]{1,600}$/.test(buy))) return res.status(400).json({ error: "invalid" });
 
     // Erst Größe und Inhalt prüfen: Ungültiges darf weder Testphasen anlegen noch Kontingent kosten
     let body;
@@ -205,6 +214,19 @@ async function handler(req, res) {
           who = "s-" + crypto.createHash("sha256").update(sub).digest("hex").slice(0, 40);
           art = "sub";
         } // sonst weiter mit Testphase
+      } catch (e) {
+        if (e.code === 503) { if (e.why) res.setHeader("X-PV-Why", e.why); return res.status(503).json({ error: "busy" }); }
+        throw e;
+      }
+    }
+
+    if (!who && buy) {
+      try {
+        // Diktat = „Pythia Voice Standard“, Sprachnachrichten = „Pythia Voice Record“ (alte Einmalkäufe); gleiche Kontingente wie das Abo
+        if (await subActive(buy, product === "voice" ? "pythia_voice_messages" : "pythia_voice_pro")) {
+          who = "b-" + crypto.createHash("sha256").update(buy).digest("hex").slice(0, 40);
+          art = "sub";
+        }
       } catch (e) {
         if (e.code === 503) { if (e.why) res.setHeader("X-PV-Why", e.why); return res.status(503).json({ error: "busy" }); }
         throw e;
