@@ -1,19 +1,32 @@
-// Austauschbarer KI-Anbieter für api/ai.js: Groq (Standard) oder Cloudflare Workers AI (AI_PROVIDER=cloudflare).
+// Austauschbarer KI-Anbieter für api/ai.js: Groq (Standard), OpenAI-kompatibel (openai, z. B. DeepInfra) oder Cloudflare Workers AI, auch als Ausweichkette.
 // run(p, body, contentType) → { status, text }, text immer im Groq-/OpenAI-Format, wie die App es erwartet.
 // Umgebungsvariablen: AI_PROVIDER, GROQ_API_KEY | CF_ACCOUNT_ID, CF_API_TOKEN
 // shortcut: Cloudflare-Felder (Denkaufwand, Ergebnisfelder) nach Dokumentation, nicht live geprüft; beim ersten Test mit echtem Konto abgleichen.
 module.exports = { run }
 
+// AI_PROVIDER darf eine Liste sein, z. B. "groq,openai,cloudflare": der nächste Anbieter springt ein, wenn der vorige
+// nicht erreichbar ist, fehlt, Schlüssel/Guthaben ablehnt (401/402/403), überlastet ist (408/429) oder einen Serverfehler meldet (5xx).
+// Fehler in der Anfrage selbst (400, 413) gelten nicht als Störung und werden direkt zurückgegeben.
 async function run(p, body, contentType) {
-  const provider = process.env.AI_PROVIDER || "groq"
-
-  if (provider === "cloudflare") {
-    return await cf_run(p, body, contentType)
-  } else if (provider === "openai") {
-    return await oa_run(p, body, contentType)
-  } else {
-    return await groq_run(p, body, contentType)
+  const list = (process.env.AI_PROVIDER || "groq").split(",").map((x) => x.trim()).filter(Boolean)
+  let last, err
+  for (const provider of list) {
+    try {
+      last = await one(provider, p, body, contentType)
+      if (![401, 402, 403, 408, 429].includes(last.status) && last.status < 500) return last
+    } catch (e) {
+      err = e; last = undefined
+    }
+    if (list.length > 1) console.error("KI: Anbieter " + provider + " gestört (" + (last ? last.status : err.code) + "), nächster")
   }
+  if (last) return last
+  throw err
+}
+
+async function one(provider, p, body, contentType) {
+  if (provider === "cloudflare") return await cf_run(p, body, contentType)
+  if (provider === "openai") return await oa_run(p, body, contentType)
+  return await groq_run(p, body, contentType)
 }
 
 async function groq_run(p, body, contentType) {
