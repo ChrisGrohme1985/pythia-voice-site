@@ -115,6 +115,7 @@ async function subActive(token) {
 }
 
 async function handler(req, res) {
+  const t0 = Date.now();
   try {
     res.setHeader("Cache-Control", "no-store");
     if (req.method !== "POST") return res.status(405).json({ error: "method" });
@@ -145,12 +146,9 @@ async function handler(req, res) {
       }
       const ct = req.headers["content-type"];
       if (!ct || !ct.startsWith("multipart/form-data")) return res.status(400).json({ error: "invalid" });
-      const bodyStr = body.toString("latin1");
       let count = 0;
-      for (let i = 0; i < bodyStr.length - 12; i++) {
-        if (bodyStr.slice(i, i + 12) === 'name="model"') count++;
-      }
-      if (count !== 1 || !bodyStr.includes("\r\n\r\nwhisper-large-v3-turbo\r\n")) {
+      for (let i = body.indexOf('name="model"'); i !== -1; i = body.indexOf('name="model"', i + 12)) count++;
+      if (count !== 1 || !body.includes("\r\n\r\nwhisper-large-v3-turbo\r\n")) {
         return res.status(400).json({ error: "invalid" });
       }
       contentType = ct;
@@ -238,22 +236,24 @@ async function handler(req, res) {
     const maxBytes = art === "sub" ? 40_000_000 : 15_000_000;
     const maxCalls = art === "sub" ? 3000 : 600;
 
-    let quota = await db.get("aiQuota", day + "-" + who);
+    const tPre = Date.now() - t0;
+    let quota;
+    let all;
+    [quota, all] = await Promise.all([db.get("aiQuota", day + "-" + who), art === "trial" ? db.get("aiQuota", day + "-trial-all") : null]);
     if (!quota) quota = { bytes: 0, calls: 0 };
 
     if (quota.bytes + Buffer.byteLength(body) > maxBytes || quota.calls + 1 > maxCalls) {
       return res.status(429).json({ error: "quota" });
     }
 
-    let all;
     if (art === "trial") {
-      all = await db.get("aiQuota", day + "-trial-all");
       if ((all?.bytes || 0) + Buffer.byteLength(body) > (Number(process.env.AI_TRIAL_DAILY_BYTES) || 500_000_000)) {
         return res.status(503).json({ error: "busy" });
       }
     }
 
     let r;
+    const tAi = Date.now();
     try {
       r = await require("./_aiprovider").run(p, body, contentType);
     } catch (e) {
@@ -272,6 +272,7 @@ async function handler(req, res) {
     }
 
     const text = r.text;
+    res.setHeader("Server-Timing", `pre;dur=${tPre}, ai;dur=${Date.now() - tAi}`);
     res.setHeader("Content-Type", "application/json");
     res.status(r.status).send(text);
 
