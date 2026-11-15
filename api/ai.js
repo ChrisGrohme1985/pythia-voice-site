@@ -236,6 +236,8 @@ async function handler(req, res) {
     }
 
     let trial = null;
+    // Alter Kauf abgelehnt (erstattet/ungültig): Kennzeichen für die App, damit sie ihn nicht mehr als Pro anzeigt; sie fällt dann auf Testphase/Abo zurück
+    if (!who && buyM) res.setHeader("X-PV-Why", "kauf_ungueltig");
     if (!who) {
       const id = product + "-" + devHash;
       trial = await db.get("trials", id);
