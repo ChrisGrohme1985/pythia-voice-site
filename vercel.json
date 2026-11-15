@@ -41,5 +41,10 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/ai.js": {
+      "maxDuration": 60
+    }
+  }
 }
