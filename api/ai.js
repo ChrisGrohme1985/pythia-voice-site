@@ -233,7 +233,7 @@ async function handler(req, res) {
       art = "trial";
     }
 
-    const maxBytes = art === "sub" ? 150_000_000 : 30_000_000;
+    const maxBytes = art === "sub" ? 40_000_000 : 15_000_000;
     const maxCalls = art === "sub" ? 3000 : 600;
 
     let quota = await db.get("aiQuota", day + "-" + who);
@@ -246,7 +246,7 @@ async function handler(req, res) {
     let all;
     if (art === "trial") {
       all = await db.get("aiQuota", day + "-trial-all");
-      if ((all?.bytes || 0) + Buffer.byteLength(body) > (Number(process.env.AI_TRIAL_DAILY_BYTES) || 2_000_000_000)) {
+      if ((all?.bytes || 0) + Buffer.byteLength(body) > (Number(process.env.AI_TRIAL_DAILY_BYTES) || 500_000_000)) {
         return res.status(503).json({ error: "busy" });
       }
     }
