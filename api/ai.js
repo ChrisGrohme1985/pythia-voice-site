@@ -264,7 +264,7 @@ async function handler(req, res) {
     }
 
     if (r.status < 200 || r.status > 299) {
-      if (r.status === 401 || r.status === 403) {
+      if (r.status === 401 || r.status === 402 || r.status === 403) {
         console.error("KI: Anbieter lehnt den Schlüssel ab (" + r.status + ")");
         return res.status(502).json({ error: "upstream" });
       }
