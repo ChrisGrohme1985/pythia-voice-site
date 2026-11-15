@@ -5,7 +5,7 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const SUPPORTED = ["en", "de", "it", "es", "fr", "pt", "ru", "tr", "nl", "pl", "ja", "zh", "ko", "ar", "hi", "id", "vi", "uk", "th", "sv", "cs", "ro", "el", "he"];
   const page = document.body.dataset.page || "home"; // home | recap | family
-  const tail = { home: "", recap: "recap", family: "pythia", download: "download" }[page];
+  const tail = { home: "", recap: "recap", family: "pythia" }[page];
   const $ = (id) => document.getElementById(id);
   doc.classList.add("js");
 
@@ -36,7 +36,6 @@
   href(["buy"], P.buyUrl);
   href(["buy-voice", "buy-voice-2"], P.voiceBuyUrl);
   href(["buy-recap", "buy-recap-2", "buy-recap-h"], P.recapBuyUrl);
-  href(["apk"], P.apkUrl);
   if (P.recapApkUrl) {
     for (const id of ["rc-apk-h", "rc-apk"]) { const a = $(id); if (a) { a.href = P.recapApkUrl; a.hidden = false; } }
     for (const id of ["rc-soon-h", "rc-soon"]) { const a = $(id); if (a) a.hidden = true; }

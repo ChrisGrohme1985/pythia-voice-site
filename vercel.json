@@ -1,5 +1,7 @@
 {
-  "regions": ["fra1"],
+  "regions": [
+    "fra1"
+  ],
   "cleanUrls": true,
   "crons": [
     {
@@ -47,5 +49,17 @@
     "api/ai.js": {
       "maxDuration": 60
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/download",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:lang/download",
+      "destination": "/:lang/",
+      "permanent": true
+    }
+  ]
 }
