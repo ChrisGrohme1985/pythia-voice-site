@@ -382,7 +382,7 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
 .x-small { margin-top: 18px; font-size: .9rem; color: var(--muted); }
 .center { text-align: center; }
 
-/* Bühne: Handy mit Video, Lichthof und zwei schwebende Etiketten */
+/* Bühne: Handy mit Video, Lichthof */
 .x-stage { position: relative; justify-self: center; width: min(340px, 78vw); }
 .x-glow { position: absolute; inset: 8% -30% 0; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--gold) 30%, transparent), transparent 72%); filter: blur(30px); animation: x-breathe 7s ease-in-out infinite; }
 @keyframes x-breathe { 50% { transform: scale(1.08); opacity: .75; } }
@@ -395,13 +395,6 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
 .x-sound svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .x-sound .on, .x-sound[aria-pressed="true"] .off { display: none; }
 .x-sound[aria-pressed="true"] .on { display: block; }
-.x-chip { position: absolute; padding: 10px 16px; border-radius: 16px; font-size: .9rem; font-weight: 560; white-space: nowrap; color: var(--ivory);
-  background: rgba(16, 26, 51, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14), 0 20px 40px -20px rgba(0, 0, 0, .8);
-  animation: x-float 6s ease-in-out infinite; }
-.x-chip::before { content: "\2713"; color: var(--gold); margin-inline-end: 8px; }
-.x-chip.c1 { top: 18%; inset-inline-start: -26%; }
-.x-chip.c2 { bottom: 20%; inset-inline-end: -22%; animation-delay: -3s; }
-@keyframes x-float { 50% { transform: translateY(-10px); } }
 
 /* Drei Schritte als schmale Leiste */
 .x-steps { padding-top: 0; }
@@ -458,8 +451,6 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
   .x-hero-text { text-align: center; }
   .x-hero .lead { margin-inline: auto; }
   .x-hero .row { justify-content: center; }
-  .x-chip.c1 { inset-inline-start: -14%; }
-  .x-chip.c2 { inset-inline-end: -12%; }
   .x-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .x-tile { grid-column: span 1; }
   .x-tile.big { grid-column: span 2; grid-row: auto; }
@@ -472,6 +463,4 @@ footer { padding: 48px 0 44px; color: var(--muted); font-size: .92rem; border-to
   .x-tile, .x-tile.big { grid-column: auto; }
   .x-tile.big { grid-template-columns: 1fr; }
   .x-tile-shot { max-width: 260px; margin-inline: auto; }
-  .x-chip { display: none; }
 }
-@media (prefers-reduced-motion: reduce) { .x-glow, .x-chip, .x-dot { animation: none; } }
