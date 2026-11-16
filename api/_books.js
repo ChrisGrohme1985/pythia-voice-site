@@ -90,11 +90,11 @@ async function addEntry(input, actor = "") {
 }
 
 /** Eindeutig zugeordnet = Stripe-Verkauf oder Ausgabe mit zugeordnetem Beleg. Solche Posten sind unveränderbar (nur Storno bei manuellen). */
-const lockReason = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.source === "flowunion" ? "FlowUnion-Zahlung" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
+const lockReason = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.source === "flowunion" ? "FlowUnion-Zahlung" : e.source === "googleplay" ? "Google-Play-Verkauf" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
 /** Zuletzt erfasster manueller Posten (nicht storniert): bleibt trotz zugeordnetem Beleg korrigierbar, bis ein neuer Posten erfasst wird. */
 const latestManual = (list) => list.filter((x) => x.source === "manual" && !x.void).reduce((a, x) => (!a || (x.createdAt || 0) > (a.createdAt || 0) ? x : a), null);
 const editLock = async (e, id) => (lockReason(e) && !(e.source === "manual" && latestManual(await listEntries())?.id === id) ? lockReason(e) : ""); // db.get liefert den Posten ohne id
-const srcLabel = (e) => (e.source === "stripe" ? "Stripe" : e.source === "flowunion" ? "FlowUnion" : "manuell");
+const srcLabel = (e) => (e.source === "stripe" ? "Stripe" : e.source === "flowunion" ? "FlowUnion" : e.source === "googleplay" ? "Google Play" : "manuell");
 
 async function updateEntry(id, input) {
   const cur = await db.get(ENTRIES, id);
@@ -125,6 +125,7 @@ async function voidEntry(id) {
   const cur = await db.get(ENTRIES, id);
   if (!cur) throw new Error("Posten nicht gefunden");
   if (cur.source === "stripe") throw new Error("Stripe-Verkäufe werden in Stripe erstattet");
+  if (cur.source === "googleplay") throw new Error("Google-Play-Verkäufe werden in der Play Console erstattet");
   const patch = { void: true, voidedAt: now() };
   await db.set(ENTRIES, id, patch, { merge: true });
   return { id, ...cur, ...patch };
@@ -541,12 +542,12 @@ async function reportPdf(number, from, to, entries, t) {
   let p, w, y;
   const page = (title) => { p = doc.addPage([595, 842]); w = inv.writer(p, fonts); y = 790; w(title, 56, y, 14, true); y -= 28; };
   page(`Bericht ${number}: ${inv.de(from)} bis ${inv.de(to)}`);
-  const lines = [["Einnahmen (brutto)", num(t.income)], ["Erstattungen", "-" + num(t.refunds)], ["Stripe-Gebühren", "-" + num(t.fees)], ["Ausgaben", "-" + num(t.expenses)], ["Ergebnis", num(t.result)]];
+  const lines = [["Einnahmen (brutto)", num(t.income)], ["Erstattungen", "-" + num(t.refunds)], ["Gebühren (Stripe, Google)", "-" + num(t.fees)], ["Ausgaben", "-" + num(t.expenses)], ["Ergebnis", num(t.result)]];
   lines.forEach(([l, v], i) => { const b = i === lines.length - 1; w(l, 56, y, 12, b); w(v + " €", 440, y, 12, b); y -= 20; });
   y -= 10;
   w(`${t.sales} Verkäufe über Stripe. Stornierte Posten sind nicht eingerechnet.`, 56, y, 10, false, inv.colors.gray); y -= 14;
   w(inv.KLEIN, 56, y, 10, false, inv.colors.gray); y -= 14;
-  w("Ergebnis = Einnahmen - Erstattungen - Stripe-Gebühren - Ausgaben. Keine Steuerberechnung.", 56, y, 10, false, inv.colors.gray);
+  w("Ergebnis = Einnahmen - Erstattungen - Gebühren (Stripe, Google) - Ausgaben. Keine Steuerberechnung.", 56, y, 10, false, inv.colors.gray);
   y -= 30;
   w("Je Projekt", 56, y, 12, true); y -= 20;
   for (const r of byProject(entries)) {
@@ -606,7 +607,7 @@ async function mailReport(report) {
       to: [process.env.REPORT_EMAIL || "support@pythiavoice.app"],
       subject: `Pythia Voice Bericht ${report.number}: ${report.from} bis ${report.to}`,
       text: `Bericht ${report.number} für ${report.from} bis ${report.to}\n\nEinnahmen: ${num(t.income)} €\nErstattungen: ${num(t.refunds)} €\n` +
-        `Stripe-Gebühren: ${num(t.fees)} €\nAusgaben: ${num(t.expenses)} €\nErgebnis: ${num(t.result)} €\n\n` +
+        `Gebühren (Stripe, Google): ${num(t.fees)} €\nAusgaben: ${num(t.expenses)} €\nErgebnis: ${num(t.result)} €\n\n` +
         `Anhänge: Einnahmen (CSV), Ausgaben (CSV), Bericht mit Rechnungen (PDF).\n`,
       attachments: [
         { filename: `${report.number}-Einnahmen.csv`, content: report.files.einnahmen.toString("base64") },
