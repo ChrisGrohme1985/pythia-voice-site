@@ -141,6 +141,8 @@ async function handler(req, res) {
     const sub = req.headers["x-pv-sub"];
     if (sub && (!/^[A-Za-z0-9._:-]{1,600}$/.test(sub))) return res.status(400).json({ error: "invalid" });
     // Alter Einmalkauf von Bestandskunden ohne eigenen Schlüssel als "Produkt:Token"; beide alten Produkte gelten wie Pro für alles
+    const code = req.headers["x-pv-code"]; // Zugangscode für Freunde/Tester (siehe _codes.js)
+    if (code && !require("./_codes").FORMAT.test(code)) return res.status(400).json({ error: "invalid" });
     const buy = req.headers["x-pv-buy"];
     const buyM = buy ? /^(pythia_voice_pro|pythia_voice_messages):([A-Za-z0-9._-]{1,600})$/.exec(buy) : null;
     if (buy && !buyM) return res.status(400).json({ error: "invalid" });
@@ -210,7 +212,13 @@ async function handler(req, res) {
     let who;
     let art;
 
-    if (sub) {
+    const friendName = code ? require("./_codes").friend(code) : null;
+    if (friendName) {
+      who = "c-" + crypto.createHash("sha256").update(friendName).digest("hex").slice(0, 40);
+      art = "sub"; // gleiche Rechte und Kontingente wie das Abo
+    }
+
+    if (!who && sub) {
       try {
         if (await subActive(sub)) {
           who = "s-" + crypto.createHash("sha256").update(sub).digest("hex").slice(0, 40);
@@ -238,6 +246,7 @@ async function handler(req, res) {
     let trial = null;
     // Alter Kauf abgelehnt (erstattet/ungültig): Kennzeichen für die App, damit sie ihn nicht mehr als Pro anzeigt; sie fällt dann auf Testphase/Abo zurück
     if (!who && buyM) res.setHeader("X-PV-Why", "kauf_ungueltig");
+    if (!who && code) res.setHeader("X-PV-Why", "code_ungueltig"); // gelöschter Code: die App verwirft ihn
     if (!who) {
       const id = product + "-" + devHash;
       trial = await db.get("trials", id);
