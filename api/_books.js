@@ -130,6 +130,22 @@ async function voidEntry(id) {
   return { id, ...cur, ...patch };
 }
 
+/** Löschen (nur bei Fehlern): geht nur beim Posten mit der höchsten Nummer seines Kreises, der Zähler läuft zurück, die Nummer wird neu vergeben.
+ *  Stripe-/FlowUnion-Buchungen nie. Ein zugeordneter Beleg wandert zurück in die Beleg-Inbox. */
+async function deleteEntry(id) {
+  const cur = await db.get(ENTRIES, id);
+  if (!cur) throw new Error("Posten nicht gefunden");
+  if (cur.source !== "manual") throw new Error(`${srcLabel(cur)}-Buchungen lassen sich nicht löschen`);
+  const m = /^([A-Z]+)-(\d{4})-(\d+)$/.exec(String(cur.number || ""));
+  if (!m) throw new Error("Nummer unbekannt");
+  if (!(await db.unnumber(ENTRIES, id, m[1], Number(m[2]), Number(m[3])))) throw new Error(`Nur der Posten mit der höchsten Nummer in ${m[1]}-${m[2]} lässt sich löschen (sonst entstünde eine Lücke); diesen bitte stornieren`);
+  if (cur.receiptStatus === "ready" && cur.receiptBlobId) {
+    const inboxId = crypto.randomUUID();
+    await db.set(INBOX, inboxId, { filename: cur.receiptFilename || "beleg.pdf", size: (await db.get(BLOBS, cur.receiptBlobId))?.size || 0, status: "ready", blobId: cur.receiptBlobId, createdBy: "", createdAt: now() });
+  }
+  return { id, number: cur.number };
+}
+
 // ---------- Stripe ----------
 
 const ids = (v) => String(v || "").split(",").map((s) => s.trim()).filter(Boolean);
@@ -662,7 +678,7 @@ async function entriesCsv(from, to, project = "") {
 }
 
 module.exports = {
-  PROJECTS, projectOf, byProject, assignProject, lockReason, latestManual, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
+  PROJECTS, projectOf, byProject, assignProject, lockReason, latestManual, deleteEntry, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
   productOf, syncFlowUnion, totals, refundSale, syncRefundFromCharge, syncRefundForPayment, documentPdf, listLicenses, grantLicense, releaseDevice, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };

@@ -108,6 +108,27 @@ async function numbered(c, id, prefix, year, build) {
   });
 }
 
+/** Gegenstück zu numbered: löscht das Dokument und setzt den Zähler um eins zurück, aber nur, wenn es die zuletzt vergebene Nummer trägt
+ *  (sonst entstünde eine Lücke). Beides in einer Transaktion. Rückgabe: true = gelöscht, false = nicht die letzte Nummer. */
+async function unnumber(c, id, prefix, year, n) {
+  const key = `${prefix}-${year}`;
+  if (memory) {
+    if ((memory.counters.get(key) || 0) !== n) return false;
+    memory.counters.set(key, n - 1);
+    col(c).delete(String(id));
+    return true;
+  }
+  const db = fs();
+  return db.runTransaction(async (tx) => {
+    const cref = db.collection("counters").doc(key);
+    const cs = await tx.get(cref);
+    if ((cs.exists ? cs.data().value : 0) !== n) return false;
+    tx.set(cref, { value: n - 1 });
+    tx.delete(db.collection(c).doc(String(id)));
+    return true;
+  });
+}
+
 /** Nummer ohne Dokument (Berichte). */
 async function nextNumber(prefix, year) {
   const r = await numbered("_numbers", `${prefix}-${year}-${Date.now()}-${Math.random().toString(36).slice(2)}`, prefix, year, (number) => ({ number }));
@@ -149,4 +170,4 @@ async function delBlob(c, id) {
   await base.delete();
 }
 
-module.exports = { useMemory, get, set, create, del, list, purgeExpired, numbered, nextNumber, putBlob, getBlob, delBlob, CHUNK };
+module.exports = { useMemory, get, set, create, del, list, purgeExpired, numbered, unnumber, nextNumber, putBlob, getBlob, delBlob, CHUNK };
