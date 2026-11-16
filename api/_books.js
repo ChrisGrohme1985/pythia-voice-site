@@ -44,10 +44,13 @@ function addMonths(iso, months) {
 
 function clean(input, fixedType) {
   const type = fixedType || String(input.type || "");
-  const date = String(input.date || ""), amount = cents(input.amount), category = String(input.category || "");
+  const date = String(input.date || ""), raw = cents(input.amount), category = String(input.category || "");
   if (type !== "income" && type !== "expense") throw new Error("Art muss Einnahme oder Ausgabe sein");
   if (!YMD.test(date) || Number.isNaN(Date.parse(date + "T12:00:00Z"))) throw new Error("Datum fehlt oder ist ungültig");
-  if (!(amount > 0) || amount > 1e9) throw new Error("Betrag fehlt oder ist ungültig");
+  // Gutschrift = Ausgabe mit negativem Betrag (Geld vom Lieferanten zurück); per Häkchen oder Minuszeichen. Einnahmen bleiben positiv.
+  const credit = type === "expense" && (input.credit === true || input.credit === "1" || raw < 0);
+  const amount = credit ? -Math.abs(raw) : raw;
+  if (!(Math.abs(amount) > 0) || Math.abs(amount) > 1e9 || (amount < 0 && !credit)) throw new Error("Betrag fehlt oder ist ungültig");
   const party = String(input.party || "").trim().slice(0, 120);
   if (type === "expense" && !party) throw new Error("Lieferant fehlt");
   const project = PROJECTS.includes(input.project) ? input.project : "Allgemein";
@@ -55,7 +58,7 @@ function clean(input, fixedType) {
   return {
     type, date, amount, project, category: list.includes(category) ? category : list[list.length - 1], party,
     description: String(input.description || "").trim().slice(0, 300),
-    recurrence: type === "expense" && RECURRENCES[input.recurrence] ? String(input.recurrence) : null,
+    recurrence: type === "expense" && !credit && RECURRENCES[input.recurrence] ? String(input.recurrence) : null,
     recurrenceUntil: YMD.test(String(input.recurrenceUntil || "")) ? String(input.recurrenceUntil) : null,
   };
 }
