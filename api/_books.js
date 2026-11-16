@@ -14,7 +14,7 @@ const BINDINGS = "licenseBindings";
 const ENTRIES = "financeEntries", INBOX = "financeReceiptInbox", BLOBS = "financeReceiptBlobs", PARTS = "financeUploadParts";
 const REPORTS = "financeReports", REPORT_BLOBS = "financeReportBlobs";
 const EXPENSE_CATEGORIES = ["Software und Abos", "Domain und Hosting", "Werbung", "Recht und Beratung", "Gebühren und Beiträge", "Hardware", "Sonstiges"];
-const INCOME_CATEGORIES = ["Verkauf (Stripe)", "Sonstige Einnahme"];
+const INCOME_CATEGORIES = ["Verkauf (Stripe)", "Gutschrift", "Sonstige Einnahme"]; // Gutschrift = Geld vom Lieferanten zurück, als Einnahme mit Beleg
 // Zuordnung: ein Projekt oder "Allgemein" für Posten, die für alles gelten (z. B. Steuerberater, Büro)
 const PROJECTS = ["Pythia Voice", "Pythia Recap", "FlowUnion", "Allgemein"];
 const projectOf = (e) => (PROJECTS.includes(e.project) ? e.project : e.source === "stripe" ? "Pythia Voice" : "Allgemein");
@@ -44,13 +44,10 @@ function addMonths(iso, months) {
 
 function clean(input, fixedType) {
   const type = fixedType || String(input.type || "");
-  const date = String(input.date || ""), raw = cents(input.amount), category = String(input.category || "");
+  const date = String(input.date || ""), amount = cents(input.amount), category = String(input.category || "");
   if (type !== "income" && type !== "expense") throw new Error("Art muss Einnahme oder Ausgabe sein");
   if (!YMD.test(date) || Number.isNaN(Date.parse(date + "T12:00:00Z"))) throw new Error("Datum fehlt oder ist ungültig");
-  // Gutschrift = Ausgabe mit negativem Betrag (Geld vom Lieferanten zurück); per Häkchen oder Minuszeichen. Einnahmen bleiben positiv.
-  const credit = type === "expense" && (input.credit === true || input.credit === "1" || raw < 0);
-  const amount = credit ? -Math.abs(raw) : raw;
-  if (!(Math.abs(amount) > 0) || Math.abs(amount) > 1e9 || (amount < 0 && !credit)) throw new Error("Betrag fehlt oder ist ungültig");
+  if (!(amount > 0) || amount > 1e9) throw new Error("Betrag fehlt oder ist ungültig");
   const party = String(input.party || "").trim().slice(0, 120);
   if (type === "expense" && !party) throw new Error("Lieferant fehlt");
   const project = PROJECTS.includes(input.project) ? input.project : "Allgemein";
@@ -58,7 +55,7 @@ function clean(input, fixedType) {
   return {
     type, date, amount, project, category: list.includes(category) ? category : list[list.length - 1], party,
     description: String(input.description || "").trim().slice(0, 300),
-    recurrence: type === "expense" && !credit && RECURRENCES[input.recurrence] ? String(input.recurrence) : null,
+    recurrence: type === "expense" && RECURRENCES[input.recurrence] ? String(input.recurrence) : null,
     recurrenceUntil: YMD.test(String(input.recurrenceUntil || "")) ? String(input.recurrenceUntil) : null,
   };
 }
@@ -94,12 +91,16 @@ async function addEntry(input, actor = "") {
 
 /** Eindeutig zugeordnet = Stripe-Verkauf oder Ausgabe mit zugeordnetem Beleg. Solche Posten sind unveränderbar (nur Storno bei manuellen). */
 const lockReason = (e) => (e.source === "stripe" ? "Stripe-Verkauf" : e.source === "flowunion" ? "FlowUnion-Zahlung" : e.receiptStatus === "ready" ? "Beleg zugeordnet" : "");
+/** Zuletzt erfasster manueller Posten (nicht storniert): bleibt trotz zugeordnetem Beleg korrigierbar, bis ein neuer Posten erfasst wird. */
+const latestManual = (list) => list.filter((x) => x.source === "manual" && !x.void).reduce((a, x) => (!a || (x.createdAt || 0) > (a.createdAt || 0) ? x : a), null);
+const editLock = async (e, id) => (lockReason(e) && !(e.source === "manual" && latestManual(await listEntries())?.id === id) ? lockReason(e) : ""); // db.get liefert den Posten ohne id
 const srcLabel = (e) => (e.source === "stripe" ? "Stripe" : e.source === "flowunion" ? "FlowUnion" : "manuell");
 
 async function updateEntry(id, input) {
   const cur = await db.get(ENTRIES, id);
   if (!cur) throw new Error("Posten nicht gefunden");
-  if (lockReason(cur)) throw new Error(`Gesperrt (${lockReason(cur)}): eindeutig zugeordnete Posten sind nicht änderbar`);
+  const lock = await editLock(cur, id);
+  if (lock) throw new Error(`Gesperrt (${lock}): eindeutig zugeordnete Posten sind nicht änderbar (nur der zuletzt erfasste bleibt korrigierbar)`);
   if (cur.void) throw new Error("Stornierte Posten sind schreibgeschützt");
   const e = clean(input, cur.type);
   const patch = { date: e.date, amount: e.amount, project: e.project, category: e.category, party: e.party, description: e.description, updatedAt: now() };
@@ -112,7 +113,8 @@ async function assignProject(id, project) {
   if (!PROJECTS.includes(project)) throw new Error("Unbekanntes Projekt");
   const cur = await db.get(ENTRIES, id);
   if (!cur) throw new Error("Posten nicht gefunden");
-  if (lockReason(cur)) throw new Error(`Gesperrt (${lockReason(cur)}): eindeutig zugeordnete Posten sind nicht änderbar`);
+  const lock = await editLock(cur, id);
+  if (lock) throw new Error(`Gesperrt (${lock}): eindeutig zugeordnete Posten sind nicht änderbar (nur der zuletzt erfasste bleibt korrigierbar)`);
   if (cur.void) throw new Error("Stornierte Posten sind schreibgeschützt");
   await db.set(ENTRIES, id, { project, updatedAt: now() }, { merge: true });
   return { id, ...cur, project };
@@ -469,7 +471,7 @@ async function deleteInbox(id) {
 async function assignReceipt(entryId, inboxId) {
   const [entry, item] = await Promise.all([db.get(ENTRIES, entryId), db.get(INBOX, inboxId)]);
   if (!entry || !item || item.status !== "ready" || !item.blobId) throw new Error("Beleg nicht gefunden");
-  if (entry.type !== "expense") throw new Error("Belege gibt es nur zu Ausgaben");
+  if (entry.type !== "expense" && !(entry.type === "income" && entry.source === "manual")) throw new Error("Belege gibt es nur zu Ausgaben und eigenen Einnahmen (z. B. Gutschriften)");
   if (entry.receiptStatus === "ready") throw new Error("Beleg ist bereits zugeordnet und gesperrt");
   const receipt = { receiptBlobId: item.blobId, receiptFilename: item.filename, receiptStatus: "ready", receiptUpdatedAt: now() };
   await db.set(ENTRIES, entryId, receipt, { merge: true });
@@ -660,7 +662,7 @@ async function entriesCsv(from, to, project = "") {
 }
 
 module.exports = {
-  PROJECTS, projectOf, byProject, assignProject, lockReason, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
+  PROJECTS, projectOf, byProject, assignProject, lockReason, latestManual, EXPENSE_CATEGORIES, INCOME_CATEGORIES, cents, listEntries, addEntry, updateEntry, voidEntry, invoiceFor, syncStripe, paidSessions,
   listInbox, inboxStart, inboxChunk, inboxFinish, deleteInbox, assignReceipt, receiptOf, inboxFile,
   productOf, syncFlowUnion, totals, refundSale, syncRefundFromCharge, syncRefundForPayment, documentPdf, listLicenses, grantLicense, releaseDevice, markMailed, splitName, createReport, listReports, reportFile, mailReport, taxPackage, entriesCsv,
 };
